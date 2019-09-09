@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+import '../../public/app.css';
 import Header from './Header';
 import Land from './Land';
 import Issue from './Issue/Issue';
@@ -11,7 +12,7 @@ class AppContainer extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
+        <div className="Head">
           <Header />
           <div className="container-fluid">
             <div className="row">
