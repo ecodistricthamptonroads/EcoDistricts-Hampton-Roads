@@ -32,7 +32,8 @@ class ReportIssue extends Component {
       email: this.state.email,
       title: this.state.title,
       type: this.state.type,
-      description: this.state.description
+      description: this.state.description,
+      date: new Date().getDate()
     });
     console.log({
       name: this.state.name,

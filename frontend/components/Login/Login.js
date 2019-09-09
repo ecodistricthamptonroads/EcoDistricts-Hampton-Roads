@@ -48,20 +48,20 @@ class Login extends Component {
           onSubmit={this.handleSubmit}
         >
           <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Label>Name</Form.Label>
+            <Form.Label>Username</Form.Label>
             <Form.Control
               name="username"
-              value={this.state.name}
+              value={this.state.username}
               onChange={this.handleChange}
               type="text"
-              placeholder="First Last"
+              placeholder=""
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlInput2">
-            <Form.Label>Email address</Form.Label>
+            <Form.Label>Password</Form.Label>
             <Form.Control
               name="password"
-              value={this.state.email}
+              value={this.state.password}
               onChange={this.handleChange}
               type="password"
               placeholder=""
