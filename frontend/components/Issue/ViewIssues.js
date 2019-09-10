@@ -2,12 +2,18 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import React from 'react';
 import Table from 'react-bootstrap/Table';
-
+import { deleteIssue } from '../../actions/index'
 class ViewIssues extends Component {
   constructor(props) {
     super(props);
+
+    this.delete = this.delete.bind(this);
+
   }
 
+  delete(issue) {
+    this.props.delete(issue);
+  }
   isLoggedInHeader() {
     if(this.props.loggedIn) {
       return (
@@ -18,6 +24,7 @@ class ViewIssues extends Component {
           <th> Title </th>
           <th> Description </th>
           <th> Date </th>
+          <th> Delete? </th>
         </tr>
       )
     } else {
@@ -30,9 +37,6 @@ class ViewIssues extends Component {
     }
   }
 
-  isLoggedInBody() {
-
-  }
 
   render() {
     return (
@@ -52,9 +56,10 @@ class ViewIssues extends Component {
                       <td> {issue.title} </td>
                       <td> {issue.description} </td>
                       <td> {issue.date} </td>
+                      <td> <button onClick={() => this.delete(issue)}>Delete</button> </td>
                     </tr>
                 )
-              } else {
+              } else if(issue.type === "Community") {
                   return (
                     <tr>
                       <td> {issue.title} </td>
@@ -80,7 +85,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (/* dispatch */) => {
   return {
-
+    delete: deleteIssue
   };
 };
 

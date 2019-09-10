@@ -12,7 +12,7 @@ class ReportIssue extends Component {
       name: '',
       email: '',
       title: '',
-      type: '',
+      type: 'Community',
       description: '',
       validated: false
     };
@@ -33,7 +33,7 @@ class ReportIssue extends Component {
       title: this.state.title,
       type: this.state.type,
       description: this.state.description,
-      date: new Date().getDate()
+      date: new Date().toLocaleString()
     });
     console.log({
       name: this.state.name,
@@ -77,7 +77,7 @@ class ReportIssue extends Component {
             <Form.Label>Issue Type</Form.Label>
             <Form.Control
               name="type"
-              value={this.state.type}
+              defaultValue={"Community"}
               onChange={this.handleChange}
               as="select"
             >
