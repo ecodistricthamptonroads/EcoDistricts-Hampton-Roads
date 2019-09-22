@@ -7,7 +7,8 @@ import Header from './Header';
 import Land from './Land';
 import Issue from './Issue/Issue';
 import Login from './Login/Login';
-import AdminIssue from './AdminIssue/AdminIssues'
+import AdminIssue from './AdminIssue/AdminIssues';
+import Surveys from './Surveys/Surveys';
 import requireAuth from '../helpers/requireAuth';
 
 class AppContainer extends Component {
@@ -22,6 +23,7 @@ class AppContainer extends Component {
                 <Switch>
                   <Route exact path="/" component={Land} />
                   <Route path="/issues" component={Issue} />
+                  <Route path="/surveys" component={Surveys} />
                   {/*<Route path="/adminissues" component={requireAuth(AdminIssue)} />*/}
                   <Route path="/login" component={Login} />
                   <Route component={Land} />
