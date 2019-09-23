@@ -7,7 +7,7 @@ For each Issue:
 
 1. Create New Branch
 
-git checkout -b <IssueName>
+git checkout -b 'IssueName'
 
 2. Do code changes
 3. Checkout master and see if merge works
@@ -17,7 +17,7 @@ git pull
 
 4. Merge your branch into master
 
-git merge <IssueName>
+git merge 'IssueName'
 
 5. Make sure master works once merged
 
@@ -25,11 +25,11 @@ npm run dev
 
 6. Checkout your branch again
 
-git checkout <IssueName>
+git checkout 'IssueName'
 
 7. Push to your remote branch
 
-git push origin <IssueName>
+git push origin 'IssueName'
 
 8. Make a pull request on GitHub
 
