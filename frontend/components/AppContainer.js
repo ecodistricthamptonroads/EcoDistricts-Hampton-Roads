@@ -7,8 +7,9 @@ import Header from './Header';
 import Land from './Land';
 import Issue from './Issue/Issue';
 import Login from './Login/Login';
-import AdminIssue from './AdminIssue/AdminIssues'
+import AdminIssue from './AdminIssue/AdminIssues';
 import requireAuth from '../helpers/requireAuth';
+import ProjectStatus from './ProjectStatus/ProjectStatus';
 
 class AppContainer extends Component {
   render() {
@@ -25,6 +26,7 @@ class AppContainer extends Component {
                   {/*<Route path="/adminissues" component={requireAuth(AdminIssue)} />*/}
                   <Route path="/login" component={Login} />
                   <Route component={Land} />
+                  <Route path="/projectstatus" component={ProjectStatus} />
                 </Switch>
               </div>
             </div>
