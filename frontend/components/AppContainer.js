@@ -8,6 +8,7 @@ import Land from './Land';
 import Issue from './Issue/Issue';
 import EducationJobs from './EducationJobs/EducationJobs';
 import Login from './Login/Login';
+import Recognition from './Recognition/Recognition';
 import News from './News/News';
 import Article from './Article/Article';
 
@@ -25,6 +26,7 @@ class AppContainer extends Component {
                   <Route path="/issues" component={Issue} />
                   <Route path="/opportunities" component={EducationJobs} />
                   <Route path="/login" component={Login} />
+                  <Route path="/recognition" component={Recognition} />
                   <Route exact path="/news" component={News} />
                   <Route path="/news/:id" component={Article} />
                   <Route component={Land} />
