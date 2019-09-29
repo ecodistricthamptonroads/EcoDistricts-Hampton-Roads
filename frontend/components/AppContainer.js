@@ -6,11 +6,10 @@ import '../../public/app.css';
 import Header from './Header';
 import Land from './Land';
 import Issue from './Issue/Issue';
+import EducationJobs from './EducationJobs/EducationJobs';
 import Login from './Login/Login';
 import News from './News/News';
 import Article from './Article/Article';
-import AdminIssue from './AdminIssue/AdminIssues';
-import requireAuth from '../helpers/requireAuth';
 
 class AppContainer extends Component {
   render() {
@@ -24,7 +23,7 @@ class AppContainer extends Component {
                 <Switch>
                   <Route exact path="/" component={Land} />
                   <Route path="/issues" component={Issue} />
-                  {/*<Route path="/adminissues" component={requireAuth(AdminIssue)} />*/}
+                  <Route path="/opportunities" component={EducationJobs} />
                   <Route path="/login" component={Login} />
                   <Route exact path="/news" component={News} />
                   <Route path="/news/:id" component={Article} />

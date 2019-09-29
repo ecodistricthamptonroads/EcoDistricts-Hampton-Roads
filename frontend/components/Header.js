@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { logout } from '../actions/index';
 import logo from '../assets/images/logo.png';
+import Land from './Land';
 
 class Header extends Component {
   constructor(props) {
@@ -44,10 +45,12 @@ class Header extends Component {
             <Nav.Link href={'/issues'}>
               <Link to={'/issues'}>Report an Issue</Link>
             </Nav.Link>
-            <Nav.Link as="Link" to="/surveys">
-              Surveys
+            <Nav.Link href={'/surveys'}>
+              <Link to={'/surveys'}>Surveys</Link>
             </Nav.Link>
-            <Nav.Link href="/opportunities">Jobs/Educations</Nav.Link>
+            <Nav.Link href="/opportunities">
+              <Link to={'/opportunities'}>Jobs/Education</Link>
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
         {this.isLoggedIn()}
