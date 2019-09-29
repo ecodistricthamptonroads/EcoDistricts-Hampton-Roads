@@ -25,8 +25,8 @@ class AppContainer extends Component {
                   <Route path="/issues" component={Issue} />
                   {/*<Route path="/adminissues" component={requireAuth(AdminIssue)} />*/}
                   <Route path="/login" component={Login} />
-                  <Route component={Land} />
                   <Route path="/projectstatus" component={ProjectStatus} />
+                  <Route component={Land} />
                 </Switch>
               </div>
             </div>
