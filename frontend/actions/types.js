@@ -3,3 +3,5 @@ export const DELETE_ISSUE = 'delete_issue';
 
 export const LOGIN = 'login';
 export const LOGOUT = 'logout';
+
+export const ADD_ARTICLE = 'add_article';

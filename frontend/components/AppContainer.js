@@ -8,8 +8,8 @@ import Land from './Land';
 import Issue from './Issue/Issue';
 import EducationJobs from './EducationJobs/EducationJobs';
 import Login from './Login/Login';
-import AdminIssue from './AdminIssue/AdminIssues';
-import requireAuth from '../helpers/requireAuth';
+import News from './News/News';
+import Article from './Article/Article';
 
 class AppContainer extends Component {
   render() {
@@ -24,8 +24,9 @@ class AppContainer extends Component {
                   <Route exact path="/" component={Land} />
                   <Route path="/issues" component={Issue} />
                   <Route path="/opportunities" component={EducationJobs} />
-                  {/*<Route path="/adminissues" component={requireAuth(AdminIssue)} />*/}
                   <Route path="/login" component={Login} />
+                  <Route exact path="/news" component={News} />
+                  <Route path="/news/:id" component={Article} />
                   <Route component={Land} />
                 </Switch>
               </div>
