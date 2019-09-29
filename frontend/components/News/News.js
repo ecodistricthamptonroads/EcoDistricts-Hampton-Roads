@@ -5,6 +5,8 @@ import NewsCard from './NewsCard';
 import logo from '../../assets/images/logo.png';
 import { Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
+import { deleteIssue } from '../../actions';
+import { addArticle } from '../../actions/newsAction';
 class News extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +26,11 @@ class News extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    alert('adfa');
+    this.props.addArticle({
+      title: this.state.title,
+      description: this.state.description,
+      text: this.state.text
+    });
   }
   loggedIn() {
     if (this.props.loggedIn) {
@@ -82,18 +88,22 @@ class News extends Component {
         {this.loggedIn()}
         <h1> Hampton Roads News </h1>
         <br />
-        <div onClick={() => this.props.history.push('/news/2')}>
-          {' '}
-          <NewsCard
-            src={logo}
-            title={'asdfadfa'}
-            description={'asdfasdfa'}
-          />{' '}
-        </div>
-        <NewsCard src={logo} title={'asdfadfa'} description={'asdfasdfa'} />
-        <NewsCard src={logo} title={'asdfadfa'} description={'asdfasdfa'} />
-        <NewsCard src={logo} title={'asdfadfa'} description={'asdfasdfa'} />
-        <NewsCard src={logo} title={'asdfadfa'} description={'asdfasdfa'} />
+        {this.props.news.reverse().map(article => {
+          return (
+            <div>
+              <div
+                onClick={() => this.props.history.push('/news/' + article.id)}
+              >
+                <NewsCard
+                  src={logo}
+                  title={article.title}
+                  description={article.description}
+                />
+              </div>
+              <br />
+            </div>
+          );
+        })}
       </div>
     );
   }
@@ -101,8 +111,15 @@ class News extends Component {
 
 const mapStateToProps = state => {
   return {
+    news: state.news.news,
     loggedIn: state.login.loggedIn
   };
 };
 
-export default connect(mapStateToProps)(News);
+const mapDispatchToProps = (/* dispatch */) => {
+  return {
+    addArticle: addArticle
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps())(News);

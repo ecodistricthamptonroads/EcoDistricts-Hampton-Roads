@@ -10,13 +10,22 @@ class Article extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: ''
+      news: ''
     };
   }
 
   componentDidMount() {
+    console.log(this.props.news);
+    console.log('sfsdfsfdsfsdf');
+    console.log(
+      this.props.news.filter(
+        article => article.id == this.props.match.params.id
+      )
+    );
     this.setState({
-      id: this.props.match.params.id
+      news: this.props.news.filter(
+        article => article.id == this.props.match.params.id
+      )[0]
     });
   }
 
@@ -24,18 +33,13 @@ class Article extends Component {
     return (
       <div>
         <Card>
-          <Card.Img variant="top" src={logo} height={300} />
+          <Card.Img variant="top" src={logo} height={400} />
           <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Card.Text>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </Card.Text>
+            <Card.Title> {this.state.news.title} </Card.Title>
+            <Card.Text>{this.state.news.description}</Card.Text>
           </Card.Body>
           <ListGroup className="list-group-flush">
-            <ListGroupItem>Cras justo odio</ListGroupItem>
-            <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-            <ListGroupItem>Vestibulum at eros</ListGroupItem>
+            <ListGroupItem> {this.state.news.text} </ListGroupItem>
           </ListGroup>
           <Card.Body>
             <Card.Link href="#">Card Link</Card.Link>
@@ -49,7 +53,7 @@ class Article extends Component {
 
 const mapStateToProps = state => {
   return {
-    loggedIn: state.login.loggedIn
+    news: state.news.news
   };
 };
 
