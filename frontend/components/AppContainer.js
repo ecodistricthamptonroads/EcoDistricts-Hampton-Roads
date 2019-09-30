@@ -22,7 +22,7 @@ class AppContainer extends Component {
           <Header />
           <div className="container-fluid">
             <div className="row">
-              <div className="col-sm-8 offset-md-2">
+              <div className="col-sm-10 offset-md-1">
                 <Switch>
                   <Route exact path="/" component={Land} />
                   <Route path="/issues" component={Issue} />
