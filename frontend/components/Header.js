@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { logout } from '../actions/index';
 import logo from '../assets/images/logo.png';
+import Land from './Land';
 
 class Header extends Component {
   constructor(props) {
@@ -18,7 +19,6 @@ class Header extends Component {
     } else {
       return (
         <div>
-          <div> Hi {this.props.username} </div>
           <button onClick={this.logout}> Logout </button>
         </div>
       );
@@ -36,12 +36,27 @@ class Header extends Component {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Link to={'/'}>Home</Link>
-            <Nav.Link href="/news">News</Nav.Link>
-            <Link to={'issues'}>Report an Issue</Link>
-            <Nav.Link href="/surveys">Surveys</Nav.Link>
-            <Nav.Link href="/opportunities">Jobs/Education</Nav.Link>
-            <Link to={'projectstatus'}>Project Status</Link>
+            <Nav.Link href={'/'}>
+              <Link to={'/'}>Home</Link>
+            </Nav.Link>
+            <Nav.Link href="/news">
+              <Link to={'/news'}>News</Link>
+            </Nav.Link>
+            <Nav.Link href={'/issues'}>
+              <Link to={'/issues'}>Report an Issue</Link>
+            </Nav.Link>
+            <Nav.Link href={'/surveys'}>
+              <Link to={'/surveys'}>Surveys</Link>
+            </Nav.Link>
+            <Nav.Link href="/opportunities">
+              <Link to={'/opportunities'}>Jobs/Education</Link>
+            </Nav.Link>
+            <Nav.Link href="/recognition">
+              <Link to={'/recognition'}>Recognizing Residents</Link>
+            </Nav.Link>
+            <Nav.Link href="/projectstatus">
+              <Link to={'/projectstatus'}>Project Status</Link>
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
         {this.isLoggedIn()}
