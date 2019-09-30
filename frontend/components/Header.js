@@ -54,6 +54,9 @@ class Header extends Component {
             <Nav.Link href="/recognition">
               <Link to={'/recognition'}>Recognizing Residents</Link>
             </Nav.Link>
+            <Nav.Link href="/projectstatus">
+              <Link to={'/projectstatus'}>Project Status</Link>
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
         {this.isLoggedIn()}
