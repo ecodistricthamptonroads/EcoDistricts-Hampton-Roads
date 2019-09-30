@@ -1,13 +1,13 @@
 import { Component } from 'react';
-import { connect } from 'react-redux';
 import React from 'react';
-import ReactSearchBox from 'react-search-box';
 import Table from 'react-bootstrap/Table';
+import Form from 'react-bootstrap/Form';
 
 class ProjectStatus extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      search: '',
       data: [
         {
           key: 'project1',
@@ -26,19 +26,38 @@ class ProjectStatus extends Component {
         }
       ]
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+  handleSubmit(e) {
+    e.preventDefault();
+    this.setState({ [e.target.name]: e.target.value });
+  }
+  search(item) {
+    const lc = item.toLowerCase();
+    const filter = this.state.search.toLowerCase();
+    return lc.includes(filter);
+  }
   render() {
     return (
       <div>
-        <ReactSearchBox
-          placeholder="Search for Project"
-          value="doe"
-          data={this.data}
-          callback={record => console.log(record)}
-        />
-        <button>Search</button>
-
+        <br />
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Control
+              name="search"
+              value={this.state.search}
+              onChange={this.handleChange}
+              type="text"
+              placeholder="Search"
+            />
+          </Form.Group>
+        </Form>
+        <br />
         <Table>
           <thead>
             <tr>
@@ -47,10 +66,16 @@ class ProjectStatus extends Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td> {this.data.key} </td>
-              <td> {this.data.status} </td>
-            </tr>
+            {this.state.data
+              .filter(item => this.search(item.key))
+              .map(data1 => {
+                return (
+                  <tr>
+                    <td> {data1.key} </td>
+                    <td> {data1.status} </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </Table>
       </div>
