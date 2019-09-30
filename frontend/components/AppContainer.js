@@ -12,6 +12,7 @@ import ProjectStatus from './ProjectStatus/ProjectStatus';
 import Recognition from './Recognition/Recognition';
 import News from './News/News';
 import Article from './Article/Article';
+import Surveys from './Surveys/Surveys';
 
 class AppContainer extends Component {
   render() {
@@ -28,6 +29,7 @@ class AppContainer extends Component {
                   <Route path="/opportunities" component={EducationJobs} />
                   <Route path="/login" component={Login} />
                   <Route path="/projectstatus" component={ProjectStatus} />
+                  <Route path="/surveys" component={Surveys} />
                   <Route path="/recognition" component={Recognition} />
                   <Route exact path="/news" component={News} />
                   <Route path="/news/:id" component={Article} />
