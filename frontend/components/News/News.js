@@ -88,7 +88,7 @@ class News extends Component {
         {this.loggedIn()}
         <h1> Hampton Roads News </h1>
         <br />
-        {this.props.news.reverse().map(article => {
+        {this.props.news.map(article => {
           return (
             <div>
               <div
