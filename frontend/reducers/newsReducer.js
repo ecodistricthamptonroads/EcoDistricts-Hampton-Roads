@@ -41,7 +41,7 @@ export default function(state = newsInitial, action) {
   switch (action.type) {
     case ADD_ARTICLE:
       action.payload.id = id++;
-      return { ...state, news: [...state.news, action.payload] };
+      return { ...state, news: [action.payload, ...state.news] };
     default:
       return state;
   }
