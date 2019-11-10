@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import React from 'react';
+import axios from 'axios';
 import AddJob from './AddJob';
 import Table from 'react-bootstrap/Table';
 import Card from 'react-bootstrap/Card';
@@ -8,22 +9,17 @@ import Card from 'react-bootstrap/Card';
 class EducationJobs extends Component {
   constructor(props) {
     super(props);
-    var job1 = {
-      title: 'job1',
-      description: 'This is a description of job 1',
-      responsibilities: 'These are the responsibilities for job 1',
-      requirements: 'These are the requirements for job 1'
-    };
-    var job2 = {
-      title: 'job2',
-      description: 'A description of job 2',
-      responsibilities: 'These are the responsibilities for job 2',
-      requirements: 'These are the requirements for job 2'
-    };
+
     this.state = {
       currentJob: null,
-      jobs: [job1, job2]
+      jobs: []
     };
+  }
+
+  componentDidMount() {
+    axios.get('/api/job/').then(jobs => {
+      this.setState({ jobs: jobs.data });
+    });
   }
 
   adminTableHeader() {
@@ -34,6 +30,7 @@ class EducationJobs extends Component {
 
   adminDeleteJob(job) {
     if (this.props.loggedIn) {
+      let deleteJob = job;
       let newJobs = this.state.jobs.slice();
       let index = newJobs.indexOf(job);
       newJobs.splice(index, 1);
@@ -42,7 +39,12 @@ class EducationJobs extends Component {
           {' '}
           {React.createElement(
             'button',
-            { onClick: () => this.setState({ jobs: newJobs }) },
+            {
+              onClick: () => {
+                this.setState({ jobs: newJobs });
+                axios.delete('/api/job/' + job._id);
+              }
+            },
             'Delete Job'
           )}{' '}
         </td>
