@@ -3,12 +3,21 @@ import { connect } from 'react-redux';
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import { deleteIssue } from '../../actions/index'
+import axios from 'axios';
+
 class ViewIssues extends Component {
   constructor(props) {
     super(props);
 
     this.delete = this.delete.bind(this);
+    this.state = {issues: []};
 
+  }
+
+  componentDidMount() {
+    axios.get('/api/issue/').then((issues) => {
+      this.setState({issues: issues.data})
+    })
   }
 
   delete(issue) {
@@ -39,36 +48,37 @@ class ViewIssues extends Component {
 
 
   render() {
+    console.log(this.state.issues);
     return (
       <Table>
         <thead>
         { this.isLoggedInHeader() }
         </thead>
         <tbody>
-          {
-            this.props.issues.map(issue => {
-              if(this.props.loggedIn) {
-                  return (
-                    <tr>
-                      <td> {issue.name} </td>
-                      <td> {issue.email} </td>
-                      <td> {issue.type} </td>
-                      <td> {issue.title} </td>
-                      <td> {issue.description} </td>
-                      <td> {issue.date} </td>
-                      <td> <button onClick={() => this.delete(issue)}>Delete</button> </td>
-                    </tr>
-                )
-              } else if(issue.type === "Community") {
-                  return (
-                    <tr>
-                      <td> {issue.title} </td>
-                      <td> {issue.description} </td>
-                    </tr>
-                  )
-              }
-
-            })
+          {this.state.issues.map(issue => {
+            if (this.props.loggedIn) {
+              return (
+                <tr>
+                  <td> {issue.name} </td>
+                  <td> {issue.email} </td>
+                  <td> {issue.type} </td>
+                  <td> {issue.title} </td>
+                  <td> {issue.description} </td>
+                  <td> {issue.date} </td>
+                  <td>
+                    <button onClick={() => this.delete(issue)}>Delete</button>
+                  </td>
+                </tr>
+              )
+            } else if (issue.type === "Community") {
+              return (
+                <tr>
+                  <td> {issue.title} </td>
+                  <td> {issue.description} </td>
+                </tr>
+              )
+            }
+          })
           }
         </tbody>
       </Table>

@@ -4,6 +4,7 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { addIssue } from '../../actions/index';
+import axios from 'axios';
 
 class ReportIssue extends Component {
   constructor(props) {
@@ -27,20 +28,17 @@ class ReportIssue extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.addIssue({
+    let issue = {
       name: this.state.name,
       email: this.state.email,
       title: this.state.title,
       type: this.state.type,
       description: this.state.description,
       date: new Date().toLocaleString()
-    });
-    console.log({
-      name: this.state.name,
-      email: this.state.email,
-      title: this.state.title,
-      type: this.state.type,
-      description: this.state.description
+    };
+    axios.post('/api/issue/', issue).then((issue) => {
+      console.log(issue);
+      //this.setState({ issues: issue })
     });
   }
 
