@@ -1,1 +1,2 @@
 require('./issue');
+require('./news');

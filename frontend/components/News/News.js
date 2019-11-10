@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import { deleteIssue } from '../../actions';
 import { addArticle } from '../../actions/newsAction';
+import axios from "axios";
+
 class News extends Component {
   constructor(props) {
     super(props);
@@ -14,10 +16,17 @@ class News extends Component {
     this.state = {
       title: '',
       description: '',
-      text: ''
+      text: '',
+      news: []
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidMount() {
+    axios.get('/api/news/').then((news) => {
+      this.setState({news: news.data})
+    })
   }
 
   handleChange(e) {
@@ -26,10 +35,15 @@ class News extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    this.props.addArticle({
+    let news = {
       title: this.state.title,
       description: this.state.description,
       text: this.state.text
+    };
+    this.props.addArticle(news);
+    axios.post('/api/news/', news).then((news) => {
+      console.log(news);
+      //this.setState({ issues: issue })
     });
   }
   loggedIn() {
@@ -88,11 +102,11 @@ class News extends Component {
         {this.loggedIn()}
         <h1> Hampton Roads News </h1>
         <br />
-        {this.props.news.map(article => {
+        {this.state.news.map(article => {
           return (
             <div>
               <div
-                onClick={() => this.props.history.push('/news/' + article.id)}
+                onClick={() => this.props.history.push('/news/' + article._id)}
               >
                 <NewsCard
                   src={logo}

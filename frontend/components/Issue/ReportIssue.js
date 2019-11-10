@@ -36,6 +36,7 @@ class ReportIssue extends Component {
       description: this.state.description,
       date: new Date().toLocaleString()
     };
+    this.props.addIssue(issue);
     axios.post('/api/issue/', issue).then((issue) => {
       console.log(issue);
       //this.setState({ issues: issue })
