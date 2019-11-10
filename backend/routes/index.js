@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 const issue = require('./issueRoutes');
+const job = require('./jobRoutes');
 
 router.use('/issue', issue);
+router.use('/job', job);
 
 module.exports = router;

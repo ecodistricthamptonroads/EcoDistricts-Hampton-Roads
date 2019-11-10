@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import React from 'react';
+import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 
 class AddJob extends Component {
@@ -23,11 +24,14 @@ class AddJob extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.newJob({
+    let job = {
       title: this.state.title,
       description: this.state.description,
       responsibilities: this.state.responsibilities,
       requirements: this.state.requirements
+    };
+    axios.post('/api/job/', job).then(job => {
+      console.log(job);
     });
   }
 
