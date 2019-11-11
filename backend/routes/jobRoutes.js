@@ -29,9 +29,9 @@ router.get('/', (req, res) => {
 router.delete('/:job_id', (req, res) => {
   Job.findByIdAndRemove(req.params.job_id, function(err, response) {
     if (err) {
-      res.json('' + err);
+      res.send('' + err);
     } else {
-      res.json({ message: 'Job with id ' + req.params.job_id + ' removed' });
+      res.send({ message: 'Job with id ' + req.params.job_id + ' removed' });
     }
   });
 });

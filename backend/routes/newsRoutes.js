@@ -27,5 +27,14 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/:news_id', (req, res) => {
+  News.findById(req.params.news_id, function(err, news) {
+    if (err) {
+      res.json('' + err);
+    } else {
+      res.send(news);
+    }
+  });
+});
 
 module.exports = router;

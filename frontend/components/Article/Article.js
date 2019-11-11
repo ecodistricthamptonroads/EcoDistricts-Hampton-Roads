@@ -5,28 +5,29 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import logo from '../../assets/images/logo.png';
+import axios from "axios";
 
 class Article extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      news: ''
+      news: {title: '', description: '', text: ''}
     };
   }
 
   componentDidMount() {
+    console.log('hihid');
     console.log(this.props.news);
-    console.log('sfsdfsfdsfsdf');
-    console.log(
-      this.props.news.filter(
-        article => article.id == this.props.match.params.id
-      )
-    );
-    this.setState({
-      news: this.props.news.filter(
-        article => article.id == this.props.match.params.id
-      )[0]
+    axios.get('/api/news/' + this.props.match.params.id).then((news) => {
+      console.log("hi");
+      console.log(news);
+      this.setState({news: news.data})
     });
+    // this.setState({
+    //   news: this.props.news.filter(
+    //     article => article.id == this.props.match.params.id
+    //   )[0]
+    // });
   }
 
   render() {
@@ -41,10 +42,6 @@ class Article extends Component {
           <ListGroup className="list-group-flush">
             <ListGroupItem> {this.state.news.text} </ListGroupItem>
           </ListGroup>
-          <Card.Body>
-            <Card.Link href="#">Card Link</Card.Link>
-            <Card.Link href="#">Another Link</Card.Link>
-          </Card.Body>
         </Card>
       </div>
     );

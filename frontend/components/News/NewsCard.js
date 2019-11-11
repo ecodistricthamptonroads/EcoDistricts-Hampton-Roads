@@ -16,7 +16,7 @@ class NewsCard extends Component {
           <div className="container">
             <div className="row">
               <div className="col-2">
-                <img src={this.props.src} height={90} />
+                <img src={this.props.src} height={80} />
               </div>
               <div className="col-10">
                 <Card.Body>

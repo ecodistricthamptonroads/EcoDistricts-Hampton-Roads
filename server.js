@@ -25,6 +25,7 @@ app.use('/api', api);
 
 //frontend routing
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.use('/', (request, response) => {
   response.sendFile(__dirname + '/public/index.html');
 });
