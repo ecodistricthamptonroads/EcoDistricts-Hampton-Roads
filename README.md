@@ -1,56 +1,8 @@
-
-Project for Junior Design
-
-Project Workflow
-
-For each Issue:
-
-1. Create New Branch
-
-git checkout -b 'IssueName'
-
-2. Do code changes
-3. Checkout master and see if merge works
-
-git checkout master
-git pull
-
-4. Merge your branch into master
-
-git merge 'IssueName'
-
-5. Make sure master works once merged
-
-npm run dev
-
-6. Checkout your branch again
-
-git checkout 'IssueName'
-
-7. Push to your remote branch
-
-git push origin 'IssueName'
-
-8. Make a pull request on GitHub
-
-Click the 'new pull request' button when you are on your branch on GitHub
-
-9. Have someone else review it
-
-After an issue has been merged into master, move the issue in ZenHub
-
-
-Troubleshooting:
-
-If you run into npm errors, delete the package-lock.json file and run 'npm install' again.
-
-If master is broken, look at commit history and talk to whoever commited last.
-
 # Release/Patch Notes
 
-Release notes follow 1.X where X is the Sprint Number
+Release notes follow 0.X where X is the Sprint Number. 1.0 will be the final product handed off to the client.
 
-# Patch 1.4 (11/10/19)
+# Patch 0.4 (11/10/19)
 
 ## New Software Features
 
@@ -72,7 +24,7 @@ Release notes follow 1.X where X is the Sprint Number
 2. Issues changing 'Recognizing Residents Tab'
 3. Search functionality in News/Jobs Opportunities
 
-# Patch 1.3 (10/20/19)
+# Patch 0.3 (10/20/19)
 
 ## New Software Features
 
@@ -91,7 +43,7 @@ Release notes follow 1.X where X is the Sprint Number
 3. Issues changing 'Recognizing Residents Tab'
 4. Search functionality in News/Jobs Opportunities
 
-# Patch 1.2 (9/29/19)
+# Patch 0.2 (9/29/19)
 
 ## New Software Features
 
@@ -131,7 +83,7 @@ Release notes follow 1.X where X is the Sprint Number
 3. Issues changing 'Recognizing Residents Tab'
 4. Search functionality in News/Jobs Opportunities
 
-# Patch 1.1 (9/8/19)
+# Patch 0.1 (9/8/19)
 
 ## New Software Features
 
@@ -176,19 +128,25 @@ Must have NodeJS (>= v8) installed (https://nodejs.org/en/download/)
 
 Must have NPM (>= v6) installed. Installing NodeJS should install NPM as well.
 
+### MongoDB
+
+Must have MongoDB  (>= 4.0) installed (https://docs.mongodb.com/manual/administration/install-community/)
+
+Make sure to start the MongoDB backend by following the instructions below the MongoDB installation guide.
+
 ### Operating System
 
 Will work on MacOS, Windows, and Linux distros (Ubuntu, etc...)
 
-## Dependent Libaries
+## Dependent Libraries
 
-Running the command 'npm install' in the repository will download all dependent libaries needed to run the website.
+Running the command 'npm install' in the repository will download all dependent libraries needed to run the website.
 
-## Download Instruction for Development
+## Download Instructions for Development
 
 ### Cloning Repository
 
-1. Open terminal/command prompt and navigate to the directory that you want to create the repository. 
+1. Open a terminal/command prompt and navigate to the directory that you want to create the repository. 
 2. Enter 'git clone https://github.com/wzheng67/EcoDistricts-Hampton-Roads.git'
 3. Enter the directory (cd EcoDistricts-Hampton-Roads)
 
@@ -196,20 +154,22 @@ Running the command 'npm install' in the repository will download all dependent 
 
 1. Navigate to https://github.com/wzheng67/EcoDistricts-Hampton-Roads
 2. Download Zip  by clicking on the 'Clone or Download' button and then click 'Download ZIP'
+3. Navigate to the directory that you want to create the folder unzip the downloaded file
+4. Enter the directory (cd EcoDistricts-Hampton-Roads)
 
 ## Build Instructions
 
 ### Production (on Local Machine)
 
-Enter 'npm run build'
+Enter 'npm run build' in terminal
 
 ### Development (on Local Machine)
 
-To run frontend only, enter 'npm run frontend'
+To run frontend only, enter 'npm run frontend' in terminal
 
-To run backend only, enter 'npm run backend'
+To run backend only, enter 'npm run backend' in terminal
 
-To run both, enter 'npm run dev'
+To run both, enter 'npm run dev' in terminal
 
 ## Updating Software
 
@@ -221,15 +181,15 @@ To run both, enter 'npm run dev'
 
 ## Run Instructions
 
-### Production (on AWS Terminal or SSH into AWS Host)
+### Production (in AWS Terminal or SSH into AWS Host)
 
-Enter 'npm run build'
+Once in the AWS terminal, enter 'npm run build'
 
 ## Troubleshooting Development
 
 ### Merge Conflicts
 
-Occur when someone is pushing code to a repository that has changed (i.e. Billy and Caleb download the code. Caleb pushes his changes. Then Billy pushes. There will be a conflict because the code Billy is pushing too has been changed by Caleb.)
+Occurs when someone is pushing code to a repository that has changed (i.e. Billy and Caleb download the code and both makes changes to the same file. Caleb pushes his changes. Then Billy pushes. There will be a conflict because the code Billy is pushing has been changed by Caleb and Git does not know what code to keep.)
 
 To fix, look at list of displayed conflicts and correct each individually. Create another commit and push.
 
@@ -238,6 +198,8 @@ To fix, look at list of displayed conflicts and correct each individually. Creat
 ### NPM Install Error
 
 Make sure latest versions of NodeJS and NPM are installed
+
+If the latest versions have been installed, check to make sure there is enough RAM. If on an AWS terminal with low RAM, create a swap file to use storage space as RAM space (https://aws.amazon.com/premiumsupport/knowledge-center/ec2-memory-swap-file/)  
 
 ### Issue while Building - NPM
 
