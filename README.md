@@ -46,6 +46,124 @@ If you run into npm errors, delete the package-lock.json file and run 'npm insta
 
 If master is broken, look at commit history and talk to whoever commited last.
 
+# Release/Patch Notes
+
+Release notes follow 1.X where X is the Sprint Number
+
+# Patch 1.4 (11/10/19)
+
+## New Software Features
+
+### Backend/Permanent Storage
+
+1. Permanent storage for most information
+
+### Hosting
+
+1. Website can be accessed by anyone by navigating to ip address (domain name yet to be finalized)
+
+## Bug Fixes
+
+1. Permanent Storage
+
+## Known Bugs/Defects
+
+1. Refreshing page logout out admin
+2. Issues changing 'Recognizing Residents Tab'
+3. Search functionality in News/Jobs Opportunities
+
+# Patch 1.3 (10/20/19)
+
+## New Software Features
+
+### Backend/Permanent Storage
+
+1. Permanent Storage for some information (News/Jobs)
+
+## Bug Fixes
+
+1. Some permanent storage 
+
+## Known Bugs/Defects
+
+1. Refreshing page logout out admin
+2. No permanent storage for some features
+3. Issues changing 'Recognizing Residents Tab'
+4. Search functionality in News/Jobs Opportunities
+
+# Patch 1.2 (9/29/19)
+
+## New Software Features
+
+### Jobs/Educational Opportunities (Admin and User)
+
+1. Adding Jobs (Admin)
+2. Removing/Editing Jobs (Admin)
+3. View (Admin/User)
+
+### News (Admin and User)
+
+1. User can view news stories (new page)
+2. Admins can create new story
+
+### Surveys (Admin and User)
+1. Add/Remove Survey (Admin)
+2. Take Survey (User)
+
+### Recognizing Residents Tab
+1. Nominate resident in surveys
+2. Resident of the month section
+3. Honoring our elders section
+4. Retired/Phase 4 residents
+
+### Projects under way
+1. Lists of projects currently being done by EcoDistricts
+2. Search
+
+## Bug Fixes 
+
+1. Fixing Tab Links
+
+## Known Bugs/Defects
+
+1. Refreshing page logout out admin
+2. No permanent storage (backend yet to be completed)
+3. Issues changing 'Recognizing Residents Tab'
+4. Search functionality in News/Jobs Opportunities
+
+# Patch 1.1 (9/8/19)
+
+## New Software Features
+
+### Functional UI
+
+1. Front page and tabs
+2. Basic view for each tab
+3. Homepage “Carousel” of Pictures
+4. Summary statement
+
+### Reporting Issues 
+
+1. Admin and User views
+2. User able to create a new issue 
+3. Admin able to see all issues
+4. Admin able to delete issue
+
+### Admin Login
+
+1. Hardcoded admin login
+2. Logout
+
+## Bug Fixes
+
+N/A (first release)
+
+## Known Bugs/Defects
+
+1. Refreshing page logout out admin
+2. No permanent storage (backend yet to be completed)
+3. Issue with tab links
+
 # Install Guide
 
 ## Pre-Requisites
