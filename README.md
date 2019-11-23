@@ -62,9 +62,9 @@ Must have NPM (>= v6) installed. Installing NodeJS should install NPM as well.
 
 Will work on MacOS, Windows, and Linux distros (Ubuntu, etc...)
 
-## Dependant Libaries
+## Dependent Libaries
 
-Running the command 'npm install' in the repository will download all dependant libaries needed to run the website.
+Running the command 'npm install' in the repository will download all dependent libaries needed to run the website.
 
 ## Download Instruction for Development
 
@@ -88,7 +88,9 @@ Enter 'npm run build'
 ### Development (on Local Machine)
 
 To run frontend only, enter 'npm run frontend'
+
 To run backend only, enter 'npm run backend'
+
 To run both, enter 'npm run dev'
 
 ## Updating Software
