@@ -1,4 +1,4 @@
-import { ADD_SURVEY } from './types';
+import { ADD_SURVEY, DELETE_SURVEY } from './types';
 import axios from 'axios';
 
 export const addSurvey = survey => dispatch => {
@@ -7,4 +7,8 @@ export const addSurvey = survey => dispatch => {
     //this.setState({ issues: issue })
     dispatch({ type: ADD_SURVEY, payload: survey });
   });
+};
+
+export const deleteSurvey = survey => dispatch => {
+  dispatch({ type: DELETE_SURVEY, payload: survey });
 };

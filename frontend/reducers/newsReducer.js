@@ -1,4 +1,4 @@
-import { ADD_ARTICLE } from '../actions/types';
+import { ADD_ARTICLE, DELETE_ARTICLE, DELETE_JOB } from '../actions/types';
 
 const lorem =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At lectus urna duis convallis. Urna cursus eget nunc scelerisque viverra mauris in aliquam sem. Arcu felis bibendum ut tristique et egestas. Nisl pretium fusce id velit ut tortor pretium viverra. Maecenas pharetra convallis posuere morbi leo urna. Fermentum leo vel orci porta non pulvinar neque laoreet. Amet mauris commodo quis imperdiet massa tincidunt. Imperdiet sed euismod nisi porta lorem mollis aliquam ut. Accumsan sit amet nulla facilisi morbi tempus iaculis urna id. Quis viverra nibh cras pulvinar mattis.\n' +
@@ -35,13 +35,15 @@ const newsInitial = {
   ]
 };
 
-let id = 4;
-
 export default function(state = newsInitial, action) {
   switch (action.type) {
     case ADD_ARTICLE:
-      action.payload.id = id++;
       return { ...state, news: [action.payload, ...state.news] };
+    case DELETE_ARTICLE:
+      return {
+        ...state,
+        news: state.news.filter(news => news.title !== action.payload.title)
+      };
     default:
       return state;
   }
