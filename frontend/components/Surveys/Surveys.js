@@ -2,10 +2,14 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import React from 'react';
 import Table from 'react-bootstrap/Table';
+import Form from 'react-bootstrap/Form';
+import { addSurvey } from '../../actions';
 class Surveys extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      title: '',
+      link: '',
       surveys: [
         {
           ID: 1,
@@ -22,6 +26,60 @@ class Surveys extends Component {
         }
       ]
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+    console.log(e.target.value);
+  }
+  handleSubmit(e) {
+    e.preventDefault();
+    let survey = {
+      title: this.state.title,
+      link: this.state.link
+    };
+    this.props.addSurvey(survey);
+  }
+
+  form() {
+    if (this.props.loggedIn) {
+      return (
+        <div>
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group controlId="survey.ControlInput1">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                name="title"
+                value={this.state.title}
+                onChange={this.handleChange}
+                type="text"
+                placeholder="Title"
+              />
+            </Form.Group>
+            <Form.Group controlId="survey.ControlInput2">
+              <Form.Label>Link</Form.Label>
+              <Form.Control
+                name="link"
+                value={this.state.link}
+                onChange={this.handleChange}
+                type="text"
+                placeholder="Link"
+              />
+            </Form.Group>
+          </Form>
+          <button
+            variant="primary"
+            type="submit"
+            value="submit"
+            onClick={this.handleSubmit}
+          >
+            Submit
+          </button>
+        </div>
+      );
+    }
   }
 
   header() {
@@ -49,18 +107,28 @@ class Surveys extends Component {
 
   render() {
     return (
-      <Table>
-        <thead>{this.header()}</thead>
-        <tbody>{this.body()}</tbody>
-      </Table>
+      <div>
+        {this.form()}
+        <Table>
+          <thead>{this.header()}</thead>
+          <tbody>{this.body()}</tbody>
+        </Table>
+      </div>
     );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    surveys: state.surveys
+    surveys: state.news.news,
+    loggedIn: state.login.loggedIn
   };
 };
 
-export default connect(mapStateToProps)(Surveys);
+const mapDispatchToProps = (/* dispatch */) => {
+  return {
+    addSurvey: addSurvey
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps())(Surveys);

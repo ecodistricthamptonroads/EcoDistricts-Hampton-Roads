@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import React from 'react';
 import Table from 'react-bootstrap/Table';
-import { deleteIssue } from '../../actions/index'
+import { deleteIssue } from '../../actions/index';
 import axios from 'axios';
 
 class ViewIssues extends Component {
@@ -10,21 +10,20 @@ class ViewIssues extends Component {
     super(props);
 
     this.delete = this.delete.bind(this);
-    this.state = {issues: []};
-
+    this.state = { issues: [] };
   }
 
   componentDidMount() {
-    axios.get('/api/issue/').then((issues) => {
-      this.setState({issues: issues.data})
-    })
+    axios.get('/api/issue/').then(issues => {
+      this.setState({ issues: issues.data });
+    });
   }
 
   delete(issue) {
     this.props.delete(issue);
   }
   isLoggedInHeader() {
-    if(this.props.loggedIn) {
+    if (this.props.loggedIn) {
       return (
         <tr>
           <th> Name </th>
@@ -35,25 +34,22 @@ class ViewIssues extends Component {
           <th> Date </th>
           <th> Delete? </th>
         </tr>
-      )
+      );
     } else {
       return (
         <tr>
           <th> Title </th>
           <th> Description </th>
         </tr>
-      )
+      );
     }
   }
-
 
   render() {
     console.log(this.state.issues);
     return (
       <Table>
-        <thead>
-        { this.isLoggedInHeader() }
-        </thead>
+        <thead>{this.isLoggedInHeader()}</thead>
         <tbody>
           {this.state.issues.map(issue => {
             if (this.props.loggedIn) {
@@ -69,17 +65,16 @@ class ViewIssues extends Component {
                     <button onClick={() => this.delete(issue)}>Delete</button>
                   </td>
                 </tr>
-              )
-            } else if (issue.type === "Community") {
+              );
+            } else if (issue.type === 'Community') {
               return (
                 <tr>
                   <td> {issue.title} </td>
                   <td> {issue.description} </td>
                 </tr>
-              )
+              );
             }
-          })
-          }
+          })}
         </tbody>
       </Table>
     );
@@ -89,8 +84,8 @@ class ViewIssues extends Component {
 const mapStateToProps = state => {
   return {
     loggedIn: state.login.loggedIn,
-    issues: state.form.issues
-  }
+    issues: state.issue.issues
+  };
 };
 
 const mapDispatchToProps = (/* dispatch */) => {

@@ -12,22 +12,20 @@ class AdminIssues extends Component {
     return (
       <Table>
         <thead>
-        <tr>
-          <th> Title </th>
-          <th> Description </th>
-        </tr>
+          <tr>
+            <th> Title </th>
+            <th> Description </th>
+          </tr>
         </thead>
         <tbody>
-        {
-          this.props.issues.map(issue => {
+          {this.props.issues.map(issue => {
             return (
               <tr>
                 <td> {issue.title} </td>
                 <td> {issue.description} </td>
               </tr>
-            )
-          })
-        }
+            );
+          })}
         </tbody>
       </Table>
     );
@@ -36,14 +34,12 @@ class AdminIssues extends Component {
 
 const mapStateToProps = state => {
   return {
-    issues: state.form.issues
-  }
+    issues: state.issue.issues
+  };
 };
 
 const mapDispatchToProps = (/* dispatch */) => {
-  return {
-
-  };
+  return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps())(AdminIssues);

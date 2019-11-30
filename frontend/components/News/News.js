@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import { deleteIssue } from '../../actions';
 import { addArticle } from '../../actions/newsAction';
-import axios from "axios";
+import axios from 'axios';
 
 class News extends Component {
   constructor(props) {
@@ -24,9 +24,9 @@ class News extends Component {
   }
 
   componentDidMount() {
-    axios.get('/api/news/').then((news) => {
-      this.setState({news: news.data})
-    })
+    axios.get('/api/news/').then(news => {
+      this.setState({ news: news.data });
+    });
   }
 
   handleChange(e) {
@@ -41,10 +41,6 @@ class News extends Component {
       text: this.state.text
     };
     this.props.addArticle(news);
-    axios.post('/api/news/', news).then((news) => {
-      console.log(news);
-      //this.setState({ issues: issue })
-    });
   }
   loggedIn() {
     if (this.props.loggedIn) {
