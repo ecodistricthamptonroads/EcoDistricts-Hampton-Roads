@@ -4,6 +4,7 @@ import axios from 'axios';
 export const addIssue = issue => dispatch => {
   axios.post('/api/issue/', issue).then(res => {
     dispatch({ type: ADD_ISSUE, payload: issue });
+    alert('Successfully Added Issue');
   });
 };
 

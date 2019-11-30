@@ -5,8 +5,7 @@ import NewsCard from './NewsCard';
 import logo from '../../assets/images/logo.png';
 import { Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
-import { deleteIssue } from '../../actions';
-import { addArticle } from '../../actions/newsAction';
+import { addArticle, getArticles } from '../../actions';
 import axios from 'axios';
 
 class News extends Component {
@@ -17,16 +16,14 @@ class News extends Component {
       title: '',
       description: '',
       text: '',
-      news: []
+      author: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
-    axios.get('/api/news/').then(news => {
-      this.setState({ news: news.data });
-    });
+    this.props.getNews();
   }
 
   handleChange(e) {
@@ -37,10 +34,17 @@ class News extends Component {
     e.preventDefault();
     let news = {
       title: this.state.title,
+      author: this.state.author,
       description: this.state.description,
       text: this.state.text
     };
     this.props.addArticle(news);
+    this.setState({
+      title: '',
+      description: '',
+      text: '',
+      author: ''
+    });
   }
   loggedIn() {
     if (this.props.loggedIn) {
@@ -55,6 +59,16 @@ class News extends Component {
                 onChange={this.handleChange}
                 type="text"
                 placeholder="Title"
+              />
+            </Form.Group>
+            <Form.Group controlId="exampleForm.ControlInput4">
+              <Form.Label>Author</Form.Label>
+              <Form.Control
+                name="author"
+                value={this.state.author}
+                onChange={this.handleChange}
+                type="text"
+                placeholder="Author"
               />
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlInput2">
@@ -98,7 +112,7 @@ class News extends Component {
         {this.loggedIn()}
         <h1> Hampton Roads News </h1>
         <br />
-        {this.state.news.map(article => {
+        {this.props.news.map(article => {
           return (
             <div>
               <div
@@ -108,6 +122,7 @@ class News extends Component {
                   src={logo}
                   title={article.title}
                   description={article.description}
+                  author={article.author}
                 />
               </div>
               <br />
@@ -128,7 +143,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (/* dispatch */) => {
   return {
-    addArticle: addArticle
+    addArticle: addArticle,
+    getNews: getArticles
   };
 };
 

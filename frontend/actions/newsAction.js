@@ -4,6 +4,7 @@ import axios from 'axios';
 export const addArticle = article => dispatch => {
   axios.post('/api/news/', article).then(res => {
     dispatch({ type: ADD_ARTICLE, payload: article });
+    alert('Successfully Added Article');
   });
 };
 

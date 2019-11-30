@@ -21,6 +21,7 @@ class NewsCard extends Component {
               <div className="col-10">
                 <Card.Body>
                   <Card.Title> {this.props.title} </Card.Title>
+                  <Card.Text> {this.props.author} </Card.Text>
                   <Card.Text> {this.props.description} </Card.Text>
                 </Card.Body>
               </div>

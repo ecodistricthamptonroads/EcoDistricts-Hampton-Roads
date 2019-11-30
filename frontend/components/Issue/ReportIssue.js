@@ -33,13 +33,15 @@ class ReportIssue extends Component {
       email: this.state.email,
       title: this.state.title,
       type: this.state.type,
-      description: this.state.description,
-      date: new Date().toLocaleString()
+      description: this.state.description
     };
     this.props.addIssue(issue);
-    axios.post('/api/issue/', issue).then((issue) => {
-      console.log(issue);
-      //this.setState({ issues: issue })
+    this.setState({
+      name: '',
+      email: '',
+      title: '',
+      type: 'Community',
+      description: ''
     });
   }
 
@@ -76,7 +78,7 @@ class ReportIssue extends Component {
             <Form.Label>Issue Type</Form.Label>
             <Form.Control
               name="type"
-              defaultValue={"Community"}
+              defaultValue={'Community'}
               onChange={this.handleChange}
               as="select"
             >
