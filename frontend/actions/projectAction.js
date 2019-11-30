@@ -1,9 +1,20 @@
-import { ADD_PROJECT, DELETE_PROJECT } from './types';
+import { ADD_PROJECT, DELETE_PROJECT, GET_PROJECTS } from './types';
+import axios from 'axios';
 
 export const addProject = project => dispatch => {
-  dispatch({ type: ADD_PROJECT, payload: project });
+  axios.post('/api/project/', project).then(res => {
+    dispatch({ type: ADD_PROJECT, payload: project });
+  });
 };
 
+export const getProjects = () => dispatch => {
+  axios.get('/api/project/').then(projects => {
+    console.log(projects);
+    dispatch({ type: GET_PROJECTS, payload: projects.data });
+  });
+};
 export const deleteProject = project => dispatch => {
-  dispatch({ type: DELETE_PROJECT, payload: project });
+  axios.delete('/api/project/' + project._id).then(res => {
+    dispatch({ type: DELETE_PROJECT, payload: project });
+  });
 };

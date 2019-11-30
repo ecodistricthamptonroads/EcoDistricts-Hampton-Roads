@@ -1,20 +1,22 @@
-import { ADD_SURVEY, DELETE_SURVEY } from '../actions/types';
+import { ADD_SURVEY, DELETE_SURVEY, GET_SURVEYS } from '../actions/types';
 
 const surveyInitial = {
-  survey: []
+  surveys: []
 };
 
 export default function(state = surveyInitial, action) {
   switch (action.type) {
     case ADD_SURVEY:
-      return { ...state, survey: [action.payload, ...state.survey] };
+      return { ...state, surveys: [...state.surveys, action.payload] };
     case DELETE_SURVEY:
       return {
         ...state,
-        survey: state.survey.filter(
-          survey => survey.name !== action.payload.name
+        surveys: state.surveys.filter(
+          survey => survey.title !== action.payload.title
         )
       };
+    case GET_SURVEYS:
+      return { ...state, surveys: [...action.payload] };
     default:
       return state;
   }

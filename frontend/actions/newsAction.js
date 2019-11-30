@@ -1,14 +1,20 @@
-import { ADD_ARTICLE, DELETE_ARTICLE } from './types';
+import { ADD_ARTICLE, DELETE_ARTICLE, GET_ARTICLES } from './types';
 import axios from 'axios';
 
 export const addArticle = article => dispatch => {
-  axios.post('/api/news/', article).then(news => {
-    console.log(news);
-    //this.setState({ issues: issue })
+  axios.post('/api/news/', article).then(res => {
     dispatch({ type: ADD_ARTICLE, payload: article });
   });
 };
 
+export const getArticles = () => dispatch => {
+  axios.get('/api/news/').then(articles => {
+    console.log(articles);
+    dispatch({ type: GET_ARTICLES, payload: articles.data });
+  });
+};
 export const deleteArticle = article => dispatch => {
-  dispatch({ type: DELETE_ARTICLE, payload: article });
+  axios.delete('/api/news/' + article._id).then(res => {
+    dispatch({ type: DELETE_ARTICLE, payload: article });
+  });
 };

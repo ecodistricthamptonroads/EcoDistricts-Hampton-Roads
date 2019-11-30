@@ -1,4 +1,4 @@
-import { ADD_PROJECT, DELETE_PROJECT } from '../actions/types';
+import { ADD_PROJECT, DELETE_PROJECT, GET_PROJECTS } from '../actions/types';
 
 const projectInitial = {
   projects: []
@@ -7,14 +7,16 @@ const projectInitial = {
 export default function(state = projectInitial, action) {
   switch (action.type) {
     case ADD_PROJECT:
-      return { ...state, projects: [action.payload, ...state.projects] };
+      return { ...state, projects: [...state.projects, action.payload] };
     case DELETE_PROJECT:
       return {
         ...state,
-        projects: state.issues.filter(
-          issue => issue.title !== action.payload.title
+        projects: state.projects.filter(
+          project => project.title !== action.payload.title
         )
       };
+    case GET_PROJECTS:
+      return { ...state, projects: [...action.payload] };
     default:
       return state;
   }

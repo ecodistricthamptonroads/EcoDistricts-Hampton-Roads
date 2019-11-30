@@ -2,21 +2,17 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import React from 'react';
 import Table from 'react-bootstrap/Table';
-import { deleteIssue } from '../../actions/index';
-import axios from 'axios';
+import { deleteIssue, getIssues } from '../../actions/index';
 
 class ViewIssues extends Component {
   constructor(props) {
     super(props);
 
     this.delete = this.delete.bind(this);
-    this.state = { issues: [] };
   }
 
   componentDidMount() {
-    axios.get('/api/issue/').then(issues => {
-      this.setState({ issues: issues.data });
-    });
+    this.props.getIssues();
   }
 
   delete(issue) {
@@ -46,12 +42,11 @@ class ViewIssues extends Component {
   }
 
   render() {
-    console.log(this.state.issues);
     return (
       <Table>
         <thead>{this.isLoggedInHeader()}</thead>
         <tbody>
-          {this.state.issues.map(issue => {
+          {this.props.issues.map(issue => {
             if (this.props.loggedIn) {
               return (
                 <tr>
@@ -84,13 +79,14 @@ class ViewIssues extends Component {
 const mapStateToProps = state => {
   return {
     loggedIn: state.login.loggedIn,
-    issues: state.issue.issues
+    issues: state.issues.issues
   };
 };
 
 const mapDispatchToProps = (/* dispatch */) => {
   return {
-    delete: deleteIssue
+    delete: deleteIssue,
+    getIssues: getIssues
   };
 };
 

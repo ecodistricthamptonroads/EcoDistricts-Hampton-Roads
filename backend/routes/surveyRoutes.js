@@ -27,3 +27,17 @@ router.get('/', (req, res) => {
       res.send('' + err);
     });
 });
+
+router.delete('/:survey_id', (req, res) => {
+  Survey.findByIdAndRemove(req.params.survey_id, function(err, response) {
+    if (err) {
+      res.send('' + err);
+    } else {
+      res.send({
+        message: 'Survey with id ' + req.params.survey_id + ' removed'
+      });
+    }
+  });
+});
+
+module.exports = router;

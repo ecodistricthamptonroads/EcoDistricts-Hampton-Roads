@@ -8,7 +8,7 @@ import jobReducer from './jobReducer';
 
 //this has to be at the bottom cause code dependency reasons
 export default combineReducers({
-  issue: issueReducer,
+  issues: issueReducer,
   login: loginReducer,
   news: newsReducer,
   survey: surveyReducer,
