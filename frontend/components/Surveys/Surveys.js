@@ -1,54 +1,61 @@
 import { Component } from 'react';
-import { connect } from 'react-redux';
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
-import { addSurvey } from '../../actions';
+import { addSurvey, getSurveys } from '../../actions';
+import { connect } from 'react-redux';
+
 class Surveys extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      search: '',
       title: '',
       link: '',
-      surveys: [
-        {
-          ID: 1,
-          Title: 'Community Satisfaction Survey',
-          Date: '2019-09-22',
-          Link:
-            'https://docs.google.com/forms/d/1k0P3oD2ztKx7LGavjlNowVT6dawdPOpzk-DHzFH1Etg/edit'
-        },
-        {
-          ID: 2,
-          Title: 'Roadside Construction Survey',
-          Date: '2019-08-14',
-          Link: 'https://www.google.com/'
-        }
-      ]
+      status: ''
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit1 = this.handleSubmit1.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.getSurveys();
   }
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(e.target.value);
   }
   handleSubmit(e) {
     e.preventDefault();
-    let survey = {
+    let issue = {
       title: this.state.title,
-      link: this.state.link
+      link: this.state.link,
+      status: this.state.status
     };
-    this.props.addSurvey(survey);
+    this.props.addSurvey(issue);
+    this.setState({
+      title: '',
+      link: '',
+      status: ''
+    });
+  }
+  handleSubmit1(e) {
+    e.preventDefault();
+    this.setState({ [e.target.name]: e.target.value });
+  }
+  search(item) {
+    const lc = item.toLowerCase();
+    const filter = this.state.search.toLowerCase();
+    return lc.includes(filter);
   }
 
-  form() {
+  loggedIn() {
     if (this.props.loggedIn) {
       return (
         <div>
           <Form onSubmit={this.handleSubmit}>
-            <Form.Group controlId="survey.ControlInput1">
+            <Form.Group controlId="exampleForm.ControlInput1">
               <Form.Label>Title</Form.Label>
               <Form.Control
                 name="title"
@@ -58,7 +65,7 @@ class Surveys extends Component {
                 placeholder="Title"
               />
             </Form.Group>
-            <Form.Group controlId="survey.ControlInput2">
+            <Form.Group controlId="exampleForm.ControlInput4">
               <Form.Label>Link</Form.Label>
               <Form.Control
                 name="link"
@@ -66,6 +73,16 @@ class Surveys extends Component {
                 onChange={this.handleChange}
                 type="text"
                 placeholder="Link"
+              />
+            </Form.Group>
+            <Form.Group controlId="exampleForm.ControlInput2">
+              <Form.Label>Status</Form.Label>
+              <Form.Control
+                name="status"
+                value={this.state.status}
+                onChange={this.handleChange}
+                type="Description"
+                placeholder="Status"
               />
             </Form.Group>
           </Form>
@@ -82,36 +99,53 @@ class Surveys extends Component {
     }
   }
 
-  header() {
-    let header = Object.keys(this.state.surveys[0]);
-    return header.map((key, index) => {
-      if (key != 'Link') {
-        return <th key={index}>{key}</th>;
-      }
-    });
-  }
-  body() {
-    return this.state.surveys.map((survey, index) => {
-      const { ID, Title, Date, Link } = survey;
-      return (
-        <tr key={ID}>
-          <td>{ID}</td>
-          <td>
-            <a href={Link}>{Title}</a>
-          </td>
-          <td>{Date}</td>
-        </tr>
-      );
-    });
-  }
-
   render() {
     return (
       <div>
-        {this.form()}
+        {this.loggedIn()}
+        <br />
+        <Form onSubmit={this.handleSubmit1}>
+          <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Control
+              name="search"
+              value={this.state.search}
+              onChange={this.handleChange}
+              type="text"
+              placeholder="Search"
+            />
+          </Form.Group>
+        </Form>
+        <br />
         <Table>
-          <thead>{this.header()}</thead>
-          <tbody>{this.body()}</tbody>
+          <thead>
+            <tr>
+              <th> Survey Name </th>
+              <th> Status </th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.surveys
+              .filter(survey => this.search(survey.title))
+              .map(survey => {
+                let a = '';
+                if (survey.link === '') {
+                  a = <td>{survey.title} </td>;
+                } else {
+                  a = (
+                    <td>
+                      {' '}
+                      <a href={survey.link}>{survey.title}</a>{' '}
+                    </td>
+                  );
+                }
+                return (
+                  <tr>
+                    {a}
+                    <td> {survey.status} </td>
+                  </tr>
+                );
+              })}
+          </tbody>
         </Table>
       </div>
     );
@@ -120,14 +154,15 @@ class Surveys extends Component {
 
 const mapStateToProps = state => {
   return {
-    surveys: state.news.news,
+    surveys: state.surveys.surveys,
     loggedIn: state.login.loggedIn
   };
 };
 
 const mapDispatchToProps = (/* dispatch */) => {
   return {
-    addSurvey: addSurvey
+    addSurvey: addSurvey,
+    getSurveys: getSurveys
   };
 };
 

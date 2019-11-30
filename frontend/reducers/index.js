@@ -11,7 +11,7 @@ export default combineReducers({
   issues: issueReducer,
   login: loginReducer,
   news: newsReducer,
-  survey: surveyReducer,
+  surveys: surveyReducer,
   project: projectReducer,
   job: jobReducer
 });

@@ -15,10 +15,10 @@ class NewsCard extends Component {
         <Card>
           <div className="container">
             <div className="row">
-              <div className="col-2">
-                <img src={this.props.src} height={80} />
+              <div className="col-sm-3">
+                <img src={this.props.src} height={120} />
               </div>
-              <div className="col-10">
+              <div className="col-8">
                 <Card.Body>
                   <Card.Title> {this.props.title} </Card.Title>
                   <Card.Text> {this.props.author} </Card.Text>
