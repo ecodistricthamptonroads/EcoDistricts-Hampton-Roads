@@ -13,11 +13,12 @@ class News extends Component {
     super(props);
 
     this.state = {
+      notInitial: false,
       title: '',
       description: '',
       text: '',
       author: '',
-      image: { logo }
+      image: null
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -25,6 +26,37 @@ class News extends Component {
 
   componentDidMount() {
     this.props.getNews();
+  }
+
+  validateFields() {
+    this.setState({ notInitial: true });
+    return (
+      this.validateTitle() &&
+      this.validateAuthor() &&
+      this.validateDescription() &&
+      this.validateText() &&
+      this.validateImage()
+    );
+  }
+
+  validateTitle() {
+    return this.state.title != '';
+  }
+
+  validateAuthor() {
+    return this.state.author != '';
+  }
+
+  validateDescription() {
+    return this.state.description != '';
+  }
+
+  validateText() {
+    return this.state.text != '';
+  }
+
+  validateImage() {
+    return this.state.image !== null && this.state.image != undefined;
   }
 
   handleChange(e) {
@@ -39,33 +71,36 @@ class News extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    var formData = new FormData();
-    formData.append('image', this.state.image);
+    if (this.validateFields()) {
+      var formData = new FormData();
+      formData.append('image', this.state.image);
 
-    axios
-      .post('/api/file/', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' }
-      })
-      .then(res => {
-        let imageId = res.data;
-        let news = {
-          title: this.state.title,
-          author: this.state.author,
-          description: this.state.description,
-          text: this.state.text,
-          image: imageId
-        };
-        this.props.addArticle(news);
+      axios
+        .post('/api/file/', formData, {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        })
+        .then(res => {
+          let imageId = res.data;
+          let news = {
+            title: this.state.title,
+            author: this.state.author,
+            description: this.state.description,
+            text: this.state.text,
+            image: imageId
+          };
+          this.props.addArticle(news);
 
-        document.getElementById('imageToUpload').value = '';
-        this.setState({
-          title: '',
-          description: '',
-          text: '',
-          author: '',
-          image: { logo }
+          document.getElementById('imageToUpload').value = '';
+          this.setState({
+            notInitial: false,
+            title: '',
+            description: '',
+            text: '',
+            author: '',
+            image: null
+          });
         });
-      });
+    }
   }
 
   loggedIn() {
@@ -81,7 +116,11 @@ class News extends Component {
                 onChange={this.handleChange}
                 type="text"
                 placeholder="Title"
+                isInvalid={this.state.notInitial && !this.validateTitle()}
               />
+              <Form.Control.Feedback type="invalid">
+                Please include a title
+              </Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlInput4">
               <Form.Label>Author</Form.Label>
@@ -91,7 +130,11 @@ class News extends Component {
                 onChange={this.handleChange}
                 type="text"
                 placeholder="Author"
+                isInvalid={this.state.notInitial && !this.validateAuthor()}
               />
+              <Form.Control.Feedback type="invalid">
+                Please include an author
+              </Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlInput2">
               <Form.Label>Description</Form.Label>
@@ -101,9 +144,12 @@ class News extends Component {
                 onChange={this.handleChange}
                 type="Description"
                 placeholder="Description"
+                isInvalid={this.state.notInitial && !this.validateDescription()}
               />
+              <Form.Control.Feedback type="invalid">
+                Please include a description
+              </Form.Control.Feedback>
             </Form.Group>
-
             <Form.Group controlId="exampleForm.ControlInput3">
               <Form.Label>Text</Form.Label>
               <Form.Control
@@ -112,19 +158,32 @@ class News extends Component {
                 onChange={this.handleChange}
                 type="Text"
                 placeholder="Text"
+                isInvalid={this.state.notInitial && !this.validateText()}
               />
+              <Form.Control.Feedback type="invalid">
+                Please include the main text for the news article
+              </Form.Control.Feedback>
             </Form.Group>
-            <div>
-              Image
-              <br />
-              <input
-                type="file"
-                id="imageToUpload"
-                onChange={this.handleChange}
-                name="image"
+            <Form.Group controlId="exampleForm.ControlInput4">
+              <Form.Label>Image</Form.Label>
+              <Form.Control
+                as="br"
+                disabled
+                isInvalid={this.state.notInitial && !this.validateImage()}
               />
-            </div>
-            <br />
+              <div>
+                <input
+                  type="file"
+                  id="imageToUpload"
+                  onChange={this.handleChange}
+                  name="image"
+                  isInvalid={true}
+                />
+              </div>
+              <Form.Control.Feedback type="invalid">
+                Please upload an image
+              </Form.Control.Feedback>
+            </Form.Group>
           </Form>
           <button
             variant="primary"
