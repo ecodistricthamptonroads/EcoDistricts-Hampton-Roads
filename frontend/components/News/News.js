@@ -5,8 +5,9 @@ import NewsCard from './NewsCard';
 import logo from '../../assets/images/logo.png';
 import { Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
-import { deleteIssue } from '../../actions';
-import { addArticle } from '../../actions/newsAction';
+import { addArticle, getArticles } from '../../actions';
+import axios from 'axios';
+
 class News extends Component {
   constructor(props) {
     super(props);
@@ -14,24 +15,59 @@ class News extends Component {
     this.state = {
       title: '',
       description: '',
-      text: ''
+      text: '',
+      author: '',
+      image: { logo }
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getNews();
+  }
+
   handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    if (e.target.name == 'image') {
+      this.setState({ [e.target.name]: e.target.files[0] });
+    } else {
+      this.setState({ [e.target.name]: e.target.value });
+    }
     console.log(e.target.value);
   }
+
   handleSubmit(e) {
     e.preventDefault();
-    this.props.addArticle({
-      title: this.state.title,
-      description: this.state.description,
-      text: this.state.text
-    });
+
+    var formData = new FormData();
+    formData.append('image', this.state.image);
+
+    axios
+      .post('/api/file/', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      })
+      .then(res => {
+        let imageId = res.data;
+        let news = {
+          title: this.state.title,
+          author: this.state.author,
+          description: this.state.description,
+          text: this.state.text,
+          image: imageId
+        };
+        this.props.addArticle(news);
+
+        document.getElementById('imageToUpload').value = '';
+        this.setState({
+          title: '',
+          description: '',
+          text: '',
+          author: '',
+          image: { logo }
+        });
+      });
   }
+
   loggedIn() {
     if (this.props.loggedIn) {
       return (
@@ -45,6 +81,16 @@ class News extends Component {
                 onChange={this.handleChange}
                 type="text"
                 placeholder="Title"
+              />
+            </Form.Group>
+            <Form.Group controlId="exampleForm.ControlInput4">
+              <Form.Label>Author</Form.Label>
+              <Form.Control
+                name="author"
+                value={this.state.author}
+                onChange={this.handleChange}
+                type="text"
+                placeholder="Author"
               />
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlInput2">
@@ -68,6 +114,17 @@ class News extends Component {
                 placeholder="Text"
               />
             </Form.Group>
+            <div>
+              Image
+              <br />
+              <input
+                type="file"
+                id="imageToUpload"
+                onChange={this.handleChange}
+                name="image"
+              />
+            </div>
+            <br />
           </Form>
           <button
             variant="primary"
@@ -92,12 +149,13 @@ class News extends Component {
           return (
             <div>
               <div
-                onClick={() => this.props.history.push('/news/' + article.id)}
+                onClick={() => this.props.history.push('/news/' + article._id)}
               >
                 <NewsCard
-                  src={logo}
+                  src={article.image}
                   title={article.title}
                   description={article.description}
+                  author={article.author}
                 />
               </div>
               <br />
@@ -118,7 +176,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (/* dispatch */) => {
   return {
-    addArticle: addArticle
+    addArticle: addArticle,
+    getNews: getArticles
   };
 };
 

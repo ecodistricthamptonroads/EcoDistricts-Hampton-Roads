@@ -2,38 +2,45 @@ import { Component } from 'react';
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
+import { addProject, getProjects } from '../../actions';
+import { connect } from 'react-redux';
 
 class ProjectStatus extends Component {
   constructor(props) {
     super(props);
     this.state = {
       search: '',
-      data: [
-        {
-          key: 'project1',
-          value: 'Project 1',
-          status: 'Completed'
-        },
-        {
-          key: 'project2',
-          value: 'Project 2',
-          status: 'Pending'
-        },
-        {
-          key: 'project3',
-          value: 'Project 3',
-          status: 'Pending'
-        }
-      ]
+      title: '',
+      link: '',
+      status: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit1 = this.handleSubmit1.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.getProjects();
   }
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
   handleSubmit(e) {
+    e.preventDefault();
+    let issue = {
+      title: this.state.title,
+      link: this.state.link,
+      status: this.state.status
+    };
+    this.props.addProject(issue);
+    this.setState({
+      title: '',
+      link: '',
+      status: ''
+    });
+  }
+  handleSubmit1(e) {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -42,11 +49,62 @@ class ProjectStatus extends Component {
     const filter = this.state.search.toLowerCase();
     return lc.includes(filter);
   }
+
+  loggedIn() {
+    if (this.props.loggedIn) {
+      return (
+        <div>
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group controlId="exampleForm.ControlInput1">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                name="title"
+                value={this.state.title}
+                onChange={this.handleChange}
+                type="text"
+                placeholder="Title"
+              />
+            </Form.Group>
+            <Form.Group controlId="exampleForm.ControlInput4">
+              <Form.Label>Link</Form.Label>
+              <Form.Control
+                name="link"
+                value={this.state.link}
+                onChange={this.handleChange}
+                type="text"
+                placeholder="Link"
+              />
+            </Form.Group>
+            <Form.Group controlId="exampleForm.ControlInput2">
+              <Form.Label>Status</Form.Label>
+              <Form.Control
+                name="status"
+                value={this.state.status}
+                onChange={this.handleChange}
+                type="Description"
+                placeholder="Status"
+              />
+            </Form.Group>
+          </Form>
+          <button
+            variant="primary"
+            type="submit"
+            value="submit"
+            onClick={this.handleSubmit}
+          >
+            Submit
+          </button>
+        </div>
+      );
+    }
+  }
+
   render() {
     return (
       <div>
+        {this.loggedIn()}
         <br />
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit1}>
           <Form.Group controlId="exampleForm.ControlInput1">
             <Form.Control
               name="search"
@@ -66,13 +124,24 @@ class ProjectStatus extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.data
-              .filter(item => this.search(item.key))
-              .map(data1 => {
+            {this.props.projects
+              .filter(project => this.search(project.title))
+              .map(project => {
+                let a = '';
+                if (project.link === '') {
+                  a = <td>{project.title} </td>;
+                } else {
+                  a = (
+                    <td>
+                      {' '}
+                      <a href={project.link}>{project.title}</a>{' '}
+                    </td>
+                  );
+                }
                 return (
                   <tr>
-                    <td> {data1.key} </td>
-                    <td> {data1.status} </td>
+                    {a}
+                    <td> {project.status} </td>
                   </tr>
                 );
               })}
@@ -83,4 +152,18 @@ class ProjectStatus extends Component {
   }
 }
 
-export default ProjectStatus;
+const mapStateToProps = state => {
+  return {
+    projects: state.project.projects,
+    loggedIn: state.login.loggedIn
+  };
+};
+
+const mapDispatchToProps = (/* dispatch */) => {
+  return {
+    addProject: addProject,
+    getProjects: getProjects
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps())(ProjectStatus);

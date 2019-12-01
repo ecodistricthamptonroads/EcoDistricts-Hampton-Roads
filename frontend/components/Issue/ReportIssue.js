@@ -4,6 +4,7 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { addIssue } from '../../actions/index';
+import axios from 'axios';
 
 class ReportIssue extends Component {
   constructor(props) {
@@ -27,20 +28,20 @@ class ReportIssue extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.addIssue({
-      name: this.state.name,
-      email: this.state.email,
-      title: this.state.title,
-      type: this.state.type,
-      description: this.state.description,
-      date: new Date().toLocaleString()
-    });
-    console.log({
+    let issue = {
       name: this.state.name,
       email: this.state.email,
       title: this.state.title,
       type: this.state.type,
       description: this.state.description
+    };
+    this.props.addIssue(issue);
+    this.setState({
+      name: '',
+      email: '',
+      title: '',
+      type: 'Community',
+      description: ''
     });
   }
 
@@ -77,7 +78,7 @@ class ReportIssue extends Component {
             <Form.Label>Issue Type</Form.Label>
             <Form.Control
               name="type"
-              defaultValue={"Community"}
+              defaultValue={'Community'}
               onChange={this.handleChange}
               as="select"
             >

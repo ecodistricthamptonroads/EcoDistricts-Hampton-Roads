@@ -1,11 +1,17 @@
 import { combineReducers } from 'redux';
-import formReducer from './formReducer';
+import issueReducer from './issueReducer';
 import loginReducer from './loginReducer';
-import newReducer from './newsReducer';
+import newsReducer from './newsReducer';
+import surveyReducer from './surveyReducer';
+import projectReducer from './projectReducer';
+import jobReducer from './jobReducer';
 
 //this has to be at the bottom cause code dependency reasons
 export default combineReducers({
-  form: formReducer,
+  issues: issueReducer,
   login: loginReducer,
-  news: newReducer
+  news: newsReducer,
+  surveys: surveyReducer,
+  project: projectReducer,
+  job: jobReducer
 });
