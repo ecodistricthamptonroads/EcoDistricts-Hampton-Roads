@@ -13,7 +13,6 @@ router.get('/google/callback', passport.authenticate('google'), (req, res) => {
 });
 
 router.get('/current_user', (req, res) => {
-  console.log(req);
   res.send(req.user);
 });
 

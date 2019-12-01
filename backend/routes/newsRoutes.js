@@ -2,17 +2,26 @@ const mongoose = require('mongoose');
 const router = require('express').Router();
 const News = mongoose.model('news');
 
-router.post('/', (req, res) => {
-  console.log('Posting News');
-  console.log(req.body);
-  News.create(req.body, (err, news) => {
-    console.log('yo');
-    if (err) {
-      res.send('' + err);
-    } else {
-      res.send(news);
-    }
-  });
+const checkUser = (req, res, next) => {
+  if (!req.user) return res.send('not authorized');
+  next();
+};
+
+router.post('/', (req, res, next) => {
+  if (!req.user) {
+    res.sendStatus(403);
+  } else {
+    console.log('Posting News');
+    console.log(req.body);
+    News.create(req.body, (err, news) => {
+      console.log('yo');
+      if (err) {
+        res.send('' + err);
+      } else {
+        res.send(news);
+      }
+    });
+  }
 });
 
 router.get('/', (req, res) => {
@@ -39,13 +48,19 @@ router.get('/:news_id', (req, res) => {
 });
 
 router.delete('/:news_id', (req, res) => {
-  News.findByIdAndRemove(req.params.news_id, function(err, response) {
-    if (err) {
-      res.send('' + err);
-    } else {
-      res.send({ message: 'News with id ' + req.params.news_id + ' removed' });
-    }
-  });
+  if (!req.user) {
+    res.sendStatus(403);
+  } else {
+    News.findByIdAndRemove(req.params.news_id, function(err, response) {
+      if (err) {
+        res.send('' + err);
+      } else {
+        res.send({
+          message: 'News with id ' + req.params.news_id + ' removed'
+        });
+      }
+    });
+  }
 });
 
 module.exports = router;

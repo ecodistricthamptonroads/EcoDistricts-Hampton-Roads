@@ -69,7 +69,7 @@ class News extends Component {
   }
 
   loggedIn() {
-    if (this.props.loggedIn) {
+    if (this.props.user) {
       return (
         <div>
           <Form onSubmit={this.handleSubmit}>
@@ -170,7 +170,7 @@ class News extends Component {
 const mapStateToProps = state => {
   return {
     news: state.news.news,
-    loggedIn: state.login.loggedIn
+    user: state.login.user
   };
 };
 

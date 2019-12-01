@@ -155,7 +155,7 @@ class ProjectStatus extends Component {
 const mapStateToProps = state => {
   return {
     projects: state.project.projects,
-    loggedIn: state.login.loggedIn
+    loggedIn: state.login.user
   };
 };
 

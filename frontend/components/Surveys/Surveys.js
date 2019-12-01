@@ -155,7 +155,7 @@ class Surveys extends Component {
 const mapStateToProps = state => {
   return {
     surveys: state.surveys.surveys,
-    loggedIn: state.login.loggedIn
+    loggedIn: state.login.user
   };
 };
 

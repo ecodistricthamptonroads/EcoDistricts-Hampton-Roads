@@ -3,14 +3,18 @@ const router = require('express').Router();
 const Job = mongoose.model('jobs');
 
 router.post('/', (req, res) => {
-  console.log('Posting Job');
-  Job.create(req.body, (err, job) => {
-    if (err) {
-      res.send('' + err);
-    } else {
-      res.send(job);
-    }
-  });
+  if (!req.user) {
+    res.sendStatus(403);
+  } else {
+    console.log('Posting Job');
+    Job.create(req.body, (err, job) => {
+      if (err) {
+        res.send('' + err);
+      } else {
+        res.send(job);
+      }
+    });
+  }
 });
 
 router.get('/', (req, res) => {
@@ -27,13 +31,17 @@ router.get('/', (req, res) => {
 });
 
 router.delete('/:job_id', (req, res) => {
-  Job.findByIdAndRemove(req.params.job_id, function(err, response) {
-    if (err) {
-      res.send('' + err);
-    } else {
-      res.send({ message: 'Job with id ' + req.params.job_id + ' removed' });
-    }
-  });
+  if (!req.user) {
+    res.sendStatus(403);
+  } else {
+    Job.findByIdAndRemove(req.params.job_id, function(err, response) {
+      if (err) {
+        res.send('' + err);
+      } else {
+        res.send({ message: 'Job with id ' + req.params.job_id + ' removed' });
+      }
+    });
+  }
 });
 
 module.exports = router;
