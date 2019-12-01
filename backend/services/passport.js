@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 
 const keys = require('../keys');
 const User = mongoose.model('users');
+const Email = mongoose.model('emails');
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -27,11 +28,21 @@ passport.use(
       if (existingUser) {
         return done(null, existingUser); // error = null
       }
-      const user = await new User({
-        googleId: profile.id,
-        name: profile.displayName
-      }).save();
-      return done(null, user); // error = null
+      const existingEmail = await Email.findOne({
+        email: profile.emails[0].value
+      });
+      if (
+        existingEmail ||
+        profile.emails[0].value === 'edhamptonroads@gmail.com'
+      ) {
+        const user = await new User({
+          googleId: profile.id,
+          name: profile.displayName,
+          email: profile.emails[0].value
+        }).save();
+        return done(null, user); // error = null
+      }
+      return done(new Error('Email not added to Admin List. Please contact..'));
     }
   )
 );

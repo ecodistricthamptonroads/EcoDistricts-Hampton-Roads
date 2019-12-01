@@ -21,3 +21,8 @@ export const GET_JOBS = 'get_jobs';
 export const ADD_PROJECT = 'add_project';
 export const DELETE_PROJECT = 'delete_project';
 export const GET_PROJECTS = 'get_projects';
+
+export const ADD_EMAIL = 'add_email';
+export const DELETE_EMAIL = 'delete_email';
+export const GET_EMAILS = 'get_emails';
+export const CHECK_EMAIL = 'check_email';

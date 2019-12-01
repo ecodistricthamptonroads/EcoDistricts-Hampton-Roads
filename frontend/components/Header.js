@@ -12,7 +12,6 @@ import { fetchUser } from '../actions';
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.logout = this.logout.bind(this);
   }
   componentDidMount() {
     this.props.fetchUser();
@@ -29,8 +28,15 @@ class Header extends Component {
     }
   }
 
-  logout() {
-    this.props.logout();
+  email() {
+    if (this.props.user)
+      return (
+        <Nav.Item>
+          <Nav.Link eventKey="8" as={Link} to="/email">
+            Add Admin Email
+          </Nav.Link>
+        </Nav.Item>
+      );
   }
 
   render() {
@@ -75,6 +81,7 @@ class Header extends Component {
                 Project Status
               </Nav.Link>
             </Nav.Item>
+            {this.email()}
           </Nav>
         </Navbar.Collapse>
         {this.isLoggedIn()}
@@ -85,9 +92,7 @@ class Header extends Component {
 
 const mapStateToProps = state => {
   return {
-    username: state.login.username,
-    user: state.login.user,
-    loggedIn: state.login.loggedIn
+    user: state.login.user
   };
 };
 

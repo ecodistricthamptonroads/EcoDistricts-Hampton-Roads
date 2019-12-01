@@ -8,6 +8,7 @@ const job = require('./jobRoutes');
 const survey = require('./surveyRoutes');
 const project = require('./projectRoutes');
 const file = require('./fileRoutes');
+const email = require('./emailRoutes');
 
 const checkUser = (req, res, next) => {
   if (!req.user) return res.send('not authorized');
@@ -21,5 +22,6 @@ router.use('/job', job);
 router.use('/survey', survey);
 router.use('/project', project);
 router.use('/file', file);
+router.use('/email', email);
 
 module.exports = router;

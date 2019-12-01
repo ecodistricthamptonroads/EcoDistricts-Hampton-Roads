@@ -13,7 +13,7 @@ require('./backend/models');
 require('./backend/services');
 const keys = require('./backend/keys');
 const api = require('./backend/routes');
-
+//const email = mongoose.model('email', { email: String, unique:true, required: true });
 const PORT = process.env.PORT || 8080;
 const app = express();
 
@@ -34,6 +34,9 @@ app.use(
 app.use(passport.initialize()); //lets you use passport
 app.use(passport.session()); // lets you do req.user
 app.use(fileupload());
+
+//const base = new email({ email: 'edhamptonroads@gmail.com' });
+//base.save().then(() => console.log('edhamptonroads@gmail.com saved'));
 
 //backend routing
 app.use('/api', api);

@@ -2,17 +2,15 @@ import { Component } from 'react';
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
-import { addSurvey, getSurveys, getEmails } from '../../actions';
+import { addEmail, getEmails } from '../../actions';
 import { connect } from 'react-redux';
 
-class Surveys extends Component {
+class Emails extends Component {
   constructor(props) {
     super(props);
     this.state = {
       search: '',
-      title: '',
-      link: '',
-      status: ''
+      email: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,7 +18,6 @@ class Surveys extends Component {
   }
 
   componentDidMount() {
-    this.props.getSurveys();
     this.props.getEmails();
   }
 
@@ -30,15 +27,11 @@ class Surveys extends Component {
   handleSubmit(e) {
     e.preventDefault();
     let issue = {
-      title: this.state.title,
-      link: this.state.link,
-      status: this.state.status
+      email: this.state.email
     };
-    this.props.addSurvey(issue);
+    this.props.addEmail(issue);
     this.setState({
-      title: '',
-      link: '',
-      status: ''
+      email: ''
     });
   }
   handleSubmit1(e) {
@@ -57,33 +50,13 @@ class Surveys extends Component {
         <div>
           <Form onSubmit={this.handleSubmit}>
             <Form.Group controlId="exampleForm.ControlInput1">
-              <Form.Label>Title</Form.Label>
+              <Form.Label>Email</Form.Label>
               <Form.Control
-                name="title"
+                name="email"
                 value={this.state.title}
                 onChange={this.handleChange}
-                type="text"
-                placeholder="Title"
-              />
-            </Form.Group>
-            <Form.Group controlId="exampleForm.ControlInput4">
-              <Form.Label>Link</Form.Label>
-              <Form.Control
-                name="link"
-                value={this.state.link}
-                onChange={this.handleChange}
-                type="text"
-                placeholder="Link"
-              />
-            </Form.Group>
-            <Form.Group controlId="exampleForm.ControlInput2">
-              <Form.Label>Status</Form.Label>
-              <Form.Control
-                name="status"
-                value={this.state.status}
-                onChange={this.handleChange}
-                type="Description"
-                placeholder="Status"
+                type="email"
+                placeholder="Email"
               />
             </Form.Group>
           </Form>
@@ -120,29 +93,16 @@ class Surveys extends Component {
         <Table>
           <thead>
             <tr>
-              <th> Survey Name </th>
-              <th> Status </th>
+              <th> Email </th>
             </tr>
           </thead>
           <tbody>
-            {this.props.surveys
-              .filter(survey => this.search(survey.title))
-              .map(survey => {
-                let a = '';
-                if (survey.link === '') {
-                  a = <td>{survey.title} </td>;
-                } else {
-                  a = (
-                    <td>
-                      {' '}
-                      <a href={survey.link}>{survey.title}</a>{' '}
-                    </td>
-                  );
-                }
+            {this.props.emails
+              .filter(email => this.search(email.email))
+              .map(email => {
                 return (
                   <tr>
-                    {a}
-                    <td> {survey.status} </td>
+                    <td> {email.email} </td>
                   </tr>
                 );
               })}
@@ -155,17 +115,16 @@ class Surveys extends Component {
 
 const mapStateToProps = state => {
   return {
-    surveys: state.surveys.surveys,
+    emails: state.email.emails,
     loggedIn: state.login.user
   };
 };
 
 const mapDispatchToProps = (/* dispatch */) => {
   return {
-    addSurvey: addSurvey,
-    getSurveys: getSurveys,
+    addEmail: addEmail,
     getEmails: getEmails
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps())(Surveys);
+export default connect(mapStateToProps, mapDispatchToProps())(Emails);
