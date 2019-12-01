@@ -10,6 +10,7 @@ class ReportIssue extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      notInitial: false,
       name: '',
       email: '',
       title: '',
@@ -22,27 +23,58 @@ class ReportIssue extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  validateFields() {
+    this.setState({ notInitial: true });
+    return (
+      this.validateName() &&
+      this.validateEmail() &&
+      this.validateTitle() &&
+      this.validateDescription()
+    );
+  }
+
+  validateName() {
+    return this.state.name.includes(' ');
+  }
+
+  validateEmail() {
+    var reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return reg.test(this.state.email.toLowerCase());
+  }
+
+  validateTitle() {
+    return this.state.title != '';
+  }
+
+  validateDescription() {
+    return this.state.description != '';
+  }
+
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    let issue = {
-      name: this.state.name,
-      email: this.state.email,
-      title: this.state.title,
-      type: this.state.type,
-      description: this.state.description
-    };
-    this.props.addIssue(issue);
-    this.setState({
-      name: '',
-      email: '',
-      title: '',
-      type: 'Community',
-      description: ''
-    });
+
+    if (this.validateFields()) {
+      let issue = {
+        name: this.state.name,
+        email: this.state.email,
+        title: this.state.title,
+        type: this.state.type,
+        description: this.state.description
+      };
+      this.props.addIssue(issue);
+      this.setState({
+        notInitial: false,
+        name: '',
+        email: '',
+        title: '',
+        type: 'Community',
+        description: ''
+      });
+    }
   }
 
   render() {
@@ -62,7 +94,11 @@ class ReportIssue extends Component {
               onChange={this.handleChange}
               type="text"
               placeholder="First Last"
+              isInvalid={this.state.notInitial && !this.validateName()}
             />
+            <Form.Control.Feedback type="invalid">
+              Please enter a first and last name (Include a space)
+            </Form.Control.Feedback>
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlInput2">
             <Form.Label>Email address</Form.Label>
@@ -72,7 +108,11 @@ class ReportIssue extends Component {
               onChange={this.handleChange}
               type="email"
               placeholder="name@example.com"
+              isInvalid={this.state.notInitial && !this.validateEmail()}
             />
+            <Form.Control.Feedback type="invalid">
+              Please enter a valid email
+            </Form.Control.Feedback>
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlSelect1">
             <Form.Label>Issue Type</Form.Label>
@@ -95,7 +135,11 @@ class ReportIssue extends Component {
               onChange={this.handleChange}
               type="text"
               placeholder="Title"
+              isInvalid={this.state.notInitial && !this.validateTitle()}
             />
+            <Form.Control.Feedback type="invalid">
+              Please include a title for your issue
+            </Form.Control.Feedback>
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlTextarea1">
             <Form.Label>Description</Form.Label>
@@ -105,7 +149,11 @@ class ReportIssue extends Component {
               onChange={this.handleChange}
               as="textarea"
               rows="3"
+              isInvalid={this.state.notInitial && !this.validateDescription()}
             />
+            <Form.Control.Feedback type="invalid">
+              Please enter a description of your issue
+            </Form.Control.Feedback>
           </Form.Group>
         </Form>
         <button
