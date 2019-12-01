@@ -4,6 +4,7 @@ export const GET_ISSUES = 'get_issues';
 
 export const LOGIN = 'login';
 export const LOGOUT = 'logout';
+export const FETCH_USER = 'fetch_user';
 
 export const ADD_ARTICLE = 'add_article';
 export const DELETE_ARTICLE = 'delete_article';

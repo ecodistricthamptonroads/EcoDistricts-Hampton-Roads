@@ -2,13 +2,16 @@ const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const passport = require('passport');
 const fileupload = require('express-fileupload');
+const cookieSession = require('cookie-session');
 
 let url = 'mongodb://localhost:27017/hampton';
 mongoose.connect(url);
 
 require('./backend/models');
-
+require('./backend/services');
+const keys = require('./backend/keys');
 const api = require('./backend/routes');
 
 const PORT = process.env.PORT || 8080;
@@ -20,6 +23,16 @@ app.use(
     extended: true // parse things from qs
   })
 );
+app.use(
+  cookieSession({
+    maxAge: 60 * 60 * 1000, // 1 hour
+    keys: [keys.cookieKey]
+  })
+);
+
+//authentication
+app.use(passport.initialize()); //lets you use passport
+app.use(passport.session()); // lets you do req.user
 app.use(fileupload());
 
 //backend routing
