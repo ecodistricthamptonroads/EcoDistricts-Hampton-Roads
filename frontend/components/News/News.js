@@ -16,7 +16,8 @@ class News extends Component {
       title: '',
       description: '',
       text: '',
-      author: ''
+      author: '',
+      image: { logo }
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -27,25 +28,46 @@ class News extends Component {
   }
 
   handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    if (e.target.name == 'image') {
+      this.setState({ [e.target.name]: e.target.files[0] });
+    } else {
+      this.setState({ [e.target.name]: e.target.value });
+    }
     console.log(e.target.value);
   }
+
   handleSubmit(e) {
     e.preventDefault();
-    let news = {
-      title: this.state.title,
-      author: this.state.author,
-      description: this.state.description,
-      text: this.state.text
-    };
-    this.props.addArticle(news);
-    this.setState({
-      title: '',
-      description: '',
-      text: '',
-      author: ''
-    });
+
+    var formData = new FormData();
+    formData.append('image', this.state.image);
+
+    axios
+      .post('/api/file/', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      })
+      .then(res => {
+        let imageId = res.data;
+        let news = {
+          title: this.state.title,
+          author: this.state.author,
+          description: this.state.description,
+          text: this.state.text,
+          image: imageId
+        };
+        this.props.addArticle(news);
+
+        document.getElementById('imageToUpload').value = '';
+        this.setState({
+          title: '',
+          description: '',
+          text: '',
+          author: '',
+          image: { logo }
+        });
+      });
   }
+
   loggedIn() {
     if (this.props.loggedIn) {
       return (
@@ -92,6 +114,17 @@ class News extends Component {
                 placeholder="Text"
               />
             </Form.Group>
+            <div>
+              Image
+              <br />
+              <input
+                type="file"
+                id="imageToUpload"
+                onChange={this.handleChange}
+                name="image"
+              />
+            </div>
+            <br />
           </Form>
           <button
             variant="primary"
@@ -119,7 +152,7 @@ class News extends Component {
                 onClick={() => this.props.history.push('/news/' + article._id)}
               >
                 <NewsCard
-                  src={logo}
+                  src={article.image}
                   title={article.title}
                   description={article.description}
                   author={article.author}

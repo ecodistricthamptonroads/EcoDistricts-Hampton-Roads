@@ -6,7 +6,8 @@ const newsSchema = new Schema({
   text: { type: String, required: true },
   description: { type: String, required: true },
   author: { type: String, required: true },
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
+  image: { type: String }
 });
 
 mongoose.model('news', newsSchema);
