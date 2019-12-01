@@ -24,9 +24,9 @@ class NewsCard extends Component {
   }
 
   render() {
-    let src = logo;
+    //let src = logo;
 
-    console.log('YOOO' + src);
+    console.log('sdfasdfas' + this.state.src);
     return (
       <div>
         <Card>

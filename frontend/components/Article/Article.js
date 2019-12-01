@@ -24,6 +24,7 @@ class Article extends Component {
       if (news.data.image) {
         axios.get('/api/file/get_file_by_id/' + news.data.image).then(url => {
           console.log(url.data);
+          console.log('___________________________________________');
           news.data.image = url.data;
           console.log(news.image);
 
