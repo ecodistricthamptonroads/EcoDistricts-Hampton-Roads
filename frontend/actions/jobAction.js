@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export const addJob = job => dispatch => {
   axios.post('/api/job/', job).then(res => {
+    alert('Successfully Added Job');
     dispatch({ type: ADD_JOB, payload: job });
   });
 };

@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export const addSurvey = survey => dispatch => {
   axios.post('/api/survey/', survey).then(res => {
+    alert('Successfully Added Survey');
     dispatch({ type: ADD_SURVEY, payload: survey });
   });
 };

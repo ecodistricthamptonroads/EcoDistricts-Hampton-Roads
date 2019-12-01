@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export const addProject = project => dispatch => {
   axios.post('/api/project/', project).then(res => {
+    alert('Successfully Added Project');
     dispatch({ type: ADD_PROJECT, payload: project });
   });
 };
