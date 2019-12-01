@@ -3,3 +3,4 @@ require('./news');
 require('./job');
 require('./survey');
 require('./project');
+require('./file');

@@ -2,8 +2,9 @@ const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const fileupload = require('express-fileupload');
 
-let url = "mongodb://localhost:27017/hampton";
+let url = 'mongodb://localhost:27017/hampton';
 mongoose.connect(url);
 
 require('./backend/models');
@@ -19,6 +20,7 @@ app.use(
     extended: true // parse things from qs
   })
 );
+app.use(fileupload());
 
 //backend routing
 app.use('/api', api);
