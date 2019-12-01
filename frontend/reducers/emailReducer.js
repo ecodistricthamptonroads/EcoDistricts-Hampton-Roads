@@ -12,7 +12,7 @@ export default function(state = emailInitial, action) {
       return {
         ...state,
         emails: state.emails.filter(
-          email => email.title !== action.payload.title
+          email => email.email !== action.payload.email
         )
       };
     case GET_EMAILS:
