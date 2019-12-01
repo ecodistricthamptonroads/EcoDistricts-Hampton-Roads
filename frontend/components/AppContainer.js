@@ -10,6 +10,7 @@ import EducationJobs from './EducationJobs/EducationJobs';
 import Login from './Login/Login';
 import ProjectStatus from './ProjectStatus/ProjectStatus';
 import Recognition from './Recognition/Recognition';
+import Email from './Email/Email';
 import News from './News/News';
 import Article from './Article/Article';
 import Surveys from './Surveys/Surveys';
@@ -33,6 +34,7 @@ class AppContainer extends Component {
                   <Route path="/recognition" component={Recognition} />
                   <Route exact path="/news" component={News} />
                   <Route path="/news/:id" component={Article} />
+                  <Route path="/email" component={Email} />
                   <Route component={Land} />
                 </Switch>
               </div>

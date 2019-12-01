@@ -2,7 +2,7 @@ import { Component } from 'react';
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
-import { addSurvey, getSurveys } from '../../actions';
+import { addSurvey, getSurveys, getEmails } from '../../actions';
 import { connect } from 'react-redux';
 
 class Surveys extends Component {
@@ -21,6 +21,7 @@ class Surveys extends Component {
 
   componentDidMount() {
     this.props.getSurveys();
+    this.props.getEmails();
   }
 
   handleChange(e) {
@@ -155,14 +156,15 @@ class Surveys extends Component {
 const mapStateToProps = state => {
   return {
     surveys: state.surveys.surveys,
-    loggedIn: state.login.loggedIn
+    loggedIn: state.login.user
   };
 };
 
 const mapDispatchToProps = (/* dispatch */) => {
   return {
     addSurvey: addSurvey,
-    getSurveys: getSurveys
+    getSurveys: getSurveys,
+    getEmails: getEmails
   };
 };
 

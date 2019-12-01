@@ -43,39 +43,43 @@ router.get('/get_file_by_id/:file_id', (req, res) => {
 
 //Posts a file
 router.post('/', (req, res) => {
-  console.log('POSTING FILES');
-  let file_to_upload = req.files.image;
-  const bucket = 'test-bucket-for-hampton-roads';
-  const key = file_to_upload.name;
+  if (!req.user) {
+    res.sendStatus(403);
+  } else {
+    console.log('POSTING FILES');
+    let file_to_upload = req.files.image;
+    const bucket = 'test-bucket-for-hampton-roads';
+    const key = file_to_upload.name;
 
-  let file_name = {
-    fileName: key
-  };
+    let file_name = {
+      fileName: key
+    };
 
-  console.log(key);
-  console.log(file_to_upload);
-  //Try adding file to s3
-  File.create(file_name, (err, file) => {
-    if (err) {
-      res.send('' + err);
-    } else {
-      // Upload document to s3 server
-      const params = {
-        Bucket: bucket,
-        Key: file._id.toString() + '.' + key.substr(key.lastIndexOf('.') + 1),
-        Body: file_to_upload.data
-      };
-      // res.send(doc);
-      s3.upload(params, function(err, data) {
-        if (err) {
-          res.send('' + err);
-        } else {
-          console.log('Succesfully uploaded file');
-          res.send(file._id);
-        }
-      });
-    }
-  });
+    console.log(key);
+    console.log(file_to_upload);
+    //Try adding file to s3
+    File.create(file_name, (err, file) => {
+      if (err) {
+        res.send('' + err);
+      } else {
+        // Upload document to s3 server
+        const params = {
+          Bucket: bucket,
+          Key: file._id.toString() + '.' + key.substr(key.lastIndexOf('.') + 1),
+          Body: file_to_upload.data
+        };
+        // res.send(doc);
+        s3.upload(params, function(err, data) {
+          if (err) {
+            res.send('' + err);
+          } else {
+            console.log('Succesfully uploaded file');
+            res.send(file._id);
+          }
+        });
+      }
+    });
+  }
 });
 
 module.exports = router;

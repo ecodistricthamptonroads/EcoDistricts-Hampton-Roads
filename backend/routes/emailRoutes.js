@@ -1,62 +1,58 @@
 const mongoose = require('mongoose');
 const router = require('express').Router();
-const News = mongoose.model('news');
-
-const checkUser = (req, res, next) => {
-  if (!req.user) return res.send('not authorized');
-  next();
-};
+const Email = mongoose.model('emails');
 
 router.post('/', (req, res, next) => {
   if (!req.user) {
     res.sendStatus(403);
   } else {
-    console.log('Posting News');
+    console.log('Posting Email');
     console.log(req.body);
-    News.create(req.body, (err, news) => {
+    Email.create(req.body, (err, email) => {
       console.log('yo');
       if (err) {
         res.send('' + err);
       } else {
-        res.send(news);
+        res.send(email);
       }
     });
   }
 });
 
 router.get('/', (req, res) => {
-  console.log('Getting News');
-  News.find({})
+  console.log('Getting Email');
+  Email.find({})
     .exec()
-    .then(news => {
-      console.log(news);
-      res.send(news);
+    .then(email => {
+      console.log(email);
+      res.send(email);
     })
     .catch(err => {
       res.send('' + err);
     });
 });
 
-router.get('/:news_id', (req, res) => {
-  News.findById(req.params.news_id, function(err, news) {
+router.get('/:email', (req, res) => {
+  Email.findOne({ email: req.params.email }, function(err, email) {
     if (err) {
       res.json('' + err);
     } else {
-      res.send(news);
+      console.log(email);
+      res.send(email);
     }
   });
 });
 
-router.delete('/:news_id', (req, res) => {
+router.delete('/:email_id', (req, res) => {
   if (!req.user) {
     res.sendStatus(403);
   } else {
-    News.findByIdAndRemove(req.params.news_id, function(err, response) {
+    Email.findByIdAndRemove(req.params.email_id, function(err, response) {
       if (err) {
         res.send('' + err);
       } else {
         res.send({
-          message: 'News with id ' + req.params.news_id + ' removed'
+          message: 'Email with id ' + req.params.email_id + ' removed'
         });
       }
     });

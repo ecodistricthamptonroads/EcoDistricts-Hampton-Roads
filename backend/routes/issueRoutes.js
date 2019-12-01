@@ -29,15 +29,19 @@ router.get('/', (req, res) => {
 });
 
 router.delete('/:issue_id', (req, res) => {
-  Issue.findByIdAndRemove(req.params.issue_id, function(err, response) {
-    if (err) {
-      res.send('' + err);
-    } else {
-      res.send({
-        message: 'Issue with id ' + req.params.issue_id + ' removed'
-      });
-    }
-  });
+  if (!req.user) {
+    res.sendStatus(403);
+  } else {
+    Issue.findByIdAndRemove(req.params.issue_id, function(err, response) {
+      if (err) {
+        res.send('' + err);
+      } else {
+        res.send({
+          message: 'Issue with id ' + req.params.issue_id + ' removed'
+        });
+      }
+    });
+  }
 });
 
 module.exports = router;

@@ -158,7 +158,7 @@ class EducationJobs extends Component {
 
 const mapStateToProps = state => {
   return {
-    loggedIn: state.login.loggedIn
+    loggedIn: state.login.user
   };
 };
 

@@ -10,14 +10,14 @@ class Issue extends Component {
   }
 
   ifLoggedIn() {
-    if(!this.props.loggedIn) {
-      return <ReportIssue/>
+    if (this.props.loggedIn) {
+      return <ReportIssue />;
     }
   }
   render() {
     return (
       <div>
-        { this.ifLoggedIn() }
+        {this.ifLoggedIn()}
         <hr />
         <ViewIssues />
       </div>
@@ -27,8 +27,8 @@ class Issue extends Component {
 
 const mapStateToProps = state => {
   return {
-    loggedIn: state.login.loggedIn
-  }
+    loggedIn: state.login.user
+  };
 };
 
 export default connect(mapStateToProps)(Issue);

@@ -3,16 +3,20 @@ const router = require('express').Router();
 const Survey = mongoose.model('survey');
 
 router.post('/', (req, res) => {
-  console.log('Posting Survey');
-  console.log(req.body);
-  Survey.create(req.body, (err, survey) => {
-    console.log('yo');
-    if (err) {
-      res.send('' + err);
-    } else {
-      res.send(survey);
-    }
-  });
+  if (!req.user) {
+    res.sendStatus(403);
+  } else {
+    console.log('Posting Survey');
+    console.log(req.body);
+    Survey.create(req.body, (err, survey) => {
+      console.log('yo');
+      if (err) {
+        res.send('' + err);
+      } else {
+        res.send(survey);
+      }
+    });
+  }
 });
 
 router.get('/', (req, res) => {
@@ -29,15 +33,19 @@ router.get('/', (req, res) => {
 });
 
 router.delete('/:survey_id', (req, res) => {
-  Survey.findByIdAndRemove(req.params.survey_id, function(err, response) {
-    if (err) {
-      res.send('' + err);
-    } else {
-      res.send({
-        message: 'Survey with id ' + req.params.survey_id + ' removed'
-      });
-    }
-  });
+  if (!req.user) {
+    res.sendStatus(403);
+  } else {
+    Survey.findByIdAndRemove(req.params.survey_id, function(err, response) {
+      if (err) {
+        res.send('' + err);
+      } else {
+        res.send({
+          message: 'Survey with id ' + req.params.survey_id + ' removed'
+        });
+      }
+    });
+  }
 });
 
 module.exports = router;

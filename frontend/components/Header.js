@@ -7,27 +7,36 @@ import { NavLink } from 'react-router-dom';
 import { logout } from '../actions/index';
 import logo from '../assets/images/logo.png';
 import Land from './Land';
+import { fetchUser } from '../actions';
 
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.logout = this.logout.bind(this);
+  }
+  componentDidMount() {
+    this.props.fetchUser();
   }
 
   isLoggedIn() {
-    if (this.props.loggedIn === false) {
-      return <Link to={'/login'}> login </Link>;
-    } else {
-      return (
-        <div>
-          <button onClick={this.logout}> Logout </button>
-        </div>
-      );
+    switch (this.props.user) {
+      case null:
+        return 'still deciding';
+      case false:
+        return <a href={'/api/auth/google/get'}>log in</a>;
+      default:
+        return <a href={'/api/auth/logout'}>log out</a>;
     }
   }
 
-  logout() {
-    this.props.logout();
+  email() {
+    if (this.props.user)
+      return (
+        <Nav.Item>
+          <Nav.Link eventKey="8" as={Link} to="/email">
+            Add Admin Email
+          </Nav.Link>
+        </Nav.Item>
+      );
   }
 
   render() {
@@ -72,6 +81,7 @@ class Header extends Component {
                 Project Status
               </Nav.Link>
             </Nav.Item>
+            {this.email()}
           </Nav>
         </Navbar.Collapse>
         {this.isLoggedIn()}
@@ -82,15 +92,14 @@ class Header extends Component {
 
 const mapStateToProps = state => {
   return {
-    username: state.login.username,
-    loggedIn: state.login.loggedIn
+    user: state.login.user
   };
 };
 
-const mapDispatchToProps = (/* dispatch */) => {
+function mapDispatchToProps() {
   return {
-    logout: logout
+    fetchUser: fetchUser
   };
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps())(Header);

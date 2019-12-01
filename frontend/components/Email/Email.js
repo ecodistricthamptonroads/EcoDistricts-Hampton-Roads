@@ -2,17 +2,15 @@ import { Component } from 'react';
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
-import { addProject, getProjects } from '../../actions';
+import { addEmail, getEmails } from '../../actions';
 import { connect } from 'react-redux';
 
-class ProjectStatus extends Component {
+class Emails extends Component {
   constructor(props) {
     super(props);
     this.state = {
       search: '',
-      title: '',
-      link: '',
-      status: ''
+      email: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,7 +18,7 @@ class ProjectStatus extends Component {
   }
 
   componentDidMount() {
-    this.props.getProjects();
+    this.props.getEmails();
   }
 
   handleChange(e) {
@@ -29,15 +27,11 @@ class ProjectStatus extends Component {
   handleSubmit(e) {
     e.preventDefault();
     let issue = {
-      title: this.state.title,
-      link: this.state.link,
-      status: this.state.status
+      email: this.state.email
     };
-    this.props.addProject(issue);
+    this.props.addEmail(issue);
     this.setState({
-      title: '',
-      link: '',
-      status: ''
+      email: ''
     });
   }
   handleSubmit1(e) {
@@ -56,33 +50,13 @@ class ProjectStatus extends Component {
         <div>
           <Form onSubmit={this.handleSubmit}>
             <Form.Group controlId="exampleForm.ControlInput1">
-              <Form.Label>Title</Form.Label>
+              <Form.Label>Email</Form.Label>
               <Form.Control
-                name="title"
+                name="email"
                 value={this.state.title}
                 onChange={this.handleChange}
-                type="text"
-                placeholder="Title"
-              />
-            </Form.Group>
-            <Form.Group controlId="exampleForm.ControlInput4">
-              <Form.Label>Link</Form.Label>
-              <Form.Control
-                name="link"
-                value={this.state.link}
-                onChange={this.handleChange}
-                type="text"
-                placeholder="Link"
-              />
-            </Form.Group>
-            <Form.Group controlId="exampleForm.ControlInput2">
-              <Form.Label>Status</Form.Label>
-              <Form.Control
-                name="status"
-                value={this.state.status}
-                onChange={this.handleChange}
-                type="Description"
-                placeholder="Status"
+                type="email"
+                placeholder="Email"
               />
             </Form.Group>
           </Form>
@@ -119,29 +93,16 @@ class ProjectStatus extends Component {
         <Table>
           <thead>
             <tr>
-              <th> Project Name </th>
-              <th> Status </th>
+              <th> Email </th>
             </tr>
           </thead>
           <tbody>
-            {this.props.projects
-              .filter(project => this.search(project.title))
-              .map(project => {
-                let a = '';
-                if (project.link === '') {
-                  a = <td>{project.title} </td>;
-                } else {
-                  a = (
-                    <td>
-                      {' '}
-                      <a href={project.link}>{project.title}</a>{' '}
-                    </td>
-                  );
-                }
+            {this.props.emails
+              .filter(email => this.search(email.email))
+              .map(email => {
                 return (
                   <tr>
-                    {a}
-                    <td> {project.status} </td>
+                    <td> {email.email} </td>
                   </tr>
                 );
               })}
@@ -154,16 +115,16 @@ class ProjectStatus extends Component {
 
 const mapStateToProps = state => {
   return {
-    projects: state.project.projects,
+    emails: state.email.emails,
     loggedIn: state.login.user
   };
 };
 
 const mapDispatchToProps = (/* dispatch */) => {
   return {
-    addProject: addProject,
-    getProjects: getProjects
+    addEmail: addEmail,
+    getEmails: getEmails
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps())(ProjectStatus);
+export default connect(mapStateToProps, mapDispatchToProps())(Emails);
