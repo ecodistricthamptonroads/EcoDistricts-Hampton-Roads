@@ -10,9 +10,7 @@ class Issue extends Component {
   }
 
   ifLoggedIn() {
-    if (this.props.loggedIn) {
-      return <ReportIssue />;
-    }
+    return <ReportIssue />;
   }
   render() {
     return (

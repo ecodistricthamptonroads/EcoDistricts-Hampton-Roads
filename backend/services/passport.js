@@ -42,7 +42,11 @@ passport.use(
         }).save();
         return done(null, user); // error = null
       }
-      return done(new Error('Email not added to Admin List. Please contact..'));
+      return done(
+        new Error(
+          'Email not added to Admin List. Please contact edhamptonroads@gmail.com'
+        )
+      );
     }
   )
 );
