@@ -2,7 +2,7 @@ import { Component } from 'react';
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
-import { addSurvey, getSurveys, deleteSurvey } from "../../actions";
+import { addSurvey, getSurveys, deleteSurvey } from '../../actions';
 import { connect } from 'react-redux';
 
 class Surveys extends Component {
@@ -113,11 +113,11 @@ class Surveys extends Component {
                 value={this.state.status}
                 onChange={this.handleChange}
                 type="Description"
-                placeholder="Enter Status"
+                placeholder="Enter Description"
                 isInvalid={this.state.notInitial && !this.validateStatus()}
               />
               <Form.Control.Feedback type="invalid">
-                Please include a status
+                Please include a survey description
               </Form.Control.Feedback>
             </Form.Group>
           </Form>
@@ -178,7 +178,13 @@ class Surveys extends Component {
                   <tr>
                     {link}
                     <td> {survey.status} </td>
-                    {this.props.loggedIn ? <td><button onClick={() => this.props.deleteSurvey(survey)}>Delete</button></td> : null}
+                    {this.props.loggedIn ? (
+                      <td>
+                        <button onClick={() => this.props.deleteSurvey(survey)}>
+                          Delete
+                        </button>
+                      </td>
+                    ) : null}
                   </tr>
                 );
               })}

@@ -94,7 +94,8 @@ class EducationJobs extends Component {
       currentJob.responsibilities
     );
     var requirements = this.createCard('Requirements', currentJob.requirements);
-    var apply = React.createElement('button', {}, 'Apply');
+    var apply = React.createElement('a', { href: currentJob.link }, 'Apply');
+    var tempdiv = React.createElement('div', {}, '');
     var back = React.createElement(
       'button',
       { onClick: () => this.setState({ currentJob: null }) },
@@ -105,8 +106,9 @@ class EducationJobs extends Component {
       description,
       responsibilities,
       requirements,
-      back,
-      apply
+      apply,
+      tempdiv,
+      back
     ]);
   }
 
