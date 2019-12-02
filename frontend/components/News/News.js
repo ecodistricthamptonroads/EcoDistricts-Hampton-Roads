@@ -153,6 +153,8 @@ class News extends Component {
             <Form.Group controlId="exampleForm.ControlInput3">
               <Form.Label>Text</Form.Label>
               <Form.Control
+                as="textarea"
+                rows="8"
                 name="text"
                 value={this.state.text}
                 onChange={this.handleChange}

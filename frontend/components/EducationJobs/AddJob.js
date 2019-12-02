@@ -103,6 +103,8 @@ class AddJob extends Component {
           <Form.Group controlId="Description">
             <Form.Label>Job Description</Form.Label>
             <Form.Control
+              as="textarea"
+              rows="2"
               name="description"
               onChange={this.handleChange}
               value={this.state.description}
@@ -117,6 +119,8 @@ class AddJob extends Component {
           <Form.Group controlId="Responsibilities">
             <Form.Label>Job Responsibilities</Form.Label>
             <Form.Control
+              as="textarea"
+              rows="6"
               name="responsibilities"
               onChange={this.handleChange}
               value={this.state.responsibilities}
@@ -133,6 +137,8 @@ class AddJob extends Component {
           <Form.Group controlId="Requirements">
             <Form.Label>Job Requirements</Form.Label>
             <Form.Control
+              as="textarea"
+              rows="6"
               name="requirements"
               onChange={this.handleChange}
               value={this.state.requirements}

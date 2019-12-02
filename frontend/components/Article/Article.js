@@ -47,7 +47,7 @@ class Article extends Component {
     return (
       <div>
         <Card>
-          <Card.Img variant="top" src={this.state.news.image} height={400} />
+          <Card.Img variant="top" src={this.state.news.image} height={600} />
           <Card.Body>
             <Card.Title> {this.state.news.title} </Card.Title>
             <Card.Text>{this.state.news.description}</Card.Text>
