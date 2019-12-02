@@ -1,4 +1,4 @@
-import { ADD_ISSUE, DELETE_ISSUE, GET_ISSUES } from './types';
+import { ADD_ISSUE, DELETE_ISSUE, GET_ISSUES, UPDATE_ISSUE } from "./types";
 import axios from 'axios';
 
 export const addIssue = issue => dispatch => {
@@ -16,6 +16,12 @@ export const getIssues = () => dispatch => {
   axios.get('/api/issue/').then(issues => {
     console.log(issues);
     dispatch({ type: GET_ISSUES, payload: issues.data });
+  });
+};
+export const updateIssue = issue => dispatch => {
+  axios.put('/api/issue/', issue).then(issues => {
+    console.log(issues);
+    dispatch({ type: UPDATE_ISSUE, payload: issues.data });
   });
 };
 export const deleteIssue = issue => dispatch => {

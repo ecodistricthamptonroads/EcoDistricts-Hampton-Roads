@@ -1,4 +1,4 @@
-import { ADD_ISSUE, DELETE_ISSUE, GET_ISSUES } from '../actions/types';
+import { ADD_ISSUE, DELETE_ISSUE, GET_ISSUES, UPDATE_ISSUE } from "../actions/types";
 
 const issueInitial = {
   issues: []
@@ -12,6 +12,13 @@ export default function(state = issueInitial, action) {
       return {
         ...state,
         issues: state.issues.filter(issue => issue._id !== action.payload._id)
+      };
+    case UPDATE_ISSUE:
+      return {
+        ...state,
+        issues: [...state.issues.filter(
+          issue => issue._id !== action.payload._id
+        ), action.payload]
       };
     case GET_ISSUES:
       return { ...state, issues: [...action.payload] };
