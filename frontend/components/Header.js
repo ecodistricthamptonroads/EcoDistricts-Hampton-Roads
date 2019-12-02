@@ -8,6 +8,7 @@ import { logout } from '../actions/index';
 import logo from '../assets/images/logo.png';
 import Land from './Land';
 import { fetchUser } from '../actions';
+import '../../public/app.css';
 
 class Header extends Component {
   constructor(props) {

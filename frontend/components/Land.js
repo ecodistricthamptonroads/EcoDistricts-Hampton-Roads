@@ -114,29 +114,6 @@ class Land extends Component {
             </div>
           </div>
         </div>
-        <br />
-        <div className={'container-fluid'}>
-          <div className={'row'}>
-            <div className={'col-6'}>
-              <div>Subscribe to our newsletter</div>
-              <div>
-                <input type={'text'} placeholder={'Enter your email address'} />
-                <button>Subscribe</button>
-              </div>
-            </div>
-            <div className={'col-6'}>
-              <div style={{ 'text-align': 'right' }}>
-                Follow us on social media
-              </div>
-              <div style={{ 'text-align': 'right' }}>
-                <img src={instagram} width={'24px'} height={'24px'} />
-                <img src={facebook} width={'24px'} height={'24px'} />
-                <img src={twitter} width={'24px'} height={'24px'} />
-              </div>
-            </div>
-          </div>
-        </div>
-        <br />
       </div>
     );
   }
