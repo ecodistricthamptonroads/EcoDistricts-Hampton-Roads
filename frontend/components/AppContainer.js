@@ -14,6 +14,7 @@ import Email from './Email/Email';
 import News from './News/News';
 import Article from './Article/Article';
 import Surveys from './Surveys/Surveys';
+import Footer from './Footer';
 
 class AppContainer extends Component {
   render() {
@@ -40,6 +41,7 @@ class AppContainer extends Component {
               </div>
             </div>
           </div>
+          <Footer />
         </div>
       </BrowserRouter>
     );
