@@ -177,12 +177,15 @@ class Surveys extends Component {
                 return (
                   <tr>
                     {link}
-                    <td>
-                      <form onSubmit={(e) =>{e.preventDefault(); this.props.updateSurvey(survey)}}>
-                        <input name="status" defaultValue={survey.status} onChange={(e) => survey.status = e.target.value}/>
-                        <input type="submit" value="Submit"/>
-                      </form>
-                    </td>
+                    {this.props.loggedIn ? (
+                      <td>
+                        <form onSubmit={(e) =>{e.preventDefault(); this.props.updateSurvey(survey)}}>
+                          <input name="status" defaultValue={survey.status} onChange={(e) => survey.status = e.target.value}/>
+                          <input type="submit" value="Submit"/>
+                        </form>
+                      </td>
+                    ) : <td> {survey.status} </td>}
+
                     {this.props.loggedIn ? (
                       <td>
                         <button onClick={() => this.props.deleteSurvey(survey)}>

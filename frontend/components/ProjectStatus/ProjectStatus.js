@@ -177,12 +177,14 @@ class ProjectStatus extends Component {
                 return (
                   <tr>
                     {a}
-                    <td>
-                      <form onSubmit={(e) =>{e.preventDefault(); this.props.updateProject(project)}}>
-                        <input name="status" defaultValue={project.status} onChange={(e) => project.status = e.target.value}/>
-                        <input type="submit" value="Submit"/>
-                      </form>
-                    </td>
+                    {this.props.loggedIn ? (
+                      <td>
+                        <form onSubmit={(e) =>{e.preventDefault(); this.props.updateProject(project)}}>
+                          <input name="status" defaultValue={project.status} onChange={(e) => project.status = e.target.value}/>
+                          <input type="submit" value="Submit"/>
+                        </form>
+                      </td>
+                    ) : <td> {project.status} </td>}
                     {this.props.loggedIn ? (
                       <td>
                         <button
