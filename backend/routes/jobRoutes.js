@@ -30,6 +30,20 @@ router.get('/', (req, res) => {
     });
 });
 
+router.put('/', (req, res) => {
+  if (!req.user) {
+    res.sendStatus(403);
+  } else {
+    Job.findByIdAndUpdate(req.body._id, req.body,{new: true},function(err, response) {
+      if (err) {
+        res.send('' + err);
+      } else {
+        res.send(response);
+      }
+    });
+  }
+});
+
 router.delete('/:job_id', (req, res) => {
   if (!req.user) {
     res.sendStatus(403);

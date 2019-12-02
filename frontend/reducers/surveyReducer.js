@@ -1,4 +1,4 @@
-import { ADD_SURVEY, DELETE_SURVEY, GET_SURVEYS } from '../actions/types';
+import { ADD_SURVEY, DELETE_SURVEY, GET_SURVEYS, UPDATE_SURVEY } from "../actions/types";
 
 const surveyInitial = {
   surveys: []
@@ -15,6 +15,13 @@ export default function(state = surveyInitial, action) {
         surveys: state.surveys.filter(
           survey => survey._id !== action.payload._id
         )
+      };
+    case UPDATE_SURVEY:
+      return {
+        ...state,
+        surveys: [...state.surveys.filter(
+          survey => survey._id !== action.payload._id
+        ), action.payload]
       };
     case GET_SURVEYS:
       return { ...state, surveys: [...action.payload] };

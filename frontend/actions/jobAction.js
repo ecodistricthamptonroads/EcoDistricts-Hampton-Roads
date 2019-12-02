@@ -1,4 +1,4 @@
-import { ADD_JOB, DELETE_JOB, GET_JOBS } from './types';
+import { ADD_JOB, DELETE_JOB, GET_JOBS, UPDATE_JOB } from "./types";
 import axios from 'axios';
 
 export const addJob = job => dispatch => {
@@ -12,6 +12,13 @@ export const getJobs = () => dispatch => {
   axios.get('/api/job/').then(jobs => {
     console.log(jobs);
     dispatch({ type: GET_JOBS, payload: jobs.data });
+  });
+};
+export const updateJob = job => dispatch => {
+  axios.put('/api/job/', job).then(jobs => {
+    console.log(jobs);
+    alert('Successfully Updated');
+    dispatch({ type: UPDATE_JOB, payload: jobs.data });
   });
 };
 export const deleteJob = job => dispatch => {
