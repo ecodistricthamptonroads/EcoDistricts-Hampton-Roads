@@ -20,7 +20,7 @@ export const getProjects = () => dispatch => {
 };
 export const updateProject = project => dispatch => {
   axios.put('/api/project/', project).then(projects => {
-    console.log(projects);
+    alert('Successfully Updated');
     dispatch({ type: UPDATE_PROJECT, payload: projects.data });
   });
 };

@@ -2,13 +2,14 @@ import { Component } from 'react';
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
-import { addSurvey, getSurveys, deleteSurvey } from "../../actions";
+import { addSurvey, getSurveys, deleteSurvey } from '../../actions';
 import { connect } from 'react-redux';
 
 class Surveys extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      notInitial: false,
       search: '',
       title: '',
       link: '',
@@ -23,22 +24,44 @@ class Surveys extends Component {
     this.props.getSurveys();
   }
 
+  validateFields() {
+    this.setState({ notInitial: true });
+    return this.validateTitle() && this.validateLink() && this.validateStatus();
+  }
+
+  validateTitle() {
+    return this.state.title != '';
+  }
+
+  validateLink() {
+    var reg = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
+    return reg.test(this.state.link);
+  }
+
+  validateStatus() {
+    return this.state.status != '';
+  }
+
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
   handleSubmit(e) {
     e.preventDefault();
-    let issue = {
-      title: this.state.title,
-      link: this.state.link,
-      status: this.state.status
-    };
-    this.props.addSurvey(issue);
-    this.setState({
-      title: '',
-      link: '',
-      status: ''
-    });
+
+    if (this.validateFields()) {
+      let issue = {
+        title: this.state.title,
+        link: this.state.link,
+        status: this.state.status
+      };
+      this.props.addSurvey(issue);
+      this.setState({
+        notInitial: false,
+        title: '',
+        link: '',
+        status: ''
+      });
+    }
   }
   handleSubmit1(e) {
     e.preventDefault();
@@ -56,14 +79,18 @@ class Surveys extends Component {
         <div>
           <Form onSubmit={this.handleSubmit}>
             <Form.Group controlId="exampleForm.ControlInput1">
-              <Form.Label>Title</Form.Label>
+              <Form.Label>Survey Name</Form.Label>
               <Form.Control
                 name="title"
                 value={this.state.title}
                 onChange={this.handleChange}
                 type="text"
-                placeholder="Title"
+                placeholder="Enter Survey Name"
+                isInvalid={this.state.notInitial && !this.validateTitle()}
               />
+              <Form.Control.Feedback type="invalid">
+                Please include a title
+              </Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlInput4">
               <Form.Label>Link</Form.Label>
@@ -72,8 +99,12 @@ class Surveys extends Component {
                 value={this.state.link}
                 onChange={this.handleChange}
                 type="text"
-                placeholder="Link"
+                placeholder="Enter URL Link"
+                isInvalid={this.state.notInitial && !this.validateLink()}
               />
+              <Form.Control.Feedback type="invalid">
+                Please include a valid url link starting with http
+              </Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlInput2">
               <Form.Label>Status</Form.Label>
@@ -82,8 +113,12 @@ class Surveys extends Component {
                 value={this.state.status}
                 onChange={this.handleChange}
                 type="Description"
-                placeholder="Status"
+                placeholder="Enter Description"
+                isInvalid={this.state.notInitial && !this.validateStatus()}
               />
+              <Form.Control.Feedback type="invalid">
+                Please include a survey description
+              </Form.Control.Feedback>
             </Form.Group>
           </Form>
           <button
@@ -143,7 +178,13 @@ class Surveys extends Component {
                   <tr>
                     {link}
                     <td> {survey.status} </td>
-                    {this.props.loggedIn ? <td><button onClick={() => this.props.deleteSurvey(survey)}>Delete</button></td> : null}
+                    {this.props.loggedIn ? (
+                      <td>
+                        <button onClick={() => this.props.deleteSurvey(survey)}>
+                          Delete
+                        </button>
+                      </td>
+                    ) : null}
                   </tr>
                 );
               })}

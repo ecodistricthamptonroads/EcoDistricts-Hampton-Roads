@@ -21,6 +21,7 @@ export const getIssues = () => dispatch => {
 export const updateIssue = issue => dispatch => {
   axios.put('/api/issue/', issue).then(issues => {
     console.log(issues);
+    alert('Successfully Updated');
     dispatch({ type: UPDATE_ISSUE, payload: issues.data });
   });
 };

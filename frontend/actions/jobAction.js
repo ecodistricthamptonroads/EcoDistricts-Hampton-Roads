@@ -17,6 +17,7 @@ export const getJobs = () => dispatch => {
 export const updateJob = job => dispatch => {
   axios.put('/api/job/', job).then(jobs => {
     console.log(jobs);
+    alert('Successfully Updated');
     dispatch({ type: UPDATE_JOB, payload: jobs.data });
   });
 };

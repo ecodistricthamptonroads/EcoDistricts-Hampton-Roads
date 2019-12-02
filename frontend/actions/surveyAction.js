@@ -21,6 +21,7 @@ export const getSurveys = () => dispatch => {
 export const updateSurvey = survey => dispatch => {
   axios.put('/api/survey/', survey).then(surveys => {
     console.log(surveys);
+    alert('Successfully Updated');
     dispatch({ type: UPDATE_SURVEY, payload: surveys.data });
   });
 };

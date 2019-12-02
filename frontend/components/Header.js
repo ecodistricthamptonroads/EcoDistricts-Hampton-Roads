@@ -22,9 +22,9 @@ class Header extends Component {
       case null:
         return 'still deciding';
       case false:
-        return <a href={'/api/auth/google/get'}>log in</a>;
+        return <a href={'/api/auth/google/get'}>Admin? Log in here</a>;
       default:
-        return <a href={'/api/auth/logout'}>log out</a>;
+        return <a href={'/api/auth/logout'}>Log Out</a>;
     }
   }
 
