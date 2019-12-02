@@ -32,7 +32,7 @@ class Header extends Component {
     if (this.props.user)
       return (
         <Nav.Item>
-          <Nav.Link eventKey="8" as={Link} to="/email">
+          <Nav.Link eventKey="7" as={Link} to="/email">
             Add Admin Email
           </Nav.Link>
         </Nav.Item>
@@ -72,12 +72,7 @@ class Header extends Component {
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="6" as={Link} to="/recognition">
-                Recognition
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="7" as={Link} to="/projectstatus">
+              <Nav.Link eventKey="6" as={Link} to="/projectstatus">
                 Project Status
               </Nav.Link>
             </Nav.Item>
