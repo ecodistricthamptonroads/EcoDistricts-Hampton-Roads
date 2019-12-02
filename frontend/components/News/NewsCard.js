@@ -33,7 +33,7 @@ class NewsCard extends Component {
           <div className="container">
             <div className="row">
               <div className="col-sm-3">
-                <img src={this.state.src} height={120} />
+                <img src={this.state.src} height={120} width={120} />
               </div>
               <div className="col-8">
                 <Card.Body>
