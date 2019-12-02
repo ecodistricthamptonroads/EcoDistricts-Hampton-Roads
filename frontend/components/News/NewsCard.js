@@ -14,7 +14,7 @@ class NewsCard extends Component {
 
   componentDidMount() {
     if (this.props.src) {
-      axios.get('/api/file/get_file_by_id/' + this.props.src).then(url => {
+      axios.get('/api/file/get_file_by_id/' + this.props.article.image).then(url => {
         console.log(url.data);
         this.setState({ src: url.data });
       });
@@ -26,20 +26,19 @@ class NewsCard extends Component {
   render() {
     //let src = logo;
 
-    console.log('sdfasdfas' + this.state.src);
     return (
       <div>
         <Card>
           <div className="container">
             <div className="row">
-              <div className="col-sm-3">
+              <div className="col-4">
                 <img src={this.state.src} height={120} width={120} />
               </div>
-              <div className="col-8">
+              <div className="col-6">
                 <Card.Body>
-                  <Card.Title> {this.props.title} </Card.Title>
-                  <Card.Text> {this.props.author} </Card.Text>
-                  <Card.Text> {this.props.description} </Card.Text>
+                  <Card.Title> {this.props.article.title} </Card.Title>
+                  <Card.Text> {this.props.article.author} </Card.Text>
+                  <Card.Text> {this.props.article.description} </Card.Text>
                 </Card.Body>
               </div>
             </div>

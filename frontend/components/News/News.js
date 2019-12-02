@@ -5,7 +5,7 @@ import NewsCard from './NewsCard';
 import logo from '../../assets/images/logo.png';
 import { Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
-import { addArticle, getArticles } from '../../actions';
+import { addArticle, deleteArticle, getArticles } from "../../actions";
 import axios from 'axios';
 
 class News extends Component {
@@ -211,12 +211,10 @@ class News extends Component {
                 onClick={() => this.props.history.push('/news/' + article._id)}
               >
                 <NewsCard
-                  src={article.image}
-                  title={article.title}
-                  description={article.description}
-                  author={article.author}
+                  article={article}
                 />
               </div>
+              {this.props.user ? <button onClick={() => this.props.deleteArticle(article)}>Delete</button> : null}
               <br />
             </div>
           );
@@ -236,7 +234,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (/* dispatch */) => {
   return {
     addArticle: addArticle,
-    getNews: getArticles
+    getNews: getArticles,
+    deleteArticle: deleteArticle,
   };
 };
 

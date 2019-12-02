@@ -11,7 +11,7 @@ export default function(state = jobInitial, action) {
     case DELETE_JOB:
       return {
         ...state,
-        jobs: state.jobs.filter(job => job.title !== action.payload.title)
+        jobs: state.jobs.filter(job => job._id !== action.payload._id)
       };
     case GET_JOBS:
       return { ...state, jobs: [...action.payload] };

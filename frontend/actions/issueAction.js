@@ -5,6 +5,10 @@ export const addIssue = issue => dispatch => {
   axios.post('/api/issue/', issue).then(res => {
     dispatch({ type: ADD_ISSUE, payload: issue });
     alert('Successfully Added Issue');
+    axios.get('/api/issue/').then(issues => {
+      console.log(issues);
+      dispatch({ type: GET_ISSUES, payload: issues.data });
+    });
   });
 };
 

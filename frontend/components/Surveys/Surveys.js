@@ -2,7 +2,7 @@ import { Component } from 'react';
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
-import { addSurvey, getSurveys, getEmails } from '../../actions';
+import { addSurvey, getSurveys, deleteSurvey } from "../../actions";
 import { connect } from 'react-redux';
 
 class Surveys extends Component {
@@ -21,7 +21,6 @@ class Surveys extends Component {
 
   componentDidMount() {
     this.props.getSurveys();
-    this.props.getEmails();
   }
 
   handleChange(e) {
@@ -122,17 +121,18 @@ class Surveys extends Component {
             <tr>
               <th> Survey Name </th>
               <th> Status </th>
+              {this.props.loggedIn ? <th> Delete? </th> : null}
             </tr>
           </thead>
           <tbody>
             {this.props.surveys
               .filter(survey => this.search(survey.title))
               .map(survey => {
-                let a = '';
+                let link = '';
                 if (survey.link === '') {
-                  a = <td>{survey.title} </td>;
+                  link = <td>{survey.title} </td>;
                 } else {
-                  a = (
+                  link = (
                     <td>
                       {' '}
                       <a href={survey.link}>{survey.title}</a>{' '}
@@ -141,8 +141,9 @@ class Surveys extends Component {
                 }
                 return (
                   <tr>
-                    {a}
+                    {link}
                     <td> {survey.status} </td>
+                    {this.props.loggedIn ? <td><button onClick={() => this.props.deleteSurvey(survey)}>Delete</button></td> : null}
                   </tr>
                 );
               })}
@@ -164,7 +165,7 @@ const mapDispatchToProps = (/* dispatch */) => {
   return {
     addSurvey: addSurvey,
     getSurveys: getSurveys,
-    getEmails: getEmails
+    deleteSurvey: deleteSurvey
   };
 };
 
