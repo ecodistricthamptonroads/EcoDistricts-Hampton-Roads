@@ -64,7 +64,7 @@ class Land extends Component {
         <br />
         <div className={'container-fluid'}>
           <div className={'row'}>
-            <div className={'col-4'}>
+            <div className="col-auto col-md-5 col-lg-4 col-xl-3">
               <div
                 style={{
                   'text-align': 'center',
@@ -82,7 +82,7 @@ class Land extends Component {
                 challenges, creating a vibrant neighborhood.
               </div>
             </div>
-            <div className={'col-8'}>
+            <div className='col-auto col-md-7 col-lg-8 col-xl-9'>
               <img width={'100%'} src={about_us} />
             </div>
           </div>
@@ -90,10 +90,10 @@ class Land extends Component {
         <br />
         <div className={'container-fluid'}>
           <div className={'row'}>
-            <div className={'col-8'}>
+            <div className={'ol-auto col-md-7 col-lg-8 col-xl-9'}>
               <img width={'100%'} src={what_we_do} />
             </div>
-            <div className={'col-4'}>
+            <div className={'col-auto col-md-5 col-lg-4 col-xl-3'}>
               <div
                 style={{
                   'text-align': 'center',

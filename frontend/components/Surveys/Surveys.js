@@ -2,7 +2,7 @@ import { Component } from 'react';
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
-import { addSurvey, getSurveys, deleteSurvey } from '../../actions';
+import { addSurvey, getSurveys, deleteSurvey, updateSurvey } from "../../actions";
 import { connect } from 'react-redux';
 
 class Surveys extends Component {
@@ -177,7 +177,12 @@ class Surveys extends Component {
                 return (
                   <tr>
                     {link}
-                    <td> {survey.status} </td>
+                    <td>
+                      <form onSubmit={(e) =>{e.preventDefault(); this.props.updateSurvey(survey)}}>
+                        <input name="status" defaultValue={survey.status} onChange={(e) => survey.status = e.target.value}/>
+                        <input type="submit" value="Submit"/>
+                      </form>
+                    </td>
                     {this.props.loggedIn ? (
                       <td>
                         <button onClick={() => this.props.deleteSurvey(survey)}>
@@ -206,7 +211,8 @@ const mapDispatchToProps = (/* dispatch */) => {
   return {
     addSurvey: addSurvey,
     getSurveys: getSurveys,
-    deleteSurvey: deleteSurvey
+    deleteSurvey: deleteSurvey,
+    updateSurvey: updateSurvey
   };
 };
 
