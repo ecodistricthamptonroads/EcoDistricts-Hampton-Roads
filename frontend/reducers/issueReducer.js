@@ -11,7 +11,7 @@ export default function(state = issueInitial, action) {
     case DELETE_ISSUE:
       return {
         ...state,
-        issues: state.issues.filter(issue => issue.name !== action.payload.name)
+        issues: state.issues.filter(issue => issue._id !== action.payload._id)
       };
     case GET_ISSUES:
       return { ...state, issues: [...action.payload] };

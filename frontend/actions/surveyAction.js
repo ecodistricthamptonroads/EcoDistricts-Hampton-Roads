@@ -5,6 +5,10 @@ export const addSurvey = survey => dispatch => {
   axios.post('/api/survey/', survey).then(res => {
     alert('Successfully Added Survey');
     dispatch({ type: ADD_SURVEY, payload: survey });
+    axios.get('/api/survey/').then(surveys => {
+      console.log(surveys);
+      dispatch({ type: GET_SURVEYS, payload: surveys.data });
+    });
   });
 };
 

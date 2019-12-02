@@ -11,7 +11,7 @@ export default function(state = newsInitial, action) {
     case DELETE_ARTICLE:
       return {
         ...state,
-        news: state.news.filter(news => news.title !== action.payload.title)
+        news: state.news.filter(news => news._id !== action.payload._id)
       };
     case GET_ARTICLES:
       return { ...state, news: [...action.payload] };

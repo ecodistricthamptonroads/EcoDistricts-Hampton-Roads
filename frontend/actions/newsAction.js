@@ -6,6 +6,10 @@ export const addArticle = article => dispatch => {
     dispatch({ type: ADD_ARTICLE, payload: article });
     alert('Successfully Added Article');
   });
+  axios.get('/api/news/').then(articles => {
+    console.log(articles);
+    dispatch({ type: GET_ARTICLES, payload: articles.data });
+  });
 };
 
 export const getArticles = () => dispatch => {

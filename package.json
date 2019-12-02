@@ -12,11 +12,13 @@
     "dev": "concurrently -k \"npm run frontend\" \"npm run backend\"",
     "frontend": "webpack-dev-server --mode development",
     "backend": "nodemon server.js",
-    "test":
-      "mocha --compilers js:babel-core/register ./test/**/*.js --require ignore-styles"
+    "test": "mocha --compilers js:babel-core/register ./test/**/*.js --require ignore-styles"
   },
   "babel": {
-    "presets": ["env", "react"],
+    "presets": [
+      "env",
+      "react"
+    ],
     "plugins": [
       "transform-object-rest-spread",
       "react-hot-loader/babel",
@@ -30,10 +32,16 @@
     ]
   },
   "nodemonConfig": {
-    "ignore": ["frontend/**", "public/**"]
+    "ignore": [
+      "frontend/**",
+      "public/**"
+    ]
   },
   "lint-staged": {
-    "**/*.{js,jsx,json,css}": ["prettier --single-quote --write", "git add"]
+    "**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
   },
   "dependencies": {
     "aws-sdk": "^2.580.0",

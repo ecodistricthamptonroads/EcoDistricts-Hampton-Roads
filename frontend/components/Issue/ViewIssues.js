@@ -78,7 +78,7 @@ class ViewIssues extends Component {
 
 const mapStateToProps = state => {
   return {
-    loggedIn: state.login.loggedIn,
+    loggedIn: state.login.user,
     issues: state.issues.issues
   };
 };

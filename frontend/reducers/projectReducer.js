@@ -12,7 +12,7 @@ export default function(state = projectInitial, action) {
       return {
         ...state,
         projects: state.projects.filter(
-          project => project.title !== action.payload.title
+          project => project._id !== action.payload._id
         )
       };
     case GET_PROJECTS:

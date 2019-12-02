@@ -5,6 +5,10 @@ export const addProject = project => dispatch => {
   axios.post('/api/project/', project).then(res => {
     alert('Successfully Added Project');
     dispatch({ type: ADD_PROJECT, payload: project });
+    axios.get('/api/project/').then(projects => {
+      console.log(projects);
+      dispatch({ type: GET_PROJECTS, payload: projects.data });
+    });
   });
 };
 

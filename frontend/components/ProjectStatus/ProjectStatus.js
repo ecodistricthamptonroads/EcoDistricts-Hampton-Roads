@@ -2,7 +2,7 @@ import { Component } from 'react';
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
-import { addProject, getProjects } from '../../actions';
+import { addProject, deleteProject, getProjects } from "../../actions";
 import { connect } from 'react-redux';
 
 class ProjectStatus extends Component {
@@ -121,6 +121,7 @@ class ProjectStatus extends Component {
             <tr>
               <th> Project Name </th>
               <th> Status </th>
+              {this.props.loggedIn ? <th> Delete? </th> : null}
             </tr>
           </thead>
           <tbody>
@@ -142,6 +143,7 @@ class ProjectStatus extends Component {
                   <tr>
                     {a}
                     <td> {project.status} </td>
+                    {this.props.loggedIn ? <td><button onClick={() => this.props.deleteProject(project)}>Delete</button></td> : null}
                   </tr>
                 );
               })}
@@ -162,7 +164,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (/* dispatch */) => {
   return {
     addProject: addProject,
-    getProjects: getProjects
+    getProjects: getProjects,
+    deleteProject: deleteProject,
   };
 };
 
