@@ -2,7 +2,12 @@ import { Component } from 'react';
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
-import { addSurvey, getSurveys, deleteSurvey, updateSurvey } from "../../actions";
+import {
+  addSurvey,
+  getSurveys,
+  deleteSurvey,
+  updateSurvey
+} from '../../actions';
 import { connect } from 'react-redux';
 
 class Surveys extends Component {
@@ -179,12 +184,23 @@ class Surveys extends Component {
                     {link}
                     {this.props.loggedIn ? (
                       <td>
-                        <form onSubmit={(e) =>{e.preventDefault(); this.props.updateSurvey(survey)}}>
-                          <input name="status" defaultValue={survey.status} onChange={(e) => survey.status = e.target.value}/>
-                          <input type="submit" value="Submit"/>
+                        <form
+                          onSubmit={e => {
+                            e.preventDefault();
+                            this.props.updateSurvey(survey);
+                          }}
+                        >
+                          <input
+                            name="status"
+                            defaultValue={survey.status}
+                            onChange={e => (survey.status = e.target.value)}
+                          />
+                          <input type="submit" value="Update" />
                         </form>
                       </td>
-                    ) : <td> {survey.status} </td>}
+                    ) : (
+                      <td> {survey.status} </td>
+                    )}
 
                     {this.props.loggedIn ? (
                       <td>

@@ -23,9 +23,17 @@ class Header extends Component {
       case null:
         return 'still deciding';
       case false:
-        return <a href={'/api/auth/google/get'}>Admin? Log in here</a>;
+        return (
+          <Nav.Item>
+            <a href={'/api/auth/google/get'}>Admin? Log in here</a>
+          </Nav.Item>
+        );
       default:
-        return <a href={'/api/auth/logout'}>Log Out</a>;
+        return (
+          <Nav.Item>
+            <a href={'/api/auth/logout'}>Log Out</a>
+          </Nav.Item>
+        );
     }
   }
 
@@ -79,8 +87,8 @@ class Header extends Component {
             </Nav.Item>
             {this.email()}
           </Nav>
+          <Nav>{this.isLoggedIn()}</Nav>
         </Navbar.Collapse>
-        {this.isLoggedIn()}
       </Navbar>
     );
   }

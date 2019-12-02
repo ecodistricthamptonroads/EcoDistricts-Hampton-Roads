@@ -14,6 +14,8 @@ import instagram from '../assets/images/instagram.png';
 import facebook from '../assets/images/facebook.png';
 import twitter from '../assets/images/twitter.jpg';
 
+import MailChimpSubscribe from './MailChimpSubscribe.js';
+
 class Land extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +27,6 @@ class Land extends Component {
         <div
           style={{
             'text-align': 'center',
-            'font-size': '48px',
             color: 'darkgrey'
           }}
         >
@@ -82,7 +83,7 @@ class Land extends Component {
                 challenges, creating a vibrant neighborhood.
               </div>
             </div>
-            <div className='col-auto col-md-7 col-lg-8 col-xl-9'>
+            <div className="col-auto col-md-7 col-lg-8 col-xl-9">
               <img width={'100%'} src={about_us} />
             </div>
           </div>
@@ -114,6 +115,33 @@ class Land extends Component {
             </div>
           </div>
         </div>
+        <br />
+        <div className={'container-fluid'}>
+          <div className={'row'}>
+            <div className={'col-6'}>
+              <div>
+                <MailChimpSubscribe />
+              </div>
+            </div>
+            <div className={'col-6'}>
+              <div style={{ 'text-align': 'right' }}>
+                Follow us on social media
+              </div>
+              <div style={{ 'text-align': 'right' }}>
+                <a href="https://www.instagram.com/ecodistricthamptonroads/">
+                  <img src={instagram} width={'24px'} height={'24px'} />
+                </a>
+                <a href="https://www.facebook.com/Center-for-Sustainable-Communities-Atlanta-219072231567212">
+                  <img src={facebook} width={'24px'} height={'24px'} />
+                </a>
+                <a href="https://twitter.com/eco_dis_hampton">
+                  <img src={twitter} width={'24px'} height={'24px'} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
       </div>
     );
   }

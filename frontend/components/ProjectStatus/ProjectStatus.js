@@ -2,7 +2,12 @@ import { Component } from 'react';
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
-import { addProject, deleteProject, getProjects, updateProject } from "../../actions";
+import {
+  addProject,
+  deleteProject,
+  getProjects,
+  updateProject
+} from '../../actions';
 import { connect } from 'react-redux';
 
 class ProjectStatus extends Component {
@@ -35,7 +40,7 @@ class ProjectStatus extends Component {
 
   validateLink() {
     var reg = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
-    return this.state.link = reg.test(this.state.link);
+    return (this.state.link = reg.test(this.state.link));
   }
 
   validateStatus() {
@@ -179,12 +184,23 @@ class ProjectStatus extends Component {
                     {a}
                     {this.props.loggedIn ? (
                       <td>
-                        <form onSubmit={(e) =>{e.preventDefault(); this.props.updateProject(project)}}>
-                          <input name="status" defaultValue={project.status} onChange={(e) => project.status = e.target.value}/>
-                          <input type="submit" value="Submit"/>
+                        <form
+                          onSubmit={e => {
+                            e.preventDefault();
+                            this.props.updateProject(project);
+                          }}
+                        >
+                          <input
+                            name="status"
+                            defaultValue={project.status}
+                            onChange={e => (project.status = e.target.value)}
+                          />
+                          <input type="submit" value="Update" />
                         </form>
                       </td>
-                    ) : <td> {project.status} </td>}
+                    ) : (
+                      <td> {project.status} </td>
+                    )}
                     {this.props.loggedIn ? (
                       <td>
                         <button

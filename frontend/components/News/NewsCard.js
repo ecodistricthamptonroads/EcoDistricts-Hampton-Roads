@@ -13,11 +13,13 @@ class NewsCard extends Component {
   }
 
   componentDidMount() {
-    if (this.props.src) {
-      axios.get('/api/file/get_file_by_id/' + this.props.article.image).then(url => {
-        console.log(url.data);
-        this.setState({ src: url.data });
-      });
+    if (this.props.article.image) {
+      axios
+        .get('/api/file/get_file_by_id/' + this.props.article.image)
+        .then(url => {
+          console.log(url.data);
+          this.setState({ src: url.data });
+        });
     } else {
       this.setState({ src: logo });
     }
