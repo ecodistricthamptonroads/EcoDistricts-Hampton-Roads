@@ -4,13 +4,14 @@ import React from 'react';
 import logo from '../../assets/images/logo.png';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
-
+///
 class NewsCard extends Component {
   constructor(props) {
     super(props);
 
     this.state = { src: logo };
-  }
+  }////
+//editing, fix possible issue
 
   componentDidMount() {
     if (this.props.article.image) {
