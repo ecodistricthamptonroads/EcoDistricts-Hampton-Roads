@@ -1,4 +1,15 @@
-.Head {
-    /*background-color: lightgrey;*/
-    /*opacity: 50%;*/
-}
+.head {
+    background-color: lightgrey;
+    opacity: 50%;
+  } 
+  .news {
+    display: grid;
+    grid-gap: 5%;
+    grid-template-columns: repeat(auto-fill, 30%);
+  }
+  .newsItem {
+    widows: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+  

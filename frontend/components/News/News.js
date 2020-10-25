@@ -5,8 +5,9 @@ import NewsCard from './NewsCard';
 import logo from '../../assets/images/logo.png';
 import { Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
-import { addArticle, deleteArticle, getArticles } from "../../actions";
+import { addArticle, deleteArticle, getArticles } from '../../actions';
 import axios from 'axios';
+import '../../../public/app.css';
 
 class News extends Component {
   constructor(props) {
@@ -56,7 +57,7 @@ class News extends Component {
   }
 
   validateImage() {
-    return this.state.image !== null && this.state.image != undefined;
+    return this.state.image !== null /*&& this.state.image != undefined*/;
   }
 
   handleChange(e) {
@@ -201,26 +202,35 @@ class News extends Component {
   }
 
   render() {
+    console.log('Render function', this.props.news);
     return (
       <div>
         {this.loggedIn()}
         <h1> Hampton Roads News </h1>
         <br />
-        {this.props.news.map(article => {
-          return (
-            <div>
-              <div
-                onClick={() => this.props.history.push('/news/' + article._id)}
-              >
-                <NewsCard
-                  article={article}
-                />
+        <div className="news">
+          {this.props.news.map(article => {
+            return (
+              <div key={article._id}>
+                <div
+                  onClick={() =>
+                    this.props.history.push('/news/' + article._id)
+                  }
+                >
+                  <NewsCard article={article} />
+                  <NewsCard artic={article} />
+                  <NewsCard art={article} />
+                </div>
+                {this.props.user ? (
+                  <button onClick={() => this.props.deleteArticle(article)}>
+                    Delete
+                  </button>
+                ) : null}
+                <br />
               </div>
-              {this.props.user ? <button onClick={() => this.props.deleteArticle(article)}>Delete</button> : null}
-              <br />
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     );
   }
@@ -237,7 +247,7 @@ const mapDispatchToProps = (/* dispatch */) => {
   return {
     addArticle: addArticle,
     getNews: getArticles,
-    deleteArticle: deleteArticle,
+    deleteArticle: deleteArticle
   };
 };
 
