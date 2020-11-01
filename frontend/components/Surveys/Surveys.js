@@ -9,7 +9,6 @@ import {
   updateSurvey
 } from '../../actions';
 import { connect } from 'react-redux';
-
 class Surveys extends Component {
   constructor(props) {
     super(props);
@@ -73,6 +72,7 @@ class Surveys extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
   search(item) {
+    item = item || '';
     const lc = item.toLowerCase();
     const filter = this.state.search.toLowerCase();
     return lc.includes(filter);
@@ -138,82 +138,88 @@ class Surveys extends Component {
       );
     }
   }
-
-  render() {
+  getSurveysList() {
     return (
       <div>
-        {this.loggedIn()}
-        <br />
-        <Form onSubmit={this.handleSubmit1}>
-          <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Control
-              name="search"
-              value={this.state.search}
-              onChange={this.handleChange}
-              type="text"
-              placeholder="Search"
-            />
-          </Form.Group>
-        </Form>
-        <br />
-        <Table>
-          <thead>
-            <tr>
-              <th> Survey Name </th>
-              <th> Status </th>
-              {this.props.loggedIn ? <th> Delete? </th> : null}
-            </tr>
-          </thead>
-          <tbody>
-            {this.props.surveys
-              .filter(survey => this.search(survey.title))
-              .map(survey => {
-                let link = '';
-                if (survey.link === '') {
-                  link = <td>{survey.title} </td>;
-                } else {
-                  link = (
-                    <td>
-                      {' '}
-                      <a href={survey.link}>{survey.title}</a>{' '}
-                    </td>
-                  );
-                }
-                return (
-                  <tr>
-                    {link}
+        <div className="Survey-Feedback">Feedback</div>
+        <div className="SurveyList">
+          {this.props.surveys
+            .filter(survey => this.search(survey.title))
+            .map(survey => {
+              return (
+                <a href={survey.link}>
+                  <div
+                    key={survey.title + survey.link + Math.random()}
+                    className="Survey-elem"
+                  >
                     {this.props.loggedIn ? (
-                      <td>
+                      <div className="Survey-admin">
                         <form
+                          className="Survey-update-admin"
                           onSubmit={e => {
                             e.preventDefault();
                             this.props.updateSurvey(survey);
                           }}
                         >
                           <input
+                            className="Status-input"
                             name="status"
                             defaultValue={survey.status}
                             onChange={e => (survey.status = e.target.value)}
                           />
                           <input type="submit" value="Update" />
                         </form>
-                      </td>
-                    ) : (
-                      <td> {survey.status} </td>
-                    )}
 
-                    {this.props.loggedIn ? (
-                      <td>
-                        <button onClick={() => this.props.deleteSurvey(survey)}>
-                          Delete
-                        </button>
-                      </td>
-                    ) : null}
-                  </tr>
-                );
-              })}
-          </tbody>
-        </Table>
+                        <div className="Survey-delete">
+                          <button
+                            onClick={() => this.props.deleteSurvey(survey)}
+                          >
+                            X
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="Survey-value"> {survey.status} </div>
+                    )}
+                  </div>
+                </a>
+              );
+            })}
+        </div>
+      </div>
+    );
+  }
+  getHeading() {
+    return <div className="Survey-Heading-div">Survey</div>;
+  }
+
+  getSearch() {
+    return (
+      <Form onSubmit={this.handleSubmit1}>
+        <Form.Group controlId="exampleForm.ControlInput1">
+          <Form.Control
+            name="search"
+            value={this.state.search}
+            onChange={this.handleChange}
+            type="text"
+            placeholder="Search"
+          />
+        </Form.Group>
+      </Form>
+    );
+  }
+
+  render() {
+    return (
+      <div>
+        {this.loggedIn()}
+        <div className="Survey-Body">
+          <br />
+          {this.getHeading()}
+          <br />
+          {this.getSurveysList()}
+        </div>
+        {this.getSearch()}
       </div>
     );
   }
