@@ -13,7 +13,7 @@ class NewsCard extends Component {
   }
 
   componentDidMount() {
-    if (this.props.article.image) {
+    if (this.props.article && this.props.article.image) {
       axios
         .get('/api/file/get_file_by_id/' + this.props.article.image)
         .then(url => {
@@ -26,24 +26,27 @@ class NewsCard extends Component {
   }
 
   render() {
-    //let src = logo;
-
+    let src = logo;
+    console.log('The article', this.props.article);
+    if (!this.props.article) return null;
     return (
-      <div>
+      <div className="newsItem">
         <Card>
-          <div className="container">
-            <div className="row">
-              <div className="col-4">
-                <img src={this.state.src} height={120} width={120} />
-              </div>
-              <div className="col-6">
-                <Card.Body>
-                  <Card.Title> {this.props.article.title} </Card.Title>
-                  <Card.Text> {this.props.article.author} </Card.Text>
-                  <Card.Text> {this.props.article.description} </Card.Text>
-                </Card.Body>
-              </div>
-            </div>
+          <div>
+            <img src={this.state.src} />
+            <Card.Body>
+              <Card.Title>
+                <h3> {this.props.article.title}</h3>{' '}
+              </Card.Title>
+              <Card.Text>
+                {' '}
+                <h6>{this.props.article.author}</h6>{' '}
+              </Card.Text>
+              <Card.Text>
+                {' '}
+                <p>{this.props.article.description}</p>{' '}
+              </Card.Text>
+            </Card.Body>
           </div>
         </Card>
       </div>
