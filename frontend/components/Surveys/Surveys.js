@@ -211,7 +211,7 @@ class Surveys extends Component {
 
   render() {
     return (
-      <div>
+      <div className="col-sm-10 offset-md-1">
         {this.loggedIn()}
         <div className="Survey-Body">
           <br />

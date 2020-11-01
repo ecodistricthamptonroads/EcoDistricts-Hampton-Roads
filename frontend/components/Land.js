@@ -101,11 +101,12 @@ class Land extends Component {
                 <div style={{ color: '#dda73c' }}>Who are we?</div>
               </div>
               <div
-                className="col-5 my-auto"
+                className="col-6 my-auto"
                 style={{
                   fontSize: '2.5vw',
                   backgroundColor: 'rgba(0, 0, 0, 0.6)',
-                  borderRadius: '30px/30px',
+                  // borderRadius: "30px/30px",
+                  borderRadius: 0,
                   padding: '20px'
                 }}
               >
@@ -121,7 +122,7 @@ class Land extends Component {
                   <button
                     style={{
                       color: 'black',
-                      backgroundColor: '#8cca7c',
+                      backgroundColor: '#98B391',
                       borderRadius: 10
                     }}
                   >
@@ -157,11 +158,12 @@ class Land extends Component {
             <div className={'row h-100'}>
               <div className="col-1" />
               <div
-                className="col-5 my-auto"
+                className="col-6 my-auto"
                 style={{
                   fontSize: '2.5vw',
                   backgroundColor: 'rgba(0, 0, 0, 0.6)',
-                  borderRadius: '30px/30px',
+                  // borderRadius: "30px/30px",
+                  borderRadius: 0,
                   padding: '20px'
                 }}
               >
@@ -179,7 +181,7 @@ class Land extends Component {
                   <button
                     style={{
                       color: 'black',
-                      backgroundColor: '#8cca7c',
+                      backgroundColor: '#98B391',
                       borderRadius: 10
                     }}
                   >
@@ -194,7 +196,7 @@ class Land extends Component {
                   fontFamily: 'Rozha One, serif'
                 }}
               >
-                <div style={{ color: '#dda73c' }}>What do we do?</div>
+                <div style={{ color: '#EBCB8C' }}>What do we do?</div>
               </div>
               <div className="col-1" />
             </div>
@@ -233,7 +235,7 @@ class Land extends Component {
                     <li
                       dataTarget="#multi-item-example"
                       dataSlideTo="0"
-                      class="active"
+                      className="active"
                     ></li>
                     <li dataTarget="#multi-item-example" dataSlideTo="1"></li>
                   </ol>
@@ -249,7 +251,7 @@ class Land extends Component {
                     }}
                   >
                     {/* Item 1 */}
-                    <div class="carousel-item active">
+                    <div className="carousel-item active">
                       <div className="card">
                         <div className="card-img-top d-flex align-items-center bg-light">
                           <div className="col-4 p-2 m-4">
@@ -265,14 +267,14 @@ class Land extends Component {
                           </div>
 
                           <div>
-                            <img className="img-fluid" src={sdg} />
+                            <img className="img-fluid" src={carousel_1} />
                           </div>
                         </div>
                       </div>
                     </div>
 
                     {/* Item 2 */}
-                    <div class="carousel-item">
+                    <div className="carousel-item">
                       <div className="card">
                         <div className="card-img-top d-flex align-items-center bg-light">
                           <p className="col p-2 m-0">Placeholder text</p>
@@ -333,37 +335,38 @@ class Land extends Component {
                   color: 'white',
                   // backgroundColor: "green",
                   backgroundColor: '#92a989',
-                  borderRadius: '40px/40px',
+                  // borderRadius: "40px/40px",
+                  borderRadius: 0,
                   textAlign: 'left',
                   padding: 30
                 }}
               >
                 <form>
-                  <div class="form-group">
-                    <label for="name">Full Name:</label>
+                  <div className="form-group">
+                    <label htmlFor="name">Full Name:</label>
                     <input
                       type="username"
-                      class="form-control"
+                      className="form-control"
                       id="name"
                       aria-describedby="usernameHelp"
                       placeholder="Enter your Name"
                     />
                   </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Email address:</label>
+                  <div className="form-group">
+                    <label htmlFor="exampleInputEmail1">Email address:</label>
                     <input
                       type="email"
-                      class="form-control"
+                      className="form-control"
                       id="exampleInputEmail1"
                       aria-describedby="emailHelp"
                       placeholder="Enter email"
                     />
                   </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Password:</label>
+                  <div className="form-group">
+                    <label htmlFor="exampleInputPassword1">Password:</label>
                     <input
                       type="password"
-                      class="form-control"
+                      className="form-control"
                       id="exampleInputPassword1"
                       placeholder="Password"
                     />
@@ -372,7 +375,7 @@ class Land extends Component {
                   <div style={{ textAlign: 'center' }}>
                     <button
                       type="submit"
-                      class="btn btn-primary"
+                      className="btn btn-primary"
                       style={{
                         width: 'auto',
                         backgroundColor: 'rgba(60, 133, 220, 1)'

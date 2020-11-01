@@ -169,7 +169,7 @@
   filter: brightness(50%);
   backface-visibility: hidden;
   opacity: 0;
-  transform: scale(1.4) rotate(12deg);
+  transform: scale(1.4);
   animation: CrossFade 24s infinite;
 }
 #CrossFade img:nth-child(3) {
@@ -184,7 +184,7 @@
 
 @-moz-keyframes CrossFade {
   25% {
-    opacity: 1;
+    /* opacity: 1; */
     transform: scale(1) rotate(0);
   }
   40% {

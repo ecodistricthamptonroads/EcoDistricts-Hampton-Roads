@@ -211,7 +211,7 @@ class ProjectStatus extends Component {
   }
   render() {
     return (
-      <div className="Project-body">
+      <div className="Project-body col-sm-10 offset-md-1">
         {this.loggedIn()}
         <br />
         {this.getSearch()}

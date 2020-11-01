@@ -16,7 +16,7 @@ class EducationJobs extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="col-sm-10 offset-md-1">
         <div style={{ textAlign: 'left', fontSize: '36px' }}>Jobs Heading</div>
         <div style={{ textAlign: 'left', fontSize: '14px' }}>
           <p> Lorem ipsum dolor sit amet </p>

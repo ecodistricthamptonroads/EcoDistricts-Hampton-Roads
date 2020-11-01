@@ -14,8 +14,8 @@ class About extends Component {
   render() {
     let images = [carousel_1, carousel_2, carousel_3, carousel_4];
     return (
-      <div>
-        {/* TODO: add parallel  */}
+      <div className="col-sm-10 offset-md-1">
+        {/* TODO: add parallax  */}
         <div className="About-Heading">About Us</div>
         <div className="About-body">
           <div className="About-who"> Who are we?</div>

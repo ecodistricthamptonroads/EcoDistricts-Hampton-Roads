@@ -204,7 +204,7 @@ class News extends Component {
   render() {
     console.log('Render function', this.props.news);
     return (
-      <div>
+      <div className="col-sm-10 offset-md-1">
         {this.loggedIn()}
         <h1> Hampton Roads News </h1>
         <br />
