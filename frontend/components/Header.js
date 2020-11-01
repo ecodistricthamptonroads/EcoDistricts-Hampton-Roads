@@ -41,7 +41,7 @@ class Header extends Component {
     if (this.props.user)
       return (
         <Nav.Item>
-          <Nav.Link eventKey="7" as={Link} to="/email">
+          <Nav.Link eventKey="8" as={Link} to="/email">
             Add Admin Email
           </Nav.Link>
         </Nav.Item>
@@ -56,8 +56,8 @@ class Header extends Component {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Item>
-              <Nav.Link eventKey="1" as={Link} to="/">
-                Home
+              <Nav.Link eventKey="1" as={Link} to="/about">
+                About
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
@@ -77,12 +77,17 @@ class Header extends Component {
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="5" as={Link} to="/opportunities">
-                Jobs/Education
+                Jobs
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="6" as={Link} to="/projectstatus">
-                Project Status
+              <Nav.Link eventKey="6" as={Link} to="/resources">
+                Resources
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="7" as={Link} to="/projectstatus">
+                Projects
               </Nav.Link>
             </Nav.Item>
             {this.email()}

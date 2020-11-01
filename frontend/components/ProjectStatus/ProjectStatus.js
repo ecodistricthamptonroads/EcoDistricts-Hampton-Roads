@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import React from 'react';
-import Table from 'react-bootstrap/Table';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import {
   addProject,
@@ -73,6 +74,7 @@ class ProjectStatus extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
   search(item) {
+    item = item || '';
     const lc = item.toLowerCase();
     const filter = this.state.search.toLowerCase();
     return lc.includes(filter);
@@ -138,12 +140,9 @@ class ProjectStatus extends Component {
       );
     }
   }
-
-  render() {
+  getSearch() {
     return (
-      <div>
-        {this.loggedIn()}
-        <br />
+      <div className="Project-Search-Bar">
         <Form onSubmit={this.handleSubmit1}>
           <Form.Group controlId="exampleForm.ControlInput1">
             <Form.Control
@@ -155,66 +154,69 @@ class ProjectStatus extends Component {
             />
           </Form.Group>
         </Form>
+      </div>
+    );
+  }
+
+  getProjectList() {
+    return (
+      <div className="ProjectList">
+        {this.props.projects
+          .filter(project => this.search(project.title))
+          .map(project => {
+            let card = (
+              <a href={project.link}>
+                <Card style={{ width: '18rem' }}>
+                  <Card.Img
+                    variant="top"
+                    src="https://ffipractitioner.org/wp-content/uploads/2014/11/ffi-working-together.jpg"
+                  />
+                  <Card.Body>
+                    <Card.Title>{project.title}</Card.Title>
+                    <Card.Text>{project.status}</Card.Text>
+                    {/* <Button variant="primary">Go somewhere</Button> */}
+                  </Card.Body>
+                </Card>
+              </a>
+            );
+
+            return (
+              <div className="Project-elem">
+                {card}
+                {this.props.loggedIn ? (
+                  <div>
+                    <form
+                      onSubmit={e => {
+                        e.preventDefault();
+                        this.props.updateProject(project);
+                      }}
+                    >
+                      <input
+                        name="status"
+                        defaultValue={project.status}
+                        onChange={e => (project.status = e.target.value)}
+                      />
+                      <input type="submit" value="Update" />
+                    </form>
+                    <button onClick={() => this.props.deleteProject(project)}>
+                      Delete
+                    </button>
+                  </div>
+                ) : null}
+              </div>
+            );
+          })}
+      </div>
+    );
+  }
+  render() {
+    return (
+      <div className="Project-body">
+        {this.loggedIn()}
         <br />
-        <Table>
-          <thead>
-            <tr>
-              <th> Project Name </th>
-              <th> Status </th>
-              {this.props.loggedIn ? <th> Delete? </th> : null}
-            </tr>
-          </thead>
-          <tbody>
-            {this.props.projects
-              .filter(project => this.search(project.title))
-              .map(project => {
-                let a = '';
-                if (project.link === '') {
-                  a = <td>{project.title} </td>;
-                } else {
-                  a = (
-                    <td>
-                      {' '}
-                      <a href={project.link}>{project.title}</a>{' '}
-                    </td>
-                  );
-                }
-                return (
-                  <tr>
-                    {a}
-                    {this.props.loggedIn ? (
-                      <td>
-                        <form
-                          onSubmit={e => {
-                            e.preventDefault();
-                            this.props.updateProject(project);
-                          }}
-                        >
-                          <input
-                            name="status"
-                            defaultValue={project.status}
-                            onChange={e => (project.status = e.target.value)}
-                          />
-                          <input type="submit" value="Update" />
-                        </form>
-                      </td>
-                    ) : (
-                      <td> {project.status} </td>
-                    )}
-                    {this.props.loggedIn ? (
-                      <td>
-                        <button
-                          onClick={() => this.props.deleteProject(project)}
-                        >
-                          Delete
-                        </button>
-                      </td>
-                    ) : null}
-                  </tr>
-                );
-              })}
-          </tbody>
-        </Table>
+        {this.getSearch()}
+        <br />
+        {this.getProjectList()}
       </div>
     );
   }

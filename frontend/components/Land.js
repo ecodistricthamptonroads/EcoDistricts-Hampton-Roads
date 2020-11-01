@@ -26,7 +26,7 @@ class Land extends Component {
       <div>
         <div
           style={{
-            'text-align': 'center',
+            textAlign: 'center',
             color: 'darkgrey'
           }}
         >
@@ -68,14 +68,14 @@ class Land extends Component {
             <div className="col-auto col-md-5 col-lg-4 col-xl-3">
               <div
                 style={{
-                  'text-align': 'center',
-                  'font-size': '48px',
+                  textAlign: 'center',
+                  fontSize: '48px',
                   color: 'darkgrey'
                 }}
               >
                 About Us
               </div>
-              <div style={{ 'font-size': '18px' }}>
+              <div style={{ fontSize: '18px' }}>
                 Eco Districts Hampton Roads hopes to create a beautiful and
                 sustainable community within Virginia's Hampton Roads, the
                 largest African American community. We hope to bring the
@@ -97,14 +97,14 @@ class Land extends Component {
             <div className={'col-auto col-md-5 col-lg-4 col-xl-3'}>
               <div
                 style={{
-                  'text-align': 'center',
-                  'font-size': '48px',
+                  textAlign: 'center',
+                  fontSize: '48px',
                   color: 'darkgrey'
                 }}
               >
                 What We Do
               </div>
-              <div style={{ 'font-size': '18px' }}>
+              <div style={{ fontSize: '18px' }}>
                 In order to help the community, Eco Districts Hampton Roads
                 conducts multiple projects done by volunteers in order to fix
                 various problems identified by residents. If you would like to
@@ -124,10 +124,10 @@ class Land extends Component {
               </div>
             </div>
             <div className={'col-6'}>
-              <div style={{ 'text-align': 'right' }}>
+              <div style={{ textAlign: 'right' }}>
                 Follow us on social media
               </div>
-              <div style={{ 'text-align': 'right' }}>
+              <div style={{ textAlign: 'right' }}>
                 <a href="https://www.instagram.com/ecodistricthamptonroads/">
                   <img src={instagram} width={'24px'} height={'24px'} />
                 </a>
