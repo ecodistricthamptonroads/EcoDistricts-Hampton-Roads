@@ -28,7 +28,7 @@ const CustomForm = ({ status, message, onValidated }) => {
             type="email"
             placeholder="Your email"
             className="form-control"
-            value={status === 'success' ? '' : null}
+            value={status === 'success' ? '' : undefined}
           />
           <div className="input-group-append">
             <button type="submit" className="btn btn-secondary">

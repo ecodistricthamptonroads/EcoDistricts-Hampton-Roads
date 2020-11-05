@@ -24,3 +24,5 @@ yarn-error.log*
 
 /public/hot/
 /public/bundle.js
+start.sh
+aws.pem

@@ -10,7 +10,6 @@ import Card from 'react-bootstrap/Card';
 class EducationJobs extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       currentJob: null,
       jobs: []
@@ -18,7 +17,7 @@ class EducationJobs extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="col-sm-10 offset-md-1">
         <div style={{ textAlign: 'left', fontSize: '36px' }}>Jobs Heading</div>
         <div style={{ textAlign: 'left', fontSize: '14px' }}>
           <p> Lorem ipsum dolor sit amet </p>
@@ -78,37 +77,27 @@ class Jobs extends Component {
 
   displayJobs() {
     return (
-      <Table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>View Job</th>
-            {this.adminTableHeader()}
-          </tr>
-        </thead>
-        <tbody>
-          {this.state.jobs.map(job => {
-            return (
-              <tr>
-                <td> {job.title} </td>
-                <td> {job.company} </td>
-                <td>
-                  {React.createElement(
-                    'button',
-                    { onClick: () => this.setState({ currentJob: job }) },
-                    'View Job'
-                  )}
-                </td>
-                {this.adminDeleteJob(job)}
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
+      <div className="jobs">
+        {this.state.jobs.map(job => {
+          return (
+            <a href={job.link}>
+              <Card style={{ width: '18rem' }}>
+                <Card.Img
+                  variant="top"
+                  src="https://t8f8b3g9.stackpathcdn.com/wp-content/uploads/2019/07/3.png"
+                />
+                <Card.Body>
+                  <Card.Title>{job.title}</Card.Title>
+                  <Card.Text>{job.status}</Card.Text>
+                  <Button variant="primary">Go somewhere</Button>
+                </Card.Body>
+              </Card>
+            </a>
+          );
+        })}
+      </div>
     );
   }
-
   displayDetailedJob(currentJob) {
     var title = this.createCard('Job Title', currentJob.title);
     var description = this.createCard('Description', currentJob.description);

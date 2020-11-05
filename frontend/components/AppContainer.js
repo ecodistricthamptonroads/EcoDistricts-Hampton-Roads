@@ -13,7 +13,10 @@ import Email from './Email/Email';
 import News from './News/News';
 import Article from './Article/Article';
 import Surveys from './Surveys/Surveys';
+
 import JobPage from './EducationJobs/JobPage';
+
+import About from './About/About';
 
 class AppContainer extends Component {
   render() {
@@ -23,21 +26,21 @@ class AppContainer extends Component {
           <Header />
           <div className="container-fluid">
             <div className="row">
-              <div className="col-sm-10 offset-md-1">
-                <Switch>
-                  <Route exact path="/" component={Land} />
-                  <Route path="/issues" component={Issue} />
-                  <Route path="/opportunities" component={EducationJobs} />
-                  <Route path="/login" component={Login} />
-                  <Route path="/projectstatus" component={ProjectStatus} />
-                  <Route path="/surveys" component={Surveys} />
-                  <Route exact path="/news" component={News} />
-                  <Route path="/news/:id" component={Article} />
-                  <Route path="/jobs/:id" component={JobPage} />
-                  <Route path="/email" component={Email} />
-                  <Route component={Land} />
-                </Switch>
-              </div>
+              <Switch>
+                <Route exact path="/" component={Land} />
+                <Route path="/issues" component={Issue} />
+                <Route path="/opportunities" component={EducationJobs} />
+                <Route path="/login" component={Login} />
+                <Route path="/projectstatus" component={ProjectStatus} />
+                <Route path="/surveys" component={Surveys} />
+                <Route exact path="/news" component={News} />
+                <Route path="/news/:id" component={Article} />
+                <Route path="/jobs/:id" component={JobPage} />
+                <Route path="/email" component={Email} />
+                <Route path="/about" component={About} />
+                <Route component={Land} />
+              </Switch>
+              <div className="col-sm-10 offset-md-1"></div>
             </div>
           </div>
         </div>
