@@ -11,9 +11,10 @@ class AddJob extends Component {
       notInitial: false,
       title: '',
       description: '',
-      responsibilities: '',
-      requirements: '',
-      link: ''
+      company: '',
+      location: '',
+      salary: '',
+      industry: ''
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,9 +26,10 @@ class AddJob extends Component {
     return (
       this.validateTitle() &&
       this.validateDescription() &&
-      this.validateResponsibilities() &&
-      this.validateRequirements() &&
-      this.validateLink()
+      this.validateCompany() &&
+      this.validateLocation() &&
+      this.validateSalary() &&
+      this.validateIndustry()
     );
   }
 
@@ -39,18 +41,26 @@ class AddJob extends Component {
     return this.state.description != '';
   }
 
-  validateResponsibilities() {
-    return this.state.responsibilities != '';
+  validateCompany() {
+    return this.state.company != '';
   }
 
-  validateRequirements() {
-    return this.state.requirements != '';
+  validateLocation() {
+    return this.state.location != '';
   }
 
-  validateLink() {
-    var reg = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
-    return reg.test(this.state.link);
+  validateSalary() {
+    return this.state.salary != '';
   }
+
+  validateIndustry() {
+    return this.state.industry != '';
+  }
+
+  //  validateLink() {
+  //    var reg = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
+  //    return reg.test(this.state.link);
+  //  }
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -63,9 +73,10 @@ class AddJob extends Component {
       let job = {
         title: this.state.title,
         description: this.state.description,
-        responsibilities: this.state.responsibilities,
-        requirements: this.state.requirements,
-        link: this.state.link
+        company: this.state.company,
+        location: this.state.location,
+        salary: this.state.salary,
+        industry: this.state.industry
       };
       axios.post('/api/job/', job).then(job => {
         console.log(job);
@@ -75,9 +86,10 @@ class AddJob extends Component {
         notInitial: false,
         title: '',
         description: '',
-        responsibilities: '',
-        requirements: '',
-        link: ''
+        company: '',
+        location: '',
+        salary: '',
+        industry: ''
       });
     }
   }
@@ -116,52 +128,64 @@ class AddJob extends Component {
               Please enter a description
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group controlId="Responsibilities">
-            <Form.Label>Job Responsibilities</Form.Label>
+          <Form.Group controlId="Company">
+            <Form.Label>Company</Form.Label>
             <Form.Control
               as="textarea"
               rows="6"
-              name="responsibilities"
+              name="company"
               onChange={this.handleChange}
-              value={this.state.responsibilities}
+              value={this.state.company}
               type="text"
-              placeholder="Enter Job Responsibilities"
-              isInvalid={
-                this.state.notInitial && !this.validateResponsibilities()
-              }
+              placeholder="Enter Company"
+              isInvalid={this.state.notInitial && !this.validateCompany()}
             />
             <Form.Control.Feedback type="invalid">
-              Please enter the requested responsibilities
+              Please enter the requested company
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group controlId="Requirements">
-            <Form.Label>Job Requirements</Form.Label>
+          <Form.Group controlId="Location">
+            <Form.Label>Job Location</Form.Label>
             <Form.Control
               as="textarea"
               rows="6"
-              name="requirements"
+              name="location"
               onChange={this.handleChange}
-              value={this.state.requirements}
+              value={this.state.location}
               type="text"
-              placeholder="Enter Job Requirements"
-              isInvalid={this.state.notInitial && !this.validateRequirements()}
+              placeholder="Enter Job Location"
+              isInvalid={this.state.notInitial && !this.validateLocation()}
             />
             <Form.Control.Feedback type="invalid">
-              Please enter the requested requirements
+              Please enter the requested location
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group controlId="Link">
-            <Form.Label>Link</Form.Label>
+          <Form.Group controlId="Job Salary">
+            <Form.Label>Job Salary</Form.Label>
             <Form.Control
-              name="link"
-              value={this.state.link}
+              name="salary"
+              value={this.state.salary}
               onChange={this.handleChange}
               type="text"
-              placeholder="Enter URL Link to Job"
-              isInvalid={this.state.notInitial && !this.validateLink()}
+              placeholder="Enter Job Salary"
+              isInvalid={this.state.notInitial && !this.validateSalary()}
             />
             <Form.Control.Feedback type="invalid">
-              Please include a valid url link starting with http
+              Please include the requested salary
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group controlId="Job Industry">
+            <Form.Label>Job Industry</Form.Label>
+            <Form.Control
+              name="industry"
+              value={this.state.industry}
+              onChange={this.handleChange}
+              type="text"
+              placeholder="Enter Job Industry"
+              isInvalid={this.state.notInitial && !this.validateIndustry()}
+            />
+            <Form.Control.Feedback type="invalid">
+              Please include the requested industry
             </Form.Control.Feedback>
           </Form.Group>
         </Form>

@@ -13,6 +13,7 @@ import Email from './Email/Email';
 import News from './News/News';
 import Article from './Article/Article';
 import Surveys from './Surveys/Surveys';
+import JobPage from './EducationJobs/JobPage';
 
 class AppContainer extends Component {
   render() {
@@ -32,6 +33,7 @@ class AppContainer extends Component {
                   <Route path="/surveys" component={Surveys} />
                   <Route exact path="/news" component={News} />
                   <Route path="/news/:id" component={Article} />
+                  <Route path="/jobs/:id" component={JobPage} />
                   <Route path="/email" component={Email} />
                   <Route component={Land} />
                 </Switch>

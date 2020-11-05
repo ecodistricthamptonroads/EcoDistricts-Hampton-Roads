@@ -4,6 +4,7 @@ import React from 'react';
 import axios from 'axios';
 import AddJob from './AddJob';
 import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 class EducationJobs extends Component {
@@ -24,7 +25,6 @@ class EducationJobs extends Component {
         </div>
         <div>
           <Positions loggedIn={this.props.loggedIn} />
-          <Jobs loggedIn={this.props.loggedIn} />
         </div>
       </div>
     );
@@ -92,14 +92,13 @@ class Jobs extends Component {
             return (
               <tr>
                 <td> {job.title} </td>
-                <td> {job.description} </td>
+                <td> {job.company} </td>
                 <td>
-                  {' '}
                   {React.createElement(
                     'button',
                     { onClick: () => this.setState({ currentJob: job }) },
                     'View Job'
-                  )}{' '}
+                  )}
                 </td>
                 {this.adminDeleteJob(job)}
               </tr>
@@ -234,25 +233,25 @@ class Positions extends Component {
 
   displayJobs() {
     return (
-      <tbody>
+      <div className="jobs">
         {this.state.jobs.map(job => {
           return (
-            <tr>
-              <td> {job.title} </td>
-              <td> {job.description} </td>
-              <td>
-                {' '}
-                {React.createElement(
-                  'button',
-                  { onClick: () => this.setState({ currentJob: job }) },
-                  'View Job'
-                )}{' '}
-              </td>
-              {this.adminDeleteJob(job)}
-            </tr>
+            <a className="job-elem" href={job.link}>
+              <Card style={{ width: '18rem' }}>
+                <Card.Img
+                  variant="top"
+                  src="https://brands-cdn.employbridge.com/content/assets/news//40169262_14124173_Large.jpg"
+                />
+                <Card.Body>
+                  <Card.Title>{job.title} </Card.Title>
+                  <Card.Text>{job.company} </Card.Text>
+                  <Button variant="primary"> Go Somewhere </Button>
+                </Card.Body>
+              </Card>
+            </a>
           );
-        })}
-      </tbody>
+        })}{' '}
+      </div>
     );
   }
 

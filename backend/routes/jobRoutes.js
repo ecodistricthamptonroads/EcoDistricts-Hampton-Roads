@@ -30,11 +30,26 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/:job_id', (req, res) => {
+  console.log('Getting Job with ' + req.params.job_id);
+  Job.findById(req.params.job_id, function(err, job) {
+    if (err) {
+      res.json('' + err);
+    } else {
+      console.log(job);
+      res.send(job);
+    }
+  });
+});
+
 router.put('/', (req, res) => {
   if (!req.user) {
     res.sendStatus(403);
   } else {
-    Job.findByIdAndUpdate(req.body._id, req.body,{new: true},function(err, response) {
+    Job.findByIdAndUpdate(req.body._id, req.body, { new: true }, function(
+      err,
+      response
+    ) {
       if (err) {
         res.send('' + err);
       } else {
