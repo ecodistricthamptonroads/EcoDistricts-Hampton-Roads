@@ -7,7 +7,7 @@ const fileupload = require('express-fileupload');
 const cookieSession = require('cookie-session');
 
 let url = 'mongodb://localhost:27017/hampton';
-mongoose.connect(url);
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 
 require('./backend/models');
 require('./backend/services');

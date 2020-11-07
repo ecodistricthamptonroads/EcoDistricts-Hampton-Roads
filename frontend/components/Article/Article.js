@@ -36,11 +36,6 @@ class Article extends Component {
         this.setState({ news: news.data });
       }
     });
-    // this.setState({
-    //   news: this.props.news.filter(
-    //     article => article.id == this.props.match.params.id
-    //   )[0]
-    // });
   }
 
   render() {

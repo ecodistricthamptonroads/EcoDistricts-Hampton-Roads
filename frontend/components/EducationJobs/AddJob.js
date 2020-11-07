@@ -3,11 +3,19 @@ import { connect } from 'react-redux';
 import React from 'react';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
+import Accordion from 'react-bootstrap/Accordion';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import 'codemirror/lib/codemirror.css';
+import '@toast-ui/editor/dist/toastui-editor.css';
+
+import { Editor } from '@toast-ui/react-editor';
 
 class AddJob extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      editor: React.createRef(),
       notInitial: false,
       title: '',
       description: '',
@@ -68,6 +76,12 @@ class AddJob extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    // todo: remove this
+    if (this.state.description != '') {
+      document.getElementById('desc-feedback').style.display = 'None';
+    } else {
+      document.getElementById('desc-feedback').style.display = 'block';
+    }
 
     if (this.validateFields()) {
       let job = {
@@ -78,10 +92,15 @@ class AddJob extends Component {
         salary: this.state.salary,
         industry: this.state.industry
       };
-      axios.post('/api/job/', job).then(job => {
-        console.log(job);
-        this.props.newJob(job.data);
-      });
+      axios
+        .post('/api/job/', job)
+        .then(job => {
+          console.log(job);
+          this.props.newJob(job.data);
+        })
+        .catch(err => {
+          console.error(err);
+        });
       this.setState({
         notInitial: false,
         title: '',
@@ -91,10 +110,10 @@ class AddJob extends Component {
         salary: '',
         industry: ''
       });
+      this.state.editor.current.getInstance().setMarkdown('');
     }
   }
-
-  render() {
+  addJobForms() {
     return (
       <div>
         <Form>
@@ -112,27 +131,35 @@ class AddJob extends Component {
               Please include a title
             </Form.Control.Feedback>
           </Form.Group>
+
           <Form.Group controlId="Description">
             <Form.Label>Job Description</Form.Label>
-            <Form.Control
-              as="textarea"
-              rows="2"
-              name="description"
-              onChange={this.handleChange}
-              value={this.state.description}
-              type="text"
-              placeholder="Enter Job Description"
-              isInvalid={this.state.notInitial && !this.validateDescription()}
+
+            <Editor
+              previewStyle="vertical"
+              height="400px"
+              initialEditType="markdown"
+              initialValue={this.state.description}
+              ref={this.state.editor}
+              onChange={() => {
+                this.setState({
+                  description: this.state.editor.current
+                    .getInstance()
+                    .getMarkdown()
+                });
+              }}
+              useCommandShortcut={true}
             />
-            <Form.Control.Feedback type="invalid">
+            <Form.Control.Feedback id="desc-feedback" type="invalid">
               Please enter a description
             </Form.Control.Feedback>
           </Form.Group>
+
           <Form.Group controlId="Company">
             <Form.Label>Company</Form.Label>
             <Form.Control
               as="textarea"
-              rows="6"
+              rows="1"
               name="company"
               onChange={this.handleChange}
               value={this.state.company}
@@ -148,7 +175,7 @@ class AddJob extends Component {
             <Form.Label>Job Location</Form.Label>
             <Form.Control
               as="textarea"
-              rows="6"
+              rows="1"
               name="location"
               onChange={this.handleChange}
               value={this.state.location}
@@ -189,7 +216,23 @@ class AddJob extends Component {
             </Form.Control.Feedback>
           </Form.Group>
         </Form>
-        <button onClick={this.handleSubmit}>Create New Job</button>
+        <Button onClick={this.handleSubmit}>Create New Job</Button>
+      </div>
+    );
+  }
+  render() {
+    return (
+      <div>
+        <Accordion defaultActiveKey="0">
+          <Card>
+            <Accordion.Toggle as={Card.Header} eventKey="0">
+              Toggle the AddJob Forms
+            </Accordion.Toggle>
+            <Accordion.Collapse eventKey="0">
+              <Card.Body>{this.addJobForms()}</Card.Body>
+            </Accordion.Collapse>
+          </Card>
+        </Accordion>
       </div>
     );
   }

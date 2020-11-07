@@ -2,17 +2,15 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import React from 'react';
 import axios from 'axios';
-import AddJob from './AddJob';
-import Table from 'react-bootstrap/Table';
+import ReactMarkdown from 'react-markdown';
 import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-
+import '../../../public/jobPage.css';
 class JobPage extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentJob: {
+      job: {
         title: '',
         description: '',
         company: '',
@@ -23,14 +21,46 @@ class JobPage extends Component {
     };
   }
   render() {
-    console.log(this.state.currentJob);
-    return <div>{'' + this.state.currentJob.company}</div>;
+    return (
+      <div className="job-page-body">
+        <div className="Posting-Header">
+          <h1>{this.state.job.title}</h1>
+          <h2>{this.state.job.industry}</h2>
+        </div>
+        <div className="info-block">
+          <h3 className="company">Company</h3>
+          {this.state.job.company}
+          <h3 className="location">Location</h3>
+          {this.state.job.location}
+          <h3 className="salary">Salary</h3>
+          {this.state.job.salary}
+        </div>
+        <hr />
+        <ReactMarkdown source={this.state.job.description} />
+        <Button
+          className="apply-btn"
+          onClick={() => {
+            alert(
+              'This is partially done and will be finished in the next sprint :D'
+            );
+          }}
+        >
+          Apply Now
+        </Button>
+      </div>
+    );
   }
   componentDidMount() {
-    axios.get('/api/job/5fa47c583975109867eb8526').then(job => {
+    axios.get('/api/job/' + this.props.match.params.id).then(job => {
       this.setState({ job: job.data });
     });
   }
 }
 
-export default JobPage;
+const mapStateToProps = state => {
+  return {
+    job: state.job.job
+  };
+};
+
+export default connect(mapStateToProps)(JobPage);

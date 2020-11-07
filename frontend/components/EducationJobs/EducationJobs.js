@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import React from 'react';
 import axios from 'axios';
 import AddJob from './AddJob';
-import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
@@ -19,11 +18,9 @@ class EducationJobs extends Component {
     return (
       <div className="col-sm-10 offset-md-1">
         <div style={{ textAlign: 'left', fontSize: '36px' }}>Jobs Heading</div>
-        <div style={{ textAlign: 'left', fontSize: '14px' }}>
-          <p> Lorem ipsum dolor sit amet </p>
-        </div>
+        <div style={{ textAlign: 'left', fontSize: '14px' }}></div>
         <div>
-          <Positions loggedIn={this.props.loggedIn} />
+          <Positions loggedIn={this.props} />
         </div>
       </div>
     );
@@ -53,13 +50,11 @@ class Jobs extends Component {
 
   adminDeleteJob(job) {
     if (this.props.loggedIn) {
-      let deleteJob = job;
       let newJobs = this.state.jobs.slice();
       let index = newJobs.indexOf(job);
       newJobs.splice(index, 1);
       return (
         <td>
-          {' '}
           {React.createElement(
             'button',
             {
@@ -69,7 +64,7 @@ class Jobs extends Component {
               }
             },
             'Delete Job'
-          )}{' '}
+          )}
         </td>
       );
     }
@@ -198,34 +193,32 @@ class Positions extends Component {
 
   adminDeleteJob(job) {
     if (this.props.loggedIn) {
-      let deleteJob = job;
       let newJobs = this.state.jobs.slice();
       let index = newJobs.indexOf(job);
       newJobs.splice(index, 1);
       return (
-        <td>
-          {' '}
-          {React.createElement(
-            'button',
-            {
-              onClick: () => {
-                this.setState({ jobs: newJobs });
-                axios.delete('/api/job/' + job._id);
-              }
-            },
-            'Delete Job'
-          )}{' '}
-        </td>
+        <div>
+          <br />
+          <Button
+            variant="danger"
+            onClick={() => {
+              this.setState({ jobs: newJobs });
+              axios.delete('/api/job/' + job._id);
+            }}
+          >
+            Delete
+          </Button>
+        </div>
       );
     }
   }
-
+  filterJob(job) {}
   displayJobs() {
     return (
       <div className="jobs">
         {this.state.jobs.map(job => {
           return (
-            <a className="job-elem" href={job.link}>
+            <a key={job._id} className="job-elem" href={job.link}>
               <Card style={{ width: '18rem' }}>
                 <Card.Img
                   variant="top"
@@ -234,40 +227,22 @@ class Positions extends Component {
                 <Card.Body>
                   <Card.Title>{job.title} </Card.Title>
                   <Card.Text>{job.company} </Card.Text>
-                  <Button variant="primary"> Go Somewhere </Button>
+                  <Button
+                    variant="primary"
+                    onClick={() =>
+                      this.props.loggedIn.history.push('/jobs/' + job._id)
+                    }
+                  >
+                    Go Somewhere
+                  </Button>
+                  {this.adminDeleteJob(job)}
                 </Card.Body>
               </Card>
             </a>
           );
-        })}{' '}
+        })}
       </div>
     );
-  }
-
-  displayDetailedJob(currentJob) {
-    var title = this.createCard('Job Title', currentJob.title);
-    var description = this.createCard('Description', currentJob.description);
-    var responsibilities = this.createCard(
-      'Responsibilities',
-      currentJob.responsibilities
-    );
-    var requirements = this.createCard('Requirements', currentJob.requirements);
-    var apply = React.createElement('a', { href: currentJob.link }, 'Apply');
-    var tempdiv = React.createElement('div', {}, '');
-    var back = React.createElement(
-      'button',
-      { onClick: () => this.setState({ currentJob: null }) },
-      'Back'
-    );
-    return React.createElement('div', {}, [
-      title,
-      description,
-      responsibilities,
-      requirements,
-      apply,
-      tempdiv,
-      back
-    ]);
   }
 
   createCard(cardTitle, cardText) {
@@ -295,15 +270,9 @@ class Positions extends Component {
   }
 
   render() {
-    //  console.log("User :" + this.props.name)
-    let body = null;
     let addJob = null;
-    if (this.state.currentJob == null) {
-      body = this.displayJobs();
-    } else {
-      body = this.displayDetailedJob(this.state.currentJob);
-    }
-    if (this.props.loggedIn) {
+
+    if (this.props.loggedIn.loggedIn) {
       addJob = this.addJob();
     }
     return (
@@ -312,7 +281,7 @@ class Positions extends Component {
           Open Positions
         </div>
         {addJob}
-        {body}
+        {this.displayJobs()}
       </div>
     );
   }
