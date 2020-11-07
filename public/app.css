@@ -232,3 +232,20 @@
   display: flex;
   flex-direction: row;
 }
+.Job-Heading {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url(https://corporateshopaholic.files.wordpress.com/2010/11/professionals.jpg)
+      no-repeat;
+  height: 40%;
+  padding-top: 10%;
+  padding-left: 2%;
+  width: 100%;
+  color: white;
+}
+.job-elem:hover {
+  background-color: #007bff7e;
+}
+.delete-job-btn {
+  position: absolute;
+  bottom: 0;
+}
