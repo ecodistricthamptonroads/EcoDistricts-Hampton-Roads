@@ -8,9 +8,8 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import 'codemirror/lib/codemirror.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
-
 import { Editor } from '@toast-ui/react-editor';
-
+import BootstrapSwitchButton from 'bootstrap-switch-button-react';
 class AddJob extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +21,8 @@ class AddJob extends Component {
       company: '',
       location: '',
       salary: '',
-      industry: ''
+      industry: '',
+      draft: true
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -90,7 +90,8 @@ class AddJob extends Component {
         company: this.state.company,
         location: this.state.location,
         salary: this.state.salary,
-        industry: this.state.industry
+        industry: this.state.industry,
+        draft: this.state.draft
       };
       axios
         .post('/api/job/', job)
@@ -108,7 +109,8 @@ class AddJob extends Component {
         company: '',
         location: '',
         salary: '',
-        industry: ''
+        industry: '',
+        draft: true
       });
       this.state.editor.current.getInstance().setMarkdown('');
     }
@@ -216,6 +218,17 @@ class AddJob extends Component {
             </Form.Control.Feedback>
           </Form.Group>
         </Form>
+        <BootstrapSwitchButton
+          checked={true}
+          onlabel="Draft"
+          offlabel="Publish"
+          onstyle="primary"
+          width={100}
+          onChange={isDraft => {
+            this.setState({ draft: isDraft });
+          }}
+        />
+        <br />
         <Button onClick={this.handleSubmit}>Create New Job</Button>
       </div>
     );

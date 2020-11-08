@@ -229,15 +229,15 @@ class Land extends Component {
                 <div
                   id="multi-item-example"
                   className="carousel slide carousel-multi-item"
-                  dataRide="carousel"
+                  dataride="carousel"
                 >
                   <ol className="carousel-indicators">
                     <li
-                      dataTarget="#multi-item-example"
-                      dataSlideTo="0"
+                      datatarget="#multi-item-example"
+                      dataslideto="0"
                       className="active"
                     ></li>
-                    <li dataTarget="#multi-item-example" dataSlideTo="1"></li>
+                    <li datatarget="#multi-item-example" dataslideto="1"></li>
                   </ol>
 
                   <div

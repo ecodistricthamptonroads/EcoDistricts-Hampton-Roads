@@ -40,7 +40,7 @@ class AppContainer extends Component {
                 <Route path="/about" component={About} />
                 <Route component={Land} />
               </Switch>
-              <div className="col-sm-10 offset-md-1"></div>
+              {/* <div className="col-sm-10 offset-md-1"></div> */}
             </div>
           </div>
         </div>

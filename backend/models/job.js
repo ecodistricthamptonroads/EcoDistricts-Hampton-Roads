@@ -7,7 +7,8 @@ const jobSchema = new Schema({
   company: { type: String, required: true },
   location: { type: String, required: true },
   salary: { type: String, required: true },
-  industry: { type: String, required: true }
+  industry: { type: String, required: true },
+  draft: { type: Boolean, required: true }
 });
 
 // title: {type: String, required: true}

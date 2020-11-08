@@ -16,11 +16,7 @@ class EducationJobs extends Component {
     };
   }
   render() {
-    return (
-      <div>
-        <Jobs loggedIn={this.props} />
-      </div>
-    );
+    return <Jobs parentProps={this.props} />;
   }
 }
 
@@ -40,10 +36,7 @@ class Jobs extends Component {
   }
 
   handleChange(e) {
-    console.log(e.target.name);
-    console.log(e.target.value.toLowerCase());
     this.setState({ [e.target.name]: e.target.value.toLowerCase() });
-    console.log(this.state);
   }
 
   handleSearch(e) {
@@ -58,7 +51,7 @@ class Jobs extends Component {
   }
 
   adminDeleteJob(job) {
-    if (this.props.loggedIn) {
+    if (this.props.parentProps.loggedIn) {
       let newJobs = this.state.jobs.slice();
       let index = newJobs.indexOf(job);
       newJobs.splice(index, 1);
@@ -66,7 +59,8 @@ class Jobs extends Component {
         <Button
           className="delete-job-btn"
           variant="danger"
-          onClick={() => {
+          onClick={e => {
+            e.stopPropagation();
             this.setState({ jobs: newJobs });
             axios.delete('/api/job/' + job._id);
           }}
@@ -86,6 +80,7 @@ class Jobs extends Component {
     value = value && job.salary >= this.state.salary;
     value = value && job.industry.toLowerCase().includes(this.state.industry);
     value = value && job.location.toLowerCase().includes(this.state.location);
+    value = value && (this.props.parentProps.loggedIn || !job.draft);
     return value;
   }
   displayJobs() {
@@ -99,7 +94,7 @@ class Jobs extends Component {
                 key={job._id}
                 className="job-elem col-xs-7 col-sm-6 col-lg-4"
                 onClick={() =>
-                  this.props.loggedIn.history.push('/jobs/' + job._id)
+                  this.props.parentProps.history.push('/jobs/' + job._id)
                 }
               >
                 <Card.Img
@@ -110,6 +105,10 @@ class Jobs extends Component {
                   <Card.Title>{job.title} </Card.Title>
                   <Card.Text>{'@  ' + job.company} </Card.Text>
                   <Card.Text>{'$  ' + job.salary} </Card.Text>
+
+                  {this.props.parentProps.loggedIn ? (
+                    <Card.Text>Draft</Card.Text>
+                  ) : null}
 
                   {this.adminDeleteJob(job)}
                 </Card.Body>
@@ -148,17 +147,14 @@ class Jobs extends Component {
     );
   }
   displayFilters() {
-    let locations = [
-      ...new Set(this.state.jobs.map(job => job.location))
-    ].sort();
+    let filteredJobs = this.state.jobs.filter(job => this.filterJob(job));
+    let locations = [...new Set(filteredJobs.map(job => job.location))].sort();
     let salaries = [
-      ...new Set(this.state.jobs.map(job => parseInt(job.salary)))
+      ...new Set(filteredJobs.map(job => parseInt(job.salary)))
     ].sort(function(a, b) {
       return a - b;
     });
-    let industries = [
-      ...new Set(this.state.jobs.map(job => job.industry))
-    ].sort();
+    let industries = [...new Set(filteredJobs.map(job => job.industry))].sort();
     // let locations = [...new Set(this.state.jobs.map((job) => job.location))];
     return (
       <div className="grid-child job-filter-box ">
@@ -174,7 +170,7 @@ class Jobs extends Component {
                 id="AllLocation"
                 type="radio"
                 name="location"
-                checked={true}
+                defaultChecked={true}
                 value=""
                 onClick={this.handleChange}
               />
@@ -218,7 +214,7 @@ class Jobs extends Component {
                 type="radio"
                 name="salary"
                 value={0}
-                checked={true}
+                defaultChecked={true}
                 onClick={this.handleChange}
               />
               <label className="form-check-label" htmlFor="AllSalaries">
@@ -263,7 +259,7 @@ class Jobs extends Component {
                 id="AllIndustries"
                 type="radio"
                 name="industry"
-                checked={true}
+                defaultChecked={true}
                 value=""
                 onClick={this.handleChange}
               />
@@ -301,14 +297,14 @@ class Jobs extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="job-body">
         <div
           className="Job-Heading"
           style={{ textAlign: 'left', fontSize: '22px' }}
         >
           <h1> Open Positions</h1>
         </div>
-        {this.props.loggedIn.loggedIn ? this.addJob() : null}
+        {this.props.parentProps.loggedIn ? this.addJob() : null}
         {this.getSearch()}
         <div className="grid-container">
           {this.displayFilters()}
