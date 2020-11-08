@@ -17,7 +17,7 @@ class EducationJobs extends Component {
   }
   render() {
     return (
-      <div className="col-sm-10 offset-md-1">
+      <div>
         <Jobs loggedIn={this.props} />
       </div>
     );
@@ -32,7 +32,7 @@ class Jobs extends Component {
       salary: 0,
       industry: '',
       location: '',
-      location: '',
+      company: '',
       jobs: []
     };
     this.handleChange = this.handleChange.bind(this);
@@ -40,7 +40,10 @@ class Jobs extends Component {
   }
 
   handleChange(e) {
+    console.log(e.target.name);
+    console.log(e.target.value.toLowerCase());
     this.setState({ [e.target.name]: e.target.value.toLowerCase() });
+    console.log(this.state);
   }
 
   handleSearch(e) {
@@ -74,26 +77,27 @@ class Jobs extends Component {
     }
   }
   filterJob(job) {
-    return (
-      (job.title && job.title.toLowerCase().includes(this.state.search)) ||
+    let value =
+      job.title && job.title.toLowerCase().includes(this.state.search);
+    value =
+      value ||
       (job.description &&
-        job.description.toLowerCase().includes(this.state.search) &&
-        job.salary >= this.state.salary &&
-        job.industry.toLowerCase().includes(this.state.industry) &&
-        job.location.toLowerCase().includes(this.state.location))
-    );
+        job.description.toLowerCase().includes(this.state.search));
+    value = value && job.salary >= this.state.salary;
+    value = value && job.industry.toLowerCase().includes(this.state.industry);
+    value = value && job.location.toLowerCase().includes(this.state.location);
+    return value;
   }
   displayJobs() {
     return (
-      <div className="jobs d-flex flex-row flex-nowrap overflow-auto">
+      <div className="jobs row ">
         {this.state.jobs
           .filter(job => this.filterJob(job))
           .map(job => {
             return (
               <Card
                 key={job._id}
-                className="job-elem card card-block mx-1"
-                style={{ minWidth: '18rem' }}
+                className="job-elem col-xs-7 col-sm-6 col-lg-4"
                 onClick={() =>
                   this.props.loggedIn.history.push('/jobs/' + job._id)
                 }
@@ -130,7 +134,7 @@ class Jobs extends Component {
 
   getSearch() {
     return (
-      <Form onSubmit={this.handleSearch}>
+      <Form className="Job-search" onSubmit={this.handleSearch}>
         <Form.Group controlId="exampleForm.ControlInput1">
           <Form.Control
             name="search"
@@ -143,12 +147,159 @@ class Jobs extends Component {
       </Form>
     );
   }
-  render() {
-    let addJob = null;
+  displayFilters() {
+    let locations = [
+      ...new Set(this.state.jobs.map(job => job.location))
+    ].sort();
+    let salaries = [
+      ...new Set(this.state.jobs.map(job => parseInt(job.salary)))
+    ].sort(function(a, b) {
+      return a - b;
+    });
+    let industries = [
+      ...new Set(this.state.jobs.map(job => job.industry))
+    ].sort();
+    // let locations = [...new Set(this.state.jobs.map((job) => job.location))];
+    return (
+      <div className="grid-child job-filter-box ">
+        {locations.length != 0 ? (
+          <div className="location-checkbox">
+            <u>Locations:</u>
+            <div
+              key="AllLocations"
+              className="form-check col form-check-inline"
+            >
+              <input
+                className="form-check-input"
+                id="AllLocation"
+                type="radio"
+                name="location"
+                checked={true}
+                value=""
+                onClick={this.handleChange}
+              />
+              <label className="form-check-label" htmlFor="AllLocation">
+                All Locations
+              </label>
+            </div>
+            {locations.map((location_name, idx) => {
+              return (
+                <div
+                  key={location_name}
+                  className="form-check col form-check-inline"
+                >
+                  <input
+                    className="form-check-input"
+                    id={location_name + idx}
+                    type="radio"
+                    name="location"
+                    value={location_name}
+                    onClick={this.handleChange}
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor={location_name + idx}
+                  >
+                    {location_name.toUpperCase()}
+                  </label>
+                </div>
+              );
+            })}
+          </div>
+        ) : null}
 
-    if (this.props.loggedIn.loggedIn) {
-      addJob = this.addJob();
-    }
+        {salaries.length != 0 ? (
+          <div className="location-checkbox">
+            <u>Salaries:</u>
+            <div key="AllSalaries" className="form-check col form-check-inline">
+              <input
+                className="form-check-input"
+                id="AllSalaries"
+                type="radio"
+                name="salary"
+                value={0}
+                checked={true}
+                onClick={this.handleChange}
+              />
+              <label className="form-check-label" htmlFor="AllSalaries">
+                All Salaries
+              </label>
+            </div>
+            {salaries.map((salary_value, idx) => {
+              return (
+                <div
+                  key={salary_value}
+                  className="form-check col form-check-inline"
+                >
+                  <input
+                    className="form-check-input"
+                    id={salary_value + idx}
+                    type="radio"
+                    name="salary"
+                    value={salary_value}
+                    onClick={this.handleChange}
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor={salary_value + idx}
+                  >
+                    {salary_value + '+'}
+                  </label>
+                </div>
+              );
+            })}
+          </div>
+        ) : null}
+
+        {industries.length != 0 ? (
+          <div className="location-checkbox">
+            <u>Industries:</u>
+            <div
+              key="AllIndustries"
+              className="form-check col form-check-inline"
+            >
+              <input
+                className="form-check-input"
+                id="AllIndustries"
+                type="radio"
+                name="industry"
+                checked={true}
+                value=""
+                onClick={this.handleChange}
+              />
+              <label className="form-check-label" htmlFor="AllIndustries">
+                All Industries{' '}
+              </label>
+            </div>
+            {industries.map((industry_name, idx) => {
+              return (
+                <div
+                  key={industry_name}
+                  className="form-check col form-check-inline"
+                >
+                  <input
+                    className="form-check-input"
+                    id={industry_name + idx}
+                    type="radio"
+                    name="industry"
+                    value={industry_name}
+                    onClick={this.handleChange}
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor={industry_name + idx}
+                  >
+                    {industry_name}
+                  </label>
+                </div>
+              );
+            })}
+          </div>
+        ) : null}
+      </div>
+    );
+  }
+  render() {
     return (
       <div>
         <div
@@ -157,9 +308,12 @@ class Jobs extends Component {
         >
           <h1> Open Positions</h1>
         </div>
-        {addJob}
+        {this.props.loggedIn.loggedIn ? this.addJob() : null}
         {this.getSearch()}
-        {this.displayJobs()}
+        <div className="grid-container">
+          {this.displayFilters()}
+          {this.displayJobs()}
+        </div>
       </div>
     );
   }
