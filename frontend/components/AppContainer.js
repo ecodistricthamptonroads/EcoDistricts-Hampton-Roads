@@ -9,6 +9,7 @@ import Issue from './Issue/Issue';
 import EducationJobs from './EducationJobs/EducationJobs';
 import Login from './Login/Login';
 import ProjectStatus from './ProjectStatus/ProjectStatus';
+import ProjectPage from './ProjectStatus/ProjectPage';
 import Email from './Email/Email';
 import News from './News/News';
 import Article from './Article/Article';
@@ -35,6 +36,7 @@ class AppContainer extends Component {
                 <Route path="/surveys" component={Surveys} />
                 <Route exact path="/news" component={News} />
                 <Route path="/news/:id" component={Article} />
+                <Route path="/Project/:id" component={ProjectPage} />
                 <Route path="/jobs/:id" component={JobPage} />
                 <Route path="/email" component={Email} />
                 <Route path="/about" component={About} />

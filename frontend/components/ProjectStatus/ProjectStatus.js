@@ -163,21 +163,25 @@ class ProjectStatus extends Component {
       <div className="ProjectList">
         {this.props.projects
           .filter(project => this.search(project.title))
-          .map(project => {
+          .map((project, idx) => {
             let card = (
-              <a href={project.link}>
-                <Card style={{ width: '18rem' }}>
-                  <Card.Img
-                    variant="top"
-                    src="https://ffipractitioner.org/wp-content/uploads/2014/11/ffi-working-together.jpg"
-                  />
-                  <Card.Body>
-                    <Card.Title>{project.title}</Card.Title>
-                    <Card.Text>{project.status}</Card.Text>
-                    {/* <Button variant="primary">Go somewhere</Button> */}
-                  </Card.Body>
-                </Card>
-              </a>
+              <Card
+                onClick={() => {
+                  console.log('hello');
+                  this.props.history.push('/Project/' + idx);
+                }}
+                style={{ width: '18rem' }}
+              >
+                <Card.Img
+                  variant="top"
+                  src="https://ffipractitioner.org/wp-content/uploads/2014/11/ffi-working-together.jpg"
+                />
+                <Card.Body>
+                  <Card.Title>{project.title}</Card.Title>
+                  <Card.Text>{project.status}</Card.Text>
+                  {/* <Button variant="primary">Go somewhere</Button> */}
+                </Card.Body>
+              </Card>
             );
 
             return (
