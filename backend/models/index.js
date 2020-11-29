@@ -6,3 +6,4 @@ require('./project');
 require('./file');
 require('./user');
 require('./email');
+require('./events');
