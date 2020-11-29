@@ -8,19 +8,11 @@ const jobSchema = new Schema({
   location: { type: String, required: true },
   salary: { type: String, required: true },
   industry: { type: String, required: true },
+  link: { type: String, required: true },
+  career: { type: String, required: true },
+  jobTypes: { type: String, required: true },
+  postDate: { type: Date, default: Date.now() },
   draft: { type: Boolean, required: true }
 });
-
-// title: {type: String, required: true}
-// body {String, true}
-// company {String, true}
-// location {String, true}
-// post-date {Datetime, true}
-// salary {Number, true}
-// employment-types {String, true}
-// career {String, true}
-// industy {String, false}
-// end-date {Datetime, true}
-// apply-link {String, true}
 
 mongoose.model('jobs', jobSchema);

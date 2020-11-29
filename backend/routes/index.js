@@ -5,6 +5,7 @@ const auth = require('./authRoutes');
 const issue = require('./issueRoutes');
 const news = require('./newsRoutes');
 const job = require('./jobRoutes');
+const event = require('./eventRoutes');
 const survey = require('./surveyRoutes');
 const project = require('./projectRoutes');
 const file = require('./fileRoutes');
@@ -23,5 +24,6 @@ router.use('/survey', survey);
 router.use('/project', project);
 router.use('/file', file);
 router.use('/email', email);
+router.use('/event', event);
 
 module.exports = router;
