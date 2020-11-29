@@ -15,7 +15,7 @@ import News from './News/News';
 import Article from './Article/Article';
 import Surveys from './Surveys/Surveys';
 
-import JobPage from './EducationJobs/JobPage';
+// import JobPage from "./EducationJobs/JobPage";
 
 import About from './About/About';
 
@@ -37,7 +37,7 @@ class AppContainer extends Component {
                 <Route exact path="/news" component={News} />
                 <Route path="/news/:id" component={Article} />
                 <Route path="/Project/:id" component={ProjectPage} />
-                <Route path="/jobs/:id" component={JobPage} />
+                {/* <Route path="/jobs/:id" component={JobPage} /> */}
                 <Route path="/email" component={Email} />
                 <Route path="/about" component={About} />
                 <Route component={Land} />
