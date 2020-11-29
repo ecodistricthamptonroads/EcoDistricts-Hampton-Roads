@@ -300,7 +300,7 @@ class Land extends Component {
         {/* Join the community */}
         <section
           style={{
-            height: '70vh',
+            height: '100vh',
             background:
               'linear-gradient(to bottom, rgba(29, 132, 227, 0.65), rgba(29, 132, 227, 0.3))'
           }}
@@ -312,7 +312,7 @@ class Land extends Component {
               height: 'inherit'
             }}
           >
-            <div className={'row h-100'}>
+            <div className={'row h-100'} Style="height: max-content;">
               <div className="col-1" />
               <div className="col-3 my-auto" style={{ textAlign: 'left' }}>
                 <div style={{ fontSize: '3vw', color: 'white' }}>Join the</div>
@@ -328,7 +328,14 @@ class Land extends Component {
                 </div>
               </div>
               <div className="col-1" />
-              <div
+              <iframe
+                id="signUpMailChimp"
+                className="col-6 my-auto"
+                // onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px"; document.getElementById("templateContainer").display="none";}(this));'
+                // Style="height:200px;width:100%;border:none;overflow:hidden;"
+                src="https://ecodistricthamptonroads.us4.list-manage.com/subscribe?u=51eb002c7ef49ac4bf7de17e2&id=cca6d76921"
+              />
+              {/* <div
                 className="col-6 my-auto"
                 style={{
                   fontSize: '1.5vw',
@@ -385,7 +392,7 @@ class Land extends Component {
                     </button>
                   </div>
                 </form>
-              </div>
+              </div> */}
               <div className="col-1" />
             </div>
           </div>
