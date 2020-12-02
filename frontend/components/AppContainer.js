@@ -18,6 +18,7 @@ import Surveys from './Surveys/Surveys';
 // import JobPage from "./EducationJobs/JobPage";
 
 import About from './About/About';
+import Resource from './Resource/Resource';
 
 class AppContainer extends Component {
   render() {
@@ -37,9 +38,9 @@ class AppContainer extends Component {
                 <Route exact path="/news" component={News} />
                 <Route path="/news/:id" component={Article} />
                 <Route path="/Project/:id" component={ProjectPage} />
-                {/* <Route path="/jobs/:id" component={JobPage} /> */}
                 <Route path="/email" component={Email} />
                 <Route path="/about" component={About} />
+                <Route path="/resources" component={Resource} />
                 <Route component={Land} />
               </Switch>
               {/* <div className="col-sm-10 offset-md-1"></div> */}

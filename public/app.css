@@ -26,8 +26,12 @@
   background-repeat: no-repeat;
   background-size: cover;
   /* TODO fix this height issue */
-  height: 100%;
-  height: 1000px;
+  height: 100% !important;
+  height: 1000px !important;
+}
+.survey-search {
+  padding-left: 50%;
+  padding-right: 10%;
 }
 .Survey-Heading-div {
   text-align: center;
@@ -82,7 +86,10 @@
   color: red;
   width: 100%;
 }
-
+#signUpMailChimp {
+  border: white;
+  height: 100%;
+}
 .About-Heading {
   font-family: Poppins;
   font-style: normal;
@@ -232,50 +239,39 @@
   display: flex;
   flex-direction: row;
 }
-.Job-Heading {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url(https://corporateshopaholic.files.wordpress.com/2010/11/professionals.jpg)
-      no-repeat;
-  height: 40%;
-  padding-top: 10%;
-  padding-left: 2%;
+
+.card-heading {
+  display: inline;
+  margin: auto;
+}
+.card-heading > * {
+  padding: 10px;
+  width: 50% !important;
+  margin: auto;
+  display: inline;
+}
+a:link {
+  padding: 10px;
+  color: black !important;
+}
+.Resource-card {
+  box-shadow: 7px 10px 20px 7px rgba(0, 0, 0, 0.25);
+}
+.Resource-container {
+  background: linear-gradient(180deg, #1d84e3 0%, #ffffff 125.62%);
+  /* height: 95vh; */
   width: 100%;
+  padding: 3% 5% 5% 5%;
   color: white;
 }
-.job-elem {
-  margin-top: 15px;
-  margin-bottom: 15px;
-  align-self: left;
-  width: 100%;
-}
-.jobs {
-  margin: auto !important;
-}
-.job-elem:hover {
-  background-color: #007bff7e;
-}
-.delete-job-btn {
-  /* position: absolute;
-  bottom: 3; */
-}
-.job-filter-box {
+.Resource-Heading {
   padding: 10px;
-  background-color: #1d84e3;
+  font-size: 4em;
 }
-.grid-container {
-  min-height: 100%;
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-gap: 20px;
-}
-.Job-search {
-  background-color: #1d84e3;
+.Resource-text {
   padding: 10px;
-  padding-left: 25%;
-  box-shadow: 0 4px 2px -2px gray;
-}
-
-.job-body {
-  margin: auto;
-  width: 100%;
+  font-size: 2em;
+  font-weight: 500;
+  color: black;
+  /* text-align: center; */
 }
