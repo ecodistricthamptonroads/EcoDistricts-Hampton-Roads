@@ -20,28 +20,34 @@
   grid-gap: 5%;
   grid-template-columns: repeat(auto-fill, 30%);
 }
+.focus-text {
+  font-size: 2em;
+  padding: 10%;
+  margin: auto;
+}
 
-.Survey-Body {
-  background: url(images/survey.svg) no-repeat center #fff;
+.Survey-Body > h3 {
+  margin: auto;
+  text-align: center;
+  padding: 1%;
+}
+.Survey-container {
+  padding: 0 10%;
+  width: 100vw;
+  margin: auto;
+  background: url(images/survey.png) no-repeat center #fff;
   background-repeat: no-repeat;
   background-size: cover;
-  /* TODO fix this height issue */
-  height: 100% !important;
-  height: 1000px !important;
-}
-.survey-search {
-  padding-left: 50%;
-  padding-right: 10%;
 }
 .Survey-Heading-div {
   text-align: center;
-  color: white;
   font-family: Poppins;
   font-style: normal;
   font-weight: bold;
   font-size: 64px;
   line-height: 96px;
   margin-left: 2em;
+  padding: 1%;
 }
 .Survey-Feedback {
   text-align: center;
@@ -50,13 +56,12 @@
   font-weight: bold;
   font-size: 48px;
   line-height: 72px;
-  padding-top: 5em;
+  padding: 2%;
 }
 .SurveyList {
   align-content: center;
   align-self: center;
-  padding: 5em;
-
+  padding: 5%;
   display: grid;
   grid-gap: 5%;
   grid-template-columns: repeat(auto-fill, 30%);
@@ -64,19 +69,19 @@
 
 .Survey-elem {
   background-color: gray;
-  color: white;
   text-align: center;
   font-weight: bold;
-  padding: 20px;
+  padding: 10% 0;
+  min-height: 10vh;
 }
 
 .Survey-elem > * {
-  color: white;
+  color: black;
   width: auto;
-  margin: 3px;
-}
-.Survey-update-admin {
-  /* max-width: 15%; */
+  height: auto;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin: auto;
 }
 
 .Status-input {
@@ -86,6 +91,7 @@
   color: red;
   width: 100%;
 }
+
 #signUpMailChimp {
   border: white;
   height: 100%;
