@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import { addArticle, deleteArticle, getArticles } from '../../actions';
 import axios from 'axios';
-import '../../../public/app.css';
+import '../../assets/stylesheets/app.css';
 
 class News extends Component {
   constructor(props) {

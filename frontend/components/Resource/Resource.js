@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import React from 'react';
+import '../../assets/stylesheets/app.css';
 
-import '../../../public/app.css';
 import { Card } from 'react-bootstrap';
 class Resource extends Component {
   constructor(props) {

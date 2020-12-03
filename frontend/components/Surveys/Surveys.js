@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import React from 'react';
-import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import {
   addSurvey,
@@ -9,15 +8,16 @@ import {
   updateSurvey
 } from '../../actions';
 import { connect } from 'react-redux';
+import focus_group from '../../assets/images/focus_group.png';
+import '../../assets/stylesheets/app.css';
+
 class Surveys extends Component {
   constructor(props) {
     super(props);
     this.state = {
       notInitial: false,
-      search: '',
       title: '',
-      link: '',
-      status: ''
+      link: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -55,27 +55,19 @@ class Surveys extends Component {
     if (this.validateFields()) {
       let issue = {
         title: this.state.title,
-        link: this.state.link,
-        status: this.state.status
+        link: this.state.link
       };
       this.props.addSurvey(issue);
       this.setState({
         notInitial: false,
         title: '',
-        link: '',
-        status: ''
+        link: ''
       });
     }
   }
   handleSubmit1(e) {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
-  }
-  search(item) {
-    item = item || '';
-    const lc = item.toLowerCase();
-    const filter = this.state.search.toLowerCase();
-    return lc.includes(filter);
   }
 
   loggedIn() {
@@ -111,20 +103,6 @@ class Surveys extends Component {
                 Please include a valid url link starting with http
               </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group controlId="exampleForm.ControlInput2">
-              <Form.Label>Status</Form.Label>
-              <Form.Control
-                name="status"
-                value={this.state.status}
-                onChange={this.handleChange}
-                type="Description"
-                placeholder="Enter Description"
-                isInvalid={this.state.notInitial && !this.validateStatus()}
-              />
-              <Form.Control.Feedback type="invalid">
-                Please include a survey description
-              </Form.Control.Feedback>
-            </Form.Group>
           </Form>
           <button
             variant="primary"
@@ -141,85 +119,70 @@ class Surveys extends Component {
   getSurveysList() {
     return (
       <div>
-        <div className="Survey-Feedback">Feedback</div>
         <div className="SurveyList">
-          {this.props.surveys
-            .filter(survey => this.search(survey.title))
-            .map(survey => {
-              return (
-                <a href={survey.link}>
-                  <div
-                    key={survey.title + survey.link + Math.random()}
-                    className="Survey-elem"
-                  >
-                    {this.props.loggedIn ? (
-                      <div className="Survey-admin">
-                        <form
-                          className="Survey-update-admin"
-                          onSubmit={e => {
-                            e.preventDefault();
-                            this.props.updateSurvey(survey);
-                          }}
-                        >
-                          <input
-                            className="Status-input"
-                            name="status"
-                            defaultValue={survey.status}
-                            onChange={e => (survey.status = e.target.value)}
-                          />
-                          <input type="submit" value="Update" />
-                        </form>
+          {this.props.surveys.map(survey => {
+            return (
+              <a
+                key={survey.title + survey.link + Math.random()}
+                href={survey.link}
+              >
+                <div className="Survey-elem">
+                  {this.props.loggedIn ? (
+                    <div className="Survey-admin">
+                      <form
+                        className="Survey-update-admin"
+                        onSubmit={e => {
+                          e.preventDefault();
+                          this.props.updateSurvey(survey);
+                        }}
+                      >
+                        <input type="submit" value="Update" />
+                      </form>
 
-                        <div className="Survey-delete">
-                          <button
-                            onClick={() => this.props.deleteSurvey(survey)}
-                          >
-                            X
-                          </button>
-                        </div>
+                      <div className="Survey-delete">
+                        <button onClick={() => this.props.deleteSurvey(survey)}>
+                          X
+                        </button>
                       </div>
-                    ) : (
-                      <div className="Survey-value"> {survey.status} </div>
-                    )}
-                  </div>
-                </a>
-              );
-            })}
+                    </div>
+                  ) : (
+                    <div className="Survey-value"> {survey.status} </div>
+                  )}
+                </div>
+              </a>
+            );
+          })}
         </div>
       </div>
     );
   }
   getHeading() {
-    return <div className="Survey-Heading-div">Survey</div>;
-  }
-
-  getSearch() {
     return (
-      <Form onSubmit={this.handleSubmit1}>
-        <Form.Group controlId="exampleForm.ControlInput1">
-          <Form.Control
-            name="search"
-            value={this.state.search}
-            onChange={this.handleChange}
-            type="text"
-            placeholder="Search"
-          />
-        </Form.Group>
-      </Form>
+      <div>
+        <div className="Survey-Heading-div">
+          Sign Up to Provide Us Feedback!
+        </div>
+      </div>
     );
   }
 
   render() {
     return (
-      <div className="col-sm-10 offset-md-1">
+      <div className="Survey-container">
+        {this.getHeading()}
+        <div className="row">
+          <h1 className="col focus-text">
+            Join us for an online interview. Your feedback helps us improve the
+            community!
+          </h1>
+          <img className="col" Style="width:50%" src={focus_group} />
+        </div>
         {this.loggedIn()}
         <div className="Survey-Body">
-          <br />
-          {this.getHeading()}
-          <br />
+          <h1 className="Survey-Feedback">Help Us Improve!</h1>
+          <h3>Please fill out our survey to help us improve the community</h3>
           {this.getSurveysList()}
         </div>
-        {this.getSearch()}
       </div>
     );
   }

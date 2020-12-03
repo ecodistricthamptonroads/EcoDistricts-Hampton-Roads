@@ -8,7 +8,8 @@ import { logout } from '../actions/index';
 import logo from '../assets/images/logo.png';
 import Land from './Land';
 import { fetchUser } from '../actions';
-import '../../public/app.css';
+
+import '../assets/stylesheets/app.css';
 
 class Header extends Component {
   constructor(props) {
@@ -49,6 +50,8 @@ class Header extends Component {
   }
 
   render() {
+    const CONTACT_US_LINK =
+      'https://us4.list-manage.com/contact-form?u=51eb002c7ef49ac4bf7de17e2&form_id=c58d36b6f54bd9b975ec2607253190d2';
     return (
       <Navbar collapseOnSelect bg="light" expand="lg">
         <Navbar.Brand href="/">Eco District Hampton Roads</Navbar.Brand>
@@ -56,18 +59,8 @@ class Header extends Component {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Item>
-              <Nav.Link eventKey="1" as={Link} to="/about">
-                About
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
               <Nav.Link eventKey="2" as={Link} to="/news">
                 News
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="3" as={Link} to="/issues">
-                Report an Issue
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
@@ -89,6 +82,16 @@ class Header extends Component {
               <Nav.Link eventKey="7" as={Link} to="/projectstatus">
                 Projects
               </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="1" as={Link} to="/about">
+                About
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <a className="nav-link" href={CONTACT_US_LINK}>
+                Contact Us
+              </a>
             </Nav.Item>
             {this.email()}
           </Nav>
