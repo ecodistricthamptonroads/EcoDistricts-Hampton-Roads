@@ -10,7 +10,7 @@ const jobSchema = new Schema({
   industry: { type: String, required: true },
   link: { type: String, required: true },
   career: { type: String, required: true },
-  jobTypes: { type: String, required: true },
+  jobType: { type: String, required: true },
   postDate: { type: Date, default: Date.now() },
   draft: { type: Boolean, required: true }
 });

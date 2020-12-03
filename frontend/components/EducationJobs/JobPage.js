@@ -4,7 +4,7 @@ import React from 'react';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 import Button from 'react-bootstrap/Button';
-import '../../../public/jobPage.css';
+import '../../assets/stylesheets/jobPage.css';
 class JobPage extends Component {
   constructor(props) {
     super(props);

@@ -10,6 +10,24 @@ import 'codemirror/lib/codemirror.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
 import BootstrapSwitchButton from 'bootstrap-switch-button-react';
+import Dropdown from 'react-bootstrap/Dropdown';
+const JOB_TYPES = [
+  'Executive',
+  'General Management',
+  'Supervisor',
+  'Operations',
+  'Administrative'
+];
+const CAREERS = [
+  'Credential',
+  'Coaching',
+  'Counseling',
+  'Apprenticeship',
+  'Internship',
+  'Fellowship',
+  'Scholarship',
+  'Research'
+];
 class AddJob extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +40,9 @@ class AddJob extends Component {
       location: '',
       salary: '',
       industry: '',
+      jobType: '',
+      career: '',
+      link: '',
       draft: true
     };
 
@@ -64,11 +85,17 @@ class AddJob extends Component {
   validateIndustry() {
     return this.state.industry != '';
   }
+  validateJobTypes() {
+    return JOB_TYPES.includes(this.state.jobType);
+  }
+  validateCareer() {
+    return CAREERS.includes(this.state.career);
+  }
 
-  //  validateLink() {
-  //    var reg = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
-  //    return reg.test(this.state.link);
-  //  }
+  validateLink() {
+    var reg = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
+    return reg.test(this.state.link);
+  }
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -91,7 +118,10 @@ class AddJob extends Component {
         location: this.state.location,
         salary: this.state.salary,
         industry: this.state.industry,
-        draft: this.state.draft
+        jobType: this.state.jobType,
+        career: this.state.career,
+        draft: this.state.draft,
+        link: this.state.link
       };
       axios
         .post('/api/job/', job)
@@ -110,6 +140,9 @@ class AddJob extends Component {
         location: '',
         salary: '',
         industry: '',
+        jobType: '',
+        career: '',
+        link: '',
         draft: true
       });
       this.state.editor.current.getInstance().setMarkdown('');
@@ -217,6 +250,61 @@ class AddJob extends Component {
               Please include the requested industry
             </Form.Control.Feedback>
           </Form.Group>
+
+          <Form.Group controlId="Job type">
+            <Form.Label>Job Type</Form.Label>
+            <Form.Control
+              name="jobType"
+              value={this.state.jobType}
+              onChange={this.handleChange}
+              as="select"
+              placeholder="Select Job Type"
+              isInvalid={this.state.notInitial && !this.validateJobTypes()}
+            >
+              {JOB_TYPES.map(job => (
+                <option value={job}>{job}</option>
+              ))}
+            </Form.Control>
+            <Form.Control.Feedback type="invalid">
+              Please include the requested Job Type
+            </Form.Control.Feedback>
+          </Form.Group>
+
+          <Form.Group controlId="Job Career">
+            <Form.Label>Job Type</Form.Label>
+            <Form.Control
+              name="career"
+              value={this.state.career}
+              onChange={this.handleChange}
+              as="select"
+              placeholder="Select Job Career"
+              isInvalid={this.state.notInitial && !this.validateCareer()}
+            >
+              {CAREERS.map(career => (
+                <option value={career}>{career}</option>
+              ))}
+            </Form.Control>
+            <Form.Control.Feedback type="invalid">
+              Please include the requested Job Career
+            </Form.Control.Feedback>
+          </Form.Group>
+
+          <Form.Group controlId="Link">
+            <Form.Label>link</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows="1"
+              name="link"
+              onChange={this.handleChange}
+              value={this.state.link}
+              type="text"
+              placeholder="Enter Job apply Link"
+              isInvalid={this.state.notInitial && !this.validateLink()}
+            />
+            <Form.Control.Feedback type="invalid">
+              Please enter the requested link
+            </Form.Control.Feedback>
+          </Form.Group>
         </Form>
         <BootstrapSwitchButton
           checked={true}
@@ -236,7 +324,7 @@ class AddJob extends Component {
   render() {
     return (
       <div>
-        <Accordion defaultActiveKey="0">
+        <Accordion>
           <Card>
             <Accordion.Toggle as={Card.Header} eventKey="0">
               Toggle the AddJob Forms
