@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import {
   addProject,
@@ -143,50 +142,48 @@ class ProjectStatus extends Component {
   getSearch() {
     return (
       <div className="Project-Search-Bar">
-        <Form onSubmit={this.handleSubmit1}>
-          <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Control
-              name="search"
-              value={this.state.search}
-              onChange={this.handleChange}
-              type="text"
-              placeholder="Search"
-            />
-          </Form.Group>
-        </Form>
+        <div className="Project-heading">
+          <h1>Our Projects</h1>
+          <Form onSubmit={this.handleSubmit1}>
+            <Form.Group controlId="exampleForm.ControlInput1">
+              <Form.Control
+                name="search"
+                value={this.state.search}
+                onChange={this.handleChange}
+                type="text"
+                placeholder="Search"
+              />
+            </Form.Group>
+          </Form>
+        </div>
       </div>
     );
   }
 
   getProjectList() {
     return (
-      <div className="ProjectList">
+      <div className="row ProjectList align-items-center ">
         {this.props.projects
           .filter(project => this.search(project.title))
           .map((project, idx) => {
-            let card = (
-              <Card
-                onClick={() => {
-                  console.log('hello');
-                  this.props.history.push('/Project/' + idx);
-                }}
-                style={{ width: '18rem' }}
-              >
-                <Card.Img
-                  variant="top"
-                  src="https://ffipractitioner.org/wp-content/uploads/2014/11/ffi-working-together.jpg"
-                />
-                <Card.Body>
-                  <Card.Title>{project.title}</Card.Title>
-                  <Card.Text>{project.status}</Card.Text>
-                  {/* <Button variant="primary">Go somewhere</Button> */}
-                </Card.Body>
-              </Card>
-            );
-
             return (
-              <div className="Project-elem">
-                {card}
+              <div className="col-12 col-sm-6 col-md-4 card-project">
+                <Card
+                  onClick={() => {
+                    this.props.history.push('/Project/' + idx);
+                  }}
+                  style={{ width: '18rem' }}
+                >
+                  <Card.Title style={{ fontWeight: 500 }}>
+                    {project.title}
+                  </Card.Title>
+                  <Card.Img variant="top" src="" />
+                  <Card.Body>
+                    <Card.Text style={{ fontWeight: 400 }}>
+                      {project.status}
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
                 {this.props.loggedIn ? (
                   <div>
                     <form
@@ -215,11 +212,14 @@ class ProjectStatus extends Component {
   }
   render() {
     return (
-      <div className="Project-body col-sm-10 offset-md-1">
-        {this.loggedIn()}
-        <br />
+      <div className="Project-body ">
         {this.getSearch()}
-        <br />
+        {this.loggedIn()}
+        <h2 className="project-text-info">
+          In order to help the community, Eco Districts Hampton Roads conducts
+          multiple projects done by volunteers in order to fix various problems
+          identified by residents.
+        </h2>
         {this.getProjectList()}
       </div>
     );

@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import React from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
-import '../../../public/ProjectPage.css';
+import '../../assets/stylesheets/app.css';
+
 class ProjectPage extends Component {
   constructor(props) {
     super(props);
