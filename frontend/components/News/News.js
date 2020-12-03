@@ -12,23 +12,23 @@ import '../../assets/stylesheets/app.css';
 class News extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       notInitial: false,
       title: '',
       description: '',
       text: '',
       author: '',
-      image: null
+      image: null,
+      startingPoint: 0,
+      endingPoint: 3,
+      pageNumber: 1
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-
   componentDidMount() {
     this.props.getNews();
   }
-
   validateFields() {
     this.setState({ notInitial: true });
     return (
@@ -39,27 +39,21 @@ class News extends Component {
       this.validateImage()
     );
   }
-
   validateTitle() {
     return this.state.title != '';
   }
-
   validateAuthor() {
     return this.state.author != '';
   }
-
   validateDescription() {
     return this.state.description != '';
   }
-
   validateText() {
     return this.state.text != '';
   }
-
   validateImage() {
     return this.state.image !== null /*&& this.state.image != undefined*/;
   }
-
   handleChange(e) {
     if (e.target.name == 'image') {
       this.setState({ [e.target.name]: e.target.files[0] });
@@ -68,14 +62,11 @@ class News extends Component {
     }
     console.log(e.target.value);
   }
-
   handleSubmit(e) {
     e.preventDefault();
-
     if (this.validateFields()) {
       var formData = new FormData();
       formData.append('image', this.state.image);
-
       axios
         .post('/api/file/', formData, {
           headers: { 'Content-Type': 'multipart/form-data' }
@@ -90,7 +81,6 @@ class News extends Component {
             image: imageId
           };
           this.props.addArticle(news);
-
           document.getElementById('imageToUpload').value = '';
           this.setState({
             notInitial: false,
@@ -103,7 +93,6 @@ class News extends Component {
         });
     }
   }
-
   loggedIn() {
     if (this.props.user) {
       return (
@@ -200,16 +189,40 @@ class News extends Component {
       );
     }
   }
-
+  incrementStartingPoint() {
+    const { startingPoint, endingPoint, pageNumber } = this.state;
+    if (startingPoint + 3 > this.props.news.length) {
+      this.setState({ startingPoint: 0, endingPoint: 3, pageNumber: 1 });
+    } else {
+      this.setState({
+        startingPoint: startingPoint + 3,
+        endingPoint: endingPoint + 3,
+        pageNumber: pageNumber + 1
+      });
+    }
+  }
+  decrementStartingPoint() {
+    const { startingPoint, endingPoint, pageNumber } = this.state;
+    if (startingPoint - 3 < 1) {
+      this.setState({ startingPoint: 0, endingPoint: 3, pageNumber: 1 });
+    } else {
+      this.setState({
+        startingPoint: startingPoint - 3,
+        endingPoint: endingPoint - 3,
+        pageNumber: pageNumber - 1
+      });
+    }
+  }
   render() {
     console.log('Render function', this.props.news);
+    const { startingPoint, endingPoint, pageNumber } = this.state;
     return (
       <div className="col-sm-10 offset-md-1">
         {this.loggedIn()}
         <h1> Hampton Roads News </h1>
         <br />
         <div className="news">
-          {this.props.news.map(article => {
+          {this.props.news.slice(startingPoint, endingPoint).map(article => {
             return (
               <div key={article._id}>
                 <div
@@ -218,8 +231,6 @@ class News extends Component {
                   }
                 >
                   <NewsCard article={article} />
-                  <NewsCard artic={article} />
-                  <NewsCard art={article} />
                 </div>
                 {this.props.user ? (
                   <button onClick={() => this.props.deleteArticle(article)}>
@@ -231,18 +242,19 @@ class News extends Component {
             );
           })}
         </div>
+        <button onClick={() => this.decrementStartingPoint()}>Backward</button>
+        <div>{pageNumber}</div>
+        <button onClick={() => this.incrementStartingPoint()}>Forward</button>
       </div>
     );
   }
 }
-
 const mapStateToProps = state => {
   return {
     news: state.news.news,
     user: state.login.user
   };
 };
-
 const mapDispatchToProps = (/* dispatch */) => {
   return {
     addArticle: addArticle,
@@ -250,5 +262,4 @@ const mapDispatchToProps = (/* dispatch */) => {
     deleteArticle: deleteArticle
   };
 };
-
 export default connect(mapStateToProps, mapDispatchToProps())(News);
