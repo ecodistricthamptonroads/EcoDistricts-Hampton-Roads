@@ -7,6 +7,7 @@ import { addArticle, deleteArticle, getArticles } from '../../actions';
 import axios from 'axios';
 import Events from './Events';
 import '../../assets/stylesheets/app.css';
+import { Button } from 'react-bootstrap';
 
 class News extends Component {
   constructor(props) {
@@ -19,12 +20,32 @@ class News extends Component {
       author: '',
       eventData: Date.now(),
       image: null,
-      startingPoint: 0,
-      endingPoint: 3,
-      pageNumber: 1
+      currentPage: 0
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+  }
+  _getDateFormatted(date) {
+    console.log(date);
+    const monthNames = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
+    ];
+
+    var mm = date.getMonth();
+    var dd = date.getDate();
+
+    return [monthNames[mm], (dd > 9 ? '' : '0') + dd].join('-');
   }
   componentDidMount() {
     this.props.getNews();
@@ -187,65 +208,85 @@ class News extends Component {
       </div>
     );
   }
-  incrementStartingPoint() {
-    const { startingPoint, endingPoint, pageNumber } = this.state;
-    if (startingPoint + 3 > this.props.news.length) {
-      this.setState({ startingPoint: 0, endingPoint: 3, pageNumber: 1 });
-    } else {
-      this.setState({
-        startingPoint: startingPoint + 3,
-        endingPoint: endingPoint + 3,
-        pageNumber: pageNumber + 1
-      });
-    }
-  }
-  decrementStartingPoint() {
-    const { startingPoint, endingPoint, pageNumber } = this.state;
-    if (startingPoint - 3 < 1) {
-      this.setState({ startingPoint: 0, endingPoint: 3, pageNumber: 1 });
-    } else {
-      this.setState({
-        startingPoint: startingPoint - 3,
-        endingPoint: endingPoint - 3,
-        pageNumber: pageNumber - 1
-      });
+  deleteNews(news) {
+    if (this.props.user) {
+      let newEvents = this.props.news.slice();
+      let index = newEvents.indexOf(news);
+      newEvents.splice(index, 1);
+      return (
+        <Button
+          className="delete-job-btn col-4 "
+          variant="danger"
+          onClick={e => {
+            e.stopPropagation();
+            e.preventDefault();
+            console.log(this);
+            this.props.deleteArticle(news);
+          }}
+        >
+          Delete
+        </Button>
+      );
     }
   }
   render() {
-    const { startingPoint, endingPoint, pageNumber } = this.state;
+    const NEWS_PER_PAGE = 3;
     return (
       <div className="news-page">
         <Events loggedIn={this.props.user} />
         {this.props.user ? this.loggedIn() : null}
-        <h1> Hampton Roads News </h1>
-        <br />
-        <div className="news">
-          {this.props.news.slice(startingPoint, endingPoint).map(article => {
-            return (
-              <div key={article._id}>
-                <div
-                  onClick={() =>
-                    this.props.history.push('/news/' + article._id)
-                  }
-                >
-                  <NewsCard article={article} />
+        <h1 className="Events-heading">Events</h1>
+        <h2 className="Events-heading">Upcoming Events</h2>
+        <div className="Events">
+          {this.props.news.length != 0 ? (
+            this.props.news
+              .slice(
+                NEWS_PER_PAGE * this.state.currentPage,
+                NEWS_PER_PAGE * this.state.currentPage + NEWS_PER_PAGE
+              )
+              .map((news, idx) => (
+                <div className="row event" key={news.title + idx}>
+                  <img className="col-2 event-date" src={news.image || logo} />
+
+                  <div className="col-6 event-info">
+                    <h2>{news.title}</h2>
+                    <h3> {this._getDateFormatted(new Date(news.date))}</h3>
+                    <p>{news.description}</p>
+                  </div>
+                  {this.deleteNews(news)}
                 </div>
-                {this.props.user ? (
-                  <button onClick={() => this.props.deleteArticle(article)}>
-                    Delete
-                  </button>
-                ) : null}
-                <br />
-              </div>
-            );
-          })}
+              ))
+          ) : (
+            <h4 className="Events-heading justify-content-md-center row">
+              <u>No News comeback later !!!</u>
+            </h4>
+          )}
         </div>
-        <div>
-          <button onClick={() => this.decrementStartingPoint()}>
-            Backward
-          </button>
-          <div>{pageNumber}</div>
-          <button onClick={() => this.incrementStartingPoint()}>Forward</button>
+        <div className="Event-btns row justify-content-md-center ">
+          <div
+            className="left-arrow col"
+            onClick={() =>
+              this.setState({
+                currentPage: Math.max(this.state.currentPage - 1, 0)
+              })
+            }
+          >
+            ◀
+          </div>
+          <div className="pageNumber col">{this.state.currentPage + 1}</div>
+          <div
+            className="right-arrow col"
+            onClick={() => {
+              this.setState({
+                currentPage: Math.min(
+                  this.state.currentPage + 1,
+                  Math.ceil(this.props.news.length / NEWS_PER_PAGE) - 1
+                )
+              });
+            }}
+          >
+            ▶
+          </div>
         </div>
       </div>
     );

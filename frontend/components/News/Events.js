@@ -1,11 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Button, Form } from 'react-bootstrap';
-const test_value = {
-  title: 'Lorem ipsum dolor',
-  description:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec gravida lorem. Cras molestie orci velit, nec venenatis eros'
-};
+import logo from '../../assets/images/logo.png';
 class Events extends React.Component {
   constructor(props) {
     super(props);
@@ -14,15 +10,14 @@ class Events extends React.Component {
       title: '',
       description: '',
       date: new Date(),
-      image: null,
+      image: '',
       currentPage: 0,
-      events: [test_value, test_value, test_value, test_value]
+      events: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.submit = this.submit.bind(this);
   }
   handleChange(e) {
-    console.log(this.state.date);
     this.setState({ notInitial: true });
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -38,7 +33,8 @@ class Events extends React.Component {
     const event = {
       title: this.state.title,
       description: this.state.description,
-      date: new Date(this.state.date)
+      date: new Date(this.state.date),
+      image: new Date(this.state.image)
     };
     axios
       .post('/api/event/', event)
@@ -51,7 +47,8 @@ class Events extends React.Component {
     this.setState({
       title: '',
       description: '',
-      date: new Date()
+      date: new Date(),
+      image: ''
     });
   }
 
@@ -97,7 +94,6 @@ class Events extends React.Component {
 
     var mm = date.getMonth();
     var dd = date.getDate();
-    date.get;
 
     return [monthNames[mm], (dd > 9 ? '' : '0') + dd].join('-');
   }
@@ -118,6 +114,20 @@ class Events extends React.Component {
             />
             <Form.Control.Feedback type="invalid">
               Please include a title
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Label>Image Link(optional)</Form.Label>
+            <Form.Control
+              name="image"
+              value={this.state.image}
+              onChange={this.handleChange}
+              type="text"
+              placeholder="image"
+              isInvalid={this.state.notInitial && !this.state.image != ''}
+            />
+            <Form.Control.Feedback type="invalid">
+              Please include a image link
             </Form.Control.Feedback>
           </Form.Group>
 
@@ -179,13 +189,13 @@ class Events extends React.Component {
                 EVENTS_PER_PAGE * this.state.currentPage,
                 EVENTS_PER_PAGE * this.state.currentPage + EVENTS_PER_PAGE
               )
-              .map(event => (
-                <div className="row event">
-                  <h1 className="col-2 event-date">
-                    {this._getDateFormatted(new Date(event.date))}
-                  </h1>
+              .map((event, idx) => (
+                <div className="row event" key={event.title + idx}>
+                  <img className="col-2 event-date" src={event.image || logo} />
+
                   <div className="col-6 event-info">
                     <h2>{event.title}</h2>
+                    <h3> {this._getDateFormatted(new Date(event.date))}</h3>
                     <p>{event.description}</p>
                   </div>
                   {this.deleteEvent(event)}

@@ -369,3 +369,9 @@ a:link {
 .event {
   padding: 1%;
 }
+.carousel-item-img {
+  background-size: cover;
+  background-position: center center;
+  height: 65vh;
+  filter: brightness(50%);
+}

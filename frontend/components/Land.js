@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { Image, Carousel } from 'react-bootstrap';
 import '../assets/stylesheets/app.css';
+import axios from 'axios';
 
 import carousel_1 from '../assets/images/carousel_1.jpg';
 import carousel_2 from '../assets/images/carousel_2.jpg';
@@ -13,7 +14,14 @@ import what_we_do from '../assets/images/what_we_do.jpg';
 import instagram from '../assets/images/instagram.svg';
 import facebook from '../assets/images/facebook.svg';
 import twitter from '../assets/images/twitter.svg';
-
+import logo from '../assets/images/logo.png';
+// const test_value = {
+//   title: "Lorem ipsum dolor",
+//   description:
+//     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec gravida lorem. Cras molestie orci velit, nec venenatis eros",
+//   date: Date.now(),
+//   link: [],
+// };
 const MAIL_CHIMP_EMBEDDED = `<div>
 
 <div id="mc_embed_signup">
@@ -84,11 +92,192 @@ const MAIL_CHIMP_EMBEDDED = `<div>
 class Land extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      news: [],
+      events: [],
+      eventsIdx: 0,
+      newsIdx: 0
+    };
+  }
+  componentDidMount() {
+    axios.get('/api/event/').then(events => {
+      console.log(events.data);
+      this.setState({ events: events.data });
+    });
+    axios.get('/api/news/').then(news => {
+      console.log(news.data);
+      this.setState({ news: news.data });
+    });
+  }
+  _getDateFormatted(date) {
+    const monthNames = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
+    ];
+
+    var mm = date.getMonth();
+    var dd = date.getDate();
+
+    return [monthNames[mm], (dd > 9 ? '' : '0') + dd].join('-');
   }
 
+  getEvents() {
+    const events = [...this.state.events, ...this.state.events];
+
+    return (
+      <section
+        style={{
+          height: '100vh'
+        }}
+      >
+        <div
+          className={'container-fluid'}
+          style={{
+            width: 'inherit',
+            height: 'inherit'
+          }}
+        >
+          <div className={'row h-100'}>
+            <div className="col-2" />
+            <div className="col-8 my-auto" style={{ textAlign: 'center' }}>
+              <h1 style={{ color: '#dda73c' }}>
+                <b>Recent Events</b>
+              </h1>
+              {/* News Carousel */}
+              <Carousel
+                style={{ position: 'relative' }}
+                interval={1000}
+                slide={true}
+                activeIndex={this.state.eventsIdx}
+                onSelect={(selectedIndex, e) =>
+                  this.setState({ eventsIdx: selectedIndex })
+                }
+              >
+                {events.map((event, idx) => {
+                  return (
+                    <Carousel.Item key={event.title + idx}>
+                      <img
+                        className="rounded mx-auto d-block carousel-item-img"
+                        src={event.link || logo}
+                        onError={e => {
+                          e.target.src = logo;
+                        }}
+                        alt={'' + event.title}
+                      />
+                      <Carousel.Caption>
+                        <h2>
+                          <u>{event.title}</u>
+                        </h2>
+                        <h3>@{this._getDateFormatted(new Date(event.date))}</h3>
+                        <p style={{ padding: '5%' }}>{event.description}</p>
+                      </Carousel.Caption>
+                    </Carousel.Item>
+                  );
+                })}
+              </Carousel>
+            </div>
+            <div className="col-2" />
+          </div>
+        </div>
+      </section>
+    );
+  }
+  getNews() {
+    const NEWS2SHOW = [
+      ...this.state.news
+      // {
+      //   title:
+      //     "SDG Projects in the Atlanta Community Grant Winners Announcement",
+      //   description:
+      //     "The RCE Greater Atlanta Youth Network is excited to announce the four winning projects and teams of the SDG Projects in the Atlanta Community Grant.",
+      // },
+    ];
+    return (
+      <section
+        style={{
+          height: '100vh'
+        }}
+      >
+        <div
+          className={'container-fluid'}
+          style={{
+            width: 'inherit',
+            height: 'inherit'
+          }}
+        >
+          <div className={'row h-100'}>
+            <div className="col-1" />
+            <div className="col-10 my-auto" style={{ textAlign: 'center' }}>
+              <h1 style={{ color: '#dda73c' }}>
+                <b>Recent News</b>
+              </h1>
+
+              {/* News Carousel */}
+              <Carousel style={{ padding: '1%' }}>
+                {NEWS2SHOW.map((news, idx) => (
+                  <Carousel.Item
+                    key={news.title + idx}
+                    style={{ height: '70vh' }}
+                  >
+                    <div
+                      className=""
+                      style={{
+                        borderRadius: '10px'
+                      }}
+                    >
+                      <div
+                        style={{ height: '70vh' }}
+                        className="card-img-top d-flex align-items-center bg-light"
+                      >
+                        <div className="col-4">
+                          <h2>{news.title}</h2>
+                          <h3>By {news.author}</h3>
+                          <h3>{new Date(news.date).toDateString()}</h3>
+                          <p>{news.description}</p>
+                        </div>
+
+                        <img
+                          className="img-fluid col-8"
+                          src={news.image || carousel_1}
+                          style={{
+                            backgroundRepeat: 'no-repeat',
+                            backgroundAttachment: 'fixed',
+                            backgroundPosition: 'center',
+                            borderLeft: '1px solid black',
+                            height: '70vh',
+                            padding: 0
+                            // width:100%
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </Carousel.Item>
+                ))}
+              </Carousel>
+            </div>
+            <div className="col-1" />
+          </div>
+        </div>
+      </section>
+    );
+  }
   render() {
     return (
-      <div>
+      <div
+        style={{
+          background: 'linear-gradient(180deg, #1D84E3 66.55%, #FFFFFF 100%)'
+        }}
+      >
         {/* Starting carousel */}
         <section
           style={{
@@ -97,7 +286,7 @@ class Land extends Component {
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
             textAlign: 'left',
-            height: '90vh'
+            height: '100vh'
           }}
         >
           <div
@@ -142,7 +331,7 @@ class Land extends Component {
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
             textAlign: 'center',
-            height: '70vh'
+            height: '100vh'
           }}
         >
           <div
@@ -186,7 +375,7 @@ class Land extends Component {
                 >
                   <button
                     style={{
-                      color: 'black',
+                      color: 'white',
                       backgroundColor: '#98B391',
                       borderRadius: 10
                     }}
@@ -208,7 +397,7 @@ class Land extends Component {
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
             textAlign: 'center',
-            height: '70vh'
+            height: '100vh'
           }}
         >
           <div
@@ -245,7 +434,7 @@ class Land extends Component {
                 >
                   <button
                     style={{
-                      color: 'black',
+                      color: 'white',
                       backgroundColor: '#98B391',
                       borderRadius: 10
                     }}
@@ -269,105 +458,12 @@ class Land extends Component {
         </section>
 
         {/* Recent News */}
-        <section
-          style={{
-            height: '70vh',
-            background:
-              'linear-gradient(to bottom, rgba(29, 132, 227, 1), rgba(29, 132, 227, 0.65))'
-          }}
-        >
-          <div
-            className={'container-fluid'}
-            style={{
-              width: 'inherit',
-              height: 'inherit'
-            }}
-          >
-            <div className={'row h-100'}>
-              <div className="col-2" />
-              <div className="col-8 my-auto" style={{ textAlign: 'center' }}>
-                <h1 style={{ color: '#dda73c' }}>
-                  <b>Recent News</b>
-                </h1>
-
-                {/* News Carousel */}
-                <div
-                  id="multi-item-example"
-                  className="carousel slide carousel-multi-item"
-                  dataride="carousel"
-                >
-                  <ol className="carousel-indicators">
-                    <li
-                      datatarget="#multi-item-example"
-                      dataslideto="0"
-                      className="active"
-                    ></li>
-                    <li datatarget="#multi-item-example" dataslideto="1"></li>
-                  </ol>
-
-                  <div
-                    className="carousel-inner"
-                    role="listbox"
-                    style={{
-                      // width: "70vw",
-                      height: '50vh',
-                      textAlign: 'center',
-                      color: 'rgba(152, 179, 145, 1)'
-                    }}
-                  >
-                    {/* Item 1 */}
-                    <div className="carousel-item active">
-                      <div className="card">
-                        <div className="card-img-top d-flex align-items-center bg-light">
-                          <div className="col-4 p-2 m-4">
-                            <h2>
-                              SDG Projects in the Atlanta Community Grant
-                              Winners Announcement
-                            </h2>
-                            <p>
-                              The RCE Greater Atlanta Youth Network is excited
-                              to announce the four winning projects and teams of
-                              the SDG Projects in the Atlanta Community Grant.
-                            </p>
-                          </div>
-
-                          <div>
-                            <img className="img-fluid" src={carousel_1} />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Item 2 */}
-                    <div className="carousel-item">
-                      <div className="card">
-                        <div className="card-img-top d-flex align-items-center bg-light">
-                          <p className="col p-2 m-0">Placeholder text</p>
-                          <div>
-                            <img
-                              className="img-fluid"
-                              src="https://picsum.photos/400"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* End carousel items */}
-                  </div>
-                </div>
-              </div>
-              <div className="col-2" />
-            </div>
-          </div>
-        </section>
-
+        {this.getNews()}
+        {this.getEvents()}
         {/* Join the community */}
         <section
           style={{
-            height: '100vh',
-            background:
-              'linear-gradient(to bottom, rgba(29, 132, 227, 0.65), rgba(29, 132, 227, 0.3))'
+            height: '100vh'
           }}
         >
           <div
