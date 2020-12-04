@@ -2,11 +2,10 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import React from 'react';
 import NewsCard from './NewsCard';
-import logo from '../../assets/images/logo.png';
-import { Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import { addArticle, deleteArticle, getArticles } from '../../actions';
 import axios from 'axios';
+import Events from './Events';
 import '../../assets/stylesheets/app.css';
 
 class News extends Component {
@@ -18,6 +17,7 @@ class News extends Component {
       description: '',
       text: '',
       author: '',
+      eventData: Date.now(),
       image: null,
       startingPoint: 0,
       endingPoint: 3,
@@ -94,100 +94,98 @@ class News extends Component {
     }
   }
   loggedIn() {
-    if (this.props.user) {
-      return (
-        <div>
-          <Form onSubmit={this.handleSubmit}>
-            <Form.Group controlId="exampleForm.ControlInput1">
-              <Form.Label>Title</Form.Label>
-              <Form.Control
-                name="title"
-                value={this.state.title}
+    return (
+      <div>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Label>Title</Form.Label>
+            <Form.Control
+              name="title"
+              value={this.state.title}
+              onChange={this.handleChange}
+              type="text"
+              placeholder="Title"
+              isInvalid={this.state.notInitial && !this.validateTitle()}
+            />
+            <Form.Control.Feedback type="invalid">
+              Please include a title
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group controlId="exampleForm.ControlInput4">
+            <Form.Label>Author</Form.Label>
+            <Form.Control
+              name="author"
+              value={this.state.author}
+              onChange={this.handleChange}
+              type="text"
+              placeholder="Author"
+              isInvalid={this.state.notInitial && !this.validateAuthor()}
+            />
+            <Form.Control.Feedback type="invalid">
+              Please include an author
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group controlId="exampleForm.ControlInput2">
+            <Form.Label>Description</Form.Label>
+            <Form.Control
+              name="description"
+              value={this.state.description}
+              onChange={this.handleChange}
+              type="Description"
+              placeholder="Description"
+              isInvalid={this.state.notInitial && !this.validateDescription()}
+            />
+            <Form.Control.Feedback type="invalid">
+              Please include a description
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group controlId="exampleForm.ControlInput3">
+            <Form.Label>Text</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows="8"
+              name="text"
+              value={this.state.text}
+              onChange={this.handleChange}
+              type="Text"
+              placeholder="Text"
+              isInvalid={this.state.notInitial && !this.validateText()}
+            />
+            <Form.Control.Feedback type="invalid">
+              Please include the main text for the news article
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group controlId="exampleForm.ControlInput4">
+            <Form.Label>Image</Form.Label>
+            <Form.Control
+              as="br"
+              disabled
+              isInvalid={this.state.notInitial && !this.validateImage()}
+            />
+            <div>
+              <input
+                type="file"
+                id="imageToUpload"
                 onChange={this.handleChange}
-                type="text"
-                placeholder="Title"
-                isInvalid={this.state.notInitial && !this.validateTitle()}
+                name="image"
+                isInvalid={true}
               />
-              <Form.Control.Feedback type="invalid">
-                Please include a title
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group controlId="exampleForm.ControlInput4">
-              <Form.Label>Author</Form.Label>
-              <Form.Control
-                name="author"
-                value={this.state.author}
-                onChange={this.handleChange}
-                type="text"
-                placeholder="Author"
-                isInvalid={this.state.notInitial && !this.validateAuthor()}
-              />
-              <Form.Control.Feedback type="invalid">
-                Please include an author
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group controlId="exampleForm.ControlInput2">
-              <Form.Label>Description</Form.Label>
-              <Form.Control
-                name="description"
-                value={this.state.description}
-                onChange={this.handleChange}
-                type="Description"
-                placeholder="Description"
-                isInvalid={this.state.notInitial && !this.validateDescription()}
-              />
-              <Form.Control.Feedback type="invalid">
-                Please include a description
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group controlId="exampleForm.ControlInput3">
-              <Form.Label>Text</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows="8"
-                name="text"
-                value={this.state.text}
-                onChange={this.handleChange}
-                type="Text"
-                placeholder="Text"
-                isInvalid={this.state.notInitial && !this.validateText()}
-              />
-              <Form.Control.Feedback type="invalid">
-                Please include the main text for the news article
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group controlId="exampleForm.ControlInput4">
-              <Form.Label>Image</Form.Label>
-              <Form.Control
-                as="br"
-                disabled
-                isInvalid={this.state.notInitial && !this.validateImage()}
-              />
-              <div>
-                <input
-                  type="file"
-                  id="imageToUpload"
-                  onChange={this.handleChange}
-                  name="image"
-                  isInvalid={true}
-                />
-              </div>
-              <Form.Control.Feedback type="invalid">
-                Please upload an image
-              </Form.Control.Feedback>
-            </Form.Group>
-          </Form>
-          <button
-            variant="primary"
-            type="submit"
-            value="submit"
-            onClick={this.handleSubmit}
-          >
-            Submit
-          </button>
-        </div>
-      );
-    }
+            </div>
+            <Form.Control.Feedback type="invalid">
+              Please upload an image
+            </Form.Control.Feedback>
+          </Form.Group>
+        </Form>
+        <button
+          variant="primary"
+          type="submit"
+          value="submit"
+          onClick={this.handleSubmit}
+        >
+          Submit
+        </button>
+      </div>
+    );
   }
   incrementStartingPoint() {
     const { startingPoint, endingPoint, pageNumber } = this.state;
@@ -214,11 +212,11 @@ class News extends Component {
     }
   }
   render() {
-    console.log('Render function', this.props.news);
     const { startingPoint, endingPoint, pageNumber } = this.state;
     return (
-      <div className="col-sm-10 offset-md-1">
-        {this.loggedIn()}
+      <div className="news-page">
+        <Events loggedIn={this.props.user} />
+        {this.props.user ? this.loggedIn() : null}
         <h1> Hampton Roads News </h1>
         <br />
         <div className="news">
@@ -242,13 +240,18 @@ class News extends Component {
             );
           })}
         </div>
-        <button onClick={() => this.decrementStartingPoint()}>Backward</button>
-        <div>{pageNumber}</div>
-        <button onClick={() => this.incrementStartingPoint()}>Forward</button>
+        <div>
+          <button onClick={() => this.decrementStartingPoint()}>
+            Backward
+          </button>
+          <div>{pageNumber}</div>
+          <button onClick={() => this.incrementStartingPoint()}>Forward</button>
+        </div>
       </div>
     );
   }
 }
+
 const mapStateToProps = state => {
   return {
     news: state.news.news,

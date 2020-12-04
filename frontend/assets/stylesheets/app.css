@@ -35,6 +35,7 @@
 .project-text-info {
   padding: 5%;
 }
+
 .card-project > div {
   background-color: transparent !important;
   border: 0 !important;
@@ -319,4 +320,52 @@ a:link {
   font-weight: 500;
   color: black;
   /* text-align: center; */
+}
+.event-date {
+  background: #007a5e 55%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.event-info > h2 {
+  font-weight: 700;
+}
+.event-info > p {
+  font-weight: 400;
+}
+.pageNumber {
+  border: black 1px solid;
+  padding: 1px;
+  text-align: center;
+  background: rgba(157, 228, 212, 0.5);
+}
+.Events {
+  height: 60vh;
+}
+.Event-btns {
+  width: 10em;
+  margin: auto !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.news-page {
+  background: linear-gradient(180deg, #007a5e 0%, rgba(255, 255, 255, 0) 100%),
+    linear-gradient(0deg, #efdd8d, #efdd8d);
+  padding: 0 10% 10% 10%;
+  width: 100vw;
+}
+.Events-heading {
+  padding: 1%;
+  color: white;
+}
+.event {
+  padding: 1%;
 }
