@@ -20,9 +20,15 @@ class About extends Component {
         <div className="About-body">
           <div className="About-who"> Who are we?</div>
           <br />
-          <div className="About-row">
-            <div className="About-video"> video</div>
-            <div className="About-text">
+          <div className="About-row" style={{ height: '70vh' }}>
+            <div className="About-video col-6"> video</div>
+            <div
+              className="About-text col-6"
+              style={{
+                textAlign: 'center',
+                margin: 'auto'
+              }}
+            >
               Eco Districts Hampton Roads hopes to create a beautiful and
               sustainable community within Virginia's Hampton Roads, the largest
               African American community. We hope to bring the community

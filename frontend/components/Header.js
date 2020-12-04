@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { logout } from '../actions/index';
 import logo from '../assets/images/logo.png';
@@ -14,6 +13,7 @@ import '../assets/stylesheets/app.css';
 class Header extends Component {
   constructor(props) {
     super(props);
+    this.state = { isOpen: false };
   }
   componentDidMount() {
     this.props.fetchUser();
@@ -83,11 +83,29 @@ class Header extends Component {
                 Projects
               </Nav.Link>
             </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="1" as={Link} to="/about">
-                About
-              </Nav.Link>
-            </Nav.Item>
+            <NavDropdown
+              onMouseEnter={() => {
+                this.setState({ isOpen: true });
+              }}
+              onMouseLeave={() => {
+                this.setState({ isOpen: false });
+              }}
+              open={this.state.isOpen}
+              title="About"
+              id="basic-nav-dropdown"
+            >
+              <Nav.Item>
+                <Nav.Link eventKey="1" as={Link} to="/about">
+                  About Eco
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="9" as={Link} to="/team">
+                  Meet the Team
+                </Nav.Link>
+              </Nav.Item>
+            </NavDropdown>
+
             <Nav.Item>
               <a className="nav-link" href={CONTACT_US_LINK}>
                 Contact Us

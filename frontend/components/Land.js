@@ -5,16 +5,26 @@ import { Image, Carousel } from 'react-bootstrap';
 import '../assets/stylesheets/app.css';
 import axios from 'axios';
 
-import carousel_1 from '../assets/images/carousel_1.jpg';
-import carousel_2 from '../assets/images/carousel_2.jpg';
-import carousel_3 from '../assets/images/carousel_3.jpg';
-import carousel_4 from '../assets/images/carousel_4.jpg';
+import other_carousel_1 from '../assets/images/carousel_1.jpg';
+import other_carousel_2 from '../assets/images/carousel_2.jpg';
+import other_carousel_3 from '../assets/images/carousel_3.jpg';
+import other_carousel_4 from '../assets/images/carousel_4.jpg';
+
+import carousel_main_1 from '../assets/images/land_slideshow_img/images Slideshow-1.png';
+import carousel_main_2 from '../assets/images/land_slideshow_img/images Slideshow-2.png';
+import carousel_main_3 from '../assets/images/land_slideshow_img/images Slideshow-3.png';
+import carousel_main_4 from '../assets/images/land_slideshow_img/images Slideshow-4.png';
+
 import about_us from '../assets/images/about_us.jpg';
 import what_we_do from '../assets/images/what_we_do.jpg';
 import instagram from '../assets/images/instagram.svg';
 import facebook from '../assets/images/facebook.svg';
 import twitter from '../assets/images/twitter.svg';
 import logo from '../assets/images/logo.png';
+
+import { Zoom } from 'react-slideshow-image';
+import 'react-slideshow-image/dist/styles.css';
+
 // const test_value = {
 //   title: "Lorem ipsum dolor",
 //   description:
@@ -248,7 +258,7 @@ class Land extends Component {
 
                         <img
                           className="img-fluid col-8"
-                          src={news.image || carousel_1}
+                          src={news.image || other_carousel_1}
                           style={{
                             backgroundRepeat: 'no-repeat',
                             backgroundAttachment: 'fixed',
@@ -271,22 +281,66 @@ class Land extends Component {
       </section>
     );
   }
+  getMainCarousel() {
+    const images = [
+      carousel_main_1,
+      carousel_main_2,
+      carousel_main_3,
+      carousel_main_4
+    ];
+    const zoomOutProperties = {
+      duration: 5000,
+      transitionDuration: 100,
+      infinite: true,
+      indicators: false,
+      scale: 0.1,
+      arrows: false
+    };
+    return (
+      <section
+        style={{ height: '120vh', width: '100vw', padding: 0 }}
+        className="slide-container col-12"
+      >
+        <Zoom {...zoomOutProperties}>
+          {images.map((each, index) => (
+            <img
+              key={index}
+              style={{
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center center',
+                height: '120vh',
+
+                filter: 'brightness(50%)'
+              }}
+              src={each}
+            />
+          ))}
+        </Zoom>
+      </section>
+    );
+  }
   render() {
     return (
       <div
+        className="col-12"
         style={{
+          padding: 0,
           background: 'linear-gradient(180deg, #1D84E3 66.55%, #FFFFFF 100%)'
         }}
       >
         {/* Starting carousel */}
+        {this.getMainCarousel()}
         <section
           style={{
-            backgroundImage: `url('${carousel_2}')`,
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center center',
+            backgroundImage: `url('${other_carousel_2}')`,
+
             textAlign: 'left',
-            height: '100vh'
+            height: '100vh',
+            backgroundAttachment: 'fixed',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover'
           }}
         >
           <div
@@ -300,7 +354,7 @@ class Land extends Component {
             }}
           >
             <div className={'row h-100'}>
-              <div className="col-9 my-auto">
+              <div className="col-9 my-auto" style={{ padding: '5%' }}>
                 <div
                   style={{
                     fontSize: '6vw',
@@ -327,9 +381,10 @@ class Land extends Component {
         <section
           style={{
             backgroundImage: `url('${about_us}')`,
+            backgroundAttachment: 'fixed',
+            backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
-            backgroundPosition: 'center center',
             textAlign: 'center',
             height: '100vh'
           }}
@@ -393,9 +448,10 @@ class Land extends Component {
         <section
           style={{
             backgroundImage: `url('${what_we_do}')`,
+            backgroundAttachment: 'fixed',
+            backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
-            backgroundPosition: 'center center',
             textAlign: 'center',
             height: '100vh'
           }}

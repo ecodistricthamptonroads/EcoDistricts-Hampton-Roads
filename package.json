@@ -75,6 +75,7 @@
     "react-router-dom": "^5.0.1",
     "react-search-box": "^2.0.1",
     "react-select": "^1.2.1",
+    "react-slideshow-image": "^3.4.2",
     "react-transition-group": "^2.2.1",
     "redux": "^4.0.4",
     "redux-thunk": "^2.2.0"

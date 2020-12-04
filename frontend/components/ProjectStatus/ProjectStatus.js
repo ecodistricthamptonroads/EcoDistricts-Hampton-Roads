@@ -8,6 +8,7 @@ import {
   getProjects,
   updateProject
 } from '../../actions';
+import WarfieldCanalProject from '../../assets/images/WarfieldCanalProject.jpg';
 import { connect } from 'react-redux';
 
 class ProjectStatus extends Component {
@@ -167,7 +168,10 @@ class ProjectStatus extends Component {
           .filter(project => this.search(project.title))
           .map((project, idx) => {
             return (
-              <div className="col-12 col-sm-6 col-md-4 card-project">
+              <div
+                key={project.title + idx}
+                className="col-12 col-sm-6 col-md-4 card-project"
+              >
                 <Card
                   onClick={() => {
                     this.props.history.push('/Project/' + idx);
@@ -177,7 +181,13 @@ class ProjectStatus extends Component {
                   <Card.Title style={{ fontWeight: 500 }}>
                     {project.title}
                   </Card.Title>
-                  <Card.Img variant="top" src="" />
+                  <Card.Img
+                    variant="top"
+                    onError={e => {
+                      e.target.src = WarfieldCanalProject;
+                    }}
+                    src={project.link || WarfieldCanalProject}
+                  />
                   <Card.Body>
                     <Card.Text style={{ fontWeight: 400 }}>
                       {project.status}

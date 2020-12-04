@@ -14,11 +14,9 @@ import Email from './Email/Email';
 import News from './News/News';
 import Article from './Article/Article';
 import Surveys from './Surveys/Surveys';
-
-// import JobPage from "./EducationJobs/JobPage";
-
 import About from './About/About';
 import Resource from './Resource/Resource';
+import MeetTheTeam from './About/MeetTheTeam';
 
 class AppContainer extends Component {
   render() {
@@ -40,6 +38,7 @@ class AppContainer extends Component {
                 <Route path="/Project/:id" component={ProjectPage} />
                 <Route path="/email" component={Email} />
                 <Route path="/about" component={About} />
+                <Route path="/team" component={MeetTheTeam} />
                 <Route path="/resources" component={Resource} />
                 <Route component={Land} />
               </Switch>

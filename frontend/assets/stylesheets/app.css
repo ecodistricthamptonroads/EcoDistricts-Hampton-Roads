@@ -1,6 +1,7 @@
 .Project-body {
   background: linear-gradient(180deg, #1d84e3 0%, #ffffff 125.62%);
   width: 100vw;
+  min-height: 70vh;
 }
 .Project-Search-Bar {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
@@ -182,6 +183,8 @@
   background: #c4c4c4;
   height: 500px;
   text-align: center;
+  width: 100vw;
+  padding: 0;
 }
 .About-row {
   display: flex;
@@ -193,8 +196,7 @@
 
 .intro {
   position: relative;
-  margin: 2em;
-  padding: 0.2em 0.6em;
+  margin: auto;
   cursor: pointer;
   color: #fff;
   font-size: 2em;

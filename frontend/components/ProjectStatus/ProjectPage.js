@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
-import '../../assets/stylesheets/app.css';
+import '../../assets/stylesheets/ProjectPage.css';
 
 class ProjectPage extends Component {
   constructor(props) {
