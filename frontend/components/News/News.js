@@ -26,7 +26,6 @@ class News extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
   _getDateFormatted(date) {
-    console.log(date);
     const monthNames = [
       'Jan',
       'Feb',
@@ -81,7 +80,6 @@ class News extends Component {
     } else {
       this.setState({ [e.target.name]: e.target.value });
     }
-    console.log(e.target.value);
   }
   handleSubmit(e) {
     e.preventDefault();
@@ -220,7 +218,6 @@ class News extends Component {
           onClick={e => {
             e.stopPropagation();
             e.preventDefault();
-            console.log(this);
             this.props.deleteArticle(news);
           }}
         >

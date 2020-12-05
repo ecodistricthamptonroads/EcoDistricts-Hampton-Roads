@@ -126,7 +126,6 @@ class AddJob extends Component {
       axios
         .post('/api/job/', job)
         .then(job => {
-          console.log(job);
           this.props.newJob(job.data);
         })
         .catch(err => {

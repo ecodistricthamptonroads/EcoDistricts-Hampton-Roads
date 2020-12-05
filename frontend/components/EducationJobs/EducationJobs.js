@@ -227,7 +227,7 @@ class Jobs extends Component {
                       src="https://brands-cdn.employbridge.com/content/assets/news//40169262_14124173_Large.jpg"
                     />
                     <Card.Title style={{ padding: '10px' }}>
-                      {job.title}
+                      {job.title || ''}
                     </Card.Title>
                   </div>
                   <hr />
@@ -236,9 +236,9 @@ class Jobs extends Component {
                       {'Posted on ' +
                         this._getDateFormatted(new Date(job.postDate))}
                     </Card.Text>
-                    <Card.Text>{'@  ' + job.company} </Card.Text>
-                    <Card.Text>{'$  ' + job.salary} </Card.Text>
-                    <Card.Text>{'📍 ' + job.location} </Card.Text>
+                    <Card.Text>{'@  ' + (job.company || '')} </Card.Text>
+                    <Card.Text>{'$  ' + (job.salary || '')} </Card.Text>
+                    <Card.Text>{'📍 ' + (job.location || '')} </Card.Text>
 
                     <hr />
                     <div className="job-card-row flex-center ">
@@ -256,7 +256,6 @@ class Jobs extends Component {
                                 let index = newJobs.indexOf(job);
                                 newJobs[index] = new_job;
 
-                                console.log('published', job, newJobs);
                                 this.setState({ jobs: newJobs });
                               })
                               .catch(err => {

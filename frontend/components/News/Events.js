@@ -23,7 +23,6 @@ class Events extends React.Component {
   }
   componentDidMount() {
     axios.get('/api/event/').then(events => {
-      console.log(events.data);
       this.setState({ events: events.data });
     });
   }
@@ -76,7 +75,6 @@ class Events extends React.Component {
     }
   }
   _getDateFormatted(date) {
-    console.log(date);
     const monthNames = [
       'Jan',
       'Feb',

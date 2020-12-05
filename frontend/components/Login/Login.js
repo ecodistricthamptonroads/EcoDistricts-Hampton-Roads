@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { login } from "../../actions/index";
+import { login } from '../../actions/index';
 
 class Login extends Component {
   constructor(props) {
@@ -24,17 +24,17 @@ class Login extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    if(this.state.username === 'admin' && this.state.password === 'password') {
+    if (this.state.username === 'admin' && this.state.password === 'password') {
       this.props.login({
-        username: this.state.username,
+        username: this.state.username
       });
-      this.props.history.push("/");
+      this.props.history.push('/');
     } else {
-      alert("incorrect username or password");
-      console.log({
-        username: this.state.username,
-        password: this.state.password
-      });
+      alert('incorrect username or password');
+      // console.log({
+      //   username: this.state.username,
+      //   password: this.state.password
+      // });
     }
   }
 

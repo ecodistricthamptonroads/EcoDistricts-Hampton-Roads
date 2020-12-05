@@ -111,11 +111,9 @@ class Land extends Component {
   }
   componentDidMount() {
     axios.get('/api/event/').then(events => {
-      console.log(events.data);
       this.setState({ events: events.data });
     });
     axios.get('/api/news/').then(news => {
-      console.log(news.data);
       this.setState({ news: news.data });
     });
   }
@@ -331,41 +329,41 @@ class Land extends Component {
       >
         {/* Starting carousel */}
         {this.getMainCarousel()}
-        <section
+        {/* <section
           style={{
             backgroundImage: `url('${other_carousel_2}')`,
 
-            textAlign: 'left',
-            height: '100vh',
-            backgroundAttachment: 'fixed',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover'
+            textAlign: "left",
+            height: "100vh",
+            backgroundAttachment: "fixed",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
           }}
         >
           <div
-            className={'container-fluid'}
+            className={"container-fluid"}
             style={{
-              color: '#ffffff',
+              color: "#ffffff",
               background:
-                'linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2))',
-              width: 'inherit',
-              height: 'inherit'
+                "linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2))",
+              width: "inherit",
+              height: "inherit",
             }}
           >
-            <div className={'row h-100'}>
-              <div className="col-9 my-auto" style={{ padding: '5%' }}>
+            <div className={"row h-100"}>
+              <div className="col-9 my-auto" style={{ padding: "5%" }}>
                 <div
                   style={{
-                    fontSize: '6vw',
-                    fontFamily: 'Rozha One, serif',
-                    color: '#dda73c'
+                    fontSize: "5vw",
+                    fontFamily: "Rozha One, serif",
+                    color: "#dda73c",
                   }}
                 >
                   Connecting the Neighborhood!
                 </div>
-                <div style={{ fontSize: '3vw' }}>
-                  <div style={{ marginBottom: '2vh' }}>
+                <div style={{ fontSize: "3vw" }}>
+                  <div style={{ marginBottom: "2vh" }}>
                     ECODistrict
                     <br />
                     Hampton Roads, VA
@@ -375,7 +373,7 @@ class Land extends Component {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Who are we? */}
         <section
@@ -403,7 +401,7 @@ class Land extends Component {
               <div
                 className="col-5 my-auto"
                 style={{
-                  fontSize: '7vw',
+                  fontSize: '5vw',
                   fontFamily: 'Rozha One, serif'
                 }}
               >
@@ -424,7 +422,7 @@ class Land extends Component {
                 largest African American community.
                 <div
                   style={{
-                    fontSize: '4vw',
+                    fontSize: '2vw',
                     fontFamily: 'Rozha One, serif'
                   }}
                 >
@@ -484,7 +482,7 @@ class Land extends Component {
                 </div>
                 <div
                   style={{
-                    fontSize: '4vw',
+                    fontSize: '2vw',
                     fontFamily: 'Rozha One, serif'
                   }}
                 >

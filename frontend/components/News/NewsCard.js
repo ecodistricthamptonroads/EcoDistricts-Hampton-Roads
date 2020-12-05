@@ -17,7 +17,6 @@ class NewsCard extends Component {
       axios
         .get('/api/file/get_file_by_id/' + this.props.article.image)
         .then(url => {
-          console.log(url.data);
           this.setState({ src: url.data });
         });
     } else {
@@ -27,7 +26,6 @@ class NewsCard extends Component {
 
   render() {
     let src = logo;
-    console.log('The article', this.props.article);
     if (!this.props.article) return null;
     return (
       <div className="newsItem">
