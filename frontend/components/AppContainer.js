@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import '../assets/stylesheets/app.css';
 
 import Header from './Header';
+// import Footer from './Footer';
 import Land from './Land';
 import Issue from './Issue/Issue';
 import EducationJobs from './EducationJobs/EducationJobs';

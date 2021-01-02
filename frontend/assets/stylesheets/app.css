@@ -9,14 +9,17 @@
   font-size: 1.5rem;
 }
 
+.body {
+  line-height: 1.2;
+}
 .Project-body {
   background: linear-gradient(180deg, #1d84e3 0%, #ffffff 125.62%);
   width: 100vw;
   min-height: 70vh;
 }
 .Project-Search-Bar {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url(../images/what_we_do.jpg) no-repeat center;
+  /* background: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), */
+  /* url(../images/what_we_do.jpg) no-repeat center; */
   background-repeat: no-repeat;
   background-size: cover;
   height: 35vh;
@@ -326,6 +329,7 @@ a:link {
 .Resource-Heading {
   padding: 10px;
   font-size: 4em;
+  text-align: center;
 }
 .Resource-text {
   padding: 10px;

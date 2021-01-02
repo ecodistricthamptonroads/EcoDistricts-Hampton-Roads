@@ -357,14 +357,14 @@ class Land extends Component {
               <div className="col-9 my-auto" style={{ padding: '5%' }}>
                 <div
                   style={{
-                    fontSize: '6vw',
+                    fontSize: '5vw',
                     fontFamily: 'Rozha One, serif',
                     color: '#dda73c'
                   }}
                 >
-                  Connecting the Neighborhood!
+                  Connecting the Neighborhood
                 </div>
-                <div style={{ fontSize: '3vw' }}>
+                <div style={{ fontSize: '2.5vw' }}>
                   <div style={{ marginBottom: '2vh' }}>
                     ECODistrict
                     <br />
@@ -377,8 +377,8 @@ class Land extends Component {
           </div>
         </section>
 
-        {/* Who are we? */}
-        <section
+        {/*Who are we? */}
+        {/* <section
           style={{
             backgroundImage: `url('${about_us}')`,
             backgroundAttachment: 'fixed',
@@ -403,7 +403,7 @@ class Land extends Component {
               <div
                 className="col-5 my-auto"
                 style={{
-                  fontSize: '7vw',
+                  fontSize: '5vw',
                   fontFamily: 'Rozha One, serif'
                 }}
               >
@@ -416,7 +416,7 @@ class Land extends Component {
                   backgroundColor: 'rgba(0, 0, 0, 0.6)',
                   // borderRadius: "30px/30px",
                   borderRadius: 0,
-                  padding: '20px'
+                  padding: '35px'
                 }}
               >
                 Eco Districts Hampton Roads hopes to create a beautiful and
@@ -424,28 +424,29 @@ class Land extends Component {
                 largest African American community.
                 <div
                   style={{
-                    fontSize: '4vw',
-                    fontFamily: 'Rozha One, serif'
+                    fontSize: '3vw',
+                    fontFamily: 'Rozha One, serif',
+                    paddingTop: '1rem'
                   }}
                 >
                   <button
                     style={{
-                      color: 'white',
+                      color: 'black',
                       backgroundColor: '#98B391',
                       borderRadius: 10
                     }}
                   >
-                    Learn More!
+                    Learn More
                   </button>
                 </div>
               </div>
               <div className="col-1" />
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* What we do! */}
-        <section
+        {/* <section
           style={{
             backgroundImage: `url('${what_we_do}')`,
             backgroundAttachment: 'fixed',
@@ -490,7 +491,7 @@ class Land extends Component {
                 >
                   <button
                     style={{
-                      color: 'white',
+                      color: 'black',
                       backgroundColor: '#98B391',
                       borderRadius: 10
                     }}
@@ -502,7 +503,7 @@ class Land extends Component {
               <div
                 className="col-5 my-auto"
                 style={{
-                  fontSize: '7vw',
+                  fontSize: '5vw',
                   fontFamily: 'Rozha One, serif'
                 }}
               >
@@ -511,7 +512,7 @@ class Land extends Component {
               <div className="col-1" />
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Recent News */}
         {this.getNews()}
