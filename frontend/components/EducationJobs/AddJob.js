@@ -11,6 +11,8 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
 import BootstrapSwitchButton from 'bootstrap-switch-button-react';
 import Dropdown from 'react-bootstrap/Dropdown';
+import { string } from 'prop-types';
+import '../../assets/stylesheets/app.css';
 const JOB_TYPES = [
   'Executive',
   'General Management',
@@ -40,8 +42,8 @@ class AddJob extends Component {
       location: '',
       salary: '',
       industry: '',
-      jobType: '',
-      career: '',
+      jobType: JOB_TYPES[0],
+      career: CAREERS[0],
       link: '',
       draft: true
     };
@@ -79,7 +81,11 @@ class AddJob extends Component {
   }
 
   validateSalary() {
-    return this.state.salary != '';
+    const parsed_value = parseInt(this.state.salary);
+    return (
+      !isNaN(parsed_value) &&
+      parsed_value.toString().length == this.state.salary.length
+    );
   }
 
   validateIndustry() {
@@ -123,6 +129,8 @@ class AddJob extends Component {
         draft: this.state.draft,
         link: this.state.link
       };
+      console.log(job);
+
       axios
         .post('/api/job/', job)
         .then(job => {
@@ -139,8 +147,8 @@ class AddJob extends Component {
         location: '',
         salary: '',
         industry: '',
-        jobType: '',
-        career: '',
+        jobType: JOB_TYPES[0],
+        career: CAREERS[0],
         link: '',
         draft: true
       });
@@ -150,7 +158,7 @@ class AddJob extends Component {
   addJobForms() {
     return (
       <div>
-        <Form>
+        <Form className="add-job-body">
           <Form.Group controlId="Title">
             <Form.Label>Job Title</Form.Label>
             <Form.Control
@@ -232,7 +240,7 @@ class AddJob extends Component {
               isInvalid={this.state.notInitial && !this.validateSalary()}
             />
             <Form.Control.Feedback type="invalid">
-              Please include the requested salary
+              Please include the requested numberic salary
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group controlId="Job Industry">
@@ -254,7 +262,7 @@ class AddJob extends Component {
             <Form.Label>Job Type</Form.Label>
             <Form.Control
               name="jobType"
-              value={this.state.jobType}
+              value={'PICK A JOB TYPE'}
               onChange={this.handleChange}
               as="select"
               placeholder="Select Job Type"
@@ -273,7 +281,7 @@ class AddJob extends Component {
             <Form.Label>Job Type</Form.Label>
             <Form.Control
               name="career"
-              value={this.state.career}
+              value={'PICK A CAREER'}
               onChange={this.handleChange}
               as="select"
               placeholder="Select Job Career"

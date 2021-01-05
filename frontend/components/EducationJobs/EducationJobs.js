@@ -219,14 +219,21 @@ class Jobs extends Component {
           JOBS_TO_SHOW.map(job => {
             return (
               <a key={job._id} href={job._id}>
-                <Card className="job-elem" style={{ maxWidth: '36rem' }}>
+                <Card className="job-elem col-4" style={{ maxWidth: '36rem' }}>
                   <div className="job-card-row">
                     <Card.Img
                       className="job-card-img"
                       variant="top"
                       src="https://brands-cdn.employbridge.com/content/assets/news//40169262_14124173_Large.jpg"
                     />
-                    <Card.Title style={{ padding: '10px' }}>
+                    <Card.Title
+                      style={{
+                        padding: '5%',
+                        textOverflow: 'clip',
+                        overflowWrap: 'break-word',
+                        width: '50%'
+                      }}
+                    >
                       {job.title || ''}
                     </Card.Title>
                   </div>
@@ -241,7 +248,10 @@ class Jobs extends Component {
                     <Card.Text>{'📍 ' + (job.location || '')} </Card.Text>
 
                     <hr />
-                    <div className="job-card-row flex-center ">
+                    <div
+                      className="job-card-row flex-center "
+                      style={{ padding: '5%' }}
+                    >
                       {this.props.parentProps.loggedIn && job.draft ? (
                         <Button
                           onClick={e => {
@@ -343,6 +353,7 @@ class Jobs extends Component {
     ].sort();
     const careers = [...new Set(filteredJobs.map(job => job.career))].sort();
     const jobTypes = [...new Set(filteredJobs.map(job => job.jobType))].sort();
+    console.log(filteredJobs);
     return (
       <div className="grid-child job-filter-box ">
         {locations.length != 0 ? (

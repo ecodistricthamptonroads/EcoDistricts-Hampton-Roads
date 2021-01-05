@@ -9,10 +9,7 @@
   color: white;
 }
 .job-elem {
-  margin-top: 15px;
-  margin-bottom: 15px;
-  margin-left: 0.5vw;
-  margin-right: 0.5vw;
+  margin: auto;
   align-self: left;
   width: 100%;
 }
@@ -26,6 +23,9 @@
   border: #eca61f;
   text-transform: uppercase;
 }
+.job-container {
+  padding-top: 1%;
+}
 .job-btn:hover {
   background-color: #eece8e;
   /* background: #fff; */
@@ -38,6 +38,8 @@
 }
 .jobs {
   margin: auto !important;
+  padding-top: 3%;
+  padding-bottom: 3%;
 }
 .job-elem:hover {
   background-color: #007bff7e;

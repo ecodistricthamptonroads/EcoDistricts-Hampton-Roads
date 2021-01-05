@@ -140,7 +140,7 @@ class Land extends Component {
   }
 
   getEvents() {
-    const events = [...this.state.events, ...this.state.events];
+    const events = this.state.events;
 
     return (
       <section
@@ -187,7 +187,7 @@ class Land extends Component {
                           <u>{event.title}</u>
                         </h2>
                         <h3>@{this._getDateFormatted(new Date(event.date))}</h3>
-                        <p style={{ padding: '5%' }}>{event.description}</p>
+                        <p style={{ padding: '15%' }}>{event.description}</p>
                       </Carousel.Caption>
                     </Carousel.Item>
                   );
@@ -287,8 +287,8 @@ class Land extends Component {
       carousel_main_4
     ];
     const zoomOutProperties = {
-      duration: 5000,
-      transitionDuration: 100,
+      duration: 2000,
+      transitionDuration: 1000,
       infinite: true,
       indicators: false,
       scale: 0.1,
