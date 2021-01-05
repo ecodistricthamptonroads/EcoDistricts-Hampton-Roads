@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "NewsArticle",
+  "info": {
+    "name": "Article"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "unique": true,
+      "minLength": 1
+    },
+    "author": {
+      "type": "string",
+      "required": true,
+      "minLength": 1
+    },
+    "description": {
+      "type": "richtext",
+      "required": true,
+      "minLength": 1
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": ["images"],
+      "plugin": "upload",
+      "required": false
+    },
+    "date": {
+      "type": "datetime"
+    }
+  }
+}

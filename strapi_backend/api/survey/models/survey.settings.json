@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "Survey",
+  "info": {
+    "name": "Survey"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "richtext",
+      "default": "/https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)/",
+      "required": true
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    }
+  }
+}
