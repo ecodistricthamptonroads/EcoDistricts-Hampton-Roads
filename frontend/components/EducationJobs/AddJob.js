@@ -240,7 +240,7 @@ class AddJob extends Component {
               isInvalid={this.state.notInitial && !this.validateSalary()}
             />
             <Form.Control.Feedback type="invalid">
-              Please include the requested numberic salary
+              Please include the requested numeric salary
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group controlId="Job Industry">

@@ -296,7 +296,12 @@ class Land extends Component {
     };
     return (
       <section
-        style={{ height: '120vh', width: '100vw', padding: 0 }}
+        style={{
+          backgroundColor: 'black',
+          height: '120vh',
+          width: '100vw',
+          padding: 0
+        }}
         className="slide-container col-12"
       >
         <Zoom {...zoomOutProperties}>
