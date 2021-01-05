@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { connect } from 'react-redux';
 import React from 'react';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
@@ -57,10 +56,4 @@ class JobPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    job: state.job.job
-  };
-};
-
-export default connect(mapStateToProps)(JobPage);
+export default JobPage;

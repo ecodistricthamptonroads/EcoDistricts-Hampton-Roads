@@ -40,14 +40,14 @@ if (isDevServer) {
     devServer: {
       contentBase: './public',
       hot: true,
-      inline: true,
-      port: 3000,
-      proxy: {
-        '/**': {
-          target: 'http://localhost:8080',
-          secure: false
-        }
-      }
+      inline: true
+      // port: 3000,
+      // proxy: {
+      //   '/**': {
+      //     target: 'http://localhost:8080',
+      //     secure: false
+      //   }
+      // }
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),

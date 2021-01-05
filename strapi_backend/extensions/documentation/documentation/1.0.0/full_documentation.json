@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "01/05/2021 4:14:07 PM"
+    "x-generation-date": "01/05/2021 5:43:55 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -5340,7 +5340,7 @@
         }
       },
       "Survey": {
-        "required": ["id", "title", "link", "date"],
+        "required": ["id", "title", "date", "link"],
         "properties": {
           "id": {
             "type": "string"
@@ -5348,12 +5348,12 @@
           "title": {
             "type": "string"
           },
-          "link": {
-            "type": "string",
-            "default": "/https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)/"
-          },
           "date": {
             "type": "string"
+          },
+          "link": {
+            "type": "string",
+            "minLength": 1
           },
           "published_at": {
             "type": "datetime"
@@ -5361,17 +5361,17 @@
         }
       },
       "NewSurvey": {
-        "required": ["title", "link", "date"],
+        "required": ["title", "date", "link"],
         "properties": {
           "title": {
             "type": "string"
           },
-          "link": {
-            "type": "string",
-            "default": "/https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)/"
-          },
           "date": {
             "type": "string"
+          },
+          "link": {
+            "type": "string",
+            "minLength": 1
           },
           "published_at": {
             "type": "datetime"

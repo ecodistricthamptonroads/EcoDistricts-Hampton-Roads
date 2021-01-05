@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { connect } from 'react-redux';
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 
@@ -32,14 +31,4 @@ class AdminIssues extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    issues: state.issue.issues
-  };
-};
-
-const mapDispatchToProps = (/* dispatch */) => {
-  return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps())(AdminIssues);
+export default AdminIssues;

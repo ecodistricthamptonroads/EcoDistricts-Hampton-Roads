@@ -1,9 +1,7 @@
 import { Component } from 'react';
-import { connect } from 'react-redux';
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { addIssue } from '../../actions/index';
 import axios from 'axios';
 
 class ReportIssue extends Component {
@@ -169,10 +167,4 @@ class ReportIssue extends Component {
   }
 }
 
-const mapDispatchToProps = (/*dispatch*/) => {
-  return {
-    addIssue: addIssue
-  };
-};
-
-export default connect(null, mapDispatchToProps())(ReportIssue);
+export default ReportIssue;

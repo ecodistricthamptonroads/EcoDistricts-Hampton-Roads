@@ -2,14 +2,8 @@ import { Component } from 'react';
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
-import {
-  addProject,
-  deleteProject,
-  getProjects,
-  updateProject
-} from '../../actions';
+
 import WarfieldCanalProject from '../../assets/images/WarfieldCanalProject.jpg';
-import { connect } from 'react-redux';
 
 class ProjectStatus extends Component {
   constructor(props) {
@@ -236,20 +230,4 @@ class ProjectStatus extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    projects: state.project.projects,
-    loggedIn: state.login.user
-  };
-};
-
-const mapDispatchToProps = (/* dispatch */) => {
-  return {
-    addProject: addProject,
-    getProjects: getProjects,
-    deleteProject: deleteProject,
-    updateProject: updateProject
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps())(ProjectStatus);
+export default ProjectStatus;

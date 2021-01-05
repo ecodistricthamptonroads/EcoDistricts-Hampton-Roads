@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { connect } from 'react-redux';
 import React from 'react';
 import logo from '../../assets/images/logo.png';
 import Card from 'react-bootstrap/Card';
@@ -52,10 +51,4 @@ class NewsCard extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    loggedIn: state.login.loggedIn
-  };
-};
-
-export default connect(mapStateToProps)(NewsCard);
+export default NewsCard;

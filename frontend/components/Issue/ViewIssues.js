@@ -1,8 +1,6 @@
 import { Component } from 'react';
-import { connect } from 'react-redux';
 import React from 'react';
 import Table from 'react-bootstrap/Table';
-import { deleteIssue, getIssues } from '../../actions/index';
 
 class ViewIssues extends Component {
   constructor(props) {
@@ -76,18 +74,4 @@ class ViewIssues extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    loggedIn: state.login.user,
-    issues: state.issues.issues
-  };
-};
-
-const mapDispatchToProps = (/* dispatch */) => {
-  return {
-    delete: deleteIssue,
-    getIssues: getIssues
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps())(ViewIssues);
+export default ViewIssues;

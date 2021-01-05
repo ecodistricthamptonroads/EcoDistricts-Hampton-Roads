@@ -110,12 +110,12 @@ class Land extends Component {
     };
   }
   componentDidMount() {
-    axios.get('/api/event/').then(events => {
-      this.setState({ events: events.data });
-    });
-    axios.get('/api/news/').then(news => {
-      this.setState({ news: news.data });
-    });
+    // axios.get("/api/event/").then((events) => {
+    //   this.setState({ events: events.data });
+    // });
+    // axios.get("/api/news/").then((news) => {
+    //   this.setState({ news: news.data });
+    // });
   }
   _getDateFormatted(date) {
     const monthNames = [

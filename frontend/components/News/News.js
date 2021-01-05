@@ -1,9 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import React from 'react';
-import NewsCard from './NewsCard';
 import Form from 'react-bootstrap/Form';
-import { addArticle, deleteArticle, getArticles } from '../../actions';
 import axios from 'axios';
 import Events from './Events';
 import '../../assets/stylesheets/app.css';
@@ -290,17 +288,4 @@ class News extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    news: state.news.news,
-    user: state.login.user
-  };
-};
-const mapDispatchToProps = (/* dispatch */) => {
-  return {
-    addArticle: addArticle,
-    getNews: getArticles,
-    deleteArticle: deleteArticle
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps())(News);
+export default News;

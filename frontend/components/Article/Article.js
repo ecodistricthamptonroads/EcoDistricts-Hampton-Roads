@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { connect } from 'react-redux';
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -56,10 +55,4 @@ class Article extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    news: state.news.news
-  };
-};
-
-export default connect(mapStateToProps)(Article);
+export default Article;

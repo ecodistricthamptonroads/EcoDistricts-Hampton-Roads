@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import { logout } from '../actions/index';
 import logo from '../assets/images/logo.png';
 import Land from './Land';
-import { fetchUser } from '../actions';
 
 import '../assets/stylesheets/app.css';
 
@@ -15,9 +12,7 @@ class Header extends Component {
     super(props);
     this.state = { isOpen: false };
   }
-  componentDidMount() {
-    this.props.fetchUser();
-  }
+  componentDidMount() {}
 
   isLoggedIn() {
     switch (this.props.user) {
@@ -120,16 +115,4 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.login.user
-  };
-};
-
-function mapDispatchToProps() {
-  return {
-    fetchUser: fetchUser
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps())(Header);
+export default Header;

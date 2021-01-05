@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export function getStrapiURL(path = '') {
   return `${process.env.NEXT_PUBLIC_STRAPI_API_URL ||
     'http://localhost:1337'}${path}`;
@@ -34,4 +36,9 @@ export function getSpecificImage(type, image_obj) {
     default:
       return getStrapiMedia(image_obj);
   }
+}
+
+const SURVEY_PATH = '/Surveys';
+export default async function getSurveys() {
+  return axios.get(getStrapiURL(SURVEY_PATH));
 }

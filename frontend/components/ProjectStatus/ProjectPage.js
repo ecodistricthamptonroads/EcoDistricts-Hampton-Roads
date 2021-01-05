@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { connect } from 'react-redux';
 import React from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';

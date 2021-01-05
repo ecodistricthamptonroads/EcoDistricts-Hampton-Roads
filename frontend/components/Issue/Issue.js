@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { connect } from 'react-redux';
 import React from 'react';
 import ReportIssue from './ReportIssue';
 import ViewIssues from './ViewIssues';
@@ -9,13 +8,10 @@ class Issue extends Component {
     super(props);
   }
 
-  ifLoggedIn() {
-    return <ReportIssue />;
-  }
   render() {
     return (
       <div>
-        {this.ifLoggedIn()}
+        <ReportIssue />
         <hr />
         <ViewIssues />
       </div>
@@ -23,10 +19,4 @@ class Issue extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    loggedIn: state.login.user
-  };
-};
-
-export default connect(mapStateToProps)(Issue);
+export default Issue;
