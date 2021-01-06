@@ -3,6 +3,7 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 
+import { getSurveys } from '../../helpers/api';
 import WarfieldCanalProject from '../../assets/images/WarfieldCanalProject.jpg';
 
 class ProjectStatus extends Component {

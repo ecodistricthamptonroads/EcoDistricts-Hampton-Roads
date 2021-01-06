@@ -124,7 +124,7 @@ body {
   text-align: left;
   font-style: normal;
   font-weight: bold;
-  font-size: 48px;
+  font-size: 42px;
   line-height: 64px;
   padding: 7.5%;
   color: black;
@@ -217,9 +217,9 @@ body {
   height: 100%;
 }
 .About-Heading {
-  font-family: Poppins;
+  /* font-family: Poppins; */
   font-style: normal;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 72px;
   line-height: 121%;
 
@@ -235,12 +235,13 @@ body {
   background-color: white;
 }
 .About-who {
-  font-family: Poppins;
+  /* font-family: Poppins; */
   font-style: normal;
-  font-weight: normal;
+  font-weight: bold;
   font-size: 48px;
   line-height: 121%;
   text-align: center;
+  padding: 5%;
   /* or 58px */
 
   color: #000000;
@@ -250,7 +251,7 @@ body {
   width: 50%;
 }
 .About-text {
-  font-family: Poppins;
+  /* font-family: Poppins; */
   font-style: normal;
   font-weight: normal;
   font-size: 28px;
@@ -406,6 +407,16 @@ a:link {
   color: black;
   /* text-align: center; */
 }
+
+.Resource-list{
+  color: #007a5e;  
+  font-size: 1.5em;
+  text-decoration: underline;     
+}
+
+.Resource-Grid {
+  padding-bottom: 5%;
+}
 .event-date {
   background: #007a5e 55%;
   text-align: center;
@@ -448,8 +459,9 @@ a:link {
   width: 100vw;
 }
 .Events-heading {
-  padding: 1%;
+  padding: 3%;
   color: white;
+  font-weight: bold;
 }
 .event {
   padding: 1%;
