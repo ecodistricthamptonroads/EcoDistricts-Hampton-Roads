@@ -26,21 +26,50 @@
       "regex": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)",
       "required": true
     },
-    "career": {
-      "type": "string",
-      "required": true,
-      "minLength": 1
-    },
     "industry": {
       "type": "string",
       "required": true
     },
-    "salary": {
-      "type": "string"
-    },
     "Description": {
       "type": "richtext",
       "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true,
+      "minLength": 1
+    },
+    "jobType": {
+      "type": "enumeration",
+      "enum": [
+        "Executive",
+        "General_Management",
+        "Supervisor",
+        "Operations",
+        "Administrative"
+      ],
+      "required": true,
+      "default": "Executive"
+    },
+    "career": {
+      "type": "enumeration",
+      "enum": [
+        "Credential",
+        "Coaching",
+        "Counseling",
+        "Apprenticeship",
+        "Internship",
+        "Fellowship",
+        "Scholarship",
+        "Research"
+      ],
+      "required": true,
+      "default": "Credential"
+    },
+    "salary": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
     }
   }
 }

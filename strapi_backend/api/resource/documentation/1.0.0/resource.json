@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/jobs": {
+    "/resources": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -12,7 +12,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Job"
+                    "$ref": "#/components/schemas/Resource"
                   }
                 }
               }
@@ -50,7 +50,7 @@
           }
         },
         "summary": "",
-        "tags": ["Job"],
+        "tags": ["Resource"],
         "parameters": [
           {
             "name": "_limit",
@@ -199,7 +199,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Job"
+                  "$ref": "#/components/schemas/Resource"
                 }
               }
             }
@@ -236,21 +236,21 @@
           }
         },
         "summary": "",
-        "tags": ["Job"],
+        "tags": ["Resource"],
         "requestBody": {
           "description": "",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewJob"
+                "$ref": "#/components/schemas/NewResource"
               }
             }
           }
         }
       }
     },
-    "/jobs/count": {
+    "/resources/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -301,11 +301,11 @@
           }
         },
         "summary": "",
-        "tags": ["Job"],
+        "tags": ["Resource"],
         "parameters": []
       }
     },
-    "/jobs/{id}": {
+    "/resources/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -315,7 +315,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Job"
+                  "$ref": "#/components/schemas/Resource"
                 }
               }
             }
@@ -352,7 +352,7 @@
           }
         },
         "summary": "",
-        "tags": ["Job"],
+        "tags": ["Resource"],
         "parameters": [
           {
             "name": "id",
@@ -375,7 +375,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Job"
+                  "$ref": "#/components/schemas/Resource"
                 }
               }
             }
@@ -412,14 +412,14 @@
           }
         },
         "summary": "",
-        "tags": ["Job"],
+        "tags": ["Resource"],
         "requestBody": {
           "description": "",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewJob"
+                "$ref": "#/components/schemas/NewResource"
               }
             }
           }
@@ -484,7 +484,7 @@
           }
         },
         "summary": "",
-        "tags": ["Job"],
+        "tags": ["Resource"],
         "parameters": [
           {
             "name": "id",
@@ -502,138 +502,110 @@
   },
   "components": {
     "schemas": {
-      "Job": {
-        "required": [
-          "id",
-          "title",
-          "company",
-          "link",
-          "industry",
-          "Description",
-          "location",
-          "jobType",
-          "career",
-          "salary"
-        ],
+      "Resource": {
+        "required": ["id", "Title", "Description", "link"],
         "properties": {
           "id": {
             "type": "string"
           },
-          "title": {
+          "Title": {
             "type": "string",
             "minLength": 1
-          },
-          "company": {
-            "type": "string",
-            "minLength": 1
-          },
-          "link": {
-            "type": "string"
-          },
-          "industry": {
-            "type": "string"
           },
           "Description": {
-            "type": "string"
-          },
-          "location": {
             "type": "string",
             "minLength": 1
           },
-          "jobType": {
-            "type": "string",
-            "default": "Executive",
-            "enum": [
-              "Executive",
-              "General_Management",
-              "Supervisor",
-              "Operations",
-              "Administrative"
-            ]
+          "image": {
+            "required": [
+              "id",
+              "name",
+              "hash",
+              "mime",
+              "size",
+              "url",
+              "provider"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "alternativeText": {
+                "type": "string"
+              },
+              "caption": {
+                "type": "string"
+              },
+              "width": {
+                "type": "integer"
+              },
+              "height": {
+                "type": "integer"
+              },
+              "formats": {
+                "type": "object"
+              },
+              "hash": {
+                "type": "string"
+              },
+              "ext": {
+                "type": "string"
+              },
+              "mime": {
+                "type": "string"
+              },
+              "size": {
+                "type": "number"
+              },
+              "url": {
+                "type": "string"
+              },
+              "previewUrl": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "provider_metadata": {
+                "type": "object"
+              },
+              "related": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
           },
-          "career": {
+          "link": {
             "type": "string",
-            "default": "Credential",
-            "enum": [
-              "Credential",
-              "Coaching",
-              "Counseling",
-              "Apprenticeship",
-              "Internship",
-              "Fellowship",
-              "Scholarship",
-              "Research"
-            ]
-          },
-          "salary": {
-            "type": "number"
+            "minLength": 1
           },
           "published_at": {
             "type": "datetime"
           }
         }
       },
-      "NewJob": {
-        "required": [
-          "title",
-          "company",
-          "link",
-          "industry",
-          "Description",
-          "location",
-          "jobType",
-          "career",
-          "salary"
-        ],
+      "NewResource": {
+        "required": ["Title", "Description", "link"],
         "properties": {
-          "title": {
+          "Title": {
             "type": "string",
             "minLength": 1
           },
-          "company": {
+          "Description": {
             "type": "string",
             "minLength": 1
           },
           "link": {
-            "type": "string"
-          },
-          "industry": {
-            "type": "string"
-          },
-          "Description": {
-            "type": "string"
-          },
-          "location": {
             "type": "string",
             "minLength": 1
-          },
-          "jobType": {
-            "type": "string",
-            "default": "Executive",
-            "enum": [
-              "Executive",
-              "General_Management",
-              "Supervisor",
-              "Operations",
-              "Administrative"
-            ]
-          },
-          "career": {
-            "type": "string",
-            "default": "Credential",
-            "enum": [
-              "Credential",
-              "Coaching",
-              "Counseling",
-              "Apprenticeship",
-              "Internship",
-              "Fellowship",
-              "Scholarship",
-              "Research"
-            ]
-          },
-          "salary": {
-            "type": "number"
           },
           "published_at": {
             "type": "datetime"
@@ -650,7 +622,7 @@
   },
   "tags": [
     {
-      "name": "Job"
+      "name": "Resource"
     }
   ]
 }
