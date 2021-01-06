@@ -46,7 +46,7 @@
   "dependencies": {
     "@toast-ui/react-editor": "^2.5.0",
     "aws-sdk": "^2.773.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "body-parser": "^1.18.2",
     "bootstrap": "^4.5.3",
     "bootstrap-switch-button-react": "^1.2.0",
