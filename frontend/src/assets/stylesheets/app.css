@@ -276,7 +276,21 @@ body {
 .About-row > * {
   margin: 10px;
 }
+.MeetTheTeam-Heading {
+  /* font-family: Poppins; */
+  font-style: normal;
+  font-weight: 700;
+  font-size: 72px;
+  line-height: 121%;
 
+  padding-left: 1em;
+  padding-top: 1em;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../images/about_us.jpg) no-repeat;
+  height: 50vh;
+  color: #ffffff;
+  background-size: 100vw 100vh;
+}
 .intro {
   position: relative;
   margin: auto;

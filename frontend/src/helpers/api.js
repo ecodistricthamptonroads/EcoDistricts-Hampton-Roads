@@ -54,3 +54,7 @@ const JOBS_PATH = '/Jobs';
 export async function getJobs() {
   return axios.get(getStrapiURL(JOBS_PATH));
 }
+const PROJECTS_PATH = '/Projects';
+export async function getProjects() {
+  return axios.get(getStrapiURL(PROJECTS_PATH));
+}

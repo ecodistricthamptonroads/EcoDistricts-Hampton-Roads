@@ -103,7 +103,8 @@ class MeetTheTeam extends React.Component {
   render() {
     return (
       <div>
-        <div className="row" style={{ height: '30vh', background: 'gray' }} />
+        <div className="MeetTheTeam-Heading">Meet The Team</div>
+        {/* <div className="row" style={{ height: '30vh', background: 'gray' }} /> */}
         <div className="row  justify-content-center " style={{ padding: '5%' }}>
           <Card className="col-3" style={CardStyle}>
             <Card.Img variant="top" src={garry} />
