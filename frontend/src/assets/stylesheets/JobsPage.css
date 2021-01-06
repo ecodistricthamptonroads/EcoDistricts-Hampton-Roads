@@ -89,11 +89,12 @@
 .checkbox-options {
   /* display: flex;
   flex-direction: row; */
+  margin-top: 3%;
 }
 .checkbox-options > * {
   margin: auto !important;
-  min-width: 25% !important;
-  margin-left: 0.5em !important;
+  /* min-width: 25% !important; */
+  /* margin-left: 0.5em !important; */
 
   /* flex: 0 !important ; */
 }
