@@ -1,3 +1,41 @@
+#navbar-logo {
+  width: 15rem;
+}
+.navbar-nav {
+  margin-left: 0;
+}
+.nav-link {
+  color: #007a5e !important;
+  font-size: 1.5rem;
+}
+.title {
+  font-weight: bold;
+}
+
+.body {
+  line-height: 1.2;
+}
+.Homepage-container {
+  background: white;
+  width: 100%;
+  color: black;
+  padding: 5% 20% 5% 20%;
+}
+.Homepage-leftheader {
+  color: #007a5e;
+  font-weight: 500;
+}
+.Homepage-column {
+  width: 33%;
+  padding: 0% 1.5% 0% 1.5%;
+  font-size: 1.25rem;
+  color: #303030;
+}
+.percent {
+  font-weight: 700;
+  font-size: 84px;
+  text-align: center;
+}
 .Project-body {
   background: linear-gradient(180deg, #1d84e3 0%, #ffffff 125.62%);
   width: 100vw;
@@ -13,8 +51,8 @@ body {
 }
 
 .Project-Search-Bar {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url(../images/what_we_do.jpg) no-repeat center;
+  /* background: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), */
+  /* url(../images/what_we_do.jpg) no-repeat center; */
   background-repeat: no-repeat;
   background-size: cover;
   height: 35vh;
@@ -36,8 +74,11 @@ body {
 }
 .focus-text {
   font-size: 2em;
-  padding: 10%;
+  font-weight: 500;
+  padding-left: 7.5%;
+  padding-bottom: 4%;
   margin: auto;
+  color: black;
 }
 .form-group {
   width: 25em;
@@ -56,32 +97,54 @@ body {
   text-align: center;
   padding: 1%;
 }
+
 .Survey-container {
-  padding: 0 10%;
+  background: linear-gradient(180deg, #1d84e3 0%, #ffffff 125.62%);
+  /* height: 95vh; */
+  width: 100%;
+  padding: 5% 15% 5% 15%;
+  color: white;
+  /* padding: 0 10%;
   width: 100vw;
   margin: auto;
   background: url(../images/survey.png) no-repeat center #fff;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
 }
 .Survey-Heading-div {
-  text-align: center;
-  font-family: Poppins;
+  text-align: left;
   font-style: normal;
   font-weight: bold;
   font-size: 64px;
   line-height: 96px;
-  margin-left: 2em;
-  padding: 1%;
+  padding-bottom: 1em;
+  color: black;
 }
-.Survey-Feedback {
-  text-align: center;
-  font-family: Poppins;
+.Survey-SubHeader {
+  text-align: left;
   font-style: normal;
   font-weight: bold;
   font-size: 48px;
-  line-height: 72px;
-  padding: 2%;
+  line-height: 64px;
+  padding: 7.5%;
+  color: black;
+}
+.Survey-Feedback {
+  text-align: center;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 96px;
+  padding-top: 5%;
+  color: black;
+}
+.Survey-Feedback-focus-text {
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  padding-bottom: 4%;
+  margin: auto;
+  color: black;
 }
 .SurveyList {
   align-content: center;
@@ -93,14 +156,14 @@ body {
 }
 
 .Survey-elem {
-  background-color: gray;
+  background-color: #eca61f;
   text-align: center;
   font-weight: bold;
   padding: 10% 0;
   min-height: 10vh;
 }
 .mc-field-group {
-  color: white;
+  color: black;
 }
 .mc-field-group > input {
   margin-top: 5%;
@@ -110,14 +173,21 @@ body {
   background-color: #98b391;
   height: fit-content;
   margin: auto;
-  padding: 5%;
+  padding: 1.5%;
   border-radius: 5px;
+}
+#mce-EMAIL {
+  margin-bottom: 5%;
+}
+#mce-MMERGE4-country {
+  margin-top: 5%;
 }
 #mc-embedded-subscribe {
   background: #1d84e3;
   border-radius: 5px;
   border: white;
   margin: auto;
+  margin-top: 5%;
   padding: 2%;
   color: white;
   width: 9em;
@@ -312,7 +382,7 @@ body {
 }
 a:link {
   padding: 10px;
-  color: black !important;
+  /* color: black !important; */
 }
 .Resource-card {
   box-shadow: 7px 10px 20px 7px rgba(0, 0, 0, 0.25);
@@ -327,6 +397,7 @@ a:link {
 .Resource-Heading {
   padding: 10px;
   font-size: 4em;
+  text-align: center;
 }
 .Resource-text {
   padding: 10px;

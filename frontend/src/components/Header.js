@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import logo from '../assets/images/logo.png';
+import brand from '../assets/images/Brand1.png';
 import Land from './Land';
 
 import '../assets/stylesheets/app.css';
@@ -48,11 +49,14 @@ class Header extends Component {
     const CONTACT_US_LINK =
       'https://us4.list-manage.com/contact-form?u=51eb002c7ef49ac4bf7de17e2&form_id=c58d36b6f54bd9b975ec2607253190d2';
     return (
-      <Navbar collapseOnSelect bg="light" expand="lg">
-        <Navbar.Brand href="/">Eco District Hampton Roads</Navbar.Brand>
+      <Navbar collapseOnSelect expand="lg">
+        <Navbar.Brand href="/">
+          <img id="navbar-logo" src={brand}></img>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
+          <Nav>
+            {/* <Nav className="mr-auto"> */}
             <Nav.Item>
               <Nav.Link eventKey="2" as={Link} to="/news">
                 News

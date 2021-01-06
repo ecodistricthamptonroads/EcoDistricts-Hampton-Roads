@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { connect } from 'react-redux';
 import React from 'react';
 import { Image, Carousel } from 'react-bootstrap';
 import '../assets/stylesheets/app.css';
@@ -109,12 +110,14 @@ class Land extends Component {
     };
   }
   componentDidMount() {
-    // axios.get("/api/event/").then((events) => {
-    //   this.setState({ events: events.data });
-    // });
-    // axios.get("/api/news/").then((news) => {
-    //   this.setState({ news: news.data });
-    // });
+    axios.get('/api/event/').then(events => {
+      console.log(events.data);
+      this.setState({ events: events.data });
+    });
+    axios.get('/api/news/').then(news => {
+      console.log(news.data);
+      this.setState({ news: news.data });
+    });
   }
   _getDateFormatted(date) {
     const monthNames = [
@@ -139,7 +142,7 @@ class Land extends Component {
   }
 
   getEvents() {
-    const events = this.state.events;
+    const events = [...this.state.events, ...this.state.events];
 
     return (
       <section
@@ -186,7 +189,7 @@ class Land extends Component {
                           <u>{event.title}</u>
                         </h2>
                         <h3>@{this._getDateFormatted(new Date(event.date))}</h3>
-                        <p style={{ padding: '15%' }}>{event.description}</p>
+                        <p style={{ padding: '5%' }}>{event.description}</p>
                       </Carousel.Caption>
                     </Carousel.Item>
                   );
@@ -286,8 +289,8 @@ class Land extends Component {
       carousel_main_4
     ];
     const zoomOutProperties = {
-      duration: 2000,
-      transitionDuration: 1000,
+      duration: 5000,
+      transitionDuration: 100,
       infinite: true,
       indicators: false,
       scale: 0.1,
@@ -295,12 +298,7 @@ class Land extends Component {
     };
     return (
       <section
-        style={{
-          backgroundColor: 'black',
-          height: '120vh',
-          width: '100vw',
-          padding: 0
-        }}
+        style={{ height: '120vh', width: '100vw', padding: 0 }}
         className="slide-container col-12"
       >
         <Zoom {...zoomOutProperties}>
@@ -333,94 +331,190 @@ class Land extends Component {
       >
         {/* Starting carousel */}
         {this.getMainCarousel()}
+        <section
+          style={{
+            backgroundImage: `url('${other_carousel_2}')`,
+
+            textAlign: 'left',
+            height: '100vh',
+            backgroundAttachment: 'fixed',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover'
+          }}
+        >
+          <div
+            className={'container-fluid'}
+            style={{
+              color: '#ffffff',
+              background:
+                'linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2))',
+              width: 'inherit',
+              height: 'inherit'
+            }}
+          >
+            <div className={'row h-100'}>
+              <div className="col-9 my-auto" style={{ padding: '5%' }}>
+                <div
+                  style={{
+                    fontSize: '5vw',
+                    fontFamily: 'Rozha One, serif',
+                    color: '#dda73c'
+                  }}
+                >
+                  Connecting the Neighborhood
+                </div>
+                <div style={{ fontSize: '2.5vw' }}>
+                  <div style={{ marginBottom: '2vh' }}>
+                    ECODistrict
+                    <br />
+                    Hampton Roads, VA
+                  </div>
+                  <div>Are you in the district?</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/*Who are we? */}
-        <div className="Homepage-container">
-          <div>
-            <div className="row">
-              <h1 className="row Homepage-leftheader"> Who are we?</h1>
-              <div className="col">
-                <h1
-                  className="row focus-text"
-                  Style="font-size: 1.5em; color: #303030;"
-                >
-                  We are an initiative started by a man out on a mission from
-                  within the Cavalier Manor neighborhood. We have a simple goal
-                  of reinvigorating the Cavalier Manor neighborhood and
-                  empowering the neighborhood through sustainability.
-                </h1>
-                <h1
-                  className="row focus-text"
-                  Style="font-size: 1.5em; color: #303030;"
-                >
-                  However, we absolutely CANNOT do this without YOU. You are the
-                  community and know what is best for your neighborhood. We are
-                  here in the background to serve you. Find out more about this
-                  movement below and the ways you can make a difference in your
-                  local neighborhood!
-                </h1>
-              </div>
-            </div>
-          </div>
 
-          <div class="row" Style="text-align: center; padding-top: 2%;">
-            <div class="column" Style="width:33%; color: #f75002;">
-              <div class="percent">
-                <p>7</p>
-              </div>
-              <h4 class="title">Sub-Communities</h4>
-            </div>
-            <div class="column" Style="width:33%; color: #f29e02;">
-              <div class="percent">
-                <p>10000</p>
-              </div>
-              <h4 class="title">People Impacted</h4>
-            </div>
-            <div class="column" Style="width:33%; color: #374059;">
-              <div class="percent">
-                <p>5-100</p>
-              </div>
-              <h4 class="title">Age Range Involved</h4>
-            </div>
-          </div>
-
+        {/*Who are we? */}
+        {/* <section
+          style={{
+            backgroundImage: `url('${about_us}')`,
+            backgroundAttachment: 'fixed',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            textAlign: 'center',
+            height: '100vh'
+          }}
+        >
           <div
-            class="row"
-            Style="text-align: left; padding-top: 5%; font-weight: 400;"
+            className={'container-fluid'}
+            style={{
+              color: '#ffffff',
+              backgroundColor: 'rgba(0, 0, 0, 0.7)',
+              width: 'inherit',
+              height: 'inherit'
+            }}
           >
-            <div class="column Homepage-column">
-              <h3 class="title">What is an ECODistrict?</h3>
-              <p>
-                An ECODistrict is a community developed with a holistic
-                sustainable view in mind. We strive to make sure our
-                neighborhoods are sustainable- Equitable, Economical, and
-                Environmental.
-              </p>
-            </div>
-            <div class="column Homepage-column">
-              <h3 class="title">What is Sustainability?</h3>
-              <p>
-                Sustainability is holding, practicing, and sometimes even
-                fighting for the principles of an equitable community, an
-                economy that works for everyone, and stewarding our community
-                environment well.
-              </p>
-            </div>
-            <div class="column Homepage-column">
-              <h3 class="title">What is an ECODistrict?</h3>
-              <p>
-                Want to feel a sense of belonging, finally find out who those
-                strangers living around you are, or make a tangible difference?
-                We do to. The American system has disinvested from the Cavalier
-                Manor neighborhood in previous decades, and we can change that
-                narrative now! Come empower the neighborhood again through
-                sustainable initiatives that will tangibily make our
-                neighborhood more affordable, healthier, and connected.
-              </p>
+            <div className={'row h-100'}>
+              <div className="col-1" />
+              <div
+                className="col-5 my-auto"
+                style={{
+                  fontSize: '5vw',
+                  fontFamily: 'Rozha One, serif'
+                }}
+              >
+                <div style={{ color: '#dda73c' }}>Who are we?</div>
+              </div>
+              <div
+                className="col-6 my-auto"
+                style={{
+                  fontSize: '2.5vw',
+                  backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                  // borderRadius: "30px/30px",
+                  borderRadius: 0,
+                  padding: '35px'
+                }}
+              >
+                Eco Districts Hampton Roads hopes to create a beautiful and
+                sustainable community within Virginia's Hampton Roads, the
+                largest African American community.
+                <div
+                  style={{
+                    fontSize: '3vw',
+                    fontFamily: 'Rozha One, serif',
+                    paddingTop: '1rem'
+                  }}
+                >
+                  <button
+                    style={{
+                      color: 'black',
+                      backgroundColor: '#98B391',
+                      borderRadius: 10
+                    }}
+                  >
+                    Learn More
+                  </button>
+                </div>
+              </div>
+              <div className="col-1" />
             </div>
           </div>
-        </div>
-        <div></div>
+        </section> */}
+
+        {/* What we do! */}
+        {/* <section
+          style={{
+            backgroundImage: `url('${what_we_do}')`,
+            backgroundAttachment: 'fixed',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            textAlign: 'center',
+            height: '100vh'
+          }}
+        >
+          <div
+            className={'container-fluid'}
+            style={{
+              color: '#ffffff',
+              backgroundColor: 'rgba(0, 0, 0, 0.7)',
+              width: 'inherit',
+              height: 'inherit'
+            }}
+          >
+            <div className={'row h-100'}>
+              <div className="col-1" />
+              <div
+                className="col-6 my-auto"
+                style={{
+                  fontSize: '2.5vw',
+                  backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                  // borderRadius: "30px/30px",
+                  borderRadius: 0,
+                  padding: '20px'
+                }}
+              >
+                <div>
+                  In order to help the community, Eco Districts Hampton Roads
+                  conducts multiple projects done by volunteers in order to fix
+                  various problems identified by residents
+                </div>
+                <div
+                  style={{
+                    fontSize: '4vw',
+                    fontFamily: 'Rozha One, serif'
+                  }}
+                >
+                  <button
+                    style={{
+                      color: 'black',
+                      backgroundColor: '#98B391',
+                      borderRadius: 10
+                    }}
+                  >
+                    Learn More!
+                  </button>
+                </div>
+              </div>
+              <div
+                className="col-5 my-auto"
+                style={{
+                  fontSize: '5vw',
+                  fontFamily: 'Rozha One, serif'
+                }}
+              >
+                <div style={{ color: '#EBCB8C' }}>What do we do?</div>
+              </div>
+              <div className="col-1" />
+            </div>
+          </div>
+        </section> */}
 
         {/* Recent News */}
         {this.getNews()}
@@ -440,15 +534,8 @@ class Land extends Component {
           >
             <div className={'row h-100'} style={{ height: 'max-content' }}>
               <div className="col-1" />
-              <div
-                className="col-3 my-auto"
-                Style="text-align: left; font-weight: bold;"
-              >
-                <div
-                  style={{ fontSize: '3vw', color: 'white', marginTop: '-7vw' }}
-                >
-                  Join the
-                </div>
+              <div className="col-3 my-auto" style={{ textAlign: 'left' }}>
+                <div style={{ fontSize: '3vw', color: 'white' }}>Join the</div>
                 <div
                   style={{
                     fontSize: '4vw',
@@ -459,29 +546,7 @@ class Land extends Component {
                   community
                   <span style={{ color: 'white' }}>.</span>
                 </div>
-
-                <div class="row" Style="padding-left: 5%; padding-right: 5%; ">
-                  <p>
-                    We will meet you where you’re at whether it is listening
-                    into an online discussion on why your electricity bill is so
-                    dang high while doing laundry or taking to the streets! We
-                    want to respect your information and be transparent about
-                    how we will use it.
-                  </p>
-                  <p>
-                    We will use your email to communicate with you about
-                    happenings so that you can stay updated and involved, your
-                    birthday so that we can gauge the age of our audience to
-                    make our initiatives better serve the prevalent age groups,
-                    your address to inform us about which neighborhood in the
-                    Cavalier Manor area you live in to more appropriately plan
-                    our programs to serve exactly where our community lives, and
-                    your name so that we can begin to know you! We hope that you
-                    want to join us to make the neighborhood connected!
-                  </p>
-                </div>
               </div>
-
               <div className="col-1" />
               <div
                 className="Mail-Chimp-signup"

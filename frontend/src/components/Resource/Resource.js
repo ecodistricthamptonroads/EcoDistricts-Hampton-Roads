@@ -12,17 +12,17 @@ class Resource extends Component {
     const RESOURCE_LINKS = [
       {
         link: 'https://www.google.con',
-        name: 'google',
+        name: 'Resource1',
         image: 'https://i.imgur.com/ElWjENc.png'
       },
       {
         link: 'https://www.google.con',
-        name: 'google1',
+        name: 'Resource2',
         image: 'https://i.imgur.com/ElWjENc.png'
       },
       {
         link: 'https://www.google.con',
-        name: 'google2',
+        name: 'Resource3',
         image: 'https://i.imgur.com/ElWjENc.png'
       }
     ];
