@@ -303,7 +303,7 @@ body {
   min-height: 100%;
   height: auto;
   background: #000;
-  filter: brightness(50%);
+  /* filter: brightness(50%); */
   backface-visibility: hidden;
   opacity: 0;
   transform: scale(1.4);
@@ -455,8 +455,8 @@ a:link {
   padding: 1%;
 }
 .carousel-item-img {
-  background-size: cover;
+  background-size: auto;
   background-position: center center;
   height: 65vh;
-  filter: brightness(50%);
+  /* filter: brightness(50%); */
 }

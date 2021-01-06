@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
-import logo from '../assets/images/logo.png';
-import brand from '../assets/images/Brand1.png';
-import Land from './Land';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import logo from "../assets/images/logo.png";
+import brand from "../assets/images/Brand1.png";
+import Land from "./Land";
 
-import '../assets/stylesheets/app.css';
+import "../assets/stylesheets/app.css";
 
 class Header extends Component {
   constructor(props) {
@@ -18,17 +18,17 @@ class Header extends Component {
   isLoggedIn() {
     switch (this.props.user) {
       case null:
-        return 'still deciding';
+        return "still deciding";
       case false:
         return (
           <Nav.Item>
-            <a href={'/api/auth/google/get'}>Admin? Log in here</a>
+            <a href={"/api/auth/google/get"}>Admin? Log in here</a>
           </Nav.Item>
         );
       default:
         return (
           <Nav.Item>
-            <a href={'/api/auth/logout'}>Log Out</a>
+            <a href={"/api/auth/logout"}>Log Out</a>
           </Nav.Item>
         );
     }
@@ -47,7 +47,7 @@ class Header extends Component {
 
   render() {
     const CONTACT_US_LINK =
-      'https://us4.list-manage.com/contact-form?u=51eb002c7ef49ac4bf7de17e2&form_id=c58d36b6f54bd9b975ec2607253190d2';
+      "https://us4.list-manage.com/contact-form?u=51eb002c7ef49ac4bf7de17e2&form_id=c58d36b6f54bd9b975ec2607253190d2";
     return (
       <Navbar collapseOnSelect expand="lg">
         <Navbar.Brand href="/">
@@ -110,9 +110,7 @@ class Header extends Component {
                 Contact Us
               </a>
             </Nav.Item>
-            {this.email()}
           </Nav>
-          <Nav>{this.isLoggedIn()}</Nav>
         </Navbar.Collapse>
       </Navbar>
     );

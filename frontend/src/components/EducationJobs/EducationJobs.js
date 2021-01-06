@@ -1,17 +1,19 @@
-import { Component } from 'react';
-import React from 'react';
-import axios from 'axios';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import Form from 'react-bootstrap/Form';
-import '../../assets/stylesheets/JobsPage.css';
-import { getJobs } from '../../helpers/api';
+import { Component } from "react";
+import React from "react";
+import axios from "axios";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Form from "react-bootstrap/Form";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Dropdown from "react-bootstrap/Dropdown";
+import "../../assets/stylesheets/JobsPage.css";
+import { getJobs } from "../../helpers/api";
 class EducationJobs extends Component {
   constructor(props) {
     super(props);
     this.state = {
       currentJob: null,
-      jobs: []
+      jobs: [],
     };
   }
   render() {
@@ -23,15 +25,15 @@ class Jobs extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: '',
+      search: "",
       salary: 0,
       industry: [],
       location: [],
       jobTypes: [],
       careers: [],
       location: [],
-      company: '',
-      jobs: []
+      company: "",
+      jobs: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -53,8 +55,8 @@ class Jobs extends Component {
     if (this.state.location.includes(location_name)) {
       var newLocation = [
         ...this.state.location.filter(
-          location => !location.includes(location_name)
-        )
+          (location) => !location.includes(location_name)
+        ),
       ];
     } else {
       var newLocation = [...this.state.location, location_name];
@@ -66,8 +68,8 @@ class Jobs extends Component {
     if (this.state.industry.includes(industry_name)) {
       var newIndustry = [
         ...this.state.industry.filter(
-          industry => !industry.includes(industry_name)
-        )
+          (industry) => !industry.includes(industry_name)
+        ),
       ];
     } else {
       var newIndustry = [...this.state.industry, industry_name];
@@ -79,8 +81,8 @@ class Jobs extends Component {
     if (this.state.jobTypes.includes(jobType_value)) {
       var newJobType = [
         ...this.state.jobTypes.filter(
-          jobType => !jobType.includes(jobType_value)
-        )
+          (jobType) => !jobType.includes(jobType_value)
+        ),
       ];
     } else {
       var newJobType = [...this.state.jobTypes, jobType_value];
@@ -91,7 +93,9 @@ class Jobs extends Component {
     const career_value = e.target.value.toLowerCase();
     if (this.state.careers.includes(career_value)) {
       var newJobType = [
-        ...this.state.careers.filter(career => !career.includes(career_value))
+        ...this.state.careers.filter(
+          (career) => !career.includes(career_value)
+        ),
       ];
     } else {
       var newJobType = [...this.state.careers, career_value];
@@ -103,8 +107,8 @@ class Jobs extends Component {
     if (this.state.location.includes(location_name)) {
       var newLocation = [
         ...this.state.location.filter(
-          location => !location.includes(location_name)
-        )
+          (location) => !location.includes(location_name)
+        ),
       ];
     } else {
       var newLocation = [...this.state.location, location_name];
@@ -117,7 +121,7 @@ class Jobs extends Component {
   }
 
   componentDidMount() {
-    getJobs().then(jobs => {
+    getJobs().then((jobs) => {
       this.setState({ jobs: jobs.data });
       console.log(jobs.data);
     });
@@ -125,26 +129,26 @@ class Jobs extends Component {
 
   _getDateFormatted(date) {
     const monthNames = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec'
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
     ];
 
     var mm = date.getMonth();
     var dd = date.getDate();
     // date.get;
 
-    return [monthNames[mm], (dd > 9 ? '' : '0') + dd, date.getFullYear()].join(
-      '-'
+    return [monthNames[mm], (dd > 9 ? "" : "0") + dd, date.getFullYear()].join(
+      "-"
     );
   }
   _jobsIndustryIsChecked(job) {
@@ -189,14 +193,14 @@ class Jobs extends Component {
     );
   }
   displayJobs() {
-    const JOBS_TO_SHOW = this.state.jobs.filter(job => this.filterJob(job));
+    const JOBS_TO_SHOW = this.state.jobs.filter((job) => this.filterJob(job));
     return (
       <div className="jobs card-columns ">
         {JOBS_TO_SHOW.length != 0 ? (
-          JOBS_TO_SHOW.map(job => {
+          JOBS_TO_SHOW.map((job) => {
             return (
               <a key={job._id} href={job._id}>
-                <Card className="job-elem col-4" style={{ maxWidth: '36rem' }}>
+                <Card className="job-elem col-4" style={{ maxWidth: "36rem" }}>
                   <div className="job-card-row">
                     <Card.Img
                       className="job-card-img"
@@ -205,32 +209,32 @@ class Jobs extends Component {
                     />
                     <Card.Title
                       style={{
-                        padding: '5%',
-                        textOverflow: 'clip',
-                        overflowWrap: 'break-word',
-                        width: '50%'
+                        padding: "5%",
+                        textOverflow: "clip",
+                        overflowWrap: "break-word",
+                        width: "50%",
                       }}
                     >
-                      {job.title || ''}
+                      {job.title || ""}
                     </Card.Title>
                   </div>
                   <hr />
                   <Card.Body>
                     <Card.Text>
-                      {'Posted on ' +
-                        this._getDateFormatted(new Date(job.postDate))}
+                      {"Posted on " +
+                        this._getDateFormatted(new Date(job.published_at))}
                     </Card.Text>
-                    <Card.Text>{'@  ' + (job.company || '')} </Card.Text>
-                    <Card.Text>{'$  ' + (job.salary || '')} </Card.Text>
-                    <Card.Text>{'📍 ' + (job.location || '')} </Card.Text>
+                    <Card.Text>{"@  " + (job.company || "")} </Card.Text>
+                    <Card.Text>{"$  " + (job.salary || "")} </Card.Text>
+                    <Card.Text>{"📍 " + (job.location || "")} </Card.Text>
 
                     <hr />
                     <div
                       className="job-card-row flex-center "
-                      style={{ padding: '5%' }}
+                      style={{ padding: "5%" }}
                     >
                       <Button
-                        onClick={e => {
+                        onClick={(e) => {
                           e.preventDefault();
                           window.location.href = job.link;
                         }}
@@ -262,8 +266,8 @@ class Jobs extends Component {
 
   getSearch() {
     return (
-      <Form className="Job-search" onSubmit={this.handleSearch}>
-        <Form.Group controlId="exampleForm.ControlInput1">
+      <Form className="Job-search row" onSubmit={this.handleSearch}>
+        <Form.Group controlId="exampleForm.ControlInput1" className="col-9">
           <Form.Control
             name="search"
             value={this.state.search}
@@ -272,28 +276,205 @@ class Jobs extends Component {
             placeholder="Search"
           />
         </Form.Group>
+        <Form.Group className="col-3" controlId="Job Career">
+          <Form.Control
+            name="location"
+            onChange={this.handleCheckboxLocation}
+            as="select"
+            placeholder="Select Job Career"
+          >
+            <option value="">ALL Location</option>
+
+            {[
+              "Location 1",
+              "Location 2",
+              "Location 3",
+              "Location 3",
+              "Location 4",
+              "Location 5",
+              "Location 6",
+            ].map((career) => (
+              <option value={career}>{career}</option>
+            ))}
+          </Form.Control>
+        </Form.Group>
       </Form>
     );
   }
   displayFilters() {
     let filteredJobs = this.state.jobs;
-    const locations = [
-      ...new Set(filteredJobs.map(job => job.location))
-    ].sort();
-    const salaries = [
-      ...new Set(filteredJobs.map(job => parseInt(job.salary)))
-    ].sort(function(a, b) {
-      return a - b;
-    });
+    // const locations = [
+    //   ...new Set(filteredJobs.map(job => job.location))
+    // ].sort();
+    // const salaries = [
+    //   ...new Set(filteredJobs.map(job => parseInt(job.salary)))
+    // ].sort(function(a, b) {
+    //   return a - b;
+    // });
+    // const industries = [
+    //   ...new Set(filteredJobs.map((job) => job.industry)),
+    // ].sort();
+    // const careers = [...new Set(filteredJobs.map(job => job.career))].sort();
+    // const jobTypes = [...new Set(filteredJobs.map(job => job.jobType))].sort();
+    const jobTypes = [
+      "Job type: 1",
+      "Job type: 2",
+      "Job type: 3",
+      "Job type: 4",
+      "Job type: 5",
+      "Job type: 6",
+    ];
     const industries = [
-      ...new Set(filteredJobs.map(job => job.industry))
-    ].sort();
-    const careers = [...new Set(filteredJobs.map(job => job.career))].sort();
-    const jobTypes = [...new Set(filteredJobs.map(job => job.jobType))].sort();
-    console.log(filteredJobs);
+      "Industry type: 1",
+      "Industry type: 2",
+      "Industry type: 3",
+      "Industry type: 4",
+      "Industry type: 5",
+      "Industry type: 6",
+    ];
     return (
       <div className="grid-child job-filter-box ">
-        {locations.length != 0 ? (
+        {industries.length != 0 ? (
+          <div className="industry-checkboxes row">
+            <div className="col-3">
+              <h3 className="row">Industry:</h3>
+              <p className="row">Which Industry Jobs belong to.</p>
+            </div>
+            {/* <div className="row"></div> */}
+            <div className="col-auto checkbox-options">
+              {industries.map((industry_name, idx) => {
+                return (
+                  <div
+                    key={industry_name}
+                    className="form-check col-3  form-check-inline"
+                  >
+                    <input
+                      className="form-check-input industry-checkbox"
+                      id={industry_name + idx}
+                      type="checkbox"
+                      name="industry"
+                      value={industry_name}
+                      onClick={this.handleCheckboxIndustry}
+                    />
+                    <label
+                      className="form-check-label"
+                      htmlFor={industry_name + idx}
+                    >
+                      {industry_name}
+                    </label>
+                  </div>
+                );
+              })}
+            </div>
+            {/* <Button
+              className="col-1"
+              bsPrefix="job-btn "
+              onClick={(e) => {
+                this.setState({ industry: [] });
+                Array.from(
+                  document.getElementsByClassName("industry-checkbox")
+                ).map((checkbox) => (checkbox.checked = false));
+              }}
+            >
+              Clear All
+            </Button> */}
+          </div>
+        ) : null}
+
+        {jobTypes.length != 0 ? (
+          <div className="JobType-checkboxes row">
+            <div className="col-3">
+              <h3 className="row">Job Type:</h3>
+              <h3 className="row">Paid opportunities' Type</h3>
+            </div>
+            <div className="col-auto checkbox-options">
+              {jobTypes.map((jobType, idx) => {
+                return (
+                  <div
+                    key={jobType}
+                    className="form-check col-3 form-check-inline"
+                  >
+                    <input
+                      className="form-check-input JobType-checkbox"
+                      id={jobType + idx}
+                      type="checkbox"
+                      name="JobType"
+                      value={jobType}
+                      onClick={this.handleCheckboxJobType}
+                    />
+                    <label className="form-check-label" htmlFor={jobType + idx}>
+                      {jobType.toUpperCase()}
+                    </label>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* <Button
+              className="col-1"
+              bsPrefix="job-btn"
+              onClick={(e) => {
+                this.setState({ JobTypes: [] });
+                Array.from(
+                  document.getElementsByClassName("JobType-checkbox")
+                ).map((checkbox) => (checkbox.checked = false));
+              }}
+            >
+              Clear All
+            </Button> */}
+          </div>
+        ) : null}
+      </div>
+    );
+
+    {
+      /* {careers.length != 0 ? (
+          <div className="career-checkboxes row">
+            <div className="col">
+              <h3 className="row">Career Development Opportunities:</h3>
+              <p className="row">
+                Develop your skills and get resources needed for your next job
+              </p>
+            </div>
+            <div className="col checkbox-options">
+              {careers.map((career, idx) => {
+                return (
+                  <div
+                    key={career}
+                    className="form-check col form-check-inline"
+                  >
+                    <input
+                      className="form-check-input career-checkbox"
+                      id={career + idx}
+                      type="checkbox"
+                      name="career"
+                      value={career}
+                      onClick={this.handleCheckboxCareer}
+                    />
+                    <label className="form-check-label" htmlFor={career + idx}>
+                      {career.toUpperCase()}
+                    </label>
+                  </div>
+                );
+              })}
+            </div>
+            <Button
+              className="col-1"
+              bsPrefix="job-btn"
+              onClick={e => {
+                this.setState({ careers: [] });
+                Array.from(
+                  document.getElementsByClassName('career-checkbox')
+                ).map(checkbox => (checkbox.checked = false));
+              }}
+            >
+              Clear All
+            </Button>
+          </div>
+        ) : null} */
+    }
+    {
+      /* {locations.length != 0 ? (
           <div className="location-checkboxes row">
             <div className="col">
               <h3 className="row"> Locations:</h3>
@@ -339,9 +520,11 @@ class Jobs extends Component {
               Clear All
             </Button>
           </div>
-        ) : null}
+        ) : null} */
+    }
 
-        {salaries.length != 0 ? (
+    {
+      /* {salaries.length != 0 ? (
           <div className="salary-checkboxes row">
             <div className="col">
               <h3 className="row"> Salary:</h3>
@@ -390,147 +573,15 @@ class Jobs extends Component {
               </label>
             </div>
           </div>
-        ) : null}
-        {industries.length != 0 ? (
-          <div className="industry-checkboxes row">
-            <div className="col">
-              <h3 className="row">Industry:</h3>
-              <p className="row">Which Industry Jobs belong to.</p>
-            </div>
-            <div className="col checkbox-options">
-              {industries.map((industry_name, idx) => {
-                return (
-                  <div
-                    key={industry_name}
-                    className="form-check col form-check-inline"
-                  >
-                    <input
-                      className="form-check-input industry-checkbox"
-                      id={industry_name + idx}
-                      type="checkbox"
-                      name="industry"
-                      value={industry_name}
-                      onClick={this.handleCheckboxIndustry}
-                    />
-                    <label
-                      className="form-check-label"
-                      htmlFor={industry_name + idx}
-                    >
-                      {industry_name}
-                    </label>
-                  </div>
-                );
-              })}
-            </div>
-            <Button
-              className="col-1"
-              bsPrefix="job-btn "
-              onClick={e => {
-                this.setState({ industry: [] });
-                Array.from(
-                  document.getElementsByClassName('industry-checkbox')
-                ).map(checkbox => (checkbox.checked = false));
-              }}
-            >
-              Clear All
-            </Button>
-          </div>
-        ) : null}
-        {careers.length != 0 ? (
-          <div className="career-checkboxes row">
-            <div className="col">
-              <h3 className="row">Career Development Opportunities:</h3>
-              <p className="row">
-                Develop your skills and get resources needed for your next job
-              </p>
-            </div>
-            <div className="col checkbox-options">
-              {careers.map((career, idx) => {
-                return (
-                  <div
-                    key={career}
-                    className="form-check col form-check-inline"
-                  >
-                    <input
-                      className="form-check-input career-checkbox"
-                      id={career + idx}
-                      type="checkbox"
-                      name="career"
-                      value={career}
-                      onClick={this.handleCheckboxCareer}
-                    />
-                    <label className="form-check-label" htmlFor={career + idx}>
-                      {career.toUpperCase()}
-                    </label>
-                  </div>
-                );
-              })}
-            </div>
-            <Button
-              className="col-1"
-              bsPrefix="job-btn"
-              onClick={e => {
-                this.setState({ careers: [] });
-                Array.from(
-                  document.getElementsByClassName('career-checkbox')
-                ).map(checkbox => (checkbox.checked = false));
-              }}
-            >
-              Clear All
-            </Button>
-          </div>
-        ) : null}
-        {jobTypes.length != 0 ? (
-          <div className="JobType-checkboxes row">
-            <div className="col">
-              <h3 className="row">Job Type:</h3>
-              <h3 className="row">Paid opportunities' Type</h3>
-            </div>
-            <div className="col checkbox-options">
-              {jobTypes.map((jobType, idx) => {
-                return (
-                  <div
-                    key={jobType}
-                    className="form-check col form-check-inline"
-                  >
-                    <input
-                      className="form-check-input JobType-checkbox"
-                      id={jobType + idx}
-                      type="checkbox"
-                      name="JobType"
-                      value={jobType}
-                      onClick={this.handleCheckboxJobType}
-                    />
-                    <label className="form-check-label" htmlFor={jobType + idx}>
-                      {jobType.toUpperCase()}
-                    </label>
-                  </div>
-                );
-              })}
-            </div>
-            <Button
-              className="col-1"
-              bsPrefix="job-btn"
-              onClick={e => {
-                this.setState({ JobTypes: [] });
-                Array.from(
-                  document.getElementsByClassName('JobType-checkbox')
-                ).map(checkbox => (checkbox.checked = false));
-              }}
-            >
-              Clear All
-            </Button>
-          </div>
-        ) : null}
-      </div>
-    );
+        ) : null} */
+    }
   }
   render() {
     return (
       <div className="job-body">
         <div
           className="Job-Heading"
-          style={{ textAlign: 'left', fontSize: '64px' }}
+          style={{ textAlign: "left", fontSize: "64px" }}
         >
           <h1>Sustainable Jobs Center</h1>
           <a href="https://us4.list-manage.com/contact-form?u=51eb002c7ef49ac4bf7de17e2&form_id=c58d36b6f54bd9b975ec2607253190d2">
@@ -547,9 +598,9 @@ class Jobs extends Component {
             src="https://calendar.google.com/calendar/embed?src=fgv68k6tk5ji5sr4jjiuc2q90k%40group.calendar.google.com&ctz=America%2FNew_York"
             style={{
               border: 0,
-              width: '100%',
-              height: '75vh',
-              display: 'inline-flex'
+              width: "100%",
+              height: "75vh",
+              display: "inline-flex",
             }}
             frameBorder="0"
             scrolling="no"

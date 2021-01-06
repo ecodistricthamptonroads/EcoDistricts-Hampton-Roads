@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "01/05/2021 8:44:55 PM"
+    "x-generation-date": "01/06/2021 8:49:54 AM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -95,7 +95,9 @@
           }
         },
         "summary": "",
-        "tags": ["Article"],
+        "tags": [
+          "Article"
+        ],
         "parameters": [
           {
             "name": "_limit",
@@ -281,7 +283,9 @@
           }
         },
         "summary": "",
-        "tags": ["Article"],
+        "tags": [
+          "Article"
+        ],
         "requestBody": {
           "description": "",
           "required": true,
@@ -346,7 +350,9 @@
           }
         },
         "summary": "",
-        "tags": ["Article"],
+        "tags": [
+          "Article"
+        ],
         "parameters": []
       }
     },
@@ -397,7 +403,9 @@
           }
         },
         "summary": "",
-        "tags": ["Article"],
+        "tags": [
+          "Article"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -457,7 +465,9 @@
           }
         },
         "summary": "",
-        "tags": ["Article"],
+        "tags": [
+          "Article"
+        ],
         "requestBody": {
           "description": "",
           "required": true,
@@ -529,7 +539,9 @@
           }
         },
         "summary": "",
-        "tags": ["Article"],
+        "tags": [
+          "Article"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -594,7 +606,9 @@
           }
         },
         "summary": "",
-        "tags": ["Events"],
+        "tags": [
+          "Events"
+        ],
         "parameters": [
           {
             "name": "_limit",
@@ -780,7 +794,9 @@
           }
         },
         "summary": "",
-        "tags": ["Events"],
+        "tags": [
+          "Events"
+        ],
         "requestBody": {
           "description": "",
           "required": true,
@@ -845,7 +861,9 @@
           }
         },
         "summary": "",
-        "tags": ["Events"],
+        "tags": [
+          "Events"
+        ],
         "parameters": []
       }
     },
@@ -896,7 +914,9 @@
           }
         },
         "summary": "",
-        "tags": ["Events"],
+        "tags": [
+          "Events"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -956,7 +976,9 @@
           }
         },
         "summary": "",
-        "tags": ["Events"],
+        "tags": [
+          "Events"
+        ],
         "requestBody": {
           "description": "",
           "required": true,
@@ -1028,7 +1050,9 @@
           }
         },
         "summary": "",
-        "tags": ["Events"],
+        "tags": [
+          "Events"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -1094,7 +1118,9 @@
           }
         },
         "summary": "",
-        "tags": ["Homepage-slide-show"],
+        "tags": [
+          "Homepage-slide-show"
+        ],
         "parameters": [
           {
             "name": "_limit",
@@ -1284,7 +1310,9 @@
           }
         },
         "summary": "",
-        "tags": ["Homepage-slide-show"],
+        "tags": [
+          "Homepage-slide-show"
+        ],
         "requestBody": {
           "description": "",
           "required": true,
@@ -1345,7 +1373,9 @@
           }
         },
         "summary": "",
-        "tags": ["Homepage-slide-show"],
+        "tags": [
+          "Homepage-slide-show"
+        ],
         "parameters": []
       }
     },
@@ -1399,7 +1429,9 @@
           }
         },
         "summary": "",
-        "tags": ["Job"],
+        "tags": [
+          "Job"
+        ],
         "parameters": [
           {
             "name": "_limit",
@@ -1585,7 +1617,9 @@
           }
         },
         "summary": "",
-        "tags": ["Job"],
+        "tags": [
+          "Job"
+        ],
         "requestBody": {
           "description": "",
           "required": true,
@@ -1650,7 +1684,9 @@
           }
         },
         "summary": "",
-        "tags": ["Job"],
+        "tags": [
+          "Job"
+        ],
         "parameters": []
       }
     },
@@ -1701,7 +1737,9 @@
           }
         },
         "summary": "",
-        "tags": ["Job"],
+        "tags": [
+          "Job"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -1761,7 +1799,9 @@
           }
         },
         "summary": "",
-        "tags": ["Job"],
+        "tags": [
+          "Job"
+        ],
         "requestBody": {
           "description": "",
           "required": true,
@@ -1833,7 +1873,9 @@
           }
         },
         "summary": "",
-        "tags": ["Job"],
+        "tags": [
+          "Job"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -1898,7 +1940,9 @@
           }
         },
         "summary": "",
-        "tags": ["Project"],
+        "tags": [
+          "Project"
+        ],
         "parameters": [
           {
             "name": "_limit",
@@ -2084,7 +2128,9 @@
           }
         },
         "summary": "",
-        "tags": ["Project"],
+        "tags": [
+          "Project"
+        ],
         "requestBody": {
           "description": "",
           "required": true,
@@ -2149,7 +2195,9 @@
           }
         },
         "summary": "",
-        "tags": ["Project"],
+        "tags": [
+          "Project"
+        ],
         "parameters": []
       }
     },
@@ -2200,7 +2248,9 @@
           }
         },
         "summary": "",
-        "tags": ["Project"],
+        "tags": [
+          "Project"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -2260,7 +2310,9 @@
           }
         },
         "summary": "",
-        "tags": ["Project"],
+        "tags": [
+          "Project"
+        ],
         "requestBody": {
           "description": "",
           "required": true,
@@ -2332,7 +2384,9 @@
           }
         },
         "summary": "",
-        "tags": ["Project"],
+        "tags": [
+          "Project"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -2397,7 +2451,9 @@
           }
         },
         "summary": "",
-        "tags": ["Resource"],
+        "tags": [
+          "Resource"
+        ],
         "parameters": [
           {
             "name": "_limit",
@@ -2583,7 +2639,9 @@
           }
         },
         "summary": "",
-        "tags": ["Resource"],
+        "tags": [
+          "Resource"
+        ],
         "requestBody": {
           "description": "",
           "required": true,
@@ -2648,7 +2706,9 @@
           }
         },
         "summary": "",
-        "tags": ["Resource"],
+        "tags": [
+          "Resource"
+        ],
         "parameters": []
       }
     },
@@ -2699,7 +2759,9 @@
           }
         },
         "summary": "",
-        "tags": ["Resource"],
+        "tags": [
+          "Resource"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -2759,7 +2821,9 @@
           }
         },
         "summary": "",
-        "tags": ["Resource"],
+        "tags": [
+          "Resource"
+        ],
         "requestBody": {
           "description": "",
           "required": true,
@@ -2831,7 +2895,9 @@
           }
         },
         "summary": "",
-        "tags": ["Resource"],
+        "tags": [
+          "Resource"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -2896,7 +2962,9 @@
           }
         },
         "summary": "",
-        "tags": ["Survey"],
+        "tags": [
+          "Survey"
+        ],
         "parameters": [
           {
             "name": "_limit",
@@ -3082,7 +3150,9 @@
           }
         },
         "summary": "",
-        "tags": ["Survey"],
+        "tags": [
+          "Survey"
+        ],
         "requestBody": {
           "description": "",
           "required": true,
@@ -3147,7 +3217,9 @@
           }
         },
         "summary": "",
-        "tags": ["Survey"],
+        "tags": [
+          "Survey"
+        ],
         "parameters": []
       }
     },
@@ -3198,7 +3270,9 @@
           }
         },
         "summary": "",
-        "tags": ["Survey"],
+        "tags": [
+          "Survey"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -3258,7 +3332,9 @@
           }
         },
         "summary": "",
-        "tags": ["Survey"],
+        "tags": [
+          "Survey"
+        ],
         "requestBody": {
           "description": "",
           "required": true,
@@ -3330,7 +3406,9 @@
           }
         },
         "summary": "",
-        "tags": ["Survey"],
+        "tags": [
+          "Survey"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -3396,7 +3474,9 @@
           }
         },
         "summary": "",
-        "tags": ["Email - Email"],
+        "tags": [
+          "Email - Email"
+        ],
         "requestBody": {
           "description": "",
           "required": true,
@@ -3465,7 +3545,9 @@
           }
         },
         "summary": "",
-        "tags": ["Upload - File"],
+        "tags": [
+          "Upload - File"
+        ],
         "requestBody": {
           "description": "",
           "required": true,
@@ -3534,7 +3616,9 @@
           }
         },
         "summary": "",
-        "tags": ["Upload - File"],
+        "tags": [
+          "Upload - File"
+        ],
         "parameters": []
       }
     },
@@ -3589,7 +3673,9 @@
           }
         },
         "summary": "",
-        "tags": ["Upload - File"],
+        "tags": [
+          "Upload - File"
+        ],
         "parameters": []
       }
     },
@@ -3644,7 +3730,9 @@
           }
         },
         "summary": "",
-        "tags": ["Upload - File"],
+        "tags": [
+          "Upload - File"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -3708,7 +3796,9 @@
           }
         },
         "summary": "",
-        "tags": ["Upload - File"],
+        "tags": [
+          "Upload - File"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -3774,7 +3864,9 @@
           }
         },
         "summary": "",
-        "tags": ["Upload - File"],
+        "tags": [
+          "Upload - File"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -3836,7 +3928,9 @@
           }
         },
         "summary": "",
-        "tags": ["UsersPermissions - Role"],
+        "tags": [
+          "UsersPermissions - Role"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -3901,7 +3995,9 @@
           }
         },
         "summary": "",
-        "tags": ["UsersPermissions - Role"],
+        "tags": [
+          "UsersPermissions - Role"
+        ],
         "parameters": [
           {
             "name": "_limit",
@@ -4087,7 +4183,9 @@
           }
         },
         "summary": "",
-        "tags": ["UsersPermissions - Role"],
+        "tags": [
+          "UsersPermissions - Role"
+        ],
         "requestBody": {
           "description": "",
           "required": true,
@@ -4148,7 +4246,9 @@
           }
         },
         "summary": "",
-        "tags": ["UsersPermissions - Role"],
+        "tags": [
+          "UsersPermissions - Role"
+        ],
         "parameters": [
           {
             "name": "role",
@@ -4223,7 +4323,9 @@
           }
         },
         "summary": "",
-        "tags": ["UsersPermissions - Role"],
+        "tags": [
+          "UsersPermissions - Role"
+        ],
         "parameters": [
           {
             "name": "role",
@@ -4288,7 +4390,9 @@
           }
         },
         "summary": "",
-        "tags": ["UsersPermissions - User"],
+        "tags": [
+          "UsersPermissions - User"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -4490,7 +4594,9 @@
           }
         },
         "summary": "",
-        "tags": ["UsersPermissions - User"],
+        "tags": [
+          "UsersPermissions - User"
+        ],
         "parameters": []
       }
     },
@@ -4545,7 +4651,9 @@
           }
         },
         "summary": "",
-        "tags": ["UsersPermissions - User"],
+        "tags": [
+          "UsersPermissions - User"
+        ],
         "requestBody": {
           "description": "",
           "required": true,
@@ -4610,7 +4718,9 @@
           }
         },
         "summary": "",
-        "tags": ["UsersPermissions - User"],
+        "tags": [
+          "UsersPermissions - User"
+        ],
         "requestBody": {
           "description": "",
           "required": true,
@@ -4675,7 +4785,9 @@
           }
         },
         "summary": "",
-        "tags": ["UsersPermissions - User"],
+        "tags": [
+          "UsersPermissions - User"
+        ],
         "parameters": [
           {
             "name": "provider",
@@ -4741,7 +4853,9 @@
           }
         },
         "summary": "",
-        "tags": ["UsersPermissions - User"],
+        "tags": [
+          "UsersPermissions - User"
+        ],
         "requestBody": {
           "description": "",
           "required": true,
@@ -4810,7 +4924,9 @@
           }
         },
         "summary": "",
-        "tags": ["UsersPermissions - User"],
+        "tags": [
+          "UsersPermissions - User"
+        ],
         "requestBody": {
           "description": "",
           "required": true,
@@ -4879,7 +4995,9 @@
           }
         },
         "summary": "",
-        "tags": ["UsersPermissions - User"],
+        "tags": [
+          "UsersPermissions - User"
+        ],
         "parameters": []
       }
     },
@@ -4934,7 +5052,9 @@
           }
         },
         "summary": "",
-        "tags": ["UsersPermissions - User"],
+        "tags": [
+          "UsersPermissions - User"
+        ],
         "requestBody": {
           "description": "",
           "required": true,
@@ -5002,7 +5122,9 @@
           }
         },
         "summary": "",
-        "tags": ["UsersPermissions - User"],
+        "tags": [
+          "UsersPermissions - User"
+        ],
         "parameters": [
           {
             "name": "_limit",
@@ -5190,7 +5312,9 @@
           }
         },
         "summary": "",
-        "tags": ["UsersPermissions - User"],
+        "tags": [
+          "UsersPermissions - User"
+        ],
         "parameters": []
       }
     },
@@ -5241,7 +5365,9 @@
           }
         },
         "summary": "",
-        "tags": ["UsersPermissions - User"],
+        "tags": [
+          "UsersPermissions - User"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -5301,7 +5427,9 @@
           }
         },
         "summary": "",
-        "tags": ["UsersPermissions - User"],
+        "tags": [
+          "UsersPermissions - User"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -5376,7 +5504,9 @@
           }
         },
         "summary": "",
-        "tags": ["UsersPermissions - User"],
+        "tags": [
+          "UsersPermissions - User"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -5395,7 +5525,11 @@
   "components": {
     "schemas": {
       "Article": {
-        "required": ["id", "author", "description"],
+        "required": [
+          "id",
+          "author",
+          "description"
+        ],
         "properties": {
           "id": {
             "type": "string"
@@ -5488,7 +5622,10 @@
         }
       },
       "NewArticle": {
-        "required": ["author", "description"],
+        "required": [
+          "author",
+          "description"
+        ],
         "properties": {
           "Title": {
             "type": "string",
@@ -5517,7 +5654,12 @@
         }
       },
       "Events": {
-        "required": ["id", "title", "description", "date"],
+        "required": [
+          "id",
+          "title",
+          "description",
+          "date"
+        ],
         "properties": {
           "id": {
             "type": "string"
@@ -5604,7 +5746,11 @@
         }
       },
       "NewEvents": {
-        "required": ["title", "description", "date"],
+        "required": [
+          "title",
+          "description",
+          "date"
+        ],
         "properties": {
           "title": {
             "type": "string"
@@ -5627,7 +5773,9 @@
         }
       },
       "Homepage-slide-show": {
-        "required": ["id"],
+        "required": [
+          "id"
+        ],
         "properties": {
           "id": {
             "type": "string"
@@ -5865,7 +6013,9 @@
         }
       },
       "Project": {
-        "required": ["id"],
+        "required": [
+          "id"
+        ],
         "properties": {
           "id": {
             "type": "string"
@@ -5895,7 +6045,12 @@
         }
       },
       "Resource": {
-        "required": ["id", "Title", "Description", "link"],
+        "required": [
+          "id",
+          "Title",
+          "Description",
+          "link"
+        ],
         "properties": {
           "id": {
             "type": "string"
@@ -5985,7 +6140,11 @@
         }
       },
       "NewResource": {
-        "required": ["Title", "Description", "link"],
+        "required": [
+          "Title",
+          "Description",
+          "link"
+        ],
         "properties": {
           "Title": {
             "type": "string",
@@ -6011,7 +6170,12 @@
         }
       },
       "Survey": {
-        "required": ["id", "title", "date", "link"],
+        "required": [
+          "id",
+          "title",
+          "date",
+          "link"
+        ],
         "properties": {
           "id": {
             "type": "string"
@@ -6032,7 +6196,11 @@
         }
       },
       "NewSurvey": {
-        "required": ["title", "date", "link"],
+        "required": [
+          "title",
+          "date",
+          "link"
+        ],
         "properties": {
           "title": {
             "type": "string"
@@ -6056,7 +6224,10 @@
         }
       },
       "UsersPermissionsRole": {
-        "required": ["id", "name"],
+        "required": [
+          "id",
+          "name"
+        ],
         "properties": {
           "id": {
             "type": "string"
@@ -6074,7 +6245,13 @@
           "permissions": {
             "type": "array",
             "items": {
-              "required": ["id", "type", "controller", "action", "enabled"],
+              "required": [
+                "id",
+                "type",
+                "controller",
+                "action",
+                "enabled"
+              ],
               "properties": {
                 "id": {
                   "type": "string"
@@ -6109,7 +6286,11 @@
           "users": {
             "type": "array",
             "items": {
-              "required": ["id", "username", "email"],
+              "required": [
+                "id",
+                "username",
+                "email"
+              ],
               "properties": {
                 "id": {
                   "type": "string"
@@ -6150,7 +6331,9 @@
         }
       },
       "NewUsersPermissionsRole": {
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "properties": {
           "name": {
             "type": "string",
@@ -6183,7 +6366,11 @@
         }
       },
       "UsersPermissionsUser": {
-        "required": ["id", "username", "email"],
+        "required": [
+          "id",
+          "username",
+          "email"
+        ],
         "properties": {
           "id": {
             "type": "string"
@@ -6208,7 +6395,10 @@
             "default": false
           },
           "role": {
-            "required": ["id", "name"],
+            "required": [
+              "id",
+              "name"
+            ],
             "properties": {
               "id": {
                 "type": "string"
@@ -6245,7 +6435,10 @@
         }
       },
       "NewUsersPermissionsUser": {
-        "required": ["username", "email"],
+        "required": [
+          "username",
+          "email"
+        ],
         "properties": {
           "username": {
             "type": "string",
@@ -6285,7 +6478,10 @@
         }
       },
       "Error": {
-        "required": ["code", "message"],
+        "required": [
+          "code",
+          "message"
+        ],
         "properties": {
           "code": {
             "type": "integer",

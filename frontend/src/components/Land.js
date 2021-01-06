@@ -1,28 +1,29 @@
-import { Component } from 'react';
-import React from 'react';
-import { Image, Carousel } from 'react-bootstrap';
-import '../assets/stylesheets/app.css';
-import axios from 'axios';
+import { Component } from "react";
+import React from "react";
+import { Image, Carousel } from "react-bootstrap";
+import "../assets/stylesheets/app.css";
+import axios from "axios";
 
-import other_carousel_1 from '../assets/images/carousel_1.jpg';
-import other_carousel_2 from '../assets/images/carousel_2.jpg';
-import other_carousel_3 from '../assets/images/carousel_3.jpg';
-import other_carousel_4 from '../assets/images/carousel_4.jpg';
+import other_carousel_1 from "../assets/images/carousel_1.jpg";
+import other_carousel_2 from "../assets/images/carousel_2.jpg";
+import other_carousel_3 from "../assets/images/carousel_3.jpg";
+import other_carousel_4 from "../assets/images/carousel_4.jpg";
 
-import carousel_main_1 from '../assets/images/land_slideshow_img/images Slideshow-1.png';
-import carousel_main_2 from '../assets/images/land_slideshow_img/images Slideshow-2.png';
-import carousel_main_3 from '../assets/images/land_slideshow_img/images Slideshow-3.png';
-import carousel_main_4 from '../assets/images/land_slideshow_img/images Slideshow-4.png';
+import carousel_main_1 from "../assets/images/land_slideshow_img/images Slideshow-1.png";
+import carousel_main_2 from "../assets/images/land_slideshow_img/images Slideshow-2.png";
+import carousel_main_3 from "../assets/images/land_slideshow_img/images Slideshow-3.png";
+import carousel_main_4 from "../assets/images/land_slideshow_img/images Slideshow-4.png";
 
-import about_us from '../assets/images/about_us.jpg';
-import what_we_do from '../assets/images/what_we_do.jpg';
-import instagram from '../assets/images/instagram.svg';
-import facebook from '../assets/images/facebook.svg';
-import twitter from '../assets/images/twitter.svg';
-import logo from '../assets/images/logo.png';
+import about_us from "../assets/images/about_us.jpg";
+import what_we_do from "../assets/images/what_we_do.jpg";
+import instagram from "../assets/images/instagram.svg";
+import facebook from "../assets/images/facebook.svg";
+import twitter from "../assets/images/twitter.svg";
+import logo from "../assets/images/logo.png";
 
-import { Zoom } from 'react-slideshow-image';
-import 'react-slideshow-image/dist/styles.css';
+import { Zoom } from "react-slideshow-image";
+import "react-slideshow-image/dist/styles.css";
+import { getEvents, getNews } from "../helpers/api";
 
 // const test_value = {
 //   title: "Lorem ipsum dolor",
@@ -105,37 +106,37 @@ class Land extends Component {
       news: [],
       events: [],
       eventsIdx: 0,
-      newsIdx: 0
+      newsIdx: 0,
     };
   }
   componentDidMount() {
-    // axios.get("/api/event/").then((events) => {
-    //   this.setState({ events: events.data });
-    // });
-    // axios.get("/api/news/").then((news) => {
-    //   this.setState({ news: news.data });
-    // });
+    getEvents().then((events) => {
+      this.setState({ events: events.data });
+    });
+    getNews().then((news) => {
+      this.setState({ news: news.data });
+    });
   }
   _getDateFormatted(date) {
     const monthNames = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec'
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
     ];
 
     var mm = date.getMonth();
     var dd = date.getDate();
 
-    return [monthNames[mm], (dd > 9 ? '' : '0') + dd].join('-');
+    return [monthNames[mm], (dd > 9 ? "" : "0") + dd].join("-");
   }
 
   getEvents() {
@@ -144,25 +145,25 @@ class Land extends Component {
     return (
       <section
         style={{
-          height: '100vh'
+          height: "100vh",
         }}
       >
         <div
-          className={'container-fluid'}
+          className={"container-fluid"}
           style={{
-            width: 'inherit',
-            height: 'inherit'
+            width: "inherit",
+            height: "inherit",
           }}
         >
-          <div className={'row h-100'}>
+          <div className={"row h-100"}>
             <div className="col-2" />
-            <div className="col-8 my-auto" style={{ textAlign: 'center' }}>
-              <h1 style={{ color: '#dda73c' }}>
+            <div className="col-8 my-auto" style={{ textAlign: "center" }}>
+              <h1 style={{ color: "#dda73c" }}>
                 <b>Recent Events</b>
               </h1>
               {/* News Carousel */}
               <Carousel
-                style={{ position: 'relative' }}
+                style={{ position: "relative" }}
                 interval={1000}
                 slide={true}
                 activeIndex={this.state.eventsIdx}
@@ -176,17 +177,17 @@ class Land extends Component {
                       <img
                         className="rounded mx-auto d-block carousel-item-img"
                         src={event.link || logo}
-                        onError={e => {
+                        onError={(e) => {
                           e.target.src = logo;
                         }}
-                        alt={'' + event.title}
+                        alt={"" + event.title}
                       />
                       <Carousel.Caption>
                         <h2>
                           <u>{event.title}</u>
                         </h2>
                         <h3>@{this._getDateFormatted(new Date(event.date))}</h3>
-                        <p style={{ padding: '15%' }}>{event.description}</p>
+                        <p style={{ padding: "15%" }}>{event.description}</p>
                       </Carousel.Caption>
                     </Carousel.Item>
                   );
@@ -201,7 +202,7 @@ class Land extends Component {
   }
   getNews() {
     const NEWS2SHOW = [
-      ...this.state.news
+      ...this.state.news,
       // {
       //   title:
       //     "SDG Projects in the Atlanta Community Grant Winners Announcement",
@@ -212,38 +213,38 @@ class Land extends Component {
     return (
       <section
         style={{
-          height: '100vh'
+          height: "100vh",
         }}
       >
         <div
-          className={'container-fluid'}
+          className={"container-fluid"}
           style={{
-            width: 'inherit',
-            height: 'inherit'
+            width: "inherit",
+            height: "inherit",
           }}
         >
-          <div className={'row h-100'}>
+          <div className={"row h-100"}>
             <div className="col-1" />
-            <div className="col-10 my-auto" style={{ textAlign: 'center' }}>
-              <h1 style={{ color: '#dda73c' }}>
+            <div className="col-10 my-auto" style={{ textAlign: "center" }}>
+              <h1 style={{ color: "#dda73c" }}>
                 <b>Recent News</b>
               </h1>
 
               {/* News Carousel */}
-              <Carousel style={{ padding: '1%' }}>
+              <Carousel style={{ padding: "1%" }}>
                 {NEWS2SHOW.map((news, idx) => (
                   <Carousel.Item
                     key={news.title + idx}
-                    style={{ height: '70vh' }}
+                    style={{ height: "70vh" }}
                   >
                     <div
                       className=""
                       style={{
-                        borderRadius: '10px'
+                        borderRadius: "10px",
                       }}
                     >
                       <div
-                        style={{ height: '70vh' }}
+                        style={{ height: "70vh" }}
                         className="card-img-top d-flex align-items-center bg-light"
                       >
                         <div className="col-4">
@@ -257,12 +258,12 @@ class Land extends Component {
                           className="img-fluid col-8"
                           src={news.image || other_carousel_1}
                           style={{
-                            backgroundRepeat: 'no-repeat',
-                            backgroundAttachment: 'fixed',
-                            backgroundPosition: 'center',
-                            borderLeft: '1px solid black',
-                            height: '70vh',
-                            padding: 0
+                            backgroundRepeat: "no-repeat",
+                            backgroundAttachment: "fixed",
+                            backgroundPosition: "center",
+                            borderLeft: "1px solid black",
+                            height: "70vh",
+                            padding: 0,
                             // width:100%
                           }}
                         />
@@ -283,7 +284,7 @@ class Land extends Component {
       carousel_main_1,
       carousel_main_2,
       carousel_main_3,
-      carousel_main_4
+      carousel_main_4,
     ];
     const zoomOutProperties = {
       duration: 2000,
@@ -291,15 +292,15 @@ class Land extends Component {
       infinite: true,
       indicators: false,
       scale: 0.1,
-      arrows: false
+      arrows: false,
     };
     return (
       <section
         style={{
-          backgroundColor: 'black',
-          height: '120vh',
-          width: '100vw',
-          padding: 0
+          backgroundColor: "black",
+          height: "120vh",
+          width: "100vw",
+          padding: 0,
         }}
         className="slide-container col-12"
       >
@@ -308,12 +309,12 @@ class Land extends Component {
             <img
               key={index}
               style={{
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center center',
-                height: '120vh',
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                backgroundPosition: "center center",
+                height: "120vh",
 
-                filter: 'brightness(50%)'
+                // filter: "brightness(50%)",
               }}
               src={each}
             />
@@ -328,7 +329,7 @@ class Land extends Component {
         className="col-12"
         style={{
           padding: 0,
-          background: 'linear-gradient(180deg, #1D84E3 66.55%, #FFFFFF 100%)'
+          background: "linear-gradient(180deg, #1D84E3 66.55%, #FFFFFF 100%)",
         }}
       >
         {/* Starting carousel */}
@@ -428,36 +429,36 @@ class Land extends Component {
         {/* Join the community */}
         <section
           style={{
-            height: '100vh'
+            height: "100vh",
           }}
         >
           <div
-            className={'container-fluid'}
+            className={"container-fluid"}
             style={{
-              width: 'inherit',
-              height: 'inherit'
+              width: "inherit",
+              height: "inherit",
             }}
           >
-            <div className={'row h-100'} style={{ height: 'max-content' }}>
+            <div className={"row h-100"} style={{ height: "max-content" }}>
               <div className="col-1" />
               <div
                 className="col-3 my-auto"
                 Style="text-align: left; font-weight: bold;"
               >
                 <div
-                  style={{ fontSize: '3vw', color: 'white', marginTop: '-7vw' }}
+                  style={{ fontSize: "3vw", color: "white", marginTop: "-7vw" }}
                 >
                   Join the
                 </div>
                 <div
                   style={{
-                    fontSize: '4vw',
-                    color: '#eca61f',
-                    marginTop: '-2vw'
+                    fontSize: "4vw",
+                    color: "#eca61f",
+                    marginTop: "-2vw",
                   }}
                 >
                   community
-                  <span style={{ color: 'white' }}>.</span>
+                  <span style={{ color: "white" }}>.</span>
                 </div>
 
                 <div class="row" Style="padding-left: 5%; padding-right: 5%; ">
@@ -496,24 +497,24 @@ class Land extends Component {
         <section style={{}}>
           <div className="container-fluid">
             <div className="row">
-              <div className="col" style={{ textAlign: 'center', padding: 70 }}>
+              <div className="col" style={{ textAlign: "center", padding: 70 }}>
                 <a
                   href="https://www.instagram.com/ecodistricthamptonroads/"
-                  style={{ padding: '0px 20px' }}
+                  style={{ padding: "0px 20px" }}
                 >
-                  <img src={instagram} width={'65px'} height={'65px'} />
+                  <img src={instagram} width={"65px"} height={"65px"} />
                 </a>
                 <a
                   href="https://www.facebook.com/Center-for-Sustainable-Communities-Atlanta-219072231567212"
-                  style={{ padding: '0px 20px' }}
+                  style={{ padding: "0px 20px" }}
                 >
-                  <img src={facebook} width={'65px'} height={'65px'} />
+                  <img src={facebook} width={"65px"} height={"65px"} />
                 </a>
                 <a
                   href="https://twitter.com/eco_dis_hampton"
-                  style={{ padding: '0px 20px' }}
+                  style={{ padding: "0px 20px" }}
                 >
-                  <img src={twitter} width={'65px'} height={'65px'} />
+                  <img src={twitter} width={"65px"} height={"65px"} />
                 </a>
               </div>
             </div>

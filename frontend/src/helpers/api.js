@@ -1,8 +1,9 @@
-import axios from 'axios';
+import axios from "axios";
 
-export function getStrapiURL(path = '') {
-  return `${process.env.NEXT_PUBLIC_STRAPI_API_URL ||
-    'http://localhost:1337'}${path}`;
+export function getStrapiURL(path = "") {
+  return `${
+    process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337"
+  }${path}`;
 }
 
 // Helper to make GET requests to Strapi
@@ -14,17 +15,17 @@ export async function fetchAPI(path) {
 }
 
 export function getStrapiMedia(media) {
-  const imageUrl = media.url.startsWith('/')
+  const imageUrl = media.url.startsWith("/")
     ? getStrapiURL(media.url)
     : media.url;
   return imageUrl;
 }
 
 export const IMAGE_TYPE = {
-  THUMBNAIL: 'thumbnail',
-  LARGE: 'large',
-  MEDIUM: 'medium',
-  SMALL: 'small'
+  THUMBNAIL: "thumbnail",
+  LARGE: "large",
+  MEDIUM: "medium",
+  SMALL: "small",
 };
 export function getSpecificImage(type, image_obj) {
   switch (type) {
@@ -38,19 +39,23 @@ export function getSpecificImage(type, image_obj) {
   }
 }
 
-const SURVEY_PATH = '/Surveys';
+const SURVEY_PATH = "/Surveys";
 export async function getSurveys() {
   return axios.get(getStrapiURL(SURVEY_PATH));
 }
-const NEWS_PATH = '/Articles';
+const NEWS_PATH = "/Articles";
 export async function getNews() {
   return axios.get(getStrapiURL(NEWS_PATH));
 }
-const EVENTS_PATH = '/Events';
+const EVENTS_PATH = "/Events";
 export async function getEvents() {
   return axios.get(getStrapiURL(EVENTS_PATH));
 }
-const JOBS_PATH = '/Jobs';
+const JOBS_PATH = "/Jobs";
 export async function getJobs() {
   return axios.get(getStrapiURL(JOBS_PATH));
+}
+const PROJECTS_PATH = "/Projects";
+export async function getProjects() {
+  return axios.get(getStrapiURL(PROJECTS_PATH));
 }

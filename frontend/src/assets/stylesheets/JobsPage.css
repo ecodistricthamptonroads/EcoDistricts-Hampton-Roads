@@ -12,6 +12,7 @@
   margin: auto;
   align-self: left;
   width: 100%;
+  padding: 2%;
 }
 .job-btn {
   background-color: #eca61f;
@@ -38,7 +39,7 @@
 }
 .jobs {
   margin: auto !important;
-  padding-top: 3%;
+  padding-top: 4%;
   padding-bottom: 3%;
 }
 .job-elem:hover {
@@ -82,15 +83,19 @@
   margin-left: 10px;
 }
 .job-card-img {
-  width: 60% !important;
+  width: 40% !important;
   height: 100% !important ;
 }
 .checkbox-options {
-  display: flex;
-  flex-direction: row;
+  /* display: flex;
+  flex-direction: row; */
 }
 .checkbox-options > * {
-  flex: 0 !important ;
+  margin: auto !important;
+  min-width: 25% !important;
+  margin-left: 0.5em !important;
+
+  /* flex: 0 !important ; */
 }
 .job-filter-box {
   font-weight: bold;
@@ -99,7 +104,7 @@
 .Job-search {
   background-color: #1d84e3;
   padding: 30px;
-  padding-left: 25%;
+  padding-left: 10%;
   padding-right: 25%;
   box-shadow: 0 4px 2px -2px gray;
 }

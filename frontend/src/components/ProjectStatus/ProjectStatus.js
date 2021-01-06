@@ -1,142 +1,53 @@
-import { Component } from 'react';
-import React from 'react';
-import Card from 'react-bootstrap/Card';
-import Form from 'react-bootstrap/Form';
-
-import WarfieldCanalProject from '../../assets/images/WarfieldCanalProject.jpg';
+import { Component } from "react";
+import React from "react";
+import Card from "react-bootstrap/Card";
+import Form from "react-bootstrap/Form";
+import { getProjects } from "../../helpers/api";
+import WarfieldCanalProject from "../../assets/images/WarfieldCanalProject.jpg";
+import WhatWeDo from "../../assets/images/what_we_do.jpg";
 
 class ProjectStatus extends Component {
   constructor(props) {
     super(props);
     this.state = {
       notInitial: false,
-      search: '',
-      title: '',
-      link: '',
-      status: ''
+      search: "",
+      projects: [],
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSubmit1 = this.handleSubmit1.bind(this);
   }
 
   componentDidMount() {
-    this.props.getProjects();
-  }
-
-  validateFields() {
-    this.setState({ notInitial: true });
-    return this.validateTitle() && this.validateLink() && this.validateStatus();
-  }
-
-  validateTitle() {
-    return this.state.title != '';
-  }
-
-  validateLink() {
-    var reg = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
-    return reg.test(this.state.link);
-  }
-
-  validateStatus() {
-    return this.state.status != '';
+    getProjects().then((req) => {
+      this.setState({ projects: req.data });
+    });
   }
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-  handleSubmit(e) {
-    e.preventDefault();
 
-    if (this.validateFields()) {
-      let issue = {
-        title: this.state.title,
-        link: this.state.link,
-        status: this.state.status
-      };
-      this.props.addProject(issue);
-      this.setState({
-        notInitial: false,
-        title: '',
-        link: '',
-        status: ''
-      });
-    }
-  }
   handleSubmit1(e) {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
   }
   search(item) {
-    item = item || '';
+    item = item || "";
     const lc = item.toLowerCase();
     const filter = this.state.search.toLowerCase();
     return lc.includes(filter);
   }
 
-  loggedIn() {
-    if (this.props.loggedIn) {
-      return (
-        <div>
-          <Form onSubmit={this.handleSubmit}>
-            <Form.Group controlId="exampleForm.ControlInput1">
-              <Form.Label>Project Name</Form.Label>
-              <Form.Control
-                name="title"
-                value={this.state.title}
-                onChange={this.handleChange}
-                type="text"
-                placeholder="Enter Project Name"
-                isInvalid={this.state.notInitial && !this.validateTitle()}
-              />
-              <Form.Control.Feedback type="invalid">
-                Please include a title
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group controlId="exampleForm.ControlInput4">
-              <Form.Label>Link</Form.Label>
-              <Form.Control
-                name="link"
-                value={this.state.link}
-                onChange={this.handleChange}
-                type="text"
-                placeholder="Enter Project Link"
-                isInvalid={this.state.notInitial && !this.validateLink()}
-              />
-              <Form.Control.Feedback type="invalid">
-                Please include a valid url link starting with http
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group controlId="exampleForm.ControlInput2">
-              <Form.Label>Status</Form.Label>
-              <Form.Control
-                name="status"
-                value={this.state.status}
-                onChange={this.handleChange}
-                type="Description"
-                placeholder="Enter Project Status"
-                isInvalid={this.state.notInitial && !this.validateStatus()}
-              />
-              <Form.Control.Feedback type="invalid">
-                Please include a project status
-              </Form.Control.Feedback>
-            </Form.Group>
-          </Form>
-          <button
-            variant="primary"
-            type="submit"
-            value="submit"
-            onClick={this.handleSubmit}
-          >
-            Submit
-          </button>
-        </div>
-      );
-    }
-  }
   getSearch() {
     return (
-      <div className="Project-Search-Bar">
+      <div
+        className="Project-Search-Bar"
+        style={{
+          backgroundImage: `url(${WhatWeDo})`,
+          backgroundPosition: "center",
+        }}
+      >
         <div className="Project-heading">
           <h1>Our Projects</h1>
           <Form onSubmit={this.handleSubmit1}>
@@ -158,8 +69,8 @@ class ProjectStatus extends Component {
   getProjectList() {
     return (
       <div className="row ProjectList align-items-center ">
-        {this.props.projects
-          .filter(project => this.search(project.title))
+        {this.state.projects
+          .filter((project) => this.search(project.title))
           .map((project, idx) => {
             return (
               <div
@@ -168,16 +79,16 @@ class ProjectStatus extends Component {
               >
                 <Card
                   onClick={() => {
-                    this.props.history.push('/Project/' + idx);
+                    this.props.history.push("/Project/" + idx);
                   }}
-                  style={{ width: '18rem' }}
+                  style={{ width: "18rem" }}
                 >
                   <Card.Title style={{ fontWeight: 500 }}>
                     {project.title}
                   </Card.Title>
                   <Card.Img
                     variant="top"
-                    onError={e => {
+                    onError={(e) => {
                       e.target.src = WarfieldCanalProject;
                     }}
                     src={project.link || WarfieldCanalProject}
@@ -188,26 +99,6 @@ class ProjectStatus extends Component {
                     </Card.Text>
                   </Card.Body>
                 </Card>
-                {this.props.loggedIn ? (
-                  <div>
-                    <form
-                      onSubmit={e => {
-                        e.preventDefault();
-                        this.props.updateProject(project);
-                      }}
-                    >
-                      <input
-                        name="status"
-                        defaultValue={project.status}
-                        onChange={e => (project.status = e.target.value)}
-                      />
-                      <input type="submit" value="Update" />
-                    </form>
-                    <button onClick={() => this.props.deleteProject(project)}>
-                      Delete
-                    </button>
-                  </div>
-                ) : null}
               </div>
             );
           })}
@@ -218,7 +109,6 @@ class ProjectStatus extends Component {
     return (
       <div className="Project-body ">
         {this.getSearch()}
-        {this.loggedIn()}
         <h2 className="project-text-info">
           In order to help the community, Eco Districts Hampton Roads conducts
           multiple projects done by volunteers in order to fix various problems
