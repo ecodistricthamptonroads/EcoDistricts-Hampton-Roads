@@ -41,7 +41,8 @@ if (isDevServer) {
       contentBase: './public',
       hot: true,
       inline: true,
-      port: 3000,
+      historyApiFallback: true,
+      // port: 3000,
       proxy: {
         '/**': {
           target: 'http://localhost:8080',

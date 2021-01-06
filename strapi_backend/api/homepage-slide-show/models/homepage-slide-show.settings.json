@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "homepage_slide_shows",
+  "info": {
+    "name": "HomepageSlideShow"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "images": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": ["images"],
+      "plugin": "upload",
+      "required": false
+    }
+  }
+}

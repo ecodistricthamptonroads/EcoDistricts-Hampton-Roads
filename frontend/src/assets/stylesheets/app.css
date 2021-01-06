@@ -1,0 +1,391 @@
+.Project-body {
+  background: linear-gradient(180deg, #1d84e3 0%, #ffffff 125.62%);
+  width: 100vw;
+  min-height: 70vh;
+}
+h1 {
+  font-family: helvetica;
+  font-weight: 200;
+}
+
+body {
+  background-color: white;
+}
+
+.Project-Search-Bar {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../images/what_we_do.jpg) no-repeat center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 35vh;
+  text-align: center;
+  margin: auto;
+}
+.ProjectList {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.Project-heading {
+  padding: 5%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+}
+.focus-text {
+  font-size: 2em;
+  padding: 10%;
+  margin: auto;
+}
+.form-group {
+  width: 25em;
+}
+.project-text-info {
+  padding: 5%;
+}
+
+.card-project > div {
+  background-color: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+.Survey-Body > h3 {
+  margin: auto;
+  text-align: center;
+  padding: 1%;
+}
+.Survey-container {
+  padding: 0 10%;
+  width: 100vw;
+  margin: auto;
+  background: url(../images/survey.png) no-repeat center #fff;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.Survey-Heading-div {
+  text-align: center;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 96px;
+  margin-left: 2em;
+  padding: 1%;
+}
+.Survey-Feedback {
+  text-align: center;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 72px;
+  padding: 2%;
+}
+.SurveyList {
+  align-content: center;
+  align-self: center;
+  padding: 5%;
+  display: grid;
+  grid-gap: 5%;
+  grid-template-columns: repeat(auto-fill, 30%);
+}
+
+.Survey-elem {
+  background-color: gray;
+  text-align: center;
+  font-weight: bold;
+  padding: 10% 0;
+  min-height: 10vh;
+}
+.mc-field-group {
+  color: white;
+}
+.mc-field-group > input {
+  margin-top: 5%;
+  border-radius: 5px;
+}
+.Mail-Chimp-signup {
+  background-color: #98b391;
+  height: fit-content;
+  margin: auto;
+  padding: 5%;
+  border-radius: 5px;
+}
+#mc-embedded-subscribe {
+  background: #1d84e3;
+  border-radius: 5px;
+  border: white;
+  margin: auto;
+  padding: 2%;
+  color: white;
+  width: 9em;
+}
+.asterisk {
+  color: red;
+}
+.Survey-elem > * {
+  color: black;
+  width: auto;
+  height: auto;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin: auto;
+}
+
+.Status-input {
+  max-width: 50%;
+}
+.Survey-delete > button {
+  color: red;
+  width: 100%;
+}
+
+#signUpMailChimp {
+  border: white;
+  height: 100%;
+}
+.About-Heading {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 72px;
+  line-height: 121%;
+
+  padding-left: 1em;
+  padding-top: 1em;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../images/about_us.jpg) no-repeat;
+  height: 50vh;
+  color: #ffffff;
+  background-size: 100vw 100vh;
+}
+.About-body {
+  background-color: white;
+}
+.About-who {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 48px;
+  line-height: 121%;
+  text-align: center;
+  /* or 58px */
+
+  color: #000000;
+}
+.About-video {
+  background: #c4c4c4;
+  width: 50%;
+}
+.About-text {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 28px;
+  line-height: 121%;
+  width: 50%;
+  color: #000000;
+}
+.About-gallery {
+  background: #c4c4c4;
+  height: 500px;
+  text-align: center;
+  width: 100vw;
+  padding: 0;
+}
+.form-group {
+  width: 100% !important;
+}
+.About-row {
+  display: flex;
+}
+
+.About-row > * {
+  margin: 10px;
+}
+
+.intro {
+  position: relative;
+  margin: auto;
+  cursor: pointer;
+  color: #fff;
+  font-size: 2em;
+  max-width: 26em;
+}
+.intro h1 {
+  margin-bottom: 0.5em;
+  line-height: 1;
+  font-weight: 100;
+}
+#CrossFade {
+  background: #fff;
+  display: flex;
+  align-items: flex-end;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+#CrossFade img {
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  height: auto;
+  background: #000;
+  filter: brightness(50%);
+  backface-visibility: hidden;
+  opacity: 0;
+  transform: scale(1.4);
+  animation: CrossFade 24s infinite;
+}
+#CrossFade img:nth-child(3) {
+  animation-delay: 6s;
+}
+#CrossFade img:nth-child(2) {
+  animation-delay: 12s;
+}
+#CrossFade img:nth-child(1) {
+  animation-delay: 18s;
+}
+
+@-moz-keyframes CrossFade {
+  25% {
+    /* opacity: 1; */
+    transform: scale(1) rotate(0);
+  }
+  40% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes CrossFade {
+  25% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+  40% {
+    opacity: 0;
+  }
+}
+@-o-keyframes CrossFade {
+  25% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+  40% {
+    opacity: 0;
+  }
+}
+@keyframes CrossFade {
+  25% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+  40% {
+    opacity: 0;
+  }
+}
+.head {
+  background-color: lightgrey;
+  opacity: 50%;
+}
+.news {
+  display: grid;
+  grid-gap: 5%;
+  grid-template-columns: repeat(auto-fill, 30%);
+}
+.newsItem {
+  widows: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.card-heading {
+  display: inline;
+  margin: auto;
+}
+.card-heading > * {
+  padding: 10px;
+  width: 50% !important;
+  margin: auto;
+  display: inline;
+}
+a:link {
+  padding: 10px;
+  color: black !important;
+}
+.Resource-card {
+  box-shadow: 7px 10px 20px 7px rgba(0, 0, 0, 0.25);
+}
+.Resource-container {
+  background: linear-gradient(180deg, #1d84e3 0%, #ffffff 125.62%);
+  /* height: 95vh; */
+  width: 100%;
+  padding: 3% 5% 5% 5%;
+  color: white;
+}
+.Resource-Heading {
+  padding: 10px;
+  font-size: 4em;
+}
+.Resource-text {
+  padding: 10px;
+  font-size: 2em;
+  font-weight: 500;
+  color: black;
+  /* text-align: center; */
+}
+.event-date {
+  background: #007a5e 55%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.event-info > h2 {
+  font-weight: 700;
+}
+.event-info > p {
+  font-weight: 400;
+}
+.pageNumber {
+  border: black 1px solid;
+  padding: 1px;
+  text-align: center;
+  background: rgba(157, 228, 212, 0.5);
+}
+.Events {
+  height: 60vh;
+}
+.Event-btns {
+  width: 10em;
+  margin: auto !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.news-page {
+  background: linear-gradient(180deg, #007a5e 0%, rgba(255, 255, 255, 0) 100%),
+    linear-gradient(0deg, #efdd8d, #efdd8d);
+  padding: 0 10% 10% 10%;
+  width: 100vw;
+}
+.Events-heading {
+  padding: 1%;
+  color: white;
+}
+.event {
+  padding: 1%;
+}
+.carousel-item-img {
+  background-size: cover;
+  background-position: center center;
+  height: 65vh;
+  filter: brightness(50%);
+}

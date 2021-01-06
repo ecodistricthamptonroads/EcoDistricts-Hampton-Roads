@@ -1,0 +1,75 @@
+{
+  "kind": "collectionType",
+  "collectionName": "Job",
+  "info": {
+    "name": "Job",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "minLength": 1
+    },
+    "company": {
+      "type": "string",
+      "required": true,
+      "minLength": 1
+    },
+    "link": {
+      "type": "string",
+      "regex": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)",
+      "required": true
+    },
+    "industry": {
+      "type": "string",
+      "required": true
+    },
+    "Description": {
+      "type": "richtext",
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true,
+      "minLength": 1
+    },
+    "jobType": {
+      "type": "enumeration",
+      "enum": [
+        "Executive",
+        "General_Management",
+        "Supervisor",
+        "Operations",
+        "Administrative"
+      ],
+      "required": true,
+      "default": "Executive"
+    },
+    "career": {
+      "type": "enumeration",
+      "enum": [
+        "Credential",
+        "Coaching",
+        "Counseling",
+        "Apprenticeship",
+        "Internship",
+        "Fellowship",
+        "Scholarship",
+        "Research"
+      ],
+      "required": true,
+      "default": "Credential"
+    },
+    "salary": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    }
+  }
+}
