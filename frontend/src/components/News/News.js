@@ -47,8 +47,8 @@ class News extends Component {
       <div className="news-page">
         <Events />
         {this.props.user ? this.loggedIn() : null}
-        <h1 className="Events-heading">Events</h1>
-        <h2 className="Events-heading">Upcoming Events</h2>
+        <h1 className="Events-heading">News</h1>
+        <h2 className="Events-heading">Upcoming News</h2>
         <div className="Events">
           {this.state.news.length != 0 ? (
             this.state.news

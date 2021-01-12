@@ -11,16 +11,19 @@ class Resource extends Component {
   render() {
     const RESOURCE_LINKS = [
       {
-        link: 'https://www.google.con',
+        link: 'https://play.google.com/store/apps/details?id=gov.nasa.globe.observer&hl=en',
         name: 'Globe Observer',
         image: 'https://play-lh.googleusercontent.com/2iBA5BkZ6G7G5idLd5RhMGNW1aC0kQ-MIKWe75cM0ub8PxXhevfu1rJWOt4--wGalA=s180',
-        description: 'GLOBE Observer invites you to make observations of the Earth around you. Observations you collect and submit with this app are designed to help scientists better understand satellite data collected by NASA from space. '
+        description: 'GLOBE Observer invites you to make observations of the Earth around you. Observations you collect and submit with this app are designed to help scientists better understand satellite data collected. '
       },
 
       {
-        link: 'https://www.google.con',
+        link: 'https://www.vims.edu/people/loftis_jd/Catch%20the%20King/index.php',
         name: 'Sea Level Rise App',
-        image: 'https://i.imgur.com/ElWjENc.png'
+        image: 'https://play-lh.googleusercontent.com/2iBA5BkZ6G7G5idLd5RhMGNW1aC0kQ-MIKWe75cM0ub8PxXhevfu1rJWOt4--wGalA=s180',
+        // image: 'https://is1-ssl.mzstatic.com/image/thumb/Purple71/v4/c0/5f/34/c05f3446-d638-0fdc-e685-2935ebc3ef6b/mzl.ogzyxgyf.png/1200x630wa.png',
+        description: 'Get information about this global phenomena of Sea Level Rise and participate (as a volunteer) in capturing the data we need to better understand and solve the challenges it brings.'
+
       },
      
     ];
@@ -63,7 +66,7 @@ class Resource extends Component {
                         variant="top"
                         src={image}
                       />
-                      <Card.Title>{name}</Card.Title>
+                      <Card.Title className="Resource-Name">{name}</Card.Title>
                     </div>
                     <Card.Body>
                       <Card.Text>
