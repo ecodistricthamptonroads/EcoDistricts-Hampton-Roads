@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import React from 'react';
-import logo from '../../assets/images/logo.png';
+import icon from '../../assets/images/icon.png';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 
@@ -8,7 +8,7 @@ class NewsCard extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { src: logo };
+    this.state = { src: icon };
   }
 
   componentDidMount() {
@@ -19,12 +19,12 @@ class NewsCard extends Component {
           this.setState({ src: url.data });
         });
     } else {
-      this.setState({ src: logo });
+      this.setState({ src: icon });
     }
   }
 
   render() {
-    let src = logo;
+    let src = icon;
     if (!this.props.article) return null;
     return (
       <div className="newsItem">

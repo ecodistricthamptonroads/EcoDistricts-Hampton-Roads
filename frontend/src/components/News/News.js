@@ -3,7 +3,7 @@ import React from 'react';
 
 import Events from './Events';
 import '../../assets/stylesheets/app.css';
-import logo from '../../assets/images/logo.png';
+import icon from '../../assets/images/icon.png';
 import { getNews } from '../../helpers/api';
 class News extends Component {
   constructor(props) {
@@ -58,7 +58,7 @@ class News extends Component {
               )
               .map((news, idx) => (
                 <div className="row event" key={news.title + idx}>
-                  <img className="col-2 event-date" src={news.image || logo} />
+                  <img className="col-2 event-date" src={news.image || icon} />
 
                   <div className="col-6 event-info">
                     <h2>{news.title}</h2>

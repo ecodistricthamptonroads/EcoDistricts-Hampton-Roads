@@ -1,12 +1,12 @@
 #navbar-logo {
-  width: 15rem;
+  width: 20rem;
 }
 .navbar-nav {
   margin-left: 0;
 }
 .nav-link {
   color: #007a5e !important;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
 }
 .title {
   font-weight: bold;
@@ -16,6 +16,22 @@
   line-height: 1.2;
 }
 
+/* Place text in the middle of the image */
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.branding-logo {
+  width: 30rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .Homepage-container {
   background: white;
   width: 100%;
@@ -42,8 +58,8 @@
   width: 100vw;
   min-height: 70vh;
 }
+
 h1 {
-  font-family: helvetica;
   font-weight: 200;
 }
 

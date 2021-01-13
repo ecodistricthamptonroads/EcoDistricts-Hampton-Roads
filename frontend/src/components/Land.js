@@ -4,6 +4,9 @@ import { Image, Carousel } from "react-bootstrap";
 import "../assets/stylesheets/app.css";
 import axios from "axios";
 
+import main_futuresuburbs from "../assets/images/futuresuburbs.gif";
+import branding_logo from "../assets/images/Branding_White.svg";
+
 import other_carousel_1 from "../assets/images/carousel_1.jpg";
 import other_carousel_2 from "../assets/images/carousel_2.jpg";
 import other_carousel_3 from "../assets/images/carousel_3.jpg";
@@ -19,7 +22,7 @@ import what_we_do from "../assets/images/what_we_do.jpg";
 import instagram from "../assets/images/instagram.svg";
 import facebook from "../assets/images/facebook.svg";
 import twitter from "../assets/images/twitter.svg";
-import logo from "../assets/images/logo.png";
+import icon from "../assets/images/icon.png";
 
 import { Zoom } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
@@ -182,9 +185,9 @@ class Land extends Component {
                       <img
                         className="rounded mx-auto d-block carousel-item-img"
                         Style="padding-bottom: 5%"
-                        src={event.link || logo}
+                        src={event.link || icon}
                         onError={(e) => {
-                          e.target.src = logo;
+                          e.target.src = icon;
                         }}
                         alt={"" + event.title}
                       />
@@ -285,6 +288,20 @@ class Land extends Component {
       </section>
     );
   }
+
+  // getMainImage() {
+  //   renderOverlay = () => {
+  //     return (
+  //       <View style={styles.overlay}>
+  //         <Image
+  //           source={require('./images/heart.png')}
+  //           style={styles.overlayHeart}
+  //         />
+  //       </View>
+  //     );
+  //   }
+  // }
+
   getMainCarousel() {
     const images = [
       carousel_main_1,
@@ -338,10 +355,172 @@ class Land extends Component {
         }}
       >
         {/* Starting carousel */}
-        {this.getMainCarousel()}
+        {/* {this.getMainCarousel()} */}
+        
+      <section
+        style={{
+          backgroundColor: "black",
+          height: "90vh",
+          width: "100vw",
+          padding: 0,
+        }}
+        className="slide-container col-12"
+      >
+      <div 
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${main_futuresuburbs})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "20% 25%",
+          height: "90vh"
+        }}
+      >
+      <div class="hero-text">
+        <img src={branding_logo} class="branding-logo" style={{transform: "translate(-0%, -25%)"}}/>
+        <h1 style={{transform: "translate(-0%, -175%)"}}>Building Sustainble Communities</h1>
+      </div>
 
-        {/*Who are we? */}
-        <div className="Homepage-container">
+      </div>
+      </section>
+
+        {<section
+          style={{
+            backgroundImage: `url('${about_us}')`,
+            backgroundAttachment: 'fixed',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            textAlign: 'center',
+            height: '100vh'
+          }}
+        >
+          <div
+            className={'container-fluid'}
+            style={{
+              color: '#ffffff',
+              backgroundColor: 'rgba(0, 0, 0, 0.7)',
+              width: 'inherit',
+              height: 'inherit'
+            }}
+          >
+            <div className={'row h-100'}>
+              <div className="col-1" />
+              <div
+                className="col-5 my-auto"
+                style={{
+                  fontSize: '5vw',
+                  fontFamily: 'Rozha One, serif'
+                }}
+              >
+                <div style={{ color: '#dda73c' }}>Who are we?</div>
+              </div>
+              <div
+                className="col-6 my-auto"
+                style={{
+                  fontSize: '2.5vw',
+                  backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                  // borderRadius: "30px/30px",
+                  borderRadius: 0,
+                  padding: '35px'
+                }}
+              >
+                Eco Districts Hampton Roads hopes to create a beautiful and
+                sustainable community within Virginia's Hampton Roads, the
+                largest African American community.
+                <div
+                  style={{
+                    fontSize: '3vw',
+                    fontFamily: 'Rozha One, serif',
+                    paddingTop: '1rem'
+                  }}
+                >
+                  <button
+                    style={{
+                      color: 'black',
+                      backgroundColor: '#98B391',
+                      borderRadius: 10
+                    }}
+                  >
+                    Learn More
+                  </button>
+                </div>
+              </div>
+              <div className="col-1" />
+            </div>
+          </div>
+        </section> }
+
+        {/* What we do! */}
+        {<section
+          style={{
+            backgroundImage: `url('${what_we_do}')`,
+            backgroundAttachment: 'fixed',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            textAlign: 'center',
+            height: '100vh'
+          }}
+        >
+          <div
+            className={'container-fluid'}
+            style={{
+              color: '#ffffff',
+              backgroundColor: 'rgba(0, 0, 0, 0.7)',
+              width: 'inherit',
+              height: 'inherit'
+            }}
+          >
+            <div className={'row h-100'}>
+              <div className="col-1" />
+              <div
+                className="col-6 my-auto"
+                style={{
+                  fontSize: '2.5vw',
+                  backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                  // borderRadius: "30px/30px",
+                  borderRadius: 0,
+                  padding: '20px'
+                }}
+              >
+                <div>
+                  In order to help the community, Eco Districts Hampton Roads
+                  conducts multiple projects done by volunteers in order to fix
+                  various problems identified by residents
+                </div>
+                <div
+                  style={{
+                    fontSize: '4vw',
+                    fontFamily: 'Rozha One, serif'
+                  }}
+                >
+                  <button
+                    style={{
+                      color: 'black',
+                      backgroundColor: '#98B391',
+                      borderRadius: 10
+                    }}
+                  >
+                    Learn More!
+                  </button>
+                </div>
+              </div>
+              <div
+                className="col-5 my-auto"
+                style={{
+                  fontSize: '5vw',
+                  fontFamily: 'Rozha One, serif'
+                }}
+              >
+                <div style={{ color: '#EBCB8C' }}>What do we do?</div>
+              </div>
+              <div className="col-1" />
+            </div>
+          </div>
+        </section>}
+
+        {/*Information */}
+        {/* <div className="Homepage-container">
           <div>
             <div className="row">
               <h1 className="row Homepage-leftheader"> Who are we?</h1>
@@ -426,8 +605,7 @@ class Land extends Component {
             </div>
           </div>
         </div>
-        <div></div>
-
+         */}
         {/* Recent News */}
         {this.getNews()}
         {this.getEvents()}

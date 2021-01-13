@@ -3,14 +3,14 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
-import logo from '../../assets/images/logo.png';
+import icon from '../../assets/images/icon.png';
 import axios from 'axios';
 
 class Article extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      news: { title: '', description: '', text: '', image: { logo } }
+      news: { title: '', description: '', text: '', image: { icon } }
     };
   }
 
@@ -30,7 +30,7 @@ class Article extends Component {
           this.setState({ news: news.data });
         });
       } else {
-        news.data.image = logo;
+        news.data.image = icon;
 
         this.setState({ news: news.data });
       }

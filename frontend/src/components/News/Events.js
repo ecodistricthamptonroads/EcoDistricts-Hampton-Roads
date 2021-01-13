@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../assets/images/logo.png';
+import icon from '../../assets/images/icon.png';
 import { getEvents } from '../../helpers/api';
 class Events extends React.Component {
   constructor(props) {
@@ -53,7 +53,7 @@ class Events extends React.Component {
               )
               .map((event, idx) => (
                 <div className="row event" key={event.title + idx}>
-                  <img className="col-2 event-date" src={event.image || logo} />
+                  <img className="col-2 event-date" src={event.image || icon} />
 
                   <div className="col-6 event-info">
                     <h2>{event.title}</h2>

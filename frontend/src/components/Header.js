@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import logo from "../assets/images/logo.png";
+import icon from "../assets/images/icon.png";
 import brand from "../assets/images/Brand1.png";
 import Land from "./Land";
 
@@ -57,6 +57,28 @@ class Header extends Component {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav>
             {/* <Nav className="mr-auto"> */}
+            <NavDropdown
+              onMouseEnter={() => {
+                this.setState({ isOpen: true });
+              }}
+              onMouseLeave={() => {
+                this.setState({ isOpen: false });
+              }}
+              open={this.state.isOpen}
+              title="About"
+              id="basic-nav-dropdown"
+            >
+              <Nav.Item>
+                <Nav.Link eventKey="1" as={Link} to="/about">
+                  About Eco
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="9" as={Link} to="/team">
+                  Meet the Team
+                </Nav.Link>
+              </Nav.Item>
+            </NavDropdown>
             <Nav.Item>
               <Nav.Link eventKey="2" as={Link} to="/news">
                 News
@@ -82,28 +104,7 @@ class Header extends Component {
                 Projects
               </Nav.Link>
             </Nav.Item>
-            <NavDropdown
-              onMouseEnter={() => {
-                this.setState({ isOpen: true });
-              }}
-              onMouseLeave={() => {
-                this.setState({ isOpen: false });
-              }}
-              open={this.state.isOpen}
-              title="About"
-              id="basic-nav-dropdown"
-            >
-              <Nav.Item>
-                <Nav.Link eventKey="1" as={Link} to="/about">
-                  About Eco
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link eventKey="9" as={Link} to="/team">
-                  Meet the Team
-                </Nav.Link>
-              </Nav.Item>
-            </NavDropdown>
+
 
             <Nav.Item>
               <a className="nav-link" href={CONTACT_US_LINK}>

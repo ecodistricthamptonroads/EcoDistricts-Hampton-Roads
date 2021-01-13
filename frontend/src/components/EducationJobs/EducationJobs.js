@@ -166,7 +166,9 @@ class Jobs extends Component {
   _jobsLocationIsChecked(job) {
     return (
       this.state.location.length == 0 ||
-      this.state.location.includes(job.location.toLowerCase())
+      this.state.location.includes(job.location.toLowerCase()) ||
+      // TODO: get rid of this hacky way
+      this.state.location.includes("")
     );
   }
   _jobsCareerIsChecked(job) {
@@ -341,12 +343,12 @@ class Jobs extends Component {
               <p className="row">Which Industry Jobs belong to.</p>
             </div>
             {/* <div className="row"></div> */}
-            <div className="col-auto checkbox-options">
+            <div className="col-9 checkbox-options">
               {industries.map((industry_name, idx) => {
                 return (
                   <div
                     key={industry_name}
-                    className="form-check col-3  form-check-inline"
+                    className="form-check col-4  form-check-inline"
                   >
                     <input
                       className="form-check-input industry-checkbox"
@@ -387,12 +389,12 @@ class Jobs extends Component {
               <h3 className="row">Job Type:</h3>
               <h3 className="row">Paid opportunities' Type</h3>
             </div>
-            <div className="col-auto checkbox-options">
+            <div className="col-9 checkbox-options">
               {jobTypes.map((jobType, idx) => {
                 return (
                   <div
                     key={jobType}
-                    className="form-check col-3 form-check-inline"
+                    className="form-check col-4 form-check-inline"
                   >
                     <input
                       className="form-check-input JobType-checkbox"
@@ -403,7 +405,7 @@ class Jobs extends Component {
                       onClick={this.handleCheckboxJobType}
                     />
                     <label className="form-check-label" htmlFor={jobType + idx}>
-                      {jobType.toUpperCase()}
+                      {jobType}
                     </label>
                   </div>
                 );

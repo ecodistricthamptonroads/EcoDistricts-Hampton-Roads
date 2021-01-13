@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import garry from '../../assets/images/gary.jpg';
-import logo from '../../assets/images/logo.png';
+import icon from '../../assets/images/icon.png';
 
 const OtherTeams = [
   `CSC Team
@@ -127,7 +127,7 @@ class MeetTheTeam extends React.Component {
             const INFO = info.split('\n');
             return (
               <Card className="col-3" style={CardStyle}>
-                <Card.Img variant="top" src={logo} />
+                <Card.Img variant="top" src={icon} />
                 <Card.Body>
                   <Card.Text>
                     <Card.Title>{INFO[0]}</Card.Title>
