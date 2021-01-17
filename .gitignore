@@ -25,7 +25,9 @@ yarn-error.log*
 /public/hot/
 /public/bundle.js
 start.sh
+startV2.sh
 aws.pem
+*.gz
 
 /strapi_backend/.cache
 /strapi_backend/.tmp

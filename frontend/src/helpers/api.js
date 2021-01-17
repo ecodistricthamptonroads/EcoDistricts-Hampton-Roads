@@ -1,9 +1,11 @@
 import axios from "axios";
 
 export function getStrapiURL(path = "") {
-  return `${
-    process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337"
-  }${path}`;
+  const DOMAIN =
+    process.env.NODE_ENV === "production"
+      ? "http://api.ecodistricthamptonroads.org/"
+      : "http://localhost:1337";
+  return `${DOMAIN}${path}`;
 }
 
 // Helper to make GET requests to Strapi
