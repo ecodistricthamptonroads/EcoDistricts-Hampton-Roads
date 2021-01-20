@@ -1,48 +1,49 @@
-import { Component } from 'react';
-import React from 'react';
+import { Component } from "react";
+import React from "react";
 
-import Events from './Events';
-import '../../assets/stylesheets/app.css';
-import icon from '../../assets/images/icon.png';
-import { getNews } from '../../helpers/api';
+import Events from "./Events";
+import "../../assets/stylesheets/app.css";
+import icon from "../../assets/images/icon.png";
+import { getNews, getSpecificImage } from "../../helpers/api";
 class News extends Component {
   constructor(props) {
     super(props);
     this.state = {
       notInitial: false,
       news: [],
-      currentPage: 0
+      currentPage: 0,
     };
   }
   _getDateFormatted(date) {
     const monthNames = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec'
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
     ];
 
     var mm = date.getMonth();
     var dd = date.getDate();
 
-    return [monthNames[mm], (dd > 9 ? '' : '0') + dd].join('-');
+    return [monthNames[mm], (dd > 9 ? "" : "0") + dd].join("-");
   }
   componentDidMount() {
-    getNews().then(req => {
+    getNews().then((req) => {
       this.setState({ news: req.data });
     });
   }
 
   render() {
     const NEWS_PER_PAGE = 3;
+
     return (
       <div className="news-page">
         <Events />
@@ -58,7 +59,10 @@ class News extends Component {
               )
               .map((news, idx) => (
                 <div className="row event" key={news.title + idx}>
-                  <img className="col-2 event-date" src={news.image || icon} />
+                  <img
+                    className="col-2 event-date"
+                    src={getSpecificImage(news.image) || icon}
+                  />
 
                   <div className="col-6 event-info">
                     <h2>{news.title}</h2>
@@ -78,7 +82,7 @@ class News extends Component {
             className="left-arrow col"
             onClick={() =>
               this.setState({
-                currentPage: Math.max(this.state.currentPage - 1, 0)
+                currentPage: Math.max(this.state.currentPage - 1, 0),
               })
             }
           >
@@ -92,7 +96,7 @@ class News extends Component {
                 currentPage: Math.min(
                   this.state.currentPage + 1,
                   Math.ceil(this.props.news.length / NEWS_PER_PAGE) - 1
-                )
+                ),
               });
             }}
           >

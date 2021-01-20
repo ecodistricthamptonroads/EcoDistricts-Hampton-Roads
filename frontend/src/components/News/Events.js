@@ -1,41 +1,41 @@
-import React from 'react';
-import icon from '../../assets/images/icon.png';
-import { getEvents } from '../../helpers/api';
+import React from "react";
+import icon from "../../assets/images/icon.png";
+import { getEvents, getSpecificImage } from "../../helpers/api";
 class Events extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       currentPage: 0,
-      events: []
+      events: [],
     };
   }
 
   componentDidMount() {
-    getEvents().then(req => {
+    getEvents().then((req) => {
       this.setState({ events: req.data });
     });
   }
 
   _getDateFormatted(date) {
     const monthNames = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec'
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
     ];
 
     var mm = date.getMonth();
     var dd = date.getDate();
 
-    return [monthNames[mm], (dd > 9 ? '' : '0') + dd].join('-');
+    return [monthNames[mm], (dd > 9 ? "" : "0") + dd].join("-");
   }
 
   render() {
@@ -53,7 +53,10 @@ class Events extends React.Component {
               )
               .map((event, idx) => (
                 <div className="row event" key={event.title + idx}>
-                  <img className="col-2 event-date" src={event.image || icon} />
+                  <img
+                    className="col-2 event-date"
+                    src={getSpecificImage(event.image) || icon}
+                  />
 
                   <div className="col-6 event-info">
                     <h2>{event.title}</h2>
@@ -73,7 +76,7 @@ class Events extends React.Component {
             className="left-arrow col"
             onClick={() =>
               this.setState({
-                currentPage: Math.max(this.state.currentPage - 1, 0)
+                currentPage: Math.max(this.state.currentPage - 1, 0),
               })
             }
           >
@@ -87,7 +90,7 @@ class Events extends React.Component {
                 currentPage: Math.min(
                   this.state.currentPage + 1,
                   Math.ceil(this.state.events.length / EVENTS_PER_PAGE) - 1
-                )
+                ),
               });
             }}
           >
