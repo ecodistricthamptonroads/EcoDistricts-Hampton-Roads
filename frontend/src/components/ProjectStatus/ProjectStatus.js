@@ -79,7 +79,7 @@ class ProjectStatus extends Component {
               >
                 <Card
                   onClick={() => {
-                    this.props.history.push("/Project/" + idx);
+                    this.props.history.push("/Project/" + project.id);
                   }}
                   style={{ width: "18rem" }}
                 >
