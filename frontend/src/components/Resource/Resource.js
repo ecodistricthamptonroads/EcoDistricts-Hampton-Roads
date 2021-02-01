@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import React from 'react';
 import '../../assets/stylesheets/app.css';
+import '../../assets/stylesheets/resourcestyle.css';
 
 import { Card } from 'react-bootstrap';
 class Resource extends Component {
@@ -86,7 +87,7 @@ class Resource extends Component {
             <ul>
               {SECONDCHANCE_LINKS.map(({ name, link }) => (
                 <li key={name}>
-                  <a className="Resource-list" href={link}>{name}</a>
+                  <button className="second-chance-button"><a className="Resource-list" href={link}>{name}</a></button>
                 </li>
               ))}
             </ul>
