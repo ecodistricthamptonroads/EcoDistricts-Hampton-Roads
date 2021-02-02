@@ -1,5 +1,5 @@
 #navbar-logo {
-  width: 20rem;
+  width: 15rem;
 }
 .navbar-nav {
   margin-left: 0;
@@ -14,23 +14,21 @@
 
 .body {
   line-height: 1.2;
+  font-family: Lato;
 }
 
 /* Place text in the middle of the image */
 .hero-text {
-  text-align: center;
+  text-align: left;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
   color: white;
 }
 
 .branding-logo {
-  width: 30rem;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 27rem;
 }
 .Homepage-container {
   background: white;
@@ -48,6 +46,13 @@
   font-size: 1.25rem;
   color: #303030;
 }
+.Homepage-info {
+  font-size: 2.5vw;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 0;
+  padding: 20px;
+}
+
 .percent {
   font-weight: 700;
   font-size: 84px;
@@ -65,6 +70,7 @@ h1 {
 
 body {
   background-color: white;
+  font-family: Lato;
 }
 
 .Project-Search-Bar {
