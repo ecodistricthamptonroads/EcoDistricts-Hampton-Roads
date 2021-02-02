@@ -1,29 +1,29 @@
-import { Component } from 'react';
-import React from 'react';
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
-import ListGroupItem from 'react-bootstrap/ListGroupItem';
-import icon from '../../assets/images/icon.png';
-import axios from 'axios';
+import { Component } from "react";
+import React from "react";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
+import ListGroupItem from "react-bootstrap/ListGroupItem";
+import icon from "../../assets/images/icon.png";
+import axios from "axios";
 
 class Article extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      news: { title: '', description: '', text: '', image: { icon } }
+      news: { title: "", description: "", text: "", image: { icon } },
     };
   }
 
   componentDidMount() {
     console.log(this.props.news);
-    axios.get('/api/news/' + this.props.match.params.id).then(news => {
-      console.log('hi');
+    axios.get("/api/news/" + this.props.match.params.id).then((news) => {
+      console.log("hi");
       console.log(news);
 
       if (news.data.image) {
-        axios.get('/api/file/get_file_by_id/' + news.data.image).then(url => {
+        axios.get("/api/file/get_file_by_id/" + news.data.image).then((url) => {
           console.log(url.data);
-          console.log('___________________________________________');
+          console.log("___________________________________________");
           news.data.image = url.data;
           console.log(news.image);
 

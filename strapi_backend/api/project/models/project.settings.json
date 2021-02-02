@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "projects",
   "info": {
-    "name": "Project"
+    "name": "Project",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -12,6 +13,23 @@
   "attributes": {
     "title": {
       "type": "string"
+    },
+    "subtitle": {
+      "type": "string",
+      "required": true,
+      "minLength": 1
+    },
+    "goal": {
+      "type": "richtext",
+      "required": true
+    },
+    "outcome": {
+      "type": "richtext",
+      "required": true
+    },
+    "team": {
+      "type": "richtext",
+      "required": true
     }
   }
 }

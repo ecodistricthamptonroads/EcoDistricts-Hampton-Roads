@@ -1,9 +1,14 @@
 import axios from "axios";
 
+export function getDomain() {
+  return process.env.NODE_ENV === "production"
+    ? "http://api.ecodistricthamptonroads.org/"
+    : "http://localhost:1337";
+}
 export function getStrapiURL(path = "") {
-  return `${
-    process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337"
-  }${path}`;
+  const DOMAIN = getDomain();
+
+  return `${DOMAIN}${path}`;
 }
 
 // Helper to make GET requests to Strapi
@@ -26,8 +31,9 @@ export const IMAGE_TYPE = {
   LARGE: "large",
   MEDIUM: "medium",
   SMALL: "small",
+  ANY: null,
 };
-export function getSpecificImage(type, image_obj) {
+export function getSpecificImage(image_obj, type = IMAGE_TYPE.ANY) {
   switch (type) {
     case IMAGE_TYPE.THUMBNAIL:
     case IMAGE_TYPE.LARGE:
@@ -58,4 +64,8 @@ export async function getJobs() {
 const PROJECTS_PATH = "/Projects";
 export async function getProjects() {
   return axios.get(getStrapiURL(PROJECTS_PATH));
+}
+
+export async function getProject(id) {
+  return axios.get(getStrapiURL(`${PROJECTS_PATH}/${id}`));
 }

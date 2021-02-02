@@ -356,6 +356,7 @@ class Jobs extends Component {
                       type="checkbox"
                       name="industry"
                       value={industry_name}
+                      checked={true}
                       onClick={this.handleCheckboxIndustry}
                     />
                     <label
@@ -402,6 +403,7 @@ class Jobs extends Component {
                       type="checkbox"
                       name="JobType"
                       value={jobType}
+                      checked={true}
                       onClick={this.handleCheckboxJobType}
                     />
                     <label className="form-check-label" htmlFor={jobType + idx}>
