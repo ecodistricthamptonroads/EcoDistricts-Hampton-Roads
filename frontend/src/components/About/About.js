@@ -2,17 +2,17 @@ import { Component } from 'react';
 import React from 'react';
 import '../../assets/stylesheets/app.css';
 
-import carousel_1 from '../../assets/images/carousel_1.jpg';
-import carousel_2 from '../../assets/images/carousel_2.jpg';
-import carousel_3 from '../../assets/images/carousel_3.jpg';
-import carousel_4 from '../../assets/images/carousel_4.jpg';
+import carousel_1 from '../../assets/images/land_slideshow_img/main1.jpg';
+// import carousel_2 from '../../assets/images/carousel_2.jpg';
+// import carousel_3 from '../../assets/images/carousel_3.jpg';
+// import carousel_4 from '../../assets/images/carousel_4.jpg';
 class About extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    let images = [carousel_1, carousel_2, carousel_3, carousel_4];
+    let images = [carousel_1];//, carousel_2, carousel_3, carousel_4];
     return (
       <div className="col-sm-10 offset-md-1">
         {/* TODO: add parallax  */}

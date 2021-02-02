@@ -7,24 +7,25 @@ import axios from "axios";
 import main_futuresuburbs from "../assets/images/futuresuburbs.gif";
 import branding_logo from "../assets/images/Branding_White.svg";
 
-import other_carousel_1 from "../assets/images/carousel_1.jpg";
-import other_carousel_2 from "../assets/images/carousel_2.jpg";
-import other_carousel_3 from "../assets/images/carousel_3.jpg";
-import other_carousel_4 from "../assets/images/carousel_4.jpg";
+// import other_carousel_1 from "../assets/images/carousel_1.jpg";
+// import other_carousel_2 from "../assets/images/carousel_2.jpg";
+// import other_carousel_3 from "../assets/images/carousel_3.jpg";
+// import other_carousel_4 from "../assets/images/carousel_4.jpg";
 
-import carousel_main_1 from "../assets/images/land_slideshow_img/images Slideshow-1.png";
-import carousel_main_2 from "../assets/images/land_slideshow_img/images Slideshow-2.png";
-import carousel_main_3 from "../assets/images/land_slideshow_img/images Slideshow-3.png";
-import carousel_main_4 from "../assets/images/land_slideshow_img/images Slideshow-4.png";
+import img_main1 from "../assets/images/land_slideshow_img/main1.jpg";
+import img_main2 from "../assets/images/land_slideshow_img/main2.jpg";
+// import carousel_main_3 from "../assets/images/land_slideshow_img/images Slideshow-3.png";
+// import carousel_main_4 from "../assets/images/land_slideshow_img/images Slideshow-4.png";
 
 import about_us from "../assets/images/about_us.jpg";
+import our_story from "../assets/images/our_story.jpg";
 import what_we_do from "../assets/images/what_we_do.jpg";
 import instagram from "../assets/images/instagram.svg";
 import facebook from "../assets/images/facebook.svg";
 import twitter from "../assets/images/twitter.svg";
 import icon from "../assets/images/icon.png";
 
-import { Zoom } from "react-slideshow-image";
+import { Fade } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import { getEvents, getNews } from "../helpers/api";
 
@@ -265,7 +266,7 @@ class Land extends Component {
 
                         <img
                           className="img-fluid col-8"
-                          src={news.image || other_carousel_1}
+                          src={news.image || img_main1}
                           style={{
                             backgroundRepeat: "no-repeat",
                             backgroundAttachment: "fixed",
@@ -289,29 +290,37 @@ class Land extends Component {
     );
   }
 
-  // getMainImage() {
-  //   renderOverlay = () => {
-  //     return (
-  //       <View style={styles.overlay}>
-  //         <Image
-  //           source={require('./images/heart.png')}
-  //           style={styles.overlayHeart}
-  //         />
-  //       </View>
-  //     );
-  //   }
-  // }
-
+  getLearnMoreButton() {
+    return (
+    <div
+      style={{
+        fontSize: '3vw',
+        paddingTop: '1rem'
+      }}
+    >
+      <button
+        style={{
+          color: 'white',
+          backgroundColor: '#153967',
+          border: 'None',
+          fontFamily: 'Lato',
+          margin: '4vh'
+          // borderRadius: 10
+        }}
+      >
+        Learn More
+      </button>
+    </div>
+    )
+  }
   getMainCarousel() {
     const images = [
-      carousel_main_1,
-      carousel_main_2,
-      carousel_main_3,
-      carousel_main_4,
+      img_main1, 
+      img_main2
     ];
-    const zoomOutProperties = {
-      duration: 2000,
-      transitionDuration: 1000,
+    const transitionProperties = {
+      duration: 500,
+      transitionDuration: 1500,
       infinite: true,
       indicators: false,
       scale: 0.1,
@@ -321,27 +330,39 @@ class Land extends Component {
       <section
         style={{
           backgroundColor: "black",
-          height: "115vh",
+          height: "90vh",
           width: "100vw",
           padding: 0,
         }}
         className="slide-container col-12"
       >
-        <Zoom {...zoomOutProperties}>
-          {images.map((each, index) => (
-            <img
-              key={index}
-              style={{
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
-                backgroundPosition: "center center",
-                height: "115vh"
-                // filter: "brightness(50%)",
-              }}
-              src={each}
-            />
-          ))}
-        </Zoom>
+        <div>
+          <Fade {...transitionProperties}> 
+            {images.map((each, index) => (
+              <div
+                key={index}
+                style={{
+                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url(${each})`,
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center center",
+                  height: "90vh",
+                  width: "100vw"
+                  // filter: "brightness(50%)",
+                }}
+                src={each}
+              >
+                <div class="hero-text">
+                  <div style={{transform: "translate(-115%, -25%)"}}> 
+                    <img src={branding_logo} class="branding-logo" />
+                    <h1>Building Sustainble Communities</h1>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </Fade>
+        </div>
+     
       </section>
     );
   }
@@ -355,9 +376,9 @@ class Land extends Component {
         }}
       >
         {/* Starting carousel */}
-        {/* {this.getMainCarousel()} */}
+        {this.getMainCarousel()}
         
-      <section
+      {/* <section
         style={{
           backgroundColor: "black",
           height: "90vh",
@@ -368,82 +389,88 @@ class Land extends Component {
       >
       <div 
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${main_futuresuburbs})`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url(${img_main1})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "20% 25%",
           height: "90vh"
         }}
       >
-      <div class="hero-text">
-        <img src={branding_logo} class="branding-logo" style={{transform: "translate(-0%, -25%)"}}/>
-        <h1 style={{transform: "translate(-0%, -175%)"}}>Building Sustainble Communities</h1>
-      </div>
+        <div class="hero-text">
+          <div style={{transform: "translate(-115%, -25%)"}}> 
+            <img src={branding_logo} class="branding-logo" />
+            <h1>Building Sustainble Communities</h1>
+          </div>
+        </div>
 
       </div>
-      </section>
+      </section> */}
 
         {<section
           style={{
-            backgroundImage: `url('${about_us}')`,
+            backgroundImage: `url('${our_story}')`,
             backgroundAttachment: 'fixed',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             textAlign: 'center',
-            height: '100vh'
+            height: '150vh'
           }}
         >
           <div
             className={'container-fluid'}
             style={{
               color: '#ffffff',
-              backgroundColor: 'rgba(0, 0, 0, 0.7)',
+              backgroundColor: 'rgba(0, 0, 0, 0)',
+              backgroundPosition: '8px 8px',
               width: 'inherit',
               height: 'inherit'
             }}
           >
             <div className={'row h-100'}>
-              <div className="col-1" />
+              <div className="col-7" />
+                {/* <div
+                  className="col-5 my-auto"
+                  style={{
+                    fontSize: '5vw',
+                    fontFamily: 'Rozha One, serif'
+                  }}
+                >
+                  <div style={{ color: '#dda73c' }}>Who are we?</div>
+                </div>  */}
               <div
-                className="col-5 my-auto"
+                className="col-4 my-auto"
                 style={{
-                  fontSize: '5vw',
-                  fontFamily: 'Rozha One, serif'
-                }}
-              >
-                <div style={{ color: '#dda73c' }}>Who are we?</div>
-              </div>
-              <div
-                className="col-6 my-auto"
-                style={{
-                  fontSize: '2.5vw',
+                  fontSize: '1.5vw',
                   backgroundColor: 'rgba(0, 0, 0, 0.6)',
                   // borderRadius: "30px/30px",
                   borderRadius: 0,
-                  padding: '35px'
+                  marginLeft: '6%',
+                  // color: '#007A5E'
                 }}
               >
                 Eco Districts Hampton Roads hopes to create a beautiful and
                 sustainable community within Virginia's Hampton Roads, the
                 largest African American community.
-                <div
+                {this.getLearnMoreButton()}
+                {/* <div
                   style={{
                     fontSize: '3vw',
-                    fontFamily: 'Rozha One, serif',
+                    // fontFamily: 'Roboto',
                     paddingTop: '1rem'
                   }}
                 >
                   <button
                     style={{
-                      color: 'black',
-                      backgroundColor: '#98B391',
-                      borderRadius: 10
+                      color: 'white',
+                      backgroundColor: '#153967',
+                      // borderRadius: 10
                     }}
                   >
                     Learn More
                   </button>
-                </div>
+                </div> */}
+
               </div>
               <div className="col-1" />
             </div>
@@ -474,14 +501,7 @@ class Land extends Component {
             <div className={'row h-100'}>
               <div className="col-1" />
               <div
-                className="col-6 my-auto"
-                style={{
-                  fontSize: '2.5vw',
-                  backgroundColor: 'rgba(0, 0, 0, 0.6)',
-                  // borderRadius: "30px/30px",
-                  borderRadius: 0,
-                  padding: '20px'
-                }}
+                className="Homepage-info col-6 my-auto"
               >
                 <div>
                   In order to help the community, Eco Districts Hampton Roads
@@ -490,20 +510,24 @@ class Land extends Component {
                 </div>
                 <div
                   style={{
-                    fontSize: '4vw',
-                    fontFamily: 'Rozha One, serif'
+                    
+                    // fontFamily: 'Rozha One, serif'
+                    fontFamily: 'Lato, sans-serif'
                   }}
                 >
                   <button
                     style={{
                       color: 'black',
                       backgroundColor: '#98B391',
+                      fontSize: '3vw',
                       borderRadius: 10
                     }}
                   >
                     Learn More!
                   </button>
                 </div>
+
+
               </div>
               <div
                 className="col-5 my-auto"

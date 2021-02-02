@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import icon from "../assets/images/icon.png";
 import brand from "../assets/images/Brand1.png";
 import Land from "./Land";
-import { getDomain } from "../helpers/api";
+
 import "../assets/stylesheets/app.css";
 
 class Header extends Component {
@@ -15,11 +15,39 @@ class Header extends Component {
   }
   componentDidMount() {}
 
+  isLoggedIn() {
+    switch (this.props.user) {
+      case null:
+        return "still deciding";
+      case false:
+        return (
+          <Nav.Item>
+            <a href={"/api/auth/google/get"}>Admin? Log in here</a>
+          </Nav.Item>
+        );
+      default:
+        return (
+          <Nav.Item>
+            <a href={"/api/auth/logout"}>Log Out</a>
+          </Nav.Item>
+        );
+    }
+  }
+
+  email() {
+    if (this.props.user)
+      return (
+        <Nav.Item>
+          <Nav.Link eventKey="8" as={Link} to="/email">
+            Add Admin Email
+          </Nav.Link>
+        </Nav.Item>
+      );
+  }
+
   render() {
     const CONTACT_US_LINK =
       "https://us4.list-manage.com/contact-form?u=51eb002c7ef49ac4bf7de17e2&form_id=c58d36b6f54bd9b975ec2607253190d2";
-    const ADMIN_LINK =
-      "http://api.ecodistricthamptonroads.org/admin" | `${getDomain()}$/admin`;
     return (
       <Navbar collapseOnSelect expand="lg">
         <Navbar.Brand href="/">
@@ -77,14 +105,10 @@ class Header extends Component {
               </Nav.Link>
             </Nav.Item>
 
+
             <Nav.Item>
               <a className="nav-link" href={CONTACT_US_LINK}>
                 Contact Us
-              </a>
-            </Nav.Item>
-            <Nav.Item>
-              <a className="nav-link" href={ADMIN_LINK}>
-                LogIn
               </a>
             </Nav.Item>
           </Nav>
