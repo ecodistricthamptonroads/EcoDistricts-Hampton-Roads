@@ -104,6 +104,7 @@ class Resource extends Component {
                         src={image}
                         style={cardImageStyle}
                       />
+                      <br />
                       <Card.Title className="Resource-Name">{name}</Card.Title>
                     </div>
                     <Card.Body>
