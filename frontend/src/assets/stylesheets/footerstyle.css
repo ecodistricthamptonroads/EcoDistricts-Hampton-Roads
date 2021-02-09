@@ -1,0 +1,34 @@
+#footer-body{
+    background-color: #153967;
+    color:white;
+    box-sizing: border-box;
+    padding: 5% 1% 5% 2%;
+    font-family: Lato;
+}
+#footer-heading{
+    color:#529384;
+}
+#major-box{
+    width:80%;
+    float:left;
+    text-align:left;
+}
+#contact-box{
+    width:20%;
+    float:left;
+}
+#footer-body a{
+    color: white;
+}
+.page-link-col{
+    text-align:left;
+}
+
+.sns-button{
+    width:48px;
+    height:48px;
+}
+
+#sns-section{
+    text-align: center;
+}

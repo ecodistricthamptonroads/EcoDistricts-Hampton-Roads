@@ -83,7 +83,7 @@ class Resource extends Component {
 
     return (
       <div className="Resource-container">
-        <h1 className="Resource-Heading">Resources</h1>
+        <h1 className="Resource-Heading section-title">Resources</h1>
         <div className="Resource-body">
           <div className="Resource-text">
             Description Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -92,10 +92,10 @@ class Resource extends Component {
           </div>
           <br />
           <div className="Resource-gallery">
-            <div className="Resource-Heading" style={{color:"black", textAlign:"left"}}>Apps</div>
+            <div className="Resource-Heading section-title" style={{textAlign:"left"}}>Apps</div>
             <div className="Resource-Grid row ">
               {RESOURCE_LINKS.map(({ name, link, image, description }) => (
-                <a className="col-md-4 col-sm-12" key={name} href={link}>
+                <a className="col-md-4 col-sm-12 d-flex flex-fill" key={name} href={link}>
                   <Card className="Resource-card">
                     <div className="card-heading">
                       <Card.Img
@@ -105,7 +105,7 @@ class Resource extends Component {
                         style={cardImageStyle}
                       />
                       <br />
-                      <Card.Title className="Resource-Name">{name}</Card.Title>
+                      <h1 className="Resource-Name">{name}</h1>
                     </div>
                     <Card.Body>
                       <Card.Text>
@@ -118,7 +118,7 @@ class Resource extends Component {
             </div>
           </div>
           <div className="Resource-row">
-            <h1 className="Resource-Heading" style={{textAlign:"left"}}>Second Chance Resources</h1>
+            <h1 className="Resource-Heading section-title" style={{textAlign:"left"}}>Second Chance Resources</h1>
             <div className="Resource-text">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit
             </div>
