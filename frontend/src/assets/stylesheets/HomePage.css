@@ -1,0 +1,171 @@
+.main-carousel{
+    /* animation: move 10s infinite;
+    overflow: hidden; */
+}
+
+@keyframes move {
+    0%{
+        background-position: top left;
+    }
+    100%{
+        background-position: bottom right;
+    }
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes zoom {
+    0%,100% {
+    	-webkit-transform: scale(1,1);
+      -moz-transform: scale(1,1);
+      height: 600px;
+    }
+    50%{
+    	-webkit-transform: scale(1.5,1.5);
+      -moz-transform: scale(1.5,1.5);
+      height: 600px;
+
+    }
+}
+
+/* Standard syntax */
+@keyframes zoom {
+   0%,100% {
+        transform: scale(1,1);
+      height: 100vh;
+
+   }
+   50% {
+        transform: scale(1.5,1.5);
+      height: 100vh;
+
+   }
+}
+
+.p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-family: Lato;
+}
+
+.Homepage-container {
+  background: white;
+  width: 100%;
+  color: black;
+  padding: 5% 20% 5% 20%;
+}
+.Homepage-leftheader {
+  color: #007a5e;
+  font-weight: 500;
+}
+.Homepage-column {
+  width: 33%;
+  padding: 0% 1.5% 0% 1.5%;
+  font-size: 1.25rem;
+  color: #303030;
+}
+.Homepage-info {
+  font-size: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 0;
+  text-align: right;
+  margin-left: 6%;
+  padding: 2%;
+}
+.Homepage-info-header {
+  font-size: 4rem;
+  font-weight: 600;
+  color: #A1E1B3;
+  font-family: Lato;
+}
+
+.Homepage-h1 {
+  margin-top: 5.5rem;
+  padding-left: 5%;
+  font-weight: bold;
+  font-size: 3rem;
+  justify-content: center;
+  color: #153967;
+  text-align: left;
+}
+
+
+
+.Hompage-panel-img {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  height: 90vh;
+  overflow: hidden;
+  align-content: center;
+}
+
+.Homepage-panel-info {
+  font-size: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 0;
+  text-align: left;
+  margin-left: 8%;
+  padding: 9%;
+  margin-top: 15%;
+  color: white;
+  margin-right: 6%;
+  font-family: Lato;
+
+}
+.Homepage-panel-header{
+  display: flex;             
+  height: 100%;
+  align-items: left;
+  justify-content: left;
+  font-size: 2vw;
+  font-weight: bold;
+  color: #A1E1B3;
+  flex: 1;
+
+}
+
+.Homepage-img-col {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.Mail-Chimp-signup {
+  background-color: #98b391;
+  height: fit-content;
+  margin: auto;
+  padding: 1.5%;
+  border-radius: 5px;
+  width: 70vw;
+}
+
+.mc-field-group {
+  color: black;
+}
+.mc-field-group > input {
+  margin-top: 5%;
+  border-radius: 5px;
+} 
+
+#mce-EMAIL {
+  margin-bottom: 5%;
+}
+#mce-MMERGE4-country {
+  margin-top: 5%;
+}
+#mc-embedded-subscribe {
+  background: #1d84e3;
+  border-radius: 5px;
+  border: white;
+  margin: auto;
+  margin-top: 5%;
+  padding: 2%;
+  color: white;
+  width: 9em;
+}
+
+#signUpMailChimp {
+  border: white;
+  height: 100%;
+}

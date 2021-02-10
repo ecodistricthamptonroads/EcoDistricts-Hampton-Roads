@@ -2,6 +2,7 @@ import { Component } from "react";
 import React from "react";
 import { Image, Carousel } from "react-bootstrap";
 import "../assets/stylesheets/app.css";
+import "../assets/stylesheets/HomePage.css";
 import axios from "axios";
 
 import main_futuresuburbs from "../assets/images/futuresuburbs.gif";
@@ -17,6 +18,18 @@ import img_main2 from "../assets/images/land_slideshow_img/main2.jpg";
 // import carousel_main_3 from "../assets/images/land_slideshow_img/images Slideshow-3.png";
 // import carousel_main_4 from "../assets/images/land_slideshow_img/images Slideshow-4.png";
 
+import img_work1 from "../assets/images/our_work_img/OurWork_1.jpg";
+import img_work2 from "../assets/images/our_work_img/OurWork_2.jpg";
+import img_work3 from "../assets/images/our_work_img/OurWork_3.jpg";
+
+import img_priority1 from "../assets/images/six_community_priorities/priority1.jpg";
+import img_priority2 from "../assets/images/six_community_priorities/priority2.jpg";
+import img_priority3 from "../assets/images/six_community_priorities/priority3.jpg";
+import img_priority4 from "../assets/images/six_community_priorities/priority4.jpg";
+import img_priority5 from "../assets/images/six_community_priorities/priority5.jpg";
+import img_priority6 from "../assets/images/six_community_priorities/priority6.jpg";
+
+
 import about_us from "../assets/images/about_us.jpg";
 import our_story from "../assets/images/our_story.jpg";
 import what_we_do from "../assets/images/what_we_do.jpg";
@@ -25,7 +38,7 @@ import facebook from "../assets/images/facebook.svg";
 import twitter from "../assets/images/twitter.svg";
 import icon from "../assets/images/icon.png";
 
-import { Fade } from "react-slideshow-image";
+import { Fade, Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import { getEvents, getNews } from "../helpers/api";
 
@@ -294,8 +307,10 @@ class Land extends Component {
     return (
     <div
       style={{
-        fontSize: '3vw',
-        paddingTop: '1rem'
+        fontSize: '2vw',
+        paddingTop: '1rem',
+        fontFamily: 'Lato',
+        textAlign: 'inherit'
       }}
     >
       <button
@@ -303,8 +318,10 @@ class Land extends Component {
           color: 'white',
           backgroundColor: '#153967',
           border: 'None',
+          paddingLeft: '2rem',
+          paddingRight: '2rem',
           fontFamily: 'Lato',
-          margin: '4vh'
+          // margin: '4vh'
           // borderRadius: 10
         }}
       >
@@ -318,8 +335,10 @@ class Land extends Component {
       img_main1, 
       img_main2
     ];
+
+    const headers = ["1. Create a sense of place", "2 prosperity", "3 health_wellness.jpeg", "4 living infrastructure.jpeg"]
     const transitionProperties = {
-      duration: 500,
+      duration: 1500,
       transitionDuration: 1500,
       infinite: true,
       indicators: false,
@@ -334,7 +353,7 @@ class Land extends Component {
           width: "100vw",
           padding: 0,
         }}
-        className="slide-container col-12"
+        className="slide-container main-carousel col-12"
       >
         <div>
           <Fade {...transitionProperties}> 
@@ -342,12 +361,13 @@ class Land extends Component {
               <div
                 key={index}
                 style={{
-                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url(${each})`,
+                  backgroundImage: `linear-gradient(rgba(0, 0, 0, .35), rgba(0, 0, 0, 0.5)), url(${each})`,
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "cover",
                   backgroundPosition: "center center",
                   height: "90vh",
-                  width: "100vw"
+                  width: "100vw",
+               
                   // filter: "brightness(50%)",
                 }}
                 src={each}
@@ -366,19 +386,25 @@ class Land extends Component {
       </section>
     );
   }
-  render() {
+  getSecondaryCarousel() {
+    const images = [
+      img_priority1, 
+      img_priority2,
+      img_priority3, 
+      img_priority4,
+      img_priority5,
+      img_priority6
+    ];
+    const transitionProperties = {
+      duration: 1500,
+      transitionDuration: 1500,
+      infinite: true,
+      indicators: true,
+      scale: 0.1,
+      arrows: false,
+    };
     return (
-      <div
-        className="col-12"
-        style={{
-          padding: 0,
-          background: "linear-gradient(180deg, #1D84E3 66.55%, #FFFFFF 100%)",
-        }}
-      >
-        {/* Starting carousel */}
-        {this.getMainCarousel()}
-        
-      {/* <section
+      <section
         style={{
           backgroundColor: "black",
           height: "90vh",
@@ -387,24 +413,40 @@ class Land extends Component {
         }}
         className="slide-container col-12"
       >
-      <div 
+        <div>
+          <Slide {...transitionProperties}> 
+            {images.map((each, index) => (
+              <div
+                key={index}
+                style={{
+                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url(${each})`,
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center center",
+                  height: "90vh",
+                  width: "100vw",
+                }}
+                src={each}
+              >
+              </div>
+            ))}
+          </Slide>
+        </div>
+     
+      </section>
+    );
+  }
+  render() {
+    return (
+      <div
+        className="col-12"
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url(${img_main1})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundPosition: "20% 25%",
-          height: "90vh"
+          padding: 0,
+          background: "white"
         }}
       >
-        <div class="hero-text">
-          <div style={{transform: "translate(-115%, -25%)"}}> 
-            <img src={branding_logo} class="branding-logo" />
-            <h1>Building Sustainble Communities</h1>
-          </div>
-        </div>
-
-      </div>
-      </section> */}
+        {/* Starting carousel */}
+        {this.getMainCarousel()}
 
         {<section
           style={{
@@ -428,120 +470,108 @@ class Land extends Component {
             }}
           >
             <div className={'row h-100'}>
-              <div className="col-7" />
-                {/* <div
-                  className="col-5 my-auto"
+              <div className="col-7"/>
+                <div
+                  className="Homepage-info col-4 my-auto"
                   style={{
-                    fontSize: '5vw',
-                    fontFamily: 'Rozha One, serif'
+                    padding: '2%'
                   }}
                 >
-                  <div style={{ color: '#dda73c' }}>Who are we?</div>
-                </div>  */}
-              <div
-                className="col-4 my-auto"
-                style={{
-                  fontSize: '1.5vw',
-                  backgroundColor: 'rgba(0, 0, 0, 0.6)',
-                  // borderRadius: "30px/30px",
-                  borderRadius: 0,
-                  marginLeft: '6%',
-                  // color: '#007A5E'
-                }}
-              >
-                Eco Districts Hampton Roads hopes to create a beautiful and
-                sustainable community within Virginia's Hampton Roads, the
-                largest African American community.
-                {this.getLearnMoreButton()}
-                {/* <div
-                  style={{
-                    fontSize: '3vw',
-                    // fontFamily: 'Roboto',
-                    paddingTop: '1rem'
-                  }}
-                >
-                  <button
-                    style={{
-                      color: 'white',
-                      backgroundColor: '#153967',
-                      // borderRadius: 10
-                    }}
-                  >
-                    Learn More
-                  </button>
-                </div> */}
+                  <h1 className="Homepage-info-header">
+                    Our Story
+                  </h1>
+                  <p>
+                    Eco Districts Hampton Roads hopes to create a beautiful and
+                    sustainable community within Virginia's Hampton Roads, the
+                    largest African American community.
+                  </p>
+                  
+                  {this.getLearnMoreButton()}
 
-              </div>
+                </div>
               <div className="col-1" />
             </div>
           </div>
         </section> }
 
+        {
+          
+          <h1 className={'Homepage-h1'}>
+            Our Story
+          </h1>
+         
+        }
         {/* What we do! */}
-        {<section
-          style={{
-            backgroundImage: `url('${what_we_do}')`,
-            backgroundAttachment: 'fixed',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            textAlign: 'center',
-            height: '100vh'
-          }}
-        >
-          <div
-            className={'container-fluid'}
+        {<section className="Homepage-gallery">
+          <div className={'container-fluid'} 
             style={{
-              color: '#ffffff',
-              backgroundColor: 'rgba(0, 0, 0, 0.7)',
-              width: 'inherit',
-              height: 'inherit'
+              paddingRight: '0px',
+              paddingLeft: '0px',
+              backgroundColor: 'rgba(0, 0, 0, 0.6)'
             }}
           >
             <div className={'row h-100'}>
-              <div className="col-1" />
-              <div
-                className="Homepage-info col-6 my-auto"
-              >
-                <div>
-                  In order to help the community, Eco Districts Hampton Roads
-                  conducts multiple projects done by volunteers in order to fix
-                  various problems identified by residents
-                </div>
-                <div
-                  style={{
+              <div className="Hompage-panel-img fade-in1 col-4" 
+                style={{backgroundImage: `url('${img_work1}')`}}>
+                  <div className="Homepage-panel-info">
+                    <h1 className="Homepage-panel-header">
+                      Workforce Development
+                    </h1>
+                    <p>
+                      Eco Districts Hampton Roads hopes to create a beautiful and
+                      sustainable community within Virginia's Hampton Roads, the
+                      largest African American community.
+                    </p>
                     
-                    // fontFamily: 'Rozha One, serif'
-                    fontFamily: 'Lato, sans-serif'
-                  }}
-                >
-                  <button
-                    style={{
-                      color: 'black',
-                      backgroundColor: '#98B391',
-                      fontSize: '3vw',
-                      borderRadius: 10
-                    }}
-                  >
-                    Learn More!
-                  </button>
-                </div>
+                    {this.getLearnMoreButton()}
 
+                  </div>
+            </div>
+              <div className="Hompage-panel-img fade-in2 col-4" 
+                  style={{
+                    backgroundImage: `url('${img_work2}')`, 
+                  }}>
+                    <div
+                      className="Homepage-panel-info"
+                    >
+                      <h1 className="Homepage-panel-header">
+                        Projects
+                      </h1>
+                      <p>
+                        Eco Districts Hampton Roads hopes to create a beautiful and
+                        sustainable community within Virginia's Hampton Roads, the
+                        largest African American community.
+                      </p>
+                      
+                      {this.getLearnMoreButton()}
 
+                    </div>
               </div>
-              <div
-                className="col-5 my-auto"
-                style={{
-                  fontSize: '5vw',
-                  fontFamily: 'Rozha One, serif'
-                }}
-              >
-                <div style={{ color: '#EBCB8C' }}>What do we do?</div>
+              <div className="Hompage-panel-img fade-in3 col-4" 
+                  style={{
+                    backgroundImage: `url('${img_work3}')`, 
+                  }}>
+                    <div
+                      className="Homepage-panel-info"
+                    >
+                      <h1 className="Homepage-panel-header">
+                        Resources
+                      </h1>
+                      <p>
+                        Eco Districts Hampton Roads hopes to create a beautiful and
+                        sustainable community within Virginia's Hampton Roads, the
+                        largest African American community.
+                      </p>
+                      
+                      {this.getLearnMoreButton()}
+
+                    </div>
               </div>
-              <div className="col-1" />
             </div>
           </div>
         </section>}
+
+        {this.getSecondaryCarousel()}
 
         {/*Information */}
         {/* <div className="Homepage-container">
@@ -648,12 +678,12 @@ class Land extends Component {
           >
             <div className={"row h-100"} style={{ height: "max-content" }}>
               <div className="col-1" />
-              <div
+              {/* <div
                 className="col-3 my-auto"
                 Style="text-align: left; font-weight: bold;"
               >
                 <div
-                  style={{ fontSize: "3vw", color: "white", marginTop: "-7vw" }}
+                  style={{ fontSize: "3vw", color: "blue", marginTop: "-7vw" }}
                 >
                   Join the
                 </div>
@@ -665,17 +695,11 @@ class Land extends Component {
                   }}
                 >
                   community
-                  <span style={{ color: "white" }}>.</span>
+                  <span style={{ color: "blue" }}>.</span>
                 </div>
 
                 <div class="row" Style="padding-left: 5%; padding-right: 5%; ">
-                  <p>
-                    We will meet you where you’re at whether it is listening
-                    into an online discussion on why your electricity bill is so
-                    dang high while doing laundry or taking to the streets! We
-                    want to respect your information and be transparent about
-                    how we will use it.
-                  </p>
+                  
                   <p>
                     We will use your email to communicate with you about
                     happenings so that you can stay updated and involved, your
@@ -688,14 +712,12 @@ class Land extends Component {
                     want to join us to make the neighborhood connected!
                   </p>
                 </div>
-              </div>
+              </div> */}
 
-              <div className="col-1" />
               <div
                 className="Mail-Chimp-signup"
                 dangerouslySetInnerHTML={{ __html: MAIL_CHIMP_EMBEDDED }}
               />
-              <div className="col-1" />
             </div>
           </div>
         </section>
