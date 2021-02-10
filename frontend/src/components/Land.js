@@ -413,6 +413,9 @@ class Land extends Component {
         }}
         className="slide-container col-12"
       >
+        <h1 className={'Homepage-h1'}>
+            Six Community Priorities
+          </h1>
         <div>
           <Slide {...transitionProperties}> 
             {images.map((each, index) => (
@@ -425,9 +428,33 @@ class Land extends Component {
                   backgroundPosition: "center center",
                   height: "90vh",
                   width: "100vw",
+                  color: "white",
+                  fontFamily: "Lato"
                 }}
                 src={each}
               >
+                <div className={'row h-100'}>
+              <div className="col-7"/>
+                <div
+                  className="Homepage-info col-4 my-auto"
+                  style={{
+                    padding: '2%'
+                  }}
+                >
+                  <h1 className="Homepage-info-header">
+                    Our Story
+                  </h1>
+                  <p>
+                    Eco Districts Hampton Roads hopes to create a beautiful and
+                    sustainable community within Virginia's Hampton Roads, the
+                    largest African American community.
+                  </p>
+                  
+                  {this.getLearnMoreButton()}
+
+                </div>
+              <div className="col-1" />
+            </div>
               </div>
             ))}
           </Slide>
@@ -466,7 +493,8 @@ class Land extends Component {
               backgroundColor: 'rgba(0, 0, 0, 0)',
               backgroundPosition: '8px 8px',
               width: 'inherit',
-              height: 'inherit'
+              height: 'inherit',
+              fontFamily: "Lato"
             }}
           >
             <div className={'row h-100'}>
@@ -497,7 +525,7 @@ class Land extends Component {
         {
           
           <h1 className={'Homepage-h1'}>
-            Our Story
+            Our Work
           </h1>
          
         }
