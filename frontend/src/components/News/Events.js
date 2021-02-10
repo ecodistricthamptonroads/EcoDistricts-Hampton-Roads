@@ -44,7 +44,8 @@ class Events extends React.Component {
       <div>
         <h1 className="Events-heading">Events</h1>
         <h2 className="Events-heading">Upcoming Events</h2>
-        <div className="Events">
+
+        {/* <div className="Events">
           {this.state.events.length != 0 ? (
             this.state.events
               .slice(
@@ -97,6 +98,7 @@ class Events extends React.Component {
             ▶
           </div>
         </div>
+       */}
       </div>
     );
   }

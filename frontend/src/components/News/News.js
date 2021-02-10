@@ -1,7 +1,7 @@
 import { Component } from "react";
 import React from "react";
 
-import Events from "./Events";
+// import Events from "./Events";
 import "../../assets/stylesheets/app.css";
 import icon from "../../assets/images/icon.png";
 import { getNews, getSpecificImage } from "../../helpers/api";
@@ -46,7 +46,8 @@ class News extends Component {
 
     return (
       <div className="news-page">
-        <Events />
+        {/* <Events /> */} 
+        {/* we used to have both events and news on this page. Now we just have news. */}
         {this.props.user ? this.loggedIn() : null}
         <h1 className="Events-heading">News</h1>
         <h2 className="Events-heading">Upcoming News</h2>

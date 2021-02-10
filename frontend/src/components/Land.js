@@ -40,7 +40,8 @@ import icon from "../assets/images/icon.png";
 
 import { Fade, Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
-import { getEvents, getNews } from "../helpers/api";
+import { getNews } from "../helpers/api";
+// import { getEvents, getNews } from "../helpers/api";
 
 // const test_value = {
 //   title: "Lorem ipsum dolor",
@@ -127,9 +128,9 @@ class Land extends Component {
     };
   }
   componentDidMount() {
-    getEvents().then((events) => {
-      this.setState({ events: events.data });
-    });
+    // getEvents().then((events) => {
+    //   this.setState({ events: events.data });
+    // });
     getNews().then((news) => {
       this.setState({ news: news.data });
     });
@@ -156,73 +157,73 @@ class Land extends Component {
     return [monthNames[mm], (dd > 9 ? "" : "0") + dd].join("-");
   }
 
-  getEvents() {
-    const events = this.state.events;
+  // getEvents() {
+  //   const events = this.state.events;
 
-    return (
-      <section
-        style={{
-          height: "100vh",
-          paddingBottom: "5%",
-        }}
-      >
-        <div
-          className={"container-fluid"}
-          style={{
-            width: "inherit",
-            height: "inherit",
-          }}
-        >
-          <div className={"row h-100"}>
-            <div className="col-2" />
-            <div className="col-8 my-auto" style={{ textAlign: "center" }}>
-              <h1 style={{ color: "#dda73c" }}>
-                <b>Recent Events</b>
-              </h1>
-              {/* News Carousel */}
-              <Carousel
-                style={{ position: "relative" }}
-                interval={2000}
-                slide={true}
-                activeIndex={this.state.eventsIdx}
-                onSelect={(selectedIndex, e) =>
-                  this.setState({ eventsIdx: selectedIndex })
-                }
-              >
-                {events.map((event, idx) => {
-                  return (
-                    <Carousel.Item key={event.title + idx}>
-                      <h2 Style="padding: 2%">
-                          <u>{event.title}</u>
-                          <h3>{this._getDateFormatted(new Date(event.date))}</h3>
-                      </h2>
-                      <img
-                        className="rounded mx-auto d-block carousel-item-img"
-                        Style="padding-bottom: 5%"
-                        src={event.link || icon}
-                        onError={(e) => {
-                          e.target.src = icon;
-                        }}
-                        alt={"" + event.title}
-                      />
-                      <Carousel.Caption>
-                        {/* <h2>
-                          <u>{event.title}</u>
-                        </h2>
-                        <h3>@{this._getDateFormatted(new Date(event.date))}</h3>
-                        <p style={{ padding: "15%" }}>{event.description}</p> */}
-                      </Carousel.Caption>
-                    </Carousel.Item>
-                  );
-                })}
-              </Carousel>
-            </div>
-            <div className="col-2" />
-          </div>
-        </div>
-      </section>
-    );
-  }
+  //   return (
+  //     <section
+  //       style={{
+  //         height: "100vh",
+  //         paddingBottom: "5%",
+  //       }}
+  //     >
+  //       <div
+  //         className={"container-fluid"}
+  //         style={{
+  //           width: "inherit",
+  //           height: "inherit",
+  //         }}
+  //       >
+  //         <div className={"row h-100"}>
+  //           <div className="col-2" />
+  //           <div className="col-8 my-auto" style={{ textAlign: "center" }}>
+  //             <h1 style={{ color: "#dda73c" }}>
+  //               <b>Recent Events</b>
+  //             </h1>
+  //             {/* News Carousel */}
+  //             <Carousel
+  //               style={{ position: "relative" }}
+  //               interval={2000}
+  //               slide={true}
+  //               activeIndex={this.state.eventsIdx}
+  //               onSelect={(selectedIndex, e) =>
+  //                 this.setState({ eventsIdx: selectedIndex })
+  //               }
+  //             >
+  //               {events.map((event, idx) => {
+  //                 return (
+  //                   <Carousel.Item key={event.title + idx}>
+  //                     <h2 Style="padding: 2%">
+  //                         <u>{event.title}</u>
+  //                         <h3>{this._getDateFormatted(new Date(event.date))}</h3>
+  //                     </h2>
+  //                     <img
+  //                       className="rounded mx-auto d-block carousel-item-img"
+  //                       Style="padding-bottom: 5%"
+  //                       src={event.link || icon}
+  //                       onError={(e) => {
+  //                         e.target.src = icon;
+  //                       }}
+  //                       alt={"" + event.title}
+  //                     />
+  //                     <Carousel.Caption>
+  //                       {/* <h2>
+  //                         <u>{event.title}</u>
+  //                       </h2>
+  //                       <h3>@{this._getDateFormatted(new Date(event.date))}</h3>
+  //                       <p style={{ padding: "15%" }}>{event.description}</p> */}
+  //                     </Carousel.Caption>
+  //                   </Carousel.Item>
+  //                 );
+  //               })}
+  //             </Carousel>
+  //           </div>
+  //           <div className="col-2" />
+  //         </div>
+  //       </div>
+  //     </section>
+  //   );
+  // }
   getNews() {
     const NEWS2SHOW = [
       ...this.state.news,
@@ -690,7 +691,7 @@ class Land extends Component {
          */}
         {/* Recent News */}
         {this.getNews()}
-        {this.getEvents()}
+        {/* {this.getEvents()} */}
         {/* Join the community */}
         <section
           style={{
@@ -750,33 +751,6 @@ class Land extends Component {
           </div>
         </section>
 
-        {/* Footer */}
-        <section style={{}}>
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col" style={{ textAlign: "center", padding: 70 }}>
-                <a
-                  href="https://www.instagram.com/ecodistricthamptonroads/"
-                  style={{ padding: "0px 20px" }}
-                >
-                  <img src={instagram} width={"65px"} height={"65px"} />
-                </a>
-                <a
-                  href="https://www.facebook.com/Center-for-Sustainable-Communities-Atlanta-219072231567212"
-                  style={{ padding: "0px 20px" }}
-                >
-                  <img src={facebook} width={"65px"} height={"65px"} />
-                </a>
-                <a
-                  href="https://twitter.com/eco_dis_hampton"
-                  style={{ padding: "0px 20px" }}
-                >
-                  <img src={twitter} width={"65px"} height={"65px"} />
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
     );
   }
