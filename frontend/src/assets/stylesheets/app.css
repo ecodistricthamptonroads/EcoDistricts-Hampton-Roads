@@ -481,14 +481,16 @@ body {
 
 .card-heading {
   display: inline;
+  text-align: center;
   /* margin: auto; */
 }
 .card-heading > * {
   padding: 10px;
-  width: 50% !important;
+  width: 100% !important;
   margin: auto;
   display: inline;
   font-size:1.5rem;
+  max-width: 300px;
 }
 a:link {
   padding: 10px;
@@ -499,6 +501,7 @@ a:link {
   box-shadow: 7px 10px 20px 7px rgba(0, 0, 0, 0.25);
   font-size:1rem;
   transition-duration: 0.15s;
+  padding: 5%;
 }
 
 .Resource-card:hover{
@@ -508,13 +511,15 @@ a:link {
 
 .Resource-Name {
   font-weight: 700;
+  font-size:1.8rem;
+  text-align: center;
 }
 
 .Resource-container {
-  background: linear-gradient(180deg, #1d84e3 0%, #ffffff 125.62%);
+  background: linear-gradient(180deg, rgb(31, 137, 107) 0%, #ffffff 125.62%);
   /* height: 95vh; */
   width: 100%;
-  padding: 3% 5% 5% 5%;
+  padding: 5% 15% 5% 15%;
   color: white;
 }
 .Resource-Heading {

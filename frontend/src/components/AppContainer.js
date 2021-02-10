@@ -5,7 +5,7 @@ import '../assets/stylesheets/app.css';
 import { hot } from 'react-hot-loader';
 
 import Header from './Header';
-// import Footer from './Footer';
+import Footer from './Footer';
 import Land from './Land';
 import Issue from './Issue/Issue';
 import EducationJobs from './EducationJobs/EducationJobs';
@@ -44,6 +44,7 @@ class AppContainer extends Component {
             </div>
           </div>
         </div>
+        <Footer />
       </BrowserRouter>
     );
   }
