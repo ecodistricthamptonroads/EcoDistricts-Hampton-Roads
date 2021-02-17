@@ -5,7 +5,9 @@ import "../assets/stylesheets/app.css";
 import "../assets/stylesheets/HomePage.css";
 import axios from "axios";
 
-import main_futuresuburbs from "../assets/images/futuresuburbs.gif";
+// import main_futuresuburbs from "../assets/images/futuresuburbs.gif";
+import main_futuresuburbs from "../assets/images/survey-futuresuburbs.jpg";
+
 import branding_logo from "../assets/images/Branding_White.svg";
 
 // import other_carousel_1 from "../assets/images/carousel_1.jpg";
@@ -55,6 +57,9 @@ const MAIL_CHIMP_EMBEDDED = `<div>
 <div id="mc_embed_signup">
 <form action="https://ecodistricthamptonroads.us4.list-manage.com/subscribe/post?u=51eb002c7ef49ac4bf7de17e2&amp;id=cca6d76921" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
     <div id="mc_embed_signup_scroll">
+    <h2 class="Homepage-h2">
+            Join Our Newsletter
+          </h2>
 <div class="mc-field-group">
 	<label for="mce-FNAME">First Name  <span class="asterisk">*</span>
 </label>
@@ -110,12 +115,13 @@ const MAIL_CHIMP_EMBEDDED = `<div>
 		<div class="response" id="mce-success-response" style="display:none"></div>
 	</div>
     <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_51eb002c7ef49ac4bf7de17e2_cca6d76921" tabindex="-1" value=""></div>
-    <div class="clear"><input type="submit" value="Join US" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    <div class="clear"><input type="submit" value="Join Now" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
     </div>
 </form>
 </div>
 <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[0]='EMAIL';ftypes[0]='email';fnames[3]='MMERGE3';ftypes[3]='birthday';fnames[4]='MMERGE4';ftypes[4]='address';fnames[5]='MMERGE5';ftypes[5]='dropdown';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
 </div>`;
+
 
 class Land extends Component {
   constructor(props) {
@@ -157,87 +163,20 @@ class Land extends Component {
     return [monthNames[mm], (dd > 9 ? "" : "0") + dd].join("-");
   }
 
-  // getEvents() {
-  //   const events = this.state.events;
-
-  //   return (
-  //     <section
-  //       style={{
-  //         height: "100vh",
-  //         paddingBottom: "5%",
-  //       }}
-  //     >
-  //       <div
-  //         className={"container-fluid"}
-  //         style={{
-  //           width: "inherit",
-  //           height: "inherit",
-  //         }}
-  //       >
-  //         <div className={"row h-100"}>
-  //           <div className="col-2" />
-  //           <div className="col-8 my-auto" style={{ textAlign: "center" }}>
-  //             <h1 style={{ color: "#dda73c" }}>
-  //               <b>Recent Events</b>
-  //             </h1>
-  //             {/* News Carousel */}
-  //             <Carousel
-  //               style={{ position: "relative" }}
-  //               interval={2000}
-  //               slide={true}
-  //               activeIndex={this.state.eventsIdx}
-  //               onSelect={(selectedIndex, e) =>
-  //                 this.setState({ eventsIdx: selectedIndex })
-  //               }
-  //             >
-  //               {events.map((event, idx) => {
-  //                 return (
-  //                   <Carousel.Item key={event.title + idx}>
-  //                     <h2 Style="padding: 2%">
-  //                         <u>{event.title}</u>
-  //                         <h3>{this._getDateFormatted(new Date(event.date))}</h3>
-  //                     </h2>
-  //                     <img
-  //                       className="rounded mx-auto d-block carousel-item-img"
-  //                       Style="padding-bottom: 5%"
-  //                       src={event.link || icon}
-  //                       onError={(e) => {
-  //                         e.target.src = icon;
-  //                       }}
-  //                       alt={"" + event.title}
-  //                     />
-  //                     <Carousel.Caption>
-  //                       {/* <h2>
-  //                         <u>{event.title}</u>
-  //                       </h2>
-  //                       <h3>@{this._getDateFormatted(new Date(event.date))}</h3>
-  //                       <p style={{ padding: "15%" }}>{event.description}</p> */}
-  //                     </Carousel.Caption>
-  //                   </Carousel.Item>
-  //                 );
-  //               })}
-  //             </Carousel>
-  //           </div>
-  //           <div className="col-2" />
-  //         </div>
-  //       </div>
-  //     </section>
-  //   );
-  // }
   getNews() {
     const NEWS2SHOW = [
       ...this.state.news,
-      // {
-      //   title:
-      //     "SDG Projects in the Atlanta Community Grant Winners Announcement",
-      //   description:
-      //     "The RCE Greater Atlanta Youth Network is excited to announce the four winning projects and teams of the SDG Projects in the Atlanta Community Grant.",
-      // },
+      {
+        title:
+          "SDG Projects in the Atlanta Community Grant Winners Announcement",
+        description:
+          "The RCE Greater Atlanta Youth Network is excited to announce the four winning projects and teams of the SDG Projects in the Atlanta Community Grant.",
+      },
     ];
     return (
       <section
         style={{
-          height: "100vh",
+          height: "80vh",
         }}
       >
         <div
@@ -248,8 +187,8 @@ class Land extends Component {
           }}
         >
           <div className={"row h-100"}>
-            <div className="col-1" />
-            <div className="col-10 my-auto" style={{ textAlign: "center" }}>
+            <div className="col-2" />
+            <div className="col-8 my-auto" style={{ textAlign: "center" }}>
               <h1 style={{ color: "#dda73c" }}>
                 <b>Recent News</b>
               </h1>
@@ -259,7 +198,7 @@ class Land extends Component {
                 {NEWS2SHOW.map((news, idx) => (
                   <Carousel.Item
                     key={news.title + idx}
-                    style={{ height: "70vh" }}
+                    style={{ height: "50vh"}}
                   >
                     <div
                       className=""
@@ -268,7 +207,7 @@ class Land extends Component {
                       }}
                     >
                       <div
-                        style={{ height: "70vh" }}
+                        style={{ height: "50vh" }}
                         className="card-img-top d-flex align-items-center bg-light"
                       >
                         <div className="col-4">
@@ -280,13 +219,13 @@ class Land extends Component {
 
                         <img
                           className="img-fluid col-8"
-                          src={news.image || img_main1}
+                          src={news.image || main_futuresuburbs}
                           style={{
                             backgroundRepeat: "no-repeat",
                             backgroundAttachment: "fixed",
                             backgroundPosition: "center",
                             borderLeft: "1px solid black",
-                            height: "70vh",
+                            // height: "50vh",
                             padding: 0,
                             // width:100%
                           }}
@@ -297,7 +236,7 @@ class Land extends Component {
                 ))}
               </Carousel>
             </div>
-            <div className="col-1" />
+            <div className="col-2" />
           </div>
         </div>
       </section>
@@ -349,10 +288,9 @@ class Land extends Component {
     return (
       <section
         style={{
-          backgroundColor: "black",
           height: "90vh",
           width: "100vw",
-          padding: 0,
+          padding: 0
         }}
         className="slide-container main-carousel col-12"
       >
@@ -396,6 +334,14 @@ class Land extends Component {
       img_priority5,
       img_priority6
     ];
+    const priorities = [
+      "Priority 1",
+      "Priority 2",
+      "Priority 3",
+      "Priority 4",
+      "Priority 5",
+      "Priority 6"
+    ];
     const transitionProperties = {
       duration: 1500,
       transitionDuration: 1500,
@@ -407,10 +353,10 @@ class Land extends Component {
     return (
       <section
         style={{
-          backgroundColor: "black",
           height: "90vh",
           width: "100vw",
           padding: 0,
+          marginBottom: "5rem"
         }}
         className="slide-container col-12"
       >
@@ -443,7 +389,7 @@ class Land extends Component {
                   }}
                 >
                   <h1 className="Homepage-info-header">
-                    Our Story
+                    {priorities[index]}
                   </h1>
                   <p>
                     Eco Districts Hampton Roads hopes to create a beautiful and
@@ -534,9 +480,9 @@ class Land extends Component {
         {<section className="Homepage-gallery">
           <div className={'container-fluid'} 
             style={{
-              paddingRight: '0px',
-              paddingLeft: '0px',
-              backgroundColor: 'rgba(0, 0, 0, 0.6)'
+              paddingRight: '2.5rem',
+              paddingLeft: '2.5rem',
+              backgroundColor: 'rgba(0, 0, 0, 0.0)'
             }}
           >
             <div className={'row h-100'}>
@@ -691,21 +637,22 @@ class Land extends Component {
          */}
         {/* Recent News */}
         {this.getNews()}
-        {/* {this.getEvents()} */}
         {/* Join the community */}
+
         <section
           style={{
-            height: "100vh",
+            height: "90vh",
           }}
         >
           <div
-            className={"container-fluid"}
+            className={"container"}
             style={{
               width: "inherit",
               height: "inherit",
             }}
           >
-            <div className={"row h-100"} style={{ height: "max-content" }}>
+            
+            <div className={"row"} style={{ height: "max-content" }}>
               <div className="col-1" />
               {/* <div
                 className="col-3 my-auto"
@@ -742,7 +689,7 @@ class Land extends Component {
                   </p>
                 </div>
               </div> */}
-
+              
               <div
                 className="Mail-Chimp-signup"
                 dangerouslySetInnerHTML={{ __html: MAIL_CHIMP_EMBEDDED }}

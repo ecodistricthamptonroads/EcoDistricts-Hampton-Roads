@@ -1,7 +1,4 @@
-.main-carousel{
-    /* animation: move 10s infinite;
-    overflow: hidden; */
-}
+
 
 @keyframes move {
     0%{
@@ -87,10 +84,16 @@
   justify-content: center;
   color: #153967;
   text-align: left;
-  background: white;
+  /* background: white; */
 }
 
-
+.Homepage-h2 {
+  font-weight: bold;
+  font-size: 2.5rem;
+  color: #153967;
+  text-align: left;
+  /* background: white; */
+}
 
 .Hompage-panel-img {
   background-position: center center;
@@ -133,7 +136,7 @@
 }
 
 .Mail-Chimp-signup {
-  background-color: #98b391;
+  background-color: #529384;
   height: fit-content;
   margin: auto;
   padding: 1.5%;
@@ -143,30 +146,37 @@
 
 .mc-field-group {
   color: black;
+  padding: .5rem;
+  font-weight: bold;
 }
 .mc-field-group > input {
-  margin-top: 5%;
+  margin-top: 0%;
   border-radius: 5px;
 } 
 
 #mce-EMAIL {
-  margin-bottom: 5%;
+  /* margin-bottom: 5%; */
 }
 #mce-MMERGE4-country {
-  margin-top: 5%;
+  /* margin-top: 5%; */
 }
 #mc-embedded-subscribe {
-  background: #1d84e3;
+  background: #153967;
   border-radius: 5px;
   border: white;
   margin: auto;
-  margin-top: 5%;
-  padding: 2%;
+  margin-top: 3%;
+  padding: 1.5%;
   color: white;
   width: 9em;
+  font-weight: bold;
 }
 
 #signUpMailChimp {
   border: white;
   height: 100%;
+}
+
+.mc-field-group > input {
+
 }
