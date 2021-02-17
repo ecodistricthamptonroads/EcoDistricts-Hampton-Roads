@@ -98,7 +98,7 @@ const MAIL_CHIMP_EMBEDDED = `<div>
 		<input type="text" value="" maxlength="40" name="MMERGE4[city]" id="mce-MMERGE4-city" class="required">
 	</div>
 	<div class="mc-field-group size1of2">
-	    <label for="mce-MMERGE4-state">State/Province/Region</label>
+	    <label for="mce-MMERGE4-state">State</label>
 	<input type="text" value="" maxlength="20" name="MMERGE4[state]" id="mce-MMERGE4-state" class="required">
 	</div>
 	<div class="mc-field-group size1of2">
