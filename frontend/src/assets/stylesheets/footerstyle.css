@@ -9,16 +9,19 @@
     color:#529384;
 }
 #major-box{
-    width:80%;
     float:left;
     text-align:left;
 }
-#contact-box{
-    width:20%;
-    float:left;
+
+@media only screen and (max-width: 768px){
+    #contact-box{
+        padding-top:20px;
+        text-align: center;
+    }
 }
 #footer-body a{
     color: white;
+    padding-left: 0px;
 }
 .page-link-col{
     text-align:left;
