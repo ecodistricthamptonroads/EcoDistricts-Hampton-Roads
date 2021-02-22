@@ -3,14 +3,16 @@ import React from "react";
 
 // import Events from "./Events";
 import "../../assets/stylesheets/app.css";
+import "../../assets/stylesheets/newsPage.css";
 import icon from "../../assets/images/icon.png";
 import { getNews, getSpecificImage } from "../../helpers/api";
+
 class News extends Component {
   constructor(props) {
     super(props);
     this.state = {
       notInitial: false,
-      news: [],
+      news: [],      
       currentPage: 0,
     };
   }
@@ -42,7 +44,7 @@ class News extends Component {
   }
 
   render() {
-    const NEWS_PER_PAGE = 3;
+    const NEWS_PER_PAGE = 2;
 
     return (
       <div className="news-page">
@@ -59,22 +61,22 @@ class News extends Component {
                 NEWS_PER_PAGE * this.state.currentPage + NEWS_PER_PAGE
               )
               .map((news, idx) => (
-                <div className="row event" key={news.title + idx}>
+                <div className="row event" key={ news.title + idx}>
                   <img
                     className="col-2 event-date"
                     src={getSpecificImage(news.image) || icon}
                   />
 
                   <div className="col-6 event-info">
-                    <h2>{news.title}</h2>
-                    <h3> {this._getDateFormatted(new Date(news.date))}</h3>
+                    <h3>{news.title}</h3>
+                    <div className="news-date">date {this._getDateFormatted(new Date(news.date))} </div>
                     <p>{news.description}</p>
                   </div>
                 </div>
               ))
           ) : (
             <h4 className="Events-heading justify-content-md-center row">
-              <u>No News comeback later !!!</u>
+              <u>No news available. Check back soon for updates.</u>
             </h4>
           )}
         </div>
@@ -96,7 +98,7 @@ class News extends Component {
               this.setState({
                 currentPage: Math.min(
                   this.state.currentPage + 1,
-                  Math.ceil(this.props.news.length / NEWS_PER_PAGE) - 1
+                  Math.floor(this.state.news.length / NEWS_PER_PAGE)
                 ),
               });
             }}
