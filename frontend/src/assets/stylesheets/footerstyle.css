@@ -1,7 +1,6 @@
 #footer-body{
     background-color: #153967;
     color:white;
-    box-sizing: border-box;
     padding: 5% 1% 5% 2%;
     font-family: Lato;
 }
@@ -33,5 +32,6 @@
 }
 
 #sns-section{
+    padding-top:2vh;
     text-align: center;
 }

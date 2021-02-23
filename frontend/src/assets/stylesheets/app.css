@@ -556,15 +556,9 @@ a:link {
   color:black;
 }
 
-.event-date {
-  background: #007a5e 55%;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  flex-direction: column;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.event-image {
+  max-height: 100%;
+  max-width: 100%;
 }
 .event-info > h3 {
   font-weight: 700;
@@ -579,9 +573,7 @@ a:link {
   text-align: center;
   background: rgba(157, 228, 212, 0.5);
 }
-.Events {
-  height: 60vh;
-}
+
 .Event-btns {
   width: 10em;
   margin: auto !important;
@@ -599,7 +591,8 @@ a:link {
   width: 100vw;
 }
 .Events-heading {
-  padding: 3%;
+  padding-top: 3%;
+  padding-left: 3%;
   color: white;
   font-weight: bold;
 }

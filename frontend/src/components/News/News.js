@@ -34,8 +34,27 @@ class News extends Component {
 
     var mm = date.getMonth();
     var dd = date.getDate();
+    var yy = date.getFullYear();
 
-    return [monthNames[mm], (dd > 9 ? "" : "0") + dd].join("-");
+    switch(dd){
+      case 1:
+      case 21:
+      case 31: 
+        dd +="st";
+      break
+      case 2:
+      case 22: 
+        dd +="nd";
+      break
+      case 3: 
+      case 23: 
+        dd += "rd";
+      break
+      default: 
+        dd += "th";
+    }
+
+    return monthNames[mm] + " " + dd + ", " + yy;
   }
   componentDidMount() {
     getNews().then((req) => {
@@ -45,13 +64,14 @@ class News extends Component {
 
   render() {
     const NEWS_PER_PAGE = 2;
+    const PREVIEW_LENGTH = 100;
 
     return (
       <div className="news-page">
         {/* <Events /> */} 
         {/* we used to have both events and news on this page. Now we just have news. */}
         {this.props.user ? this.loggedIn() : null}
-        <h1 className="Events-heading">News</h1>
+        <h1 className="Events-heading">Hampton Roads News</h1>
         <h2 className="Events-heading">Upcoming News</h2>
         <div className="Events">
           {this.state.news.length != 0 ? (
@@ -62,21 +82,22 @@ class News extends Component {
               )
               .map((news, idx) => (
                 <div className="row event" key={ news.title + idx}>
+                  <div className="event-image-container col-sm-12 col-md-3">
                   <img
-                    className="col-2 event-date"
-                    src={getSpecificImage(news.image) || icon}
+                    className="event-image"
+                    src={/* getSpecificImage(news.image) || */ icon}
                   />
-
-                  <div className="col-6 event-info">
-                    <h3>{news.title}</h3>
-                    <div className="news-date">date {this._getDateFormatted(new Date(news.date))} </div>
-                    <p>{news.description}</p>
+                </div>
+                  <div className="col-sm-12 col-md-8 col-lg-5 event-info">
+                    <h3>{news.Title}</h3>
+                    <div className="news-date">{this._getDateFormatted(new Date(news.date))} </div>
+                    <p className="news-description">{news.description.length > PREVIEW_LENGTH ? (news.description.substr(0,PREVIEW_LENGTH).trim() + "...") : news.description}</p>
                   </div>
                 </div>
               ))
           ) : (
             <h4 className="Events-heading justify-content-md-center row">
-              <u>No news available. Check back soon for updates.</u>
+              <u>No news available. Check back soon for updates. {this.state.news.length}</u> 
             </h4>
           )}
         </div>
@@ -95,10 +116,11 @@ class News extends Component {
           <div
             className="right-arrow col"
             onClick={() => {
+              var numPages = this.state.news.length / NEWS_PER_PAGE;
               this.setState({
                 currentPage: Math.min(
                   this.state.currentPage + 1,
-                  Math.floor(this.state.news.length / NEWS_PER_PAGE)
+                  numPages % 1 == 0 ?  Math.floor(numPages) - 1 : Math.floor(numPages) 
                 ),
               });
             }}

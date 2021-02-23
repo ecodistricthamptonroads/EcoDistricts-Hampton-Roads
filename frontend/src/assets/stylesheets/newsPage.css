@@ -1,3 +1,11 @@
 .event-info > .news-date{
-    height:3vh;
+    height:4vh;
+}
+.event-image-container{
+    text-align: center;
+    background: #007a5e 55%;
+    max-height:25vh;
+}
+.Events{
+    min-height:60vh;
 }
