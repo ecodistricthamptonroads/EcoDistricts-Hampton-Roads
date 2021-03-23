@@ -104,11 +104,14 @@ class Header extends Component {
                 Projects
               </Nav.Link>
             </Nav.Item>
-
-
             <Nav.Item>
               <a className="nav-link" href={CONTACT_US_LINK}>
                 Contact Us
+              </a>
+            </Nav.Item>
+            <Nav.Item>
+              <a className="nav-link" href="https://ecosia.org">
+                Donate
               </a>
             </Nav.Item>
           </Nav>
