@@ -55,7 +55,7 @@ class Header extends Component {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav>
+          <Nav className="ml-auto">
             {/* <Nav className="mr-auto"> */}
             <NavDropdown
               onMouseEnter={() => {
