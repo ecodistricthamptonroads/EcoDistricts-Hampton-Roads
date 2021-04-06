@@ -197,11 +197,11 @@ class Jobs extends Component {
   displayJobs() {
     const JOBS_TO_SHOW = this.state.jobs.filter((job) => this.filterJob(job));
     return (
-      <div className="jobs card-columns">
+      <div className="jobs row">
         {JOBS_TO_SHOW.length != 0 ? (
           JOBS_TO_SHOW.map((job) => {
             return (
-              <a key={job._id} href={job._id} className="col-sm-12 col-lg-4"> 
+              <a key={job._id} href={job._id} className="col-sm-12 col-lg-4 d-flex flex-fill"> 
                 <Card className="job-elem">
                   <div>
                     <Card.Img
@@ -219,7 +219,7 @@ class Jobs extends Component {
                         width: "100%",
                       }}
                     >
-                      {job.title || ""}
+                      {job.title || "Unknown Job Name"}
                     </Card.Title>
                   </div>
                   <Card.Body>
