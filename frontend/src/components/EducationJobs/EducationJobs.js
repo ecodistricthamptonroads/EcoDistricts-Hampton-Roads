@@ -197,24 +197,26 @@ class Jobs extends Component {
   displayJobs() {
     const JOBS_TO_SHOW = this.state.jobs.filter((job) => this.filterJob(job));
     return (
-      <div className="jobs row card-columns ">
+      <div className="jobs card-columns">
         {JOBS_TO_SHOW.length != 0 ? (
           JOBS_TO_SHOW.map((job) => {
             return (
-              <a key={job._id} href={job._id}>
-                <Card className="job-elem col-sm-12 col-lg-4"> {/* style={{ maxWidth: "36rem" }}*/}
-                  <div className="job-card-row row">
+              <a key={job._id} href={job._id} className="col-sm-12 col-lg-4"> 
+                <Card className="job-elem">
+                  <div>
                     <Card.Img
-                      className="job-card-img col-5"
-                      variant="top"
+                      className="card-img-top"
+                      style={{
+                        padding: "0.3em",
+                      }}
                       src="https://brands-cdn.employbridge.com/content/assets/news//40169262_14124173_Large.jpg"
                     />
-                    <Card.Title className="col-7"
+                    <Card.Title
                       style={{
-                        padding: "1em",
+                        padding: "1em 1em 0em 1em",
                         textOverflow: "clip",
                         overflowWrap: "break-word",
-                        width: "50%",
+                        width: "100%",
                       }}
                     >
                       {job.title || ""}

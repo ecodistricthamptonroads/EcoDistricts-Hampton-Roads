@@ -9,10 +9,12 @@
   color: white;
 }
 .job-elem {
-  margin: auto;
+  /* margin: auto;
   align-self: left;
-  width: 100%;
+  width: 100%; */
   padding: 2%;
+  box-shadow: 7px 10px 20px 7px rgba(0, 0, 0, 0.25);
+  color: black;
 }
 .job-btn {
   background-color: #eca61f;
