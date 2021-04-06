@@ -217,7 +217,7 @@ class Land extends Component {
                           <p>{news.description}</p>
                         </div>
 
-                        <img
+                        {/*<img
                           className="img-fluid col-8"
                           src={news.image || main_futuresuburbs}
                           style={{
@@ -229,7 +229,16 @@ class Land extends Component {
                             padding: 0,
                             // width:100%
                           }}
-                        />
+                        />*/}
+                        <div
+                            className="col-8"
+                            style={{
+                              backgroundImage: `url(${news.image || main_futuresuburbs})`,
+                              backgroundSize: 'cover',
+                              height: "100%",
+                            }}
+                          >
+                          </div>
                       </div>
                     </div>
                   </Carousel.Item>
@@ -252,19 +261,30 @@ class Land extends Component {
                           <p>Check back soon!</p>
                         </div>
 
-                        <img
-                          className="img-fluid col-8"
+                        {/*<img
+                          className="col-8"
                           src={main_futuresuburbs}
                           style={{
                             backgroundRepeat: "no-repeat",
-                            backgroundAttachment: "fixed",
-                            backgroundPosition: "center",
+                            // backgroundAttachment: "fixed",
+                            //backgroundPosition: "center",
+                            backgroundSize: "cover",
                             borderLeft: "1px solid black",
                             // height: "50vh",
                             padding: 0,
+                            // height: "100%",
                             // width:100%
                           }}
-                        />
+                        />*/}
+                          <div
+                            className="col-8"
+                            style={{
+                              backgroundImage: `url(${main_futuresuburbs})`,
+                              backgroundSize: 'cover',
+                              height: "100%",
+                            }}
+                          >
+                          </div>
                       </div>
                     </div>
                           </Carousel.Item>
