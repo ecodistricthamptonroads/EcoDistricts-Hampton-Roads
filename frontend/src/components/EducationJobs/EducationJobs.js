@@ -598,7 +598,7 @@ class Jobs extends Component {
         <div className="job-container">
           {this.displayFilters()}
           {this.displayJobs()}
-          <iframe
+          {/* <iframe
             src="https://calendar.google.com/calendar/embed?src=fgv68k6tk5ji5sr4jjiuc2q90k%40group.calendar.google.com&ctz=America%2FNew_York"
             style={{
               border: 0,
@@ -608,7 +608,8 @@ class Jobs extends Component {
             }}
             frameBorder="0"
             scrolling="no"
-          ></iframe>
+          ></iframe> */}
+
         </div>
       </div>
     );
