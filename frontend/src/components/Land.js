@@ -128,12 +128,12 @@ class Land extends Component {
   getNews() {
     const NEWS2SHOW = [
       ...this.state.news,
-      {
+      /*{
         title:
           "SDG Projects in the Atlanta Community Grant Winners Announcement",
         description:
           "The RCE Greater Atlanta Youth Network is excited to announce the four winning projects and teams of the SDG Projects in the Atlanta Community Grant.",
-      },
+      },*/
     ];
     return (
       <section
@@ -157,7 +157,7 @@ class Land extends Component {
 
               {/* News Carousel */}
               <Carousel style={{ padding: "1%" }}>
-                {NEWS2SHOW.map((news, idx) => (
+                {NEWS2SHOW.length != 0 ?  (NEWS2SHOW.map((news, idx) => (
                   <Carousel.Item
                     key={news.title + idx}
                     style={{ height: "50vh"}}
@@ -179,7 +179,7 @@ class Land extends Component {
                           <p>{news.description}</p>
                         </div>
 
-                        <img
+                        {/*<img
                           className="img-fluid col-8"
                           src={news.image || main_futuresuburbs}
                           style={{
@@ -191,11 +191,66 @@ class Land extends Component {
                             padding: 0,
                             // width:100%
                           }}
-                        />
+                        />*/}
+                        <div
+                            className="col-8"
+                            style={{
+                              backgroundImage: `url(${news.image || main_futuresuburbs})`,
+                              backgroundSize: 'cover',
+                              height: "100%",
+                            }}
+                          >
+                          </div>
                       </div>
                     </div>
                   </Carousel.Item>
-                ))}
+                ))) : 
+                          <Carousel.Item key="231234" style={{height: "50vh"}}>
+                          <div
+                      className=""
+                      style={{
+                        borderRadius: "10px",
+                      }}
+                    >
+                      <div
+                        style={{ height: "50vh" }}
+                        className="card-img-top d-flex align-items-center bg-light"
+                      >
+                        <div className="col-4">
+                          <h2>No news yet</h2>
+                          <h3></h3>
+                          <h3></h3>
+                          <p>Check back soon!</p>
+                        </div>
+
+                        {/*<img
+                          className="col-8"
+                          src={main_futuresuburbs}
+                          style={{
+                            backgroundRepeat: "no-repeat",
+                            // backgroundAttachment: "fixed",
+                            //backgroundPosition: "center",
+                            backgroundSize: "cover",
+                            borderLeft: "1px solid black",
+                            // height: "50vh",
+                            padding: 0,
+                            // height: "100%",
+                            // width:100%
+                          }}
+                        />*/}
+                          <div
+                            className="col-8"
+                            style={{
+                              backgroundImage: `url(${main_futuresuburbs})`,
+                              backgroundSize: 'cover',
+                              height: "100%",
+                            }}
+                          >
+                          </div>
+                      </div>
+                    </div>
+                          </Carousel.Item>
+                }
               </Carousel>
             </div>
             <div className="col-2" />

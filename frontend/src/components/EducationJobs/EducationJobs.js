@@ -129,26 +129,26 @@ class Jobs extends Component {
 
   _getDateFormatted(date) {
     const monthNames = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
+      "Jan.",
+      "Feb.",
+      "Mar.",
+      "Apr.",
+      "May.",
+      "Jun.",
+      "Jul.",
+      "Aug.",
+      "Sep.",
+      "Oct.",
+      "Nov.",
+      "Dec.",
     ];
 
     var mm = date.getMonth();
     var dd = date.getDate();
     // date.get;
 
-    return [monthNames[mm], (dd > 9 ? "" : "0") + dd, date.getFullYear()].join(
-      "-"
+    return [monthNames[mm], (dd > 9 ? "" : "0") + dd].join(
+      " "
     );
   }
   _jobsIndustryIsChecked(job) {
@@ -197,43 +197,41 @@ class Jobs extends Component {
   displayJobs() {
     const JOBS_TO_SHOW = this.state.jobs.filter((job) => this.filterJob(job));
     return (
-      <div className="jobs card-columns ">
+      <div className="jobs row">
         {JOBS_TO_SHOW.length != 0 ? (
           JOBS_TO_SHOW.map((job) => {
             return (
-              <a key={job._id} href={job._id}>
-                <Card className="job-elem col-4" style={{ maxWidth: "36rem" }}>
-                  <div className="job-card-row">
+              <a key={job._id} href={job._id} className="col-sm-12 col-lg-4 d-flex flex-fill"> 
+                <Card className="job-elem">
+                  <div>
                     <Card.Img
-                      className="job-card-img"
-                      variant="top"
+                      className="card-img-top"
+                      style={{
+                        padding: "0.3em",
+                      }}
                       src="https://brands-cdn.employbridge.com/content/assets/news//40169262_14124173_Large.jpg"
                     />
                     <Card.Title
                       style={{
-                        padding: "5%",
+                        padding: "1em 1em 0em 1em",
                         textOverflow: "clip",
                         overflowWrap: "break-word",
-                        width: "50%",
+                        width: "100%",
                       }}
                     >
-                      {job.title || ""}
+                      {job.title || "Unknown Job Name"}
                     </Card.Title>
                   </div>
-                  <hr />
                   <Card.Body>
                     <Card.Text>
                       {"Posted on " +
                         this._getDateFormatted(new Date(job.published_at))}
                     </Card.Text>
-                    <Card.Text>{"@  " + (job.company || "")} </Card.Text>
-                    <Card.Text>{"$  " + (job.salary || "")} </Card.Text>
+                    {/* <Card.Text>{"@ " + (job.company || "")} </Card.Text>
+                    <Card.Text>{"$" + (job.salary || "")} </Card.Text> */}
                     <Card.Text>{"📍 " + (job.location || "")} </Card.Text>
-
-                    <hr />
                     <div
                       className="job-card-row flex-center "
-                      style={{ padding: "5%" }}
                     >
                       <Button
                         onClick={(e) => {
@@ -252,13 +250,13 @@ class Jobs extends Component {
         ) : (
           <div>
             <div className="marquee">
-              <h1>Didn't find any Jobs :(</h1>
+              <h1>No jobs found</h1>
             </div>
             <div className="marquee">
-              <h1>Didn't find any Jobs :(</h1>
+              <h1>No jobs found</h1>
             </div>
             <div className="marquee">
-              <h1>Didn't find any Jobs :(</h1>
+              <h1>No jobs found</h1>
             </div>
           </div>
         )}
@@ -285,7 +283,7 @@ class Jobs extends Component {
             as="select"
             placeholder="Select Job Career"
           >
-            <option value="">ALL Location</option>
+            <option value="">All Locations</option>
 
             {[
               "Location 1",
@@ -598,7 +596,7 @@ class Jobs extends Component {
         <div className="job-container">
           {this.displayFilters()}
           {this.displayJobs()}
-          {/* <iframe
+          {/*<iframe
             src="https://calendar.google.com/calendar/embed?src=fgv68k6tk5ji5sr4jjiuc2q90k%40group.calendar.google.com&ctz=America%2FNew_York"
             style={{
               border: 0,
@@ -608,8 +606,7 @@ class Jobs extends Component {
             }}
             frameBorder="0"
             scrolling="no"
-          ></iframe> */}
-
+          ></iframe>*/}
         </div>
       </div>
     );
