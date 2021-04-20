@@ -4,6 +4,7 @@ import { Image, Carousel } from "react-bootstrap";
 import "../assets/stylesheets/app.css";
 import "../assets/stylesheets/HomePage.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 // import main_futuresuburbs from "../assets/images/futuresuburbs.gif";
 import main_futuresuburbs from "../assets/images/survey-futuresuburbs.jpg";
@@ -353,14 +354,14 @@ class Land extends Component {
       img_priority6
     ];
     const priorities = [
-      "Priority 1: Place",
-      "Priority 2: Prosperity",
-      "Priority 3: Health + Wellbeing",
-      "Priority 4: Connectivity",
-      "Priority 5: Living Infrastructure",
-      "Priority 6: Resource Restoration"
+      "Place",
+      "Prosperity",
+      "Health + Wellbeing",
+      "Connectivity",
+      "Living Infrastructure",
+      "Resource Restoration"
     ];
-    const priorityDescription = [
+    const priorityGoals = [
       "Create inclusive and vibrant communities.",
       "Support education and economic opportunities that build prosperity and accelerate innovation",
       "Nurture people’s health and happiness.",
@@ -368,6 +369,15 @@ class Land extends Component {
       "Enable flourishing ecosystems and restore natural capital.",
       "Move towards a net positive world."
     ];
+
+    const priorityObjectives = [
+      "Strong civic engagement; preservation and celebration of culture and history; diverse and affordable housing; and accessible public spaces and services for daily needs.",
+      "Equitable access to quality education and career pathways, a robust employment base with increasing jobs and job quality, and entrepreneurial innovation and business start-ups.",
+      "Active living based on walkability and recreation; equitable health outcomes based on accessible, affordable health care; affordable, local fresh food; remediated toxic environments; and strong public safety.",
+      "A street network accommodating diverse ages and abilities using multiple travel modes and shared mobility options, and a high-quality digital network providing equitable connectivity and leveraged community data.",
+      "Healthy soils, water, trees, and wildlife habitat; accessible nature; and natural processes integrated into the built environment.",
+      "Increase efficient water use; divert waste from landfills; productively reuse remediated land; and pursue energy efficiency, technology advancements, and clean, renewable energy production that reduces greenhouse gas emissions."
+    ]
     const transitionProperties = {
       duration: 1500,
       transitionDuration: 1500,
@@ -418,7 +428,10 @@ class Land extends Component {
                     {priorities[index]}
                   </h1>
                   <p>
-                    {priorityDescription[index]}
+                    <span style={{fontWeight: "bold"}}>Goals: </span>{priorityGoals[index]}
+                  </p>
+                  <p>
+                  <span style={{fontWeight: "bold"}}>Objective: </span>{priorityObjectives[index]}
                   </p>
                 
                   {this.getLearnMoreButton()}
@@ -665,7 +678,7 @@ class Land extends Component {
 
         <section
           style={{
-            height: "90vh",
+            height: "50vh",
           }}
         >
           <div

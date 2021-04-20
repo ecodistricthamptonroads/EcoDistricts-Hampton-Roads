@@ -17,9 +17,9 @@ class Surveys extends Component {
   }
 
   componentDidMount() {
-    getSurveys().then(req => {
-      this.setState({ surveys: req.data });
-    });
+    // getSurveys().then(req => {
+    //   this.setState({ surveys: req.data });
+    // });
   }
 
   getSurveysList() {
@@ -54,22 +54,38 @@ class Surveys extends Component {
       <div className="Survey-container">
         {this.getHeading()}
         <div className="row">
-          <img className="col" Style="width:50%" src={futuresuburbs} />
-          <div className="col">
-            <h1 className="row Survey-SubHeader">
+          <img className="col" Style="width:50%; padding-right: 2.5%" src={futuresuburbs} />
+          <div className="col focus-text">
+            <h1 className="row Survey-focus-text" Style="font-weight: bold">
               Cavalier Manor Study of Community Needs
             </h1>
-            <h1 className="row focus-text">
+            {/* <h1>https://forms.gle/thx3znUcUovX5iqbA</h1> */}
+            <div className="row">
+              <button
+                style={{
+                  color: 'white',
+                  backgroundColor: '#153967',
+                  border: 'None',
+                  fontFamily: 'Lato',
+                  marginTop: '4vh'
+                  // borderRadius: 10
+                }}
+              >
+                Sign Up Here!
+              </button>
+            </div>
+            <br></br>
+            <h2 className="row">
               Help the Cavalier Manor area become sustainable, equitable,
               resilient, and climate ready!
-            </h1>
-            <h1 className="row focus-text">
+            </h2>
+            <h2 className="row">
               Compensation will be a $20 Amazon Gift Card for a 90 minute
               session.
-            </h1>
-            <h1 className="row focus-text">
+            </h2>
+            <h2 className="row">
               Cavalier Manor, Victory Park, and Crystal Lake Residents Only
-            </h1>
+            </h2>
           </div>
         </div>
         <div className="Survey-Body">

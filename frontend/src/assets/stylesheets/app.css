@@ -219,10 +219,20 @@ body {
   border: 0 !important;
   border-radius: 0 !important;
 }
+
 .Survey-Body > h3 {
   margin: auto;
   text-align: center;
   padding: 1%;
+}
+
+.Survey-focus-text {
+  /* font-size: 2em; */
+  font-weight: 500;
+  /* padding-left: 7.5%; */
+  /* padding-bottom: 4%; */
+  margin: auto;
+  color: black;
 }
 
 .Survey-container {
@@ -248,12 +258,12 @@ body {
   color: black;
 }
 .Survey-SubHeader {
-  text-align: left;
+  /* text-align: left; */
   font-style: normal;
   font-weight: bold;
-  font-size: 42px;
-  line-height: 64px;
-  padding: 7.5%;
+  /* font-size: 42px; */
+  /* line-height: 64px; */
+  /* padding: 7.5%; */
   color: black;
 }
 .Survey-Feedback {

@@ -160,6 +160,22 @@
 #mce-MMERGE4-country {
   /* margin-top: 5%; */
 }
+
+.mc-field-group > input {
+
+}
+
+.Mail-Chimp-signup {
+  background-color: #153967;
+  /* background-color: #D7F0DE; */
+  height: fit-content;
+  margin: auto;
+  padding: 0.5%;
+  border-radius: 5px;
+  width: 80vw;  
+}
+
+
 #mc-embedded-subscribe {
   background: #153967;
   border-radius: 5px;
@@ -172,11 +188,12 @@
   font-weight: bold;
 }
 
-#signUpMailChimp {
-  border: white;
-  height: 100%;
+#mc_embed_signup {
+  padding: 2%;
+  background: white;
 }
 
-.mc-field-group > input {
-
+#signUpMailChimp {
+  border: black;
+  height: 100%;
 }
