@@ -101,48 +101,63 @@ class Resource extends Component {
       },
       {
         link: 'https://atruebeginning.org/',
-        name: '',
-        description: '',
-        contact: ''
+        name: 'True Beginnings',
+        description: 'True Beginnings, established as a 501(c)3 organization in 2013 in the Hampton, VA region, by a formerly incarcerated woman, Vera Moore, who has a vision of providing other formerly incarcerated women true access to prosperity and equity through wrap-around services such as trauma informed case management, and life coaching. True Beginnings addresses trauma in the midst of housing and job readiness, as the first order of business in assisting women through transitioning from incarceration into a productive lifestyle; understanding that 87% of the women who have been incarcerated have withstood some sort of sexual or physical abuse in their lifetime.',
+        contact: '12 Salters Creek Rd. Hampton, VA;  (757) 245-4500   '
       },
       {
-        link: '',
-        name: '',
-        description: '',
-        contact: ''
+        link: 'https://www.theupcenter.org/',
+        name: 'The Up Center',
+        description: 'The Up Center provides more than 20 critical support services for children and families in our community, including mental health counseling, parenting education and support, youth mentoring, foster care and adoption, housing and financial counseling, and services for people with disabilities.',
+        contact: '222 West 19th St., Norfolk, VA;  (757) 622-7017'
       },
       {
-        link: '',
-        name: '',
-        description: '',
-        contact: ''
+        link: 'http://vacares.org/',
+        name: 'Virginia CARES',
+        description: 'Virginia CARES is part of a Virginia coalition of re-entry services providers known as the Pre- and Post-Incarceration Services (PAPIS) Coalition, which is funded by the Virginia General Assembly through the Department of Criminal Justice Services (DCJS). Virginia CARES, like the other PAPIS organizations, works to reduce recidivism and to provide education, job training and other support services to released individuals, an important part of the last three Governors’ enhanced emphasis on re-entry initiatives.  ',
+        contact: '115 28th Street, Newport News, VA;  (757) 245-0328'
       },
       {
-        link: '',
-        name: '',
-        description: '',
-        contact: ''
+        link: 'https://www.vec.virginia.gov/ex-offender-assistance',
+        name: 'Virginia Employeement Commission - Ex-offender Assistance',
+        description: 'Resources on Federal Bonding, Virginia Civil Rights Restoration, and Public Assistance available to ex-offenders.',
+        contact: '1-866-832-2363'
       },
       {
-        link: '',
-        name: '',
-        description: '',
-        contact: ''
+        link: 'http://jamescitycountyva.gov/186/Colonial-Community-Corrections',
+        name: 'James City County Colonial Community Corrections',
+        description: 'James City County Colonial Community Corrections enhances public safety, empowers our clients and improves the quality of our community by providing judicial alternatives to adult incarceration, transitional services and criminal justice planning to the localities we serve.',
+        contact: '4093 Ironbound Rd Suite B Williamsburg, VA; (757) 564-2311'
       },
       {
-        link: '',
-        name: '',
-        description: '',
-        contact: ''
-      },
-      {
-        link: '',
-        name: '',
-        description: '',
-        contact: ''
+        link: 'http://onesimus-ministries.org/welcome.html',
+        name: 'Onesimus Ministries',
+        description: 'Onesimus Ministries was started in May of 1982 by Rev. William Twine to provide Christian ministry to men incarcerated in Norfolk City Jail. The Mission Statement of Onesimus Ministries is to: to provide ministry to those that are incarcerated, to provide aftercare ministry to those released from jail or prison, and to provide ministry to the families of those incarcerated.',
+        contact: '(757) 421-2553'
       }
     ];
 
+    const RIGHTS_RESTORATION_LINKS = [
+      {
+        link: 'https://www.restore.virginia.gov/',
+        name: 'Restoration of Rights, Secretary of the Commonwealth',
+        description: 'The Constitution of Virginia gives the Governor the sole discretion to restore civil rights, not including firearm rights. Individuals seeking restoration of their civil rights are encouraged to contact the Secretary of the Commonwealth’s office. ',
+        contact: '(804) 786-2441'
+      },
+      {
+        link: 'https://revivemyvote.wm.edu/',
+        name: 'Revive My Vote',
+        description: 'Revive My Vote is a free and confidential service that helps Virginians with prior felony convictions restore their voting rights.',
+        contact: '844-932-8683 (TOLL FREE)'
+      },
+      {
+        link: 'www.stepupincorporated.org',
+        name: 'Step-up Inc',
+        description: 'At STEP UP, Inc., we provide early assistance, starting before an inmate is ever released.        By doing this, we can determine what services (if any) the client will need from the moment they are released-it could be a safe place to stay, a job to help them go on with their lives or even new clothing. We work to help meet their needs so these needs don’t become problems that hinder re-entry into society.Our goal is to help the ex-offender become as successful as possible so they don’t become a repeat offender.',
+        contact: '5900 E. Virginia Beach Blvd., Suite 102, Norfolk, VA; (757) 588-3151'
+      }
+    ];
+    
     const cardImageStyle = {
       borderRadius: "8px",
       boxShadow: "3px 2px 5px 2px rgba(0, 0, 0, 0.25)"
@@ -152,7 +167,7 @@ class Resource extends Component {
       <div className="Resource-container">
         <h1 className="Resource-Heading section-title">Resources</h1>
         <div className="Resource-body">
-          <div className="Resource-text">
+          <div className="Resource-text" style={{textAlign: "center"}}>
             Resources compiled and created by the community, for the community.
           </div>
           <br />
@@ -183,11 +198,21 @@ class Resource extends Component {
             </div>
           </div>
           <div className="Resource-row">
-            <h1 className="Resource-Heading section-title" style={{textAlign:"left"}}>Ex-Offender Assistance</h1>
+            <h1 className="Resource-Heading section-title" style={{textAlign:"left", color: "black"}}>Ex-Offender Assistance</h1>
             <div className="Resource-text">
             You don’t have to go through re-entry alone. These are some resources to help you get back on your feet!
             </div>
               {SECONDCHANCE_LINKS.map(({ name, link, description, contact }) => (
+                <div className="Resource-text" key={name}>
+                  <button className="second-chance-button"><a className="Resource-list" href={link}>{name}</a></button>
+                   <p className="resource-desc"> <span style={{fontWeight: "bold"}}>Description: </span> {description}</p>
+                   <p className="resource-desc"><span style={{fontWeight: "bold"}}>Contact: </span> {contact} </p>
+                </div>
+              ))}
+          </div>
+          <div className="Resource-row">
+            <h1 className="Resource-Heading section-title" style={{textAlign:"left", color: "black"}}>Restoration of Rights</h1>
+              {RIGHTS_RESTORATION_LINKS.map(({ name, link, description, contact }) => (
                 <div className="Resource-text" key={name}>
                   <button className="second-chance-button"><a className="Resource-list" href={link}>{name}</a></button>
                    <p className="resource-desc"> <span style={{fontWeight: "bold"}}>Description: </span> {description}</p>

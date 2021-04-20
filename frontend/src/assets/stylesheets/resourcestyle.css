@@ -29,3 +29,62 @@
 .section-title{
     font-weight:bold;
 }
+
+.Resource-card {
+    box-shadow: 7px 10px 20px 7px rgba(0, 0, 0, 0.25);
+    font-size:1rem;
+    transition-duration: 0.15s;
+    padding: 5%;
+  }
+  
+  .Resource-card:hover{
+    font-size:1.1rem;
+    transition-duration: 0.15s;
+  }
+  
+  .Resource-Name {
+    font-weight: 700;
+    font-size:1.8rem;
+    text-align: center;
+  }
+  
+  .Resource-container {
+    background: linear-gradient(180deg, rgb(82, 147, 132) 0%, #ffffff 125.62%);
+    /* height: 95vh; */
+    width: 100%;
+    padding: 5% 15% 5% 15%;
+    color: white;
+  }
+  .Resource-Heading {
+    padding: 10px;
+    font-size: 4em;
+    text-align:center;
+    color:white;
+  }
+  .Resource-text {
+    padding: 10px;
+    font-size: 2em;
+    font-weight: 500;
+    color: black;
+    text-decoration: none;
+    /* text-align: center; */
+  }
+  
+  .Resource-list{
+    color: #007a5e;  
+    font-size: 1.5em;
+  }
+  
+  .Resource-Grid {
+    padding-bottom: 5%;
+  }
+  
+  .Resource-Grid a{
+    text-decoration: none;
+    color:black;
+  }
+  
+  .Resource-Grid a:hover{
+    text-decoration: none;
+    color:black;
+  }

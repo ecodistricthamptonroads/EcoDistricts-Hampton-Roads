@@ -6,22 +6,12 @@ import "../assets/stylesheets/HomePage.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-// import main_futuresuburbs from "../assets/images/futuresuburbs.gif";
 import main_futuresuburbs from "../assets/images/survey-futuresuburbs.jpg";
-
 import branding_logo from "../assets/images/Branding_White.svg";
-
-// import other_carousel_1 from "../assets/images/carousel_1.jpg";
-// import other_carousel_2 from "../assets/images/carousel_2.jpg";
-// import other_carousel_3 from "../assets/images/carousel_3.jpg";
-// import other_carousel_4 from "../assets/images/carousel_4.jpg";
 
 import img_main1 from "../assets/images/land_slideshow_img/main1.jpg";
 import img_main2 from "../assets/images/land_slideshow_img/main2.jpg";
 import img_main4 from "../assets/images/land_slideshow_img/main4.jpg";
-
-// import carousel_main_3 from "../assets/images/land_slideshow_img/images Slideshow-3.png";
-// import carousel_main_4 from "../assets/images/land_slideshow_img/images Slideshow-4.png";
 
 import img_work1 from "../assets/images/our_work_img/OurWork_1.jpg";
 import img_work2 from "../assets/images/our_work_img/OurWork_2.jpg";
@@ -30,9 +20,9 @@ import img_work3 from "../assets/images/our_work_img/OurWork_3.jpg";
 import img_priority1 from "../assets/images/six_community_priorities/priority1.jpg";
 import img_priority2 from "../assets/images/six_community_priorities/priority2.jpg";
 import img_priority3 from "../assets/images/six_community_priorities/priority3.jpg";
-import img_priority4 from "../assets/images/six_community_priorities/priority6.jpg";
+import img_priority4 from "../assets/images/six_community_priorities/priority4.jpg";
 import img_priority5 from "../assets/images/six_community_priorities/priority5.jpg";
-import img_priority6 from "../assets/images/six_community_priorities/priority4.jpg";
+import img_priority6 from "../assets/images/six_community_priorities/priority6.jpg";
 
 
 import about_us from "../assets/images/about_us.jpg";
@@ -100,9 +90,9 @@ class Land extends Component {
     // getEvents().then((events) => {
     //   this.setState({ events: events.data });
     // });
-    // getNews().then((news) => {
-    //   this.setState({ news: news.data });
-    // });
+    getNews().then((news) => {
+      this.setState({ news: news.data });
+    });
   }
   _getDateFormatted(date) {
     const monthNames = [
@@ -295,7 +285,6 @@ class Land extends Component {
       img_main4
     ];
 
-    const headers = ["1. Create a sense of place", "2 prosperity", "3 health_wellness.jpeg", "4 living infrastructure.jpeg"]
     const transitionProperties = {
       duration: 1500,
       transitionDuration: 1500,
@@ -322,7 +311,7 @@ class Land extends Component {
                   backgroundImage: `linear-gradient(rgba(0, 0, 0, .35), rgba(0, 0, 0, 0.5)), url(${each})`,
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "cover",
-                  backgroundPosition: "center center",
+                  backgroundPosition: "initial",
                   height: "90vh",
                   width: "100vw",
                
@@ -351,32 +340,32 @@ class Land extends Component {
       img_priority3, 
       img_priority4,
       img_priority5,
-      img_priority6
+      img_priority6,
     ];
     const priorities = [
       "Place",
       "Prosperity",
+      "Resource Restoration",
       "Health + Wellbeing",
-      "Connectivity",
       "Living Infrastructure",
-      "Resource Restoration"
+      "Connectivity",
     ];
     const priorityGoals = [
       "Create inclusive and vibrant communities.",
       "Support education and economic opportunities that build prosperity and accelerate innovation",
+      "Move towards a net positive world.",
       "Nurture people’s health and happiness.",
-      "Build effective and equitable connections between people and places.",
       "Enable flourishing ecosystems and restore natural capital.",
-      "Move towards a net positive world."
+      "Build effective and equitable connections between people and places.",
     ];
 
     const priorityObjectives = [
       "Strong civic engagement; preservation and celebration of culture and history; diverse and affordable housing; and accessible public spaces and services for daily needs.",
       "Equitable access to quality education and career pathways, a robust employment base with increasing jobs and job quality, and entrepreneurial innovation and business start-ups.",
+      "Increase efficient water use; divert waste from landfills; productively reuse remediated land; and pursue energy efficiency, technology advancements, and clean, renewable energy production that reduces greenhouse gas emissions.",
       "Active living based on walkability and recreation; equitable health outcomes based on accessible, affordable health care; affordable, local fresh food; remediated toxic environments; and strong public safety.",
-      "A street network accommodating diverse ages and abilities using multiple travel modes and shared mobility options, and a high-quality digital network providing equitable connectivity and leveraged community data.",
       "Healthy soils, water, trees, and wildlife habitat; accessible nature; and natural processes integrated into the built environment.",
-      "Increase efficient water use; divert waste from landfills; productively reuse remediated land; and pursue energy efficiency, technology advancements, and clean, renewable energy production that reduces greenhouse gas emissions."
+      "A street network accommodating diverse ages and abilities using multiple travel modes and shared mobility options, and a high-quality digital network providing equitable connectivity and leveraged community data.",
     ]
     const transitionProperties = {
       duration: 1500,
