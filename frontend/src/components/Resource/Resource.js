@@ -57,22 +57,89 @@ class Resource extends Component {
 
     const SECONDCHANCE_LINKS = [
       {
-        link: 'thedreamcorps.org',
-        name: 'The Dreamcorps',
-        image: 'https://www.thedreamcorps.org/wp-content/themes/dreamcorps/dist/images/logo_7c9a110c.svg',
-        description: 'This organization provides resources for formerly incarcerated people to re-enter the workforce in the clean energy center.'
+        link: 'https://hrcapinc.org/directory/listing/virginia-cares-re-entry-program/',
+        name: 'Virginia CARES - Re-entry Program',
+        description: 'Virginia CARES provides one-on-one counseling with ex-offenders and their families to help ex-offenders transition back into their communities. Through counseling sessions, we can help determine your needs and provide referrals to various agencies with services',
+        contact: '2708 Chestnut Avenue, Newport News, Virginia 23607; (757)-245-1205'
       },
       {
-        link: 'https://www.google.con',
-        name: 'Resource2',
-        image: 'https://i.imgur.com/ElWjENc.png',
-        description: 'Description sample lorem ipsum et cetera that is all that is all; there is nothing else, although this is some text that is being used as filler for when there will be a proper description, which will be added soon.'
+        link: 'https://kidsandfamilies.com/',
+        name: 'Fresh Start, Child and Family Services',
+        description: 'The Center for Child and Family Services (CCFS), founded in 1943, is a nonprofit 501C3 community service organization focused on providing behavioral, mental health, and financial counseling services to families. Our mission is to deliver quality counseling programs and support services that empower individuals and families to improve their lives.',
+        contact: '2021 Cunningham Dr. Ste. 400, Hampton, VA; (757) 838-1960; email: htodd@kidsandfamilies.com'
+
       },
       {
-        link: 'https://www.google.con',
-        name: 'Resource3',
-        image: 'https://i.imgur.com/ElWjENc.png',
-        description: 'Description sample lorem ipsum et cetera that is all that is all; there is nothing else, although this is some text that is being used as filler for when there will be a proper description, which will be added soon.'
+        link: 'https://goodwillvirginia.org/location/hampton-cec/',
+        name: 'Goodwill Employment Center',
+        description: '',
+        contact: '1911 Saville Row, Hampton, VA; (757) 951-4200'
+      },
+      {
+        link: 'https://www.facebook.com/TheHouseofDreamsReEntryConsulting/',
+        name: 'The House of Dreams ReEntry',
+        description: 'The House of Dreams ReEntry Consulting, LC is an organization that is dedicated to helping Returning Citizens be successful, in every aspect of their life by providing helpful and current information related to formerly incarcerated individuals.',
+        contact: '733 Thimble Shoals Blvd, Newport News; (757) 303-0368'
+      },
+      {
+        link: '',
+        name: 'Our Daughters and Sons Network',
+        description: 'Mentorship, resume building',
+        contact: '6022 Jefferson Ave, Ste 240C Newport News, VA; (757) 926-4428; email: lmaynard4ods@hotmail.com'
+      },
+      {
+        link: 'https://www.facebook.com/Second-Chances-1375713166091864/',
+        name: 'Second Chances',
+        description: 'Second Chances is a comprehensive program those dealing with the stigma of offender status. Services include job readiness and job skills training, substance abuse support and relapse prevention, housing, youth mentorship and supportive services',
+        contact: '810 Union Street, #807, Norfolk, VA; (757) 664-4281'
+      },
+      {
+        link: 'http://stepupincorporated.org/',
+        name: 'Step-Up Inc',
+        description: 'Despite the call for longer jail terms, at some point an offenders sentence will be completed. Its also a fact that one of the primary reasons former inmates find themselves in trouble again is the lack of family support or a shortage of community-based services. STEP UP, Inc. helps these ex-offenders find a new start in their lives. At STEP UP, Inc., we provide early assistance, starting before an inmate is ever released.',
+        contact: '5900 E. Virginia Beach Blvd., Suite 102, Norfolk, VA; (757) 588-3151'
+      },
+      {
+        link: 'https://atruebeginning.org/',
+        name: '',
+        description: '',
+        contact: ''
+      },
+      {
+        link: '',
+        name: '',
+        description: '',
+        contact: ''
+      },
+      {
+        link: '',
+        name: '',
+        description: '',
+        contact: ''
+      },
+      {
+        link: '',
+        name: '',
+        description: '',
+        contact: ''
+      },
+      {
+        link: '',
+        name: '',
+        description: '',
+        contact: ''
+      },
+      {
+        link: '',
+        name: '',
+        description: '',
+        contact: ''
+      },
+      {
+        link: '',
+        name: '',
+        description: '',
+        contact: ''
       }
     ];
 
@@ -86,9 +153,7 @@ class Resource extends Component {
         <h1 className="Resource-Heading section-title">Resources</h1>
         <div className="Resource-body">
           <div className="Resource-text">
-            Description Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Phasellus dapibus metus sit amet turpis finibus semper. Praesent eu
-            tortor tortor.
+            Resources compiled and created by the community, for the community.
           </div>
           <br />
           <div className="Resource-gallery">
@@ -118,14 +183,15 @@ class Resource extends Component {
             </div>
           </div>
           <div className="Resource-row">
-            <h1 className="Resource-Heading section-title" style={{textAlign:"left"}}>Second Chance Resources</h1>
+            <h1 className="Resource-Heading section-title" style={{textAlign:"left"}}>Ex-Offender Assistance</h1>
             <div className="Resource-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+            You don’t have to go through re-entry alone. These are some resources to help you get back on your feet!
             </div>
-              {SECONDCHANCE_LINKS.map(({ name, link, description }) => (
+              {SECONDCHANCE_LINKS.map(({ name, link, description, contact }) => (
                 <div className="Resource-text" key={name}>
                   <button className="second-chance-button"><a className="Resource-list" href={link}>{name}</a></button>
-                  <p className="resource-desc">{description}</p>
+                   <p className="resource-desc"> <span style={{fontWeight: "bold"}}>Description: </span> {description}</p>
+                   <p className="resource-desc"><span style={{fontWeight: "bold"}}>Contact: </span> {contact} </p>
                 </div>
               ))}
           </div>
