@@ -39,23 +39,24 @@ export function getSpecificImage(type, image_obj) {
   }
 }
 
-const SURVEY_PATH = "/surveys";
+const SURVEY_PATH = "/Surveys";
 export async function getSurveys() {
   return axios.get(getStrapiURL(SURVEY_PATH));
 }
-const NEWS_PATH = "/articles";
+const NEWS_PATH = "/Articles";
 export async function getNews() {
   return axios.get(getStrapiURL(NEWS_PATH));
 }
-const EVENTS_PATH = "/events";
+const EVENTS_PATH = "/Events";
 export async function getEvents() {
   return axios.get(getStrapiURL(EVENTS_PATH));
 }
-const JOBS_PATH = "/jobs";
+const JOBS_PATH = "/Jobs";
 export async function getJobs() {
+  console.log(getStrapiURL(JOBS_PATH));
   return axios.get(getStrapiURL(JOBS_PATH));
 }
-const PROJECTS_PATH = "/projects";
+const PROJECTS_PATH = "/Projects";
 export async function getProjects() {
   return axios.get(getStrapiURL(PROJECTS_PATH));
 }

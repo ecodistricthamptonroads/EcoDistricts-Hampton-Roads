@@ -95,9 +95,6 @@ class Land extends Component {
     };
   }
   componentDidMount() {
-    // getEvents().then((events) => {
-    //   this.setState({ events: events.data });
-    // });
     getNews().then((news) => {
       this.setState({ news: news.data });
     });
