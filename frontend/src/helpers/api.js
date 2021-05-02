@@ -53,6 +53,7 @@ export async function getEvents() {
 }
 const JOBS_PATH = "/Jobs";
 export async function getJobs() {
+  console.log(getStrapiURL(JOBS_PATH));
   return axios.get(getStrapiURL(JOBS_PATH));
 }
 const PROJECTS_PATH = "/Projects";

@@ -8,6 +8,12 @@
   color: #007a5e !important;
   font-size: 1.75rem;
 }
+#donate-button {
+  background-color: #007a5e;
+  color: white;
+  border-color:  #007a5e;
+  font-size: 1.75rem;
+}
 .title {
   font-weight: bold;
 }
@@ -20,19 +26,7 @@
 .p {
   font-family: Lato;
 }
-/* Place text in the middle of the image */
-.hero-text {
-  text-align: left;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  /* transform: translate(-50%, -50%); */
-  color: white;
-}
 
-.branding-logo {
-  width: 27rem;
-}
 /* .
 Homepage-container {
   background: white;

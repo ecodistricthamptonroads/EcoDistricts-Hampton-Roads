@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import icon from "../assets/images/icon.png";
 import brand from "../assets/images/Brand1.png";
@@ -110,9 +111,7 @@ class Header extends Component {
               </a>
             </Nav.Item>
             <Nav.Item>
-              <a className="nav-link" href="https://ecosia.org">
-                Donate
-              </a>
+              <Button id="donate-button" href="https://ecosia.org">Donate</Button>
             </Nav.Item>
           </Nav>
         </Navbar.Collapse>

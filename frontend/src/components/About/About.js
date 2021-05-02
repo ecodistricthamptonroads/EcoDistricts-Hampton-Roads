@@ -37,6 +37,12 @@ class About extends Component {
               African American community. We hope to bring the community
               together in order to face social and educational challenges,
               creating a vibrant neighborhood.
+
+              We believe that sustainability is holding, practicing, and sometimes even
+              fighting for the principles of an equitable community, an
+              economy that works for everyone, and stewarding our community
+              environment well. Through our initiatives, we hope to bring a sustainable future to Hampton Roads.
+
             </div>
           </div>
           <br />
