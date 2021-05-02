@@ -47,14 +47,21 @@ import { getNews } from "../helpers/api";
 // };
 
 
-const MAIL_CHIMP_EMBEDDED = `<div>
-
+const MAIL_CHIMP_EMBEDDED = `
+<div>
 <div id="mc_embed_signup">
 <form action="https://ecodistricthamptonroads.us4.list-manage.com/subscribe/post?u=51eb002c7ef49ac4bf7de17e2&amp;id=cca6d76921" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
     <div id="mc_embed_signup_scroll">
     <h2 class="Homepage-h2">
             Join Our Newsletter
-          </h2>
+    </h2>
+    <p class="signup-text">
+      Want to feel a sense of belonging and make a tangible difference? We do too. 
+      <br>
+      Join our newsletter to stay
+      connected on our initiatives to make our
+      neighborhood more affordable, healthier, and more connected!
+    </p>
 <div class="mc-field-group">
 	<label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
 </label>
@@ -73,7 +80,8 @@ const MAIL_CHIMP_EMBEDDED = `<div>
 </form>
 </div>
 <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[0]='EMAIL';ftypes[0]='email';fnames[3]='MMERGE3';ftypes[3]='birthday';fnames[4]='MMERGE4';ftypes[4]='address';fnames[5]='MMERGE5';ftypes[5]='dropdown';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
-</div>`;
+</div>
+`;
 
 
 class Land extends Component {
@@ -251,33 +259,6 @@ class Land extends Component {
     );
   }
 
-  getLearnMoreButton() {
-    return (
-    <div
-      style={{
-        fontSize: '2vw',
-        paddingTop: '1rem',
-        fontFamily: 'Lato',
-        textAlign: 'inherit'
-      }}
-    >
-      <button
-        style={{
-          color: 'white',
-          backgroundColor: '#153967',
-          border: 'None',
-          paddingLeft: '2rem',
-          paddingRight: '2rem',
-          fontFamily: 'Lato',
-          // margin: '4vh'
-          // borderRadius: 10
-        }}
-      >
-        Learn More
-      </button>
-    </div>
-    )
-  }
   getMainCarousel() {
     const images = [
       img_main1, 
@@ -320,10 +301,8 @@ class Land extends Component {
                 src={each}
               >
                 <div class="hero-text">
-                  <div style={{transform: "translate(-115%, -25%)"}}> 
                     <img src={branding_logo} class="branding-logo" />
                     <h1>Building Sustainble Communities</h1>
-                  </div>
                 </div>
               </div>
             ))}
@@ -377,13 +356,7 @@ class Land extends Component {
     };
     return (
       <section
-        style={{
-          height: "90vh",
-          width: "100vw",
-          padding: 0,
-          marginBottom: "5rem"
-        }}
-        className="slide-container col-12"
+        className="slide-container priorities-section"
       >
         <h1 className={'Homepage-h1'}>
             Six Community Priorities
@@ -401,17 +374,14 @@ class Land extends Component {
                   height: "90vh",
                   width: "100vw",
                   color: "white",
-                  fontFamily: "Lato"
+                  fontFamily: "Lato",
                 }}
                 src={each}
               >
-                <div className={'row h-100'}>
-              <div className="col-7"/>
+                <div className={'row'}>
+              {/* <div className="col-7"/> */}
                 <div
-                  className="Homepage-info col-4 my-auto"
-                  style={{
-                    padding: '2%'
-                  }}
+                  className="Homepage-info panel-right priority-panel"
                 >
                   <h1 className="Homepage-info-header">
                     {priorities[index]}
@@ -423,7 +393,11 @@ class Land extends Component {
                   <span style={{fontWeight: "bold"}}>Objective: </span>{priorityObjectives[index]}
                   </p>
                 
-                  {this.getLearnMoreButton()}
+                  {/* <Link to="/about">
+                    <button className = "button-more">
+                      Learn More
+                    </button>
+                  </Link> */}
 
                 </div>
               <div className="col-1" />
@@ -471,23 +445,25 @@ class Land extends Component {
             }}
           >
             <div className={'row h-100'}>
-              <div className="col-7"/>
                 <div
-                  className="Homepage-info col-4 my-auto"
-                  style={{
-                    padding: '2%'
-                  }}
+                  className="Homepage-info panel-right my-auto"
                 >
                   <h1 className="Homepage-info-header">
                     Our Story
                   </h1>
                   <p>
-                    Eco Districts Hampton Roads hopes to create a beautiful and
-                    sustainable community within Virginia's Hampton Roads, the
-                    largest African American community.
+                    Eco Districts Hampton Roads is a community developed with a holistic
+                    sustainable view in mind. We strive to make sure our
+                    neighborhoods are sustainable- Equitable, Economical, and
+                    Environmental.
                   </p>
                   
-                  {this.getLearnMoreButton()}
+                  <Link to="/about">
+                    <button className = "button-more">
+                      Learn More
+                    </button>
+                  </Link>
+
 
                 </div>
               <div className="col-1" />
@@ -504,31 +480,28 @@ class Land extends Component {
         }
         {/* What we do! */}
         {<section className="Homepage-gallery">
-          <div className={'container-fluid'} 
-            style={{
-              // paddingRight: '2.5rem',
-              // paddingLeft: '2.5rem',
-              backgroundColor: 'rgba(0, 0, 0, 0.0)'
-            }}
-          >
-            <div className={'row h-100'}>
-              <div className="Hompage-panel-img fade-in1 col-4" 
+          <div className={'container-fluid'}>
+            <div className={'row'}>
+              <div className="Homepage-panel-img column" 
                 style={{backgroundImage: `url('${img_work1}')`}}>
                   <div className="Homepage-panel-info">
                     <h1 className="Homepage-panel-header">
                       Workforce Development
                     </h1>
                     <p>
-                      Eco Districts Hampton Roads hopes to create a beautiful and
-                      sustainable community within Virginia's Hampton Roads, the
-                      largest African American community.
+                      The Eco Districts Hampton Roads Sustainable Job Center provides a path towards sustainable jobs for members of the community.
                     </p>
+
+                    <Link to="/opportunities">
+                      <button className = "button-more">
+                        Learn More
+                      </button>
+                    </Link>        
                     
-                    {this.getLearnMoreButton()}
 
                   </div>
             </div>
-              <div className="Hompage-panel-img fade-in2 col-4" 
+              <div className="Homepage-panel-img column" 
                   style={{
                     backgroundImage: `url('${img_work2}')`, 
                   }}>
@@ -539,16 +512,18 @@ class Land extends Component {
                         Projects
                       </h1>
                       <p>
-                        Eco Districts Hampton Roads hopes to create a beautiful and
-                        sustainable community within Virginia's Hampton Roads, the
-                        largest African American community.
+                        Eco Districts Hampton Roads works on a variety of projects to support a flourishing, sustainable, and equitable community.
                       </p>
                       
-                      {this.getLearnMoreButton()}
+                      <Link to="/projectstatus">
+                        <button className = "button-more">
+                          Learn More
+                        </button>
+                      </Link>  
 
                     </div>
               </div>
-              <div className="Hompage-panel-img fade-in3 col-4" 
+              <div className="Homepage-panel-img column" 
                   style={{
                     backgroundImage: `url('${img_work3}')`, 
                   }}>
@@ -559,12 +534,14 @@ class Land extends Component {
                         Resources
                       </h1>
                       <p>
-                        Eco Districts Hampton Roads hopes to create a beautiful and
-                        sustainable community within Virginia's Hampton Roads, the
-                        largest African American community.
+                        Eco Districts Hampton Roads compiles resources to help residents facing barriers to employement and tools for environmental justice.
                       </p>
                       
-                      {this.getLearnMoreButton()}
+                      <Link to="/resources">
+                        <button className = "button-more">
+                          Learn More
+                        </button>
+                      </Link>  
 
                     </div>
               </div>
@@ -574,154 +551,14 @@ class Land extends Component {
 
         {this.getSecondaryCarousel()}
 
-        {/*Information */}
-        {/* <div className="Homepage-container">
-          <div>
-            <div className="row">
-              <h1 className="row Homepage-leftheader"> Who are we?</h1>
-              <div className="col">
-                <h1
-                  className="row focus-text"
-                  Style="font-size: 1.5em; color: #303030;"
-                >
-                  We are an initiative started by a man out on a mission from
-                  within the Cavalier Manor neighborhood. We have a simple goal
-                  of reinvigorating the Cavalier Manor neighborhood and
-                  empowering the neighborhood through sustainability.
-                </h1>
-                <h1
-                  className="row focus-text"
-                  Style="font-size: 1.5em; color: #303030;"
-                >
-                  However, we absolutely CANNOT do this without YOU. You are the
-                  community and know what is best for your neighborhood. We are
-                  here in the background to serve you. Find out more about this
-                  movement below and the ways you can make a difference in your
-                  local neighborhood!
-                </h1>
-              </div>
-            </div>
-          </div>
-
-          <div class="row" Style="text-align: center; padding-top: 2%;">
-            <div class="column" Style="width:33%; color: #f75002;">
-              <div class="percent">
-                <p>7</p>
-              </div>
-              <h4 class="title">Sub-Communities</h4>
-            </div>
-            <div class="column" Style="width:33%; color: #f29e02;">
-              <div class="percent">
-                <p>10000</p>
-              </div>
-              <h4 class="title">People Impacted</h4>
-            </div>
-            <div class="column" Style="width:33%; color: #374059;">
-              <div class="percent">
-                <p>5-100</p>
-              </div>
-              <h4 class="title">Age Range Involved</h4>
-            </div>
-          </div>
-
-          <div
-            class="row"
-            Style="text-align: left; padding-top: 5%; font-weight: 400;"
-          >
-            <div class="column Homepage-column">
-              <h3 class="title">What is an ECODistrict?</h3>
-              <p>
-                An ECODistrict is a community developed with a holistic
-                sustainable view in mind. We strive to make sure our
-                neighborhoods are sustainable- Equitable, Economical, and
-                Environmental.
-              </p>
-            </div>
-            <div class="column Homepage-column">
-              <h3 class="title">What is Sustainability?</h3>
-              <p>
-                Sustainability is holding, practicing, and sometimes even
-                fighting for the principles of an equitable community, an
-                economy that works for everyone, and stewarding our community
-                environment well.
-              </p>
-            </div>
-            <div class="column Homepage-column">
-              <h3 class="title">Why Should I Join?</h3>
-              <p>
-                Want to feel a sense of belonging, finally find out who those
-                strangers living around you are, or make a tangible difference?
-                We do to. The American system has disinvested from the Cavalier
-                Manor neighborhood in previous decades, and we can change that
-                narrative now! Come empower the neighborhood again through
-                sustainable initiatives that will tangibily make our
-                neighborhood more affordable, healthier, and connected.
-              </p>
-            </div>
-          </div>
-        </div>
-         */}
         {/* Recent News */}
         {this.getNews()}
-        {/* Join the community */}
 
-        <section
-          style={{
-            height: "50vh",
-          }}
-        >
-          <div
-            className={"container"}
-            style={{
-              width: "inherit",
-              height: "inherit",
-            }}
-          >
-            
-            <div className={"row"} style={{ height: "max-content" }}>
-              <div className="col-1" />
-              {/* <div
-                className="col-3 my-auto"
-                Style="text-align: left; font-weight: bold;"
-              >
-                <div
-                  style={{ fontSize: "3vw", color: "blue", marginTop: "-7vw" }}
-                >
-                  Join the
-                </div>
-                <div
-                  style={{
-                    fontSize: "4vw",
-                    color: "#eca61f",
-                    marginTop: "-2vw",
-                  }}
-                >
-                  community
-                  <span style={{ color: "blue" }}>.</span>
-                </div>
-
-                <div class="row" Style="padding-left: 5%; padding-right: 5%; ">
-                  
-                  <p>
-                    We will use your email to communicate with you about
-                    happenings so that you can stay updated and involved, your
-                    birthday so that we can gauge the age of our audience to
-                    make our initiatives better serve the prevalent age groups,
-                    your address to inform us about which neighborhood in the
-                    Cavalier Manor area you live in to more appropriately plan
-                    our programs to serve exactly where our community lives, and
-                    your name so that we can begin to know you! We hope that you
-                    want to join us to make the neighborhood connected!
-                  </p>
-                </div>
-              </div> */}
-              
+        <section className="signup">
               <div
                 className="Mail-Chimp-signup"
                 dangerouslySetInnerHTML={{ __html: MAIL_CHIMP_EMBEDDED }}
               />
-            </div>
-          </div>
         </section>
 
       </div>
@@ -730,3 +567,4 @@ class Land extends Component {
 }
 
 export default Land;
+

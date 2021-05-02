@@ -57,10 +57,10 @@ class Resource extends Component {
 
     const SECONDCHANCE_LINKS = [
       {
-        link: 'https://hrcapinc.org/directory/listing/virginia-cares-re-entry-program/',
-        name: 'Virginia CARES - Re-entry Program',
-        description: 'Virginia CARES provides one-on-one counseling with ex-offenders and their families to help ex-offenders transition back into their communities. Through counseling sessions, we can help determine your needs and provide referrals to various agencies with services',
-        contact: '2708 Chestnut Avenue, Newport News, Virginia 23607; (757)-245-1205'
+        link: 'thedreamcorps.org',
+        name: 'The Dreamcorps',
+        image: 'https://www.thedreamcorps.org/wp-content/themes/dreamcorps/dist/images/logo_7c9a110c.svg',
+        description: 'This organization provides resources for formerly incarcerated people to re-enter the workforce in the clean energy center.'
       },
       {
         link: 'https://kidsandfamilies.com/',
@@ -200,13 +200,12 @@ class Resource extends Component {
           <div className="Resource-row">
             <h1 className="Resource-Heading section-title" style={{textAlign:"left", color: "black"}}>Ex-Offender Assistance</h1>
             <div className="Resource-text">
-            You don’t have to go through re-entry alone. These are some resources to help you get back on your feet!
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit
             </div>
-              {SECONDCHANCE_LINKS.map(({ name, link, description, contact }) => (
+              {SECONDCHANCE_LINKS.map(({ name, link, description }) => (
                 <div className="Resource-text" key={name}>
                   <button className="second-chance-button"><a className="Resource-list" href={link}>{name}</a></button>
-                   <p className="resource-desc"> <span style={{fontWeight: "bold"}}>Description: </span> {description}</p>
-                   <p className="resource-desc"><span style={{fontWeight: "bold"}}>Contact: </span> {contact} </p>
+                  <p className="resource-desc">{description}</p>
                 </div>
               ))}
           </div>
