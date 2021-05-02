@@ -3,6 +3,8 @@ import React from 'react';
 import '../../assets/stylesheets/app.css';
 
 import carousel_1 from '../../assets/images/land_slideshow_img/main1.jpg';
+import infographic from '../../assets/images/info.jpg';
+
 // import carousel_2 from '../../assets/images/carousel_2.jpg';
 // import carousel_3 from '../../assets/images/carousel_3.jpg';
 // import carousel_4 from '../../assets/images/carousel_4.jpg';
@@ -14,14 +16,15 @@ class About extends Component {
   render() {
     let images = [carousel_1];//, carousel_2, carousel_3, carousel_4];
     return (
-      <div className="col-sm-10 offset-md-1">
-        {/* TODO: add parallax  */}
+      <div className="col-sm-10">
         <div className="About-Heading">About Us</div>
         <div className="About-body">
           <div className="About-who"> Who are we?</div>
           <br />
           <div className="About-row" style={{ height: '70vh' }}>
-            <div className="About-video col-6"> video</div>
+            <div className="About-video col-6"> 
+              <img src={infographic} alt="AboutImage" />
+            </div>
             <div
               className="About-text col-6"
               style={{
