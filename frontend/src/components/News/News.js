@@ -85,7 +85,7 @@ class News extends Component {
                   <div className="event-image-container col-sm-12 col-md-3">
                   <img
                     className="event-image"
-                    src={/* getSpecificImage(news.image) || */ icon}
+                    src={getSpecificImage("small", news.image) ||  icon}
                   />
                 </div>
                   <div className="col-sm-12 col-md-8 col-lg-5 event-info">

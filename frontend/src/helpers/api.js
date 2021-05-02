@@ -27,6 +27,7 @@ export const IMAGE_TYPE = {
   MEDIUM: "medium",
   SMALL: "small",
 };
+
 export function getSpecificImage(type, image_obj) {
   switch (type) {
     case IMAGE_TYPE.THUMBNAIL:

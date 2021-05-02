@@ -35,7 +35,8 @@ import icon from "../assets/images/icon.png";
 
 import { Fade, Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
-import { getNews } from "../helpers/api";
+import { getNews, getSpecificImage } from "../helpers/api";
+
 // import { getEvents, getNews } from "../helpers/api";
 
 // const test_value = {
@@ -121,16 +122,17 @@ class Land extends Component {
     return [monthNames[mm], (dd > 9 ? "" : "0") + dd].join("-");
   }
 
+  getNewsLink(){
+
+  }
+
   getNews() {
     const NEWS2SHOW = [
       ...this.state.news,
-      /*{
-        title:
-          "SDG Projects in the Atlanta Community Grant Winners Announcement",
-        description:
-          "The RCE Greater Atlanta Youth Network is excited to announce the four winning projects and teams of the SDG Projects in the Atlanta Community Grant.",
-      },*/
     ];
+
+    
+
     return (
       <section
         style={{
@@ -145,9 +147,9 @@ class Land extends Component {
           }}
         >
           <div className={"row h-100"}>
-            <div className="col-2" />
-            <div className="col-8 my-auto" style={{ textAlign: "center" }}>
-              <h1 style={{ color: "#dda73c" }}>
+            <div className="col-1" />
+            <div className="col-10 my-auto" style={{ textAlign: "center" }}>
+              <h1 className="Homepage-h1-alt"> 
                 <b>Recent News</b>
               </h1>
 
@@ -168,35 +170,30 @@ class Land extends Component {
                         style={{ height: "50vh" }}
                         className="card-img-top d-flex align-items-center bg-light"
                       >
-                        <div className="col-4">
+                        <div className="col-6">
                           <h2>{news.title}</h2>
-                          <h3>By {news.author}</h3>
-                          <h3>{new Date(news.date).toDateString()}</h3>
-                          <p>{news.description}</p>
-                        </div>
+                          <h5>By {news.author}</h5>
+                          <h5>{new Date(news.date).toDateString()}</h5>
+                          <p className="pnews">{news.description}</p>
 
-                        {/*<img
+                          {/* <Link to={{"/news:" : news.id}}> */}
+                          <Link to="/news">
+                            <button className = "button-read button-more">
+                              Read More
+                            </button>
+                          </Link>
+
+                        </div>
+                        
+                        <img
                           className="img-fluid col-8"
-                          src={news.image || main_futuresuburbs}
+                          src={getSpecificImage("medium", news.image)|| main_futuresuburbs}
                           style={{
-                            backgroundRepeat: "no-repeat",
-                            backgroundAttachment: "fixed",
                             backgroundPosition: "center",
-                            borderLeft: "1px solid black",
-                            // height: "50vh",
-                            padding: 0,
-                            // width:100%
+                            backgroundSize: 'cover',
                           }}
-                        />*/}
-                        <div
-                            className="col-8"
-                            style={{
-                              backgroundImage: `url(${news.image || main_futuresuburbs})`,
-                              backgroundSize: 'cover',
-                              height: "100%",
-                            }}
-                          >
-                          </div>
+                        />
+        
                       </div>
                     </div>
                   </Carousel.Item>
@@ -212,28 +209,13 @@ class Land extends Component {
                         style={{ height: "50vh" }}
                         className="card-img-top d-flex align-items-center bg-light"
                       >
-                        <div className="col-4">
+                        <div className="col-6" >
                           <h2>No news yet</h2>
                           <h3></h3>
                           <h3></h3>
                           <p>Check back soon!</p>
                         </div>
 
-                        {/*<img
-                          className="col-8"
-                          src={main_futuresuburbs}
-                          style={{
-                            backgroundRepeat: "no-repeat",
-                            // backgroundAttachment: "fixed",
-                            //backgroundPosition: "center",
-                            backgroundSize: "cover",
-                            borderLeft: "1px solid black",
-                            // height: "50vh",
-                            padding: 0,
-                            // height: "100%",
-                            // width:100%
-                          }}
-                        />*/}
                           <div
                             className="col-8"
                             style={{
@@ -249,7 +231,7 @@ class Land extends Component {
                 }
               </Carousel>
             </div>
-            <div className="col-2" />
+            <div className="col-1" />
           </div>
         </div>
       </section>
