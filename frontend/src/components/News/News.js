@@ -97,7 +97,7 @@ class News extends Component {
               ))
           ) : (
             <h4 className="Events-heading justify-content-md-center row">
-              <u>No news available. Check back soon for updates. {this.state.news.length}</u> 
+              <u>No news available. Check back soon for updates!</u> 
             </h4>
           )}
         </div>
