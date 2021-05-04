@@ -1,3 +1,52 @@
 .picture{
-  width: 70vw;
+  width: 60vw;
+  margin-bottom: 3%;
+}
+
+h4 {
+  font-family: Lato;
+}
+h3 {
+  font-family: Lato;
+}
+h2 {
+  font-family: Lato;
+}
+p {
+  font-family: Lato;
+}
+
+.Donate-h1 {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 3rem;
+  margin-bottom: 3%;
+}
+
+.Donate-h4 {
+  font-weight: bold;
+}
+
+.button-donate{
+  color: black;
+  background-color: #91B393;
+  border: None;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  font-family: Lato;
+  font-size: 2rem;
+  text-align: inherit;
+  margin-bottom: 3%;
+  border-radius: .5rem;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.button-donate:hover {
+  background-color: #79977B;
+}
+
+a:link {
+  color: #0056b3;
 }

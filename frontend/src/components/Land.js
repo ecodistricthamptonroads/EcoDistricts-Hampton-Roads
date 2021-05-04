@@ -47,7 +47,6 @@ import { getNews, getSpecificImage } from "../helpers/api";
 //   link: [],
 // };
 
-
 const MAIL_CHIMP_EMBEDDED = `
 <div>
 <div id="mc_embed_signup">
@@ -80,7 +79,45 @@ const MAIL_CHIMP_EMBEDDED = `
     </div>
 </form>
 </div>
-<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[0]='EMAIL';ftypes[0]='email';fnames[3]='MMERGE3';ftypes[3]='birthday';fnames[4]='MMERGE4';ftypes[4]='address';fnames[5]='MMERGE5';ftypes[5]='dropdown';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'>
+</script><script type='text/javascript'>(function($) {window.fnames = new Array(); 
+  window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+</div>
+`;
+const MAIL_CHIMP_EMBEDDED_OLD = `
+<div>
+<div id="mc_embed_signup">
+<form action="https://ecodistricthamptonroads.us4.list-manage.com/subscribe/post?u=51eb002c7ef49ac4bf7de17e2&amp;id=cca6d76921" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <h2 class="Homepage-h2">
+            Join Our Newsletter
+    </h2>
+    <p class="signup-text">
+      Want to feel a sense of belonging and make a tangible difference? We do too. 
+      <br>
+      Join our newsletter to stay
+      connected on our initiatives to make our
+      neighborhood more affordable, healthier, and more connected!
+    </p>
+<div class="mc-field-group">
+	<label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+</label>
+	<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+</div>
+
+</div>
+
+	<div id="mce-responses" class="clear">
+		<div class="response" id="mce-error-response" style="display:none"></div>
+		<div class="response" id="mce-success-response" style="display:none"></div>
+	</div>
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_51eb002c7ef49ac4bf7de17e2_cca6d76921" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Join Now" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'>
+</script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[0]='EMAIL';ftypes[0]='email';fnames[3]='MMERGE3';ftypes[3]='birthday';fnames[4]='MMERGE4';ftypes[4]='address';fnames[5]='MMERGE5';ftypes[5]='dropdown';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
 </div>
 `;
 
@@ -533,12 +570,12 @@ class Land extends Component {
         {/* Recent News */}
         {this.getNews()}
 
-        <section className="signup">
+        {/* <section className="signup">
               <div
                 className="Mail-Chimp-signup"
                 dangerouslySetInnerHTML={{ __html: MAIL_CHIMP_EMBEDDED }}
               />
-        </section>
+        </section> */}
 
       </div>
     );

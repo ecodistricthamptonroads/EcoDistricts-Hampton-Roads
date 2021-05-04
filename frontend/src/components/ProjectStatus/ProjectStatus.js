@@ -43,14 +43,16 @@ class ProjectStatus extends Component {
     return (
       <div
         className="Project-Search-Bar"
-        style={{
-          backgroundImage: `url(${WhatWeDo})`,
-          backgroundPosition: "center",
-        }}
+        // style={{
+        //   backgroundImage: `url(${WhatWeDo})`,
+          
+        //   'linear-gradient(rgba(0, 0, 0, 0.5),
+        //                rgba(0, 0, 0, 0.5)), url("url_of_image"))'
+        // }}
       >
         <div className="Project-heading">
-          <h1 Style="color: black; font-weight: bold;">Our Projects</h1>
-          <Form onSubmit={this.handleSubmit1}>
+          <h1 Style="color: white; font-weight: bold;">Our Projects</h1>
+          {/* <Form onSubmit={this.handleSubmit1}>
             <Form.Group controlId="exampleForm.ControlInput1">
               <Form.Control
                 name="search"
@@ -60,7 +62,7 @@ class ProjectStatus extends Component {
                 placeholder="Search"
               />
             </Form.Group>
-          </Form>
+          </Form> */}
         </div>
       </div>
     );
