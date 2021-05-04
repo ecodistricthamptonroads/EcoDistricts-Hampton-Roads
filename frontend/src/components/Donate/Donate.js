@@ -14,12 +14,13 @@ class Donate extends Component {
       <div className={"container-xl"} 
       >
         <h1 className="Donate-h1">Support Us</h1>
-        <Link>
-          <button className = "button-donate" href = "https://donatenow.networkforgood.org/1388125">
+        <a  href = "https://donatenow.networkforgood.org/1388125" target="_blank">
+        <button className = "button-donate">
             DONATE
           </button>
+        </a>
+          
          
-        </Link>  
         <h4 className="Donate-h4"> 
           Click the button on the above to give securely online via our 501(c)(3) 
           Joint Plan of Work partner, Virginia Organizing.
