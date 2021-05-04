@@ -50,7 +50,7 @@ class Header extends Component {
     const CONTACT_US_LINK =
       "https://us4.list-manage.com/contact-form?u=51eb002c7ef49ac4bf7de17e2&form_id=c58d36b6f54bd9b975ec2607253190d2";
     return (
-      <Navbar collapseOnSelect expand="lg">
+      <Navbar pullRight collapseOnSelect expand="lg">
         <Navbar.Brand href="/">
           <img id="navbar-logo" src={brand}></img>
         </Navbar.Brand>
@@ -110,8 +110,8 @@ class Header extends Component {
                 Contact Us
               </a>
             </Nav.Item>
-            <Nav.Item>
-              <Button id="donate-button" href="https://ecosia.org">Donate</Button>
+            <Nav.Item eventKey="8" as={Link} to="/donate">
+              <Button id="donate-button">Donate</Button>
             </Nav.Item>
           </Nav>
         </Navbar.Collapse>

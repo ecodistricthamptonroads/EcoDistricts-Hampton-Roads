@@ -13,6 +13,7 @@
   color: white;
   border-color:  #007a5e;
   font-size: 1.75rem;
+  padding: 0 1rem 0 1rem;
 }
 .title {
   font-weight: bold;
@@ -314,81 +315,10 @@ body {
   width: 100%;
 }
 
-.About-Heading {
-  /* font-family: Poppins; */
-  font-style: normal;
-  font-weight: 700;
-  font-size: 72px;
-  line-height: 121%;
-
-  padding-left: 1em;
-  padding-top: 1em;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url(../images/about_us.jpg) no-repeat;
-  height: 50vh;
-  color: #ffffff;
-  background-size: 100vw 100vh;
-}
-.About-body {
-  background-color: white;
-}
-.About-who {
-  /* font-family: Poppins; */
-  font-style: normal;
-  font-weight: bold;
-  font-size: 48px;
-  line-height: 121%;
-  text-align: center;
-  padding: 5%;
-  /* or 58px */
-
-  color: #000000;
-}
-.About-video {
-  background: #c4c4c4;
-  width: 50%;
-}
-.About-text {
-  /* font-family: Poppins; */
-  font-style: normal;
-  font-weight: normal;
-  font-size: 28px;
-  line-height: 121%;
-  width: 50%;
-  color: #000000;
-}
-.About-gallery {
-  background: #c4c4c4;
-  height: 500px;
-  text-align: center;
-  width: 100vw;
-  padding: 0;
-}
 .form-group {
   width: 100% !important;
 }
-.About-row {
-  display: flex;
-}
 
-.About-row > * {
-  margin: 10px;
-}
-.MeetTheTeam-Heading {
-  /* font-family: Poppins; */
-  font-style: normal;
-  font-weight: 700;
-  font-size: 72px;
-  line-height: 121%;
-
-  padding-left: 1em;
-  padding-top: 1em;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url(../images/about_us.jpg) no-repeat;
-  height: 50vh;
-  color: #ffffff;
-  background-size: 100vw 100vh;
-}
 .intro {
   position: relative;
   margin: auto;

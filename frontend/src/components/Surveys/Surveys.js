@@ -3,7 +3,8 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import { getSurveys } from '../../helpers/api';
 // import focus_group from '../../assets/images/focus_group.png';
-import futuresuburbs from '../../assets/images/survey-futuresuburbs.jpg';
+// import futuresuburbs from '../../assets/images/survey-futuresuburbs.jpg';
+import futuresuburbs from '../../assets/images/box.png';
 
 import '../../assets/stylesheets/app.css';
 
@@ -43,7 +44,7 @@ class Surveys extends Component {
     return (
       <div>
         <div className="Survey-Heading-div">
-          Sign Up to Provide Us Feedback!
+          Surveys
         </div>
       </div>
     );
@@ -76,6 +77,8 @@ class Surveys extends Component {
             </div>
             <br></br>
             <h2 className="row">
+              Sign Up to Provide Us Feedback!
+              <br/>
               Help the Cavalier Manor area become sustainable, equitable,
               resilient, and climate ready!
             </h2>
@@ -88,11 +91,13 @@ class Surveys extends Component {
             </h2>
           </div>
         </div>
-        <div className="Survey-Body">
+
+        {/* <div className="Survey-Body">
           <h1 className="Survey-Feedback">Help Us Improve!</h1>
-          <h3>Please fill out our survey to help us improve the community</h3>
+          <h3>Please fill out our surveys to help us improve the community</h3>
           {this.getSurveysList()}
-        </div>
+        </div> */}
+
       </div>
     );
   }
