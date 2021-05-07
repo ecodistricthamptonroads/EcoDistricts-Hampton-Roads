@@ -49,18 +49,7 @@ class ProjectStatus extends Component {
         }}
       >
         <div className="Project-heading">
-          <h1 Style="color: black; font-weight: bold;">Our Projects</h1>
-          <Form onSubmit={this.handleSubmit1}>
-            <Form.Group controlId="exampleForm.ControlInput1">
-              <Form.Control
-                name="search"
-                value={this.state.search}
-                onChange={this.handleChange}
-                type="text"
-                placeholder="Search"
-              />
-            </Form.Group>
-          </Form>
+          <h1 Style="font-weight: bold;">Our Projects</h1>
         </div>
       </div>
     );
@@ -79,7 +68,10 @@ class ProjectStatus extends Component {
               >
                 <Card
                   onClick={() => {
-                    this.props.history.push("/Project/" + idx);
+                    this.props.history.push({
+                      pathname: "/Project/" + idx,
+                      state: this.state.projects
+                    });
                   }}
                   style={{ width: "18rem" }}
                 >
