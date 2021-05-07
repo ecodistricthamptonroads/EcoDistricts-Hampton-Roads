@@ -220,12 +220,16 @@ class Land extends Component {
 
                         </div>
                         
-                        <img
-                          className="img-fluid col-8"
-                          src={getSpecificImage("medium", news.image)|| main_futuresuburbs}
+                        <div
+                          className="col-6"
+                          /*src={getSpecificImage("medium", news.image)|| main_futuresuburbs}*/
                           style={{
+                            backgroundImage: `url(${getSpecificImage("medium", news.image)})`,
+                            backgroundSize: "contain",
+                            backgroundRepeat: "no-repeat",
                             backgroundPosition: "center",
-                            backgroundSize: 'cover',
+                            backgroundColor: "grey",
+                            height:"100%",
                           }}
                         />
         
@@ -252,7 +256,7 @@ class Land extends Component {
                         </div>
 
                           <div
-                            className="col-8"
+                            className="col-6"
                             style={{
                               backgroundImage: `url(${main_futuresuburbs})`,
                               backgroundSize: 'cover',

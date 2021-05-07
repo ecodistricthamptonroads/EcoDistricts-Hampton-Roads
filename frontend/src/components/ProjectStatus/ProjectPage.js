@@ -4,7 +4,6 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import '../../assets/stylesheets/ProjectPage.css';
 import { getSpecificImage } from '../../helpers/api';
-//import { Carousel } from 'bootstrap';
 import { Carousel } from "react-bootstrap";
 
 class ProjectPage extends Component {
@@ -17,7 +16,10 @@ class ProjectPage extends Component {
   render() {
     return (
       <div className="project-page">
-        <div className=" project-heading">
+        <div className=" project-heading" style={{
+          // Using the first image we have
+          backgroundImage: `url(${getSpecificImage("large", this.curProject.projectImages[0])})`
+        }}>
           <div>
             <h1>{this.curProject.projectName}</h1>
             <h2>Start Date: {new Intl.DateTimeFormat("en-US", {
