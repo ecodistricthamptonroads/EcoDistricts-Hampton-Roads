@@ -3,6 +3,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import { getProjects } from "../../helpers/api";
+import { getSpecificImage } from '../../helpers/api';
 import WarfieldCanalProject from "../../assets/images/WarfieldCanalProject.jpg";
 import WhatWeDo from "../../assets/images/what_we_do.jpg";
 
@@ -72,32 +73,35 @@ class ProjectStatus extends Component {
     return (
       <div className="row ProjectList align-items-center ">
         {this.state.projects
-          .filter((project) => this.search(project.title))
+          .filter((project) => this.search(project.projectName))
           .map((project, idx) => {
             return (
               <div
-                key={project.title + idx}
+                key={project.projectName + idx}
                 className="col-12 col-sm-6 col-md-4 card-project"
               >
                 <Card
                   onClick={() => {
-                    this.props.history.push("/Project/" + idx);
+                    this.props.history.push({
+                      pathname: "/Project/" + idx,
+                      state: this.state.projects
+                    });
                   }}
                   style={{ width: "18rem" }}
                 >
                   <Card.Title style={{ fontWeight: 500 }}>
-                    {project.title}
+                    {project.projectName}
                   </Card.Title>
                   <Card.Img
                     variant="top"
                     onError={(e) => {
                       e.target.src = WarfieldCanalProject;
                     }}
-                    src={project.link || WarfieldCanalProject}
+                    src={getSpecificImage("medium", project.projectImages[0]) || WarfieldCanalProject}
                   />
                   <Card.Body>
                     <Card.Text style={{ fontWeight: 400 }}>
-                      {project.status}
+                      {project.goal}
                     </Card.Text>
                   </Card.Body>
                 </Card>
@@ -116,6 +120,7 @@ class ProjectStatus extends Component {
           multiple projects done by volunteers in order to fix various problems
           identified by residents.
         </h2>
+        {console.log(this.state.projects)}
         {this.getProjectList()}
       </div>
     );

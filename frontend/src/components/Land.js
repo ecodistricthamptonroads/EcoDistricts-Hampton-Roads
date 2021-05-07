@@ -168,8 +168,6 @@ class Land extends Component {
       ...this.state.news,
     ];
 
-    
-
     return (
       <section
         style={{

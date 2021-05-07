@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projects",
+  "info": {
+    "name": "Project"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "projectName": {
+      "type": "string"
+    },
+    "startDate": {
+      "type": "date"
+    },
+    "goal": {
+      "type": "text"
+    },
+    "projectImages": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "potentialOutcomes": {
+      "type": "text"
+    },
+    "teamLeader": {
+      "type": "string"
+    },
+    "teamLeaderImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "otherMembers": {
+      "type": "string"
+    }
+  }
+}

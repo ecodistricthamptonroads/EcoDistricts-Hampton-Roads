@@ -34,7 +34,7 @@ export function getSpecificImage(type, image_obj) {
     case IMAGE_TYPE.LARGE:
     case IMAGE_TYPE.MEDIUM:
     case IMAGE_TYPE.SMALL:
-      return getStrapiMedia(image_obj.formats[type]);
+      return getStrapiMedia(image_obj);
     default:
       return getStrapiMedia(image_obj);
   }
