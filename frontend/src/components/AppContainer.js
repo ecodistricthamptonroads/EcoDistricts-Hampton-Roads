@@ -17,6 +17,7 @@ import Surveys from './Surveys/Surveys';
 import About from './About/About';
 import Resource from './Resource/Resource';
 import MeetTheTeam from './About/MeetTheTeam';
+import Donate from './Donate/Donate';
 
 class AppContainer extends Component {
   render() {
@@ -38,6 +39,7 @@ class AppContainer extends Component {
                 <Route path="/about" component={About} />
                 <Route path="/team" component={MeetTheTeam} />
                 <Route path="/resources" component={Resource} />
+                <Route path="/donate" component={Donate} />
                 <Route component={Land} />
               </Switch>
               {/* <div className="col-sm-10 offset-md-1"></div> */}

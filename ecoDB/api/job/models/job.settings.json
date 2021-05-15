@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "jobs",
+  "info": {
+    "name": "Job"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "company": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    },
+    "industry": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "richtext"
+    },
+    "location": {
+      "type": "string"
+    },
+    "jobType": {
+      "type": "enumeration",
+      "enum": [
+        "Entry_Level",
+        "Technician",
+        "Construction",
+        "Shipyard",
+        "Engineer",
+        "Administrative",
+        "Operations",
+        "Management",
+        "Executive"
+      ]
+    },
+    "opportunityType": {
+      "type": "enumeration",
+      "enum": [
+        "Credential",
+        "Coaching",
+        "Counseling",
+        "Apprenticeship",
+        "Internship",
+        "Fellowship",
+        "Scholarship",
+        "Research"
+      ]
+    }
+  }
+}

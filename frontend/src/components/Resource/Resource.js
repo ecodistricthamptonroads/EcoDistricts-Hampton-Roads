@@ -27,31 +27,31 @@ class Resource extends Component {
       },
      
       {
-        link: 'https://duckduckgo.com',
+        link: '',
         name: 'Word Up App',
         image: 'https://drive.google.com/uc?export=view&id=13QPYzXmhCa_inkjTTID4Caag02TRrn_K',
-        description: 'This description is currently behaving as a placeholder, because the appropriate description is not yet known.'
+        description: 'A tool to keep up with events. Updates coming soon!'
       },
 
       {
-        link: 'https://duckduckgo.com',
+        link: '',
         name: 'Healthy Homes',
         image: 'https://drive.google.com/uc?export=view&id=1KHRiNAWZaejm0gJlLoUANVAfmmTHQ7K6',
-        description: 'This description is currently behaving as a placeholder, because the appropriate description is not yet known.'
+        description: 'A tool to audit your home health. Updates coming soon!'
       },
 
       {
-        link: 'https://duckduckgo.com',
+        link: '',
         name: 'Housing Justice App',
         image: 'https://drive.google.com/uc?export=view&id=1KHRiNAWZaejm0gJlLoUANVAfmmTHQ7K6',
-        description: 'This description is currently behaving as a placeholder, because the appropriate description is not yet known.'
+        description: 'A tool to promote Housing Justice. Updates coming soon!'
       },
 
       {
-        link: 'https://duckduckgo.com',
+        link: '',
         name: 'Street Level Observation',
         image: 'https://drive.google.com/uc?export=view&id=1KHRiNAWZaejm0gJlLoUANVAfmmTHQ7K6',
-        description: 'This description is currently behaving as a placeholder, because the appropriate description is not yet known.'
+        description: 'A tool for street level observation. Updates coming soon!'
       },
     ];
 
@@ -200,7 +200,6 @@ class Resource extends Component {
           <div className="Resource-row">
             <h1 className="Resource-Heading section-title" style={{textAlign:"left", color: "black"}}>Ex-Offender Assistance</h1>
             <div className="Resource-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit
             </div>
               {SECONDCHANCE_LINKS.map(({ name, link, description }) => (
                 <div className="Resource-text" key={name}>

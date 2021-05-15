@@ -29,7 +29,7 @@ class Jobs extends Component {
       salary: 0,
       industry: [],
       location: [],
-      jobTypes: [],
+      opportunityTypes: [],
       careers: [],
       location: [],
       company: "",
@@ -78,16 +78,16 @@ class Jobs extends Component {
   }
   handleCheckboxJobType(e) {
     const jobType_value = e.target.value.toLowerCase();
-    if (this.state.jobTypes.includes(jobType_value)) {
+    if (this.state.opportunityTypes.includes(jobType_value)) {
       var newJobType = [
-        ...this.state.jobTypes.filter(
+        ...this.state.opportunityTypes.filter(
           (jobType) => !jobType.includes(jobType_value)
         ),
       ];
     } else {
-      var newJobType = [...this.state.jobTypes, jobType_value];
+      var newJobType = [...this.state.opportunityTypes, jobType_value];
     }
-    this.setState({ jobTypes: newJobType });
+    this.setState({ opportunityTypes: newJobType });
   }
   handleCheckboxCareer(e) {
     const career_value = e.target.value.toLowerCase();
@@ -159,8 +159,8 @@ class Jobs extends Component {
   }
   _jobsTypeIsChecked(job) {
     return (
-      this.state.jobTypes.length == 0 ||
-      this.state.jobTypes.includes(job.jobType.toLowerCase())
+      this.state.opportunityTypes.length == 0 ||
+      this.state.opportunityTypes.includes(job.jobType.toLowerCase())
     );
   }
   _jobsLocationIsChecked(job) {
@@ -311,38 +311,37 @@ class Jobs extends Component {
     // ].sort(function(a, b) {
     //   return a - b;
     // });
-    // const industries = [
+    // const jobTypes = [
     //   ...new Set(filteredJobs.map((job) => job.industry)),
     // ].sort();
     // const careers = [...new Set(filteredJobs.map(job => job.career))].sort();
-    // const jobTypes = [...new Set(filteredJobs.map(job => job.jobType))].sort();
-    const jobTypes = [
-      "Job type: 1",
-      "Job type: 2",
-      "Job type: 3",
-      "Job type: 4",
-      "Job type: 5",
-      "Job type: 6",
+    // const opportunityTypes = [...new Set(filteredJobs.map(job => job.jobType))].sort();
+    const opportunityTypes = [
+      "Credential",
+      "Coaching",
+      "Apprenticeship",
+      "Internship",
+      "Scholarship",
     ];
-    const industries = [
-      "Industry type: 1",
-      "Industry type: 2",
-      "Industry type: 3",
-      "Industry type: 4",
-      "Industry type: 5",
-      "Industry type: 6",
+    const jobTypes = [
+      "Technician",
+      "Construction",
+      "Engineer",
+      "Corporate",
+      "Administrative",
+      "Management",
     ];
     return (
       <div className="grid-child job-filter-box ">
-        {industries.length != 0 ? (
+        {jobTypes.length != 0 ? (
           <div className="industry-checkboxes row">
             <div className="col-3">
-              <h3 className="row">Industry:</h3>
-              <p className="row">Which Industry Jobs belong to.</p>
+              <h3 className="row">Job Type:</h3>
+              {/* <p className="row">Which Industry Jobs belong to.</p> */}
             </div>
             {/* <div className="row"></div> */}
             <div className="col-9 checkbox-options">
-              {industries.map((industry_name, idx) => {
+              {jobTypes.map((industry_name, idx) => {
                 return (
                   <div
                     key={industry_name}
@@ -381,15 +380,15 @@ class Jobs extends Component {
             </Button> */}
           </div>
         ) : null}
-
-        {jobTypes.length != 0 ? (
+        <br/>
+        {opportunityTypes.length != 0 ? (
           <div className="JobType-checkboxes row">
             <div className="col-3">
-              <h3 className="row">Job Type:</h3>
-              <h3 className="row">Paid opportunities' Type</h3>
+              <h3 className="row">Other Opportunity Type:</h3>
+              {/* <h3 className="row">Paid opportunities' Type</h3> */}
             </div>
             <div className="col-9 checkbox-options">
-              {jobTypes.map((jobType, idx) => {
+              {opportunityTypes.map((jobType, idx) => {
                 return (
                   <div
                     key={jobType}
@@ -416,7 +415,7 @@ class Jobs extends Component {
               className="col-1"
               bsPrefix="job-btn"
               onClick={(e) => {
-                this.setState({ JobTypes: [] });
+                this.setState({ opportunityTypes: [] });
                 Array.from(
                   document.getElementsByClassName("JobType-checkbox")
                 ).map((checkbox) => (checkbox.checked = false));
@@ -592,7 +591,7 @@ class Jobs extends Component {
             </Button>
           </a>
         </div>
-        {this.getSearch()}
+        {/* {this.getSearch()} */}
         <div className="job-container">
           {this.displayFilters()}
           {this.displayJobs()}

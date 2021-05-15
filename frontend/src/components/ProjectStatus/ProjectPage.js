@@ -3,17 +3,26 @@ import React from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import '../../assets/stylesheets/ProjectPage.css';
+import { getSpecificImage } from '../../helpers/api';
+import { Carousel } from "react-bootstrap";
 
 class ProjectPage extends Component {
   constructor(props) {
     super(props);
     this.state = this.props.location;
     this.idx = parseInt(this.state.pathname.substr(9));
+<<<<<<< HEAD
+=======
+    this.curProject = this.state.state[this.idx];
+>>>>>>> newStrapi
   }
   render() {
     return (
       <div className="project-page">
-        <div className=" project-heading">
+        <div className=" project-heading" style={{
+          // Using the first image we have
+          backgroundImage: `url(${getSpecificImage("large", this.curProject.projectImages[0])})`
+        }}>
           <div>
             <h1>{this.state.state[this.idx].title}</h1>
             <h2>Start Date: {new Intl.DateTimeFormat("en-US", {
@@ -29,7 +38,18 @@ class ProjectPage extends Component {
           </p>
         </div>
         <div className="project-row">
-          <img className="project-img-gal" />
+            <Carousel>
+              {this.curProject.projectImages.length != 0 ? (this.curProject.projectImages.map((image, idx) => (
+                <Carousel.Item>
+                  <div className="project-img-gal" style={{
+                    backgroundImage: `url(${getSpecificImage("medium", image)})`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "contain",
+                    backgroundPosition: "center"
+                  }} />
+                </Carousel.Item>
+              ))) : <Carousel><Carousel.Item><p>No project images yet</p></Carousel.Item></Carousel>}
+            </Carousel>
         </div>
         <div className="project-row potential-outcomes">
           <h1>Potential Outcomes</h1>
@@ -45,13 +65,13 @@ class ProjectPage extends Component {
             <h2>Team Lead: {this.state.state[this.idx].teamLead}</h2>
           </div>
           <p className="col">
-            List of rest of team: <br />
-            Onson Sweemey <br />
-            Rey Mcsriff <br /> Mario Mcalwain <br />
-            Raul Chamgerlain <br /> Kevin Nogilny <br />
-            Jeromy Gridean <br /> Shown Furcom <br /> Mike Truk <br />
-            Tim Sandaelem <br />
-            Todd Bonzales
+            List of rest of team: {
+              this.curProject.otherMembers.split(",").map((indivMember) => {
+                return(
+                  <p>{indivMember.trim()}</p>
+                )
+              })
+            }
           </p>
         </div>
       </div>

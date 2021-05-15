@@ -85,7 +85,7 @@ class News extends Component {
                   <div className="event-image-container col-sm-12 col-md-3">
                   <img
                     className="event-image"
-                    src={/* getSpecificImage(news.image) || */ icon}
+                    src={getSpecificImage("small", news.image) ||  icon}
                   />
                 </div>
                   <div className="col-sm-12 col-md-8 col-lg-5 event-info">
@@ -97,7 +97,7 @@ class News extends Component {
               ))
           ) : (
             <h4 className="Events-heading justify-content-md-center row">
-              <u>No news available. Check back soon for updates. {this.state.news.length}</u> 
+              <u>No news available. Check back soon for updates!</u> 
             </h4>
           )}
         </div>

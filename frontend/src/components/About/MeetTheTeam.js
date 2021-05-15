@@ -2,6 +2,7 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 import garry from '../../assets/images/gary.jpg';
 import icon from '../../assets/images/icon.png';
+import '../../assets/stylesheets/aboutPage.css';
 
 const OtherTeams = [
   `CSC Team
@@ -93,25 +94,20 @@ Universities\n
     Sierra Club,\n
     Leadership Atlanta`
 ];
-const CardStyle = {
-  padding: '0 5px 0px 5px',
-  marginBottom: '30px',
-  marginLeft: '30px',
-  textAlign: 'center'
-};
+
 class MeetTheTeam extends React.Component {
   render() {
     return (
       <div>
-        <div className="MeetTheTeam-Heading">Meet The Team</div>
+        <div className="About-Hero-Header">Meet The Team</div>
         {/* <div className="row" style={{ height: '30vh', background: 'gray' }} /> */}
         <div className="row  justify-content-center " style={{ padding: '5%' }}>
-          <Card className="col-3" style={CardStyle}>
-            <Card.Img variant="top" src={garry} />
+          <Card className="col-3 card-col" >
+            <Card.Img variant="top" src={garry}/>
             <Card.Body>
-              <Card.Title>Garry A. Harris</Card.Title>
+              <Card.Title style={{ fontSize: '1.75rem' }}>Founder & President of the Center for Sustainable Communities</Card.Title>
               <h3>
-                Founder & President of the Center for Sustainable Communities
+              Garry A. Harris
               </h3>
               <Card.Text>
                 Mr. Harris has more than three decades of experience in the
@@ -126,11 +122,11 @@ class MeetTheTeam extends React.Component {
           {OtherTeams.map(info => {
             const INFO = info.split('\n');
             return (
-              <Card className="col-3" style={CardStyle}>
-                <Card.Img variant="top" src={icon} />
+              <Card className="col-3 card-col">
+                {/* <Card.Img variant="top" src={icon} /> */}
                 <Card.Body>
                   <Card.Text>
-                    <Card.Title>{INFO[0]}</Card.Title>
+                    <Card.Title  style={{ fontSize: '2rem' }}>{INFO[0]}</Card.Title>
 
                     {INFO.slice(1, INFO.length).map(text => (
                       <p>{text}</p>

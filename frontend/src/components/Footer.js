@@ -34,7 +34,7 @@ class Footer extends Component{
               <a href="/projects">Projects</a>
             </div>
           </div>
-          <div id="contact-box" className="col-md-3 col-sm-12">
+          <div id="contact-box" className="col-md-4 col-sm-12">
             <p><a href={CONTACT_US_LINK}>Contact us!</a></p>
             <p>info@csc-att.org</p>
             <p>(404) 936-0629</p>

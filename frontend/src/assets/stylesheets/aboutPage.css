@@ -1,0 +1,114 @@
+.card {
+  font-family: Lato;
+}
+
+.card-org {
+  font-size: 1.75rem;
+}
+.card-col {
+  padding: 1.5%;
+  margin-bottom: 30px;
+  margin-left: 30px;
+  text-align: center;
+}
+
+
+.MeetTheTeam-Heading {
+  /* font-family: Poppins; */
+  font-style: normal;
+  font-weight: 700;
+  font-size: 72px;
+  line-height: 121%;
+
+  padding-left: 1em;
+  padding-top: 1em;
+  
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../images/about_us.jpg) no-repeat;
+  height: 50vh;
+  color: #ffffff;
+  background-size: 100vw 100vh;
+}
+
+
+.About-Hero-Header {
+  /* font-family: Poppins; */
+  font-style: normal;
+  font-weight: 700;
+  font-size: 72px;
+  line-height: 121%;
+
+  padding-left: 2em;
+  padding-right: 0;
+  padding-top: 1em;
+
+  background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
+    url(../images/AboutUs.jpg) no-repeat;
+  
+  background-position-y: 15%;
+  width: 100vw;
+  color: #ffffff;
+  background-size: 100vw;
+  background-color: #153967;
+  height: 400px;
+}
+.About-h1 {
+  font-family: Lato;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 121%;
+  text-align: center;
+  padding: 5%;
+
+  color: #000000;
+}
+.About-p {
+  font-family: Lato;
+  font-weight: normal;
+  font-size: 28px;
+  line-height: 121%;
+  color: #000000;
+  text-align: center;
+}
+
+.About-text{
+  margin-right: 15%;
+  justify-items: center;
+}
+
+  .About-image {
+    width: 30rem;
+    height:30rem; 
+    margin: 2.5%
+  }
+  @media (max-width: 800px) {
+    .About-image {
+      width: 20rem;
+      height: 20rem; 
+      margin: 2.5%
+    }
+  }
+    
+  .About-row {
+    display: flex;
+  }
+  
+  .About-row > * {
+    margin: 10px;
+  }
+
+  .button {
+    color: white;
+    background-color: #007a5e;
+    border: None;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-family: Lato;
+    font-size: 2rem;
+    text-align: inherit;
+  }
+
+.ButtonWrapper{
+  margin-left: 33.33%
+}
+  

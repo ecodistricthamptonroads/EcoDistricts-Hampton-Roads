@@ -35,7 +35,8 @@ import icon from "../assets/images/icon.png";
 
 import { Fade, Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
-import { getNews } from "../helpers/api";
+import { getNews, getSpecificImage } from "../helpers/api";
+
 // import { getEvents, getNews } from "../helpers/api";
 
 // const test_value = {
@@ -45,7 +46,6 @@ import { getNews } from "../helpers/api";
 //   date: Date.now(),
 //   link: [],
 // };
-
 
 const MAIL_CHIMP_EMBEDDED = `
 <div>
@@ -79,7 +79,45 @@ const MAIL_CHIMP_EMBEDDED = `
     </div>
 </form>
 </div>
-<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[0]='EMAIL';ftypes[0]='email';fnames[3]='MMERGE3';ftypes[3]='birthday';fnames[4]='MMERGE4';ftypes[4]='address';fnames[5]='MMERGE5';ftypes[5]='dropdown';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'>
+</script><script type='text/javascript'>(function($) {window.fnames = new Array(); 
+  window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+</div>
+`;
+const MAIL_CHIMP_EMBEDDED_OLD = `
+<div>
+<div id="mc_embed_signup">
+<form action="https://ecodistricthamptonroads.us4.list-manage.com/subscribe/post?u=51eb002c7ef49ac4bf7de17e2&amp;id=cca6d76921" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <h2 class="Homepage-h2">
+            Join Our Newsletter
+    </h2>
+    <p class="signup-text">
+      Want to feel a sense of belonging and make a tangible difference? We do too. 
+      <br>
+      Join our newsletter to stay
+      connected on our initiatives to make our
+      neighborhood more affordable, healthier, and more connected!
+    </p>
+<div class="mc-field-group">
+	<label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+</label>
+	<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+</div>
+
+</div>
+
+	<div id="mce-responses" class="clear">
+		<div class="response" id="mce-error-response" style="display:none"></div>
+		<div class="response" id="mce-success-response" style="display:none"></div>
+	</div>
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_51eb002c7ef49ac4bf7de17e2_cca6d76921" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Join Now" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'>
+</script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[0]='EMAIL';ftypes[0]='email';fnames[3]='MMERGE3';ftypes[3]='birthday';fnames[4]='MMERGE4';ftypes[4]='address';fnames[5]='MMERGE5';ftypes[5]='dropdown';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
 </div>
 `;
 
@@ -121,16 +159,15 @@ class Land extends Component {
     return [monthNames[mm], (dd > 9 ? "" : "0") + dd].join("-");
   }
 
+  getNewsLink(){
+
+  }
+
   getNews() {
     const NEWS2SHOW = [
       ...this.state.news,
-      /*{
-        title:
-          "SDG Projects in the Atlanta Community Grant Winners Announcement",
-        description:
-          "The RCE Greater Atlanta Youth Network is excited to announce the four winning projects and teams of the SDG Projects in the Atlanta Community Grant.",
-      },*/
     ];
+
     return (
       <section
         style={{
@@ -145,9 +182,9 @@ class Land extends Component {
           }}
         >
           <div className={"row h-100"}>
-            <div className="col-2" />
-            <div className="col-8 my-auto" style={{ textAlign: "center" }}>
-              <h1 style={{ color: "#dda73c" }}>
+            <div className="col-1" />
+            <div className="col-10 my-auto" style={{ textAlign: "center" }}>
+              <h1 className="Homepage-h1-alt"> 
                 <b>Recent News</b>
               </h1>
 
@@ -168,35 +205,34 @@ class Land extends Component {
                         style={{ height: "50vh" }}
                         className="card-img-top d-flex align-items-center bg-light"
                       >
-                        <div className="col-4">
+                        <div className="col-6">
                           <h2>{news.title}</h2>
-                          <h3>By {news.author}</h3>
-                          <h3>{new Date(news.date).toDateString()}</h3>
-                          <p>{news.description}</p>
-                        </div>
+                          <h5>By {news.author}</h5>
+                          <h5>{new Date(news.date).toDateString()}</h5>
+                          <p className="pnews">{news.description}</p>
 
-                        {/*<img
-                          className="img-fluid col-8"
-                          src={news.image || main_futuresuburbs}
-                          style={{
-                            backgroundRepeat: "no-repeat",
-                            backgroundAttachment: "fixed",
-                            backgroundPosition: "center",
-                            borderLeft: "1px solid black",
-                            // height: "50vh",
-                            padding: 0,
-                            // width:100%
-                          }}
-                        />*/}
+                          {/* <Link to={{"/news:" : news.id}}> */}
+                          <Link to="/news">
+                            <button className = "button-read button-more">
+                              Read More
+                            </button>
+                          </Link>
+
+                        </div>
+                        
                         <div
-                            className="col-8"
-                            style={{
-                              backgroundImage: `url(${news.image || main_futuresuburbs})`,
-                              backgroundSize: 'cover',
-                              height: "100%",
-                            }}
-                          >
-                          </div>
+                          className="col-6"
+                          /*src={getSpecificImage("medium", news.image)|| main_futuresuburbs}*/
+                          style={{
+                            backgroundImage: `url(${getSpecificImage("medium", news.image)})`,
+                            backgroundSize: "contain",
+                            backgroundRepeat: "no-repeat",
+                            backgroundPosition: "center",
+                            backgroundColor: "grey",
+                            height:"100%",
+                          }}
+                        />
+        
                       </div>
                     </div>
                   </Carousel.Item>
@@ -212,30 +248,15 @@ class Land extends Component {
                         style={{ height: "50vh" }}
                         className="card-img-top d-flex align-items-center bg-light"
                       >
-                        <div className="col-4">
+                        <div className="col-6" >
                           <h2>No news yet</h2>
                           <h3></h3>
                           <h3></h3>
                           <p>Check back soon!</p>
                         </div>
 
-                        {/*<img
-                          className="col-8"
-                          src={main_futuresuburbs}
-                          style={{
-                            backgroundRepeat: "no-repeat",
-                            // backgroundAttachment: "fixed",
-                            //backgroundPosition: "center",
-                            backgroundSize: "cover",
-                            borderLeft: "1px solid black",
-                            // height: "50vh",
-                            padding: 0,
-                            // height: "100%",
-                            // width:100%
-                          }}
-                        />*/}
                           <div
-                            className="col-8"
+                            className="col-6"
                             style={{
                               backgroundImage: `url(${main_futuresuburbs})`,
                               backgroundSize: 'cover',
@@ -249,7 +270,7 @@ class Land extends Component {
                 }
               </Carousel>
             </div>
-            <div className="col-2" />
+            <div className="col-1" />
           </div>
         </div>
       </section>
@@ -551,12 +572,12 @@ class Land extends Component {
         {/* Recent News */}
         {this.getNews()}
 
-        <section className="signup">
+        {/* <section className="signup">
               <div
                 className="Mail-Chimp-signup"
                 dangerouslySetInnerHTML={{ __html: MAIL_CHIMP_EMBEDDED }}
               />
-        </section>
+        </section> */}
 
       </div>
     );

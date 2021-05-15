@@ -13,6 +13,12 @@
   color: white;
   border-color:  #007a5e;
   font-size: 1.75rem;
+  padding: 0 1rem 0 1rem;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+#donate-button:hover {
+  background-color: #00634c;
 }
 .title {
   font-weight: bold;
@@ -172,13 +178,17 @@ body {
 }
 
 .Project-Search-Bar {
-  /* background: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), */
-  /* url(../images/what_we_do.jpg) no-repeat center; */
+  background: linear-gradient(rgba(48, 42, 42, 0.5), rgba(0, 0, 0, 0.8)), 
+  url(../images/what_we_do.jpg) no-repeat center; 
+  /* background: linear-gradient(rgba(0, 0, 0, 0.), rgba(0, 0, 0, 0.2)), 
+  url(../images/what_we_do.jpg) no-repeat center; 
+   */
   background-repeat: no-repeat;
   background-size: cover;
-  height: 35vh;
+  height: 45vh;
   text-align: center;
   margin: auto;
+  background-position-y: 35%;
 }
 .ProjectList {
   padding-left: 5%;
@@ -314,81 +324,10 @@ body {
   width: 100%;
 }
 
-.About-Heading {
-  /* font-family: Poppins; */
-  font-style: normal;
-  font-weight: 700;
-  font-size: 72px;
-  line-height: 121%;
-
-  padding-left: 1em;
-  padding-top: 1em;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url(../images/about_us.jpg) no-repeat;
-  height: 50vh;
-  color: #ffffff;
-  background-size: 100vw 100vh;
-}
-.About-body {
-  background-color: white;
-}
-.About-who {
-  /* font-family: Poppins; */
-  font-style: normal;
-  font-weight: bold;
-  font-size: 48px;
-  line-height: 121%;
-  text-align: center;
-  padding: 5%;
-  /* or 58px */
-
-  color: #000000;
-}
-.About-video {
-  background: #c4c4c4;
-  width: 50%;
-}
-.About-text {
-  /* font-family: Poppins; */
-  font-style: normal;
-  font-weight: normal;
-  font-size: 28px;
-  line-height: 121%;
-  width: 50%;
-  color: #000000;
-}
-.About-gallery {
-  background: #c4c4c4;
-  height: 500px;
-  text-align: center;
-  width: 100vw;
-  padding: 0;
-}
 .form-group {
   width: 100% !important;
 }
-.About-row {
-  display: flex;
-}
 
-.About-row > * {
-  margin: 10px;
-}
-.MeetTheTeam-Heading {
-  /* font-family: Poppins; */
-  font-style: normal;
-  font-weight: 700;
-  font-size: 72px;
-  line-height: 121%;
-
-  padding-left: 1em;
-  padding-top: 1em;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url(../images/about_us.jpg) no-repeat;
-  height: 50vh;
-  color: #ffffff;
-  background-size: 100vw 100vh;
-}
 .intro {
   position: relative;
   margin: auto;

@@ -3,6 +3,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import { getProjects } from "../../helpers/api";
+import { getSpecificImage } from '../../helpers/api';
 import WarfieldCanalProject from "../../assets/images/WarfieldCanalProject.jpg";
 import WhatWeDo from "../../assets/images/what_we_do.jpg";
 
@@ -43,13 +44,26 @@ class ProjectStatus extends Component {
     return (
       <div
         className="Project-Search-Bar"
-        style={{
-          backgroundImage: `url(${WhatWeDo})`,
-          backgroundPosition: "center",
-        }}
+        // style={{
+        //   backgroundImage: `url(${WhatWeDo})`,
+          
+        //   'linear-gradient(rgba(0, 0, 0, 0.5),
+        //                rgba(0, 0, 0, 0.5)), url("url_of_image"))'
+        // }}
       >
         <div className="Project-heading">
-          <h1 Style="font-weight: bold;">Our Projects</h1>
+          <h1 Style="color: white; font-weight: bold;">Our Projects</h1>
+          {/* <Form onSubmit={this.handleSubmit1}>
+            <Form.Group controlId="exampleForm.ControlInput1">
+              <Form.Control
+                name="search"
+                value={this.state.search}
+                onChange={this.handleChange}
+                type="text"
+                placeholder="Search"
+              />
+            </Form.Group>
+          </Form> */}
         </div>
       </div>
     );
@@ -59,11 +73,11 @@ class ProjectStatus extends Component {
     return (
       <div className="row ProjectList align-items-center ">
         {this.state.projects
-          .filter((project) => this.search(project.title))
+          .filter((project) => this.search(project.projectName))
           .map((project, idx) => {
             return (
               <div
-                key={project.title + idx}
+                key={project.projectName + idx}
                 className="col-12 col-sm-6 col-md-4 card-project"
               >
                 <Card
@@ -76,18 +90,18 @@ class ProjectStatus extends Component {
                   style={{ width: "18rem" }}
                 >
                   <Card.Title style={{ fontWeight: 500 }}>
-                    {project.title}
+                    {project.projectName}
                   </Card.Title>
                   <Card.Img
                     variant="top"
                     onError={(e) => {
                       e.target.src = WarfieldCanalProject;
                     }}
-                    src={project.link || WarfieldCanalProject}
+                    src={getSpecificImage("medium", project.projectImages[0]) || WarfieldCanalProject}
                   />
                   <Card.Body>
                     <Card.Text style={{ fontWeight: 400 }}>
-                      {project.status}
+                      {project.goal}
                     </Card.Text>
                   </Card.Body>
                 </Card>
@@ -106,6 +120,7 @@ class ProjectStatus extends Component {
           multiple projects done by volunteers in order to fix various problems
           identified by residents.
         </h2>
+        {console.log(this.state.projects)}
         {this.getProjectList()}
       </div>
     );
