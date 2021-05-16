@@ -7,7 +7,7 @@ import Form from "react-bootstrap/Form";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import "../../assets/stylesheets/JobsPage.css";
-import { getJobs } from "../../helpers/api";
+import { getJobs, getJobParameters } from "../../helpers/api";
 class EducationJobs extends Component {
   constructor(props) {
     super(props);
@@ -26,81 +26,77 @@ class Jobs extends Component {
     super(props);
     this.state = {
       search: "",
-      salary: 0,
-      industry: [],
-      location: [],
+      jobTypes: [],
       opportunityTypes: [],
-      careers: [],
+      industryTypes: [],
       location: [],
+      possibleJobTypes: [],
+      possibleOpportunityTypes: [],
+      possibleIndustryTypes: [],
       company: "",
       jobs: [],
+      // jobs refers to all posts, including other opportunities
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
-    this.handleCheckboxLocation = this.handleCheckboxLocation.bind(this);
-    this.handleCheckboxIndustry = this.handleCheckboxIndustry.bind(this);
     this.handleChangeNumber = this.handleChangeNumber.bind(this);
+    
     this.handleCheckboxJobType = this.handleCheckboxJobType.bind(this);
-    this.handleCheckboxCareer = this.handleCheckboxCareer.bind(this);
+    this.handleCheckboxOpportunityType = this.handleCheckboxOpportunityType.bind(this);
+    this.handleCheckboxIndustryType = this.handleCheckboxIndustryType.bind(this);
+    this.handleCheckboxLocation = this.handleCheckboxLocation.bind(this);
   }
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value.toLowerCase() });
   }
+  handleSearch(e) {
+    e.preventDefault();
+    this.setState({ [e.target.name]: e.target.value.toLowerCase() });
+  }
   handleChangeNumber(e) {
     this.setState({ [e.target.name]: parseInt(e.target.value.toLowerCase()) });
   }
-  handleCheckboxLocation(e) {
-    const location_name = e.target.value.toLowerCase();
-    if (this.state.location.includes(location_name)) {
-      var newLocation = [
-        ...this.state.location.filter(
-          (location) => !location.includes(location_name)
-        ),
-      ];
-    } else {
-      var newLocation = [...this.state.location, location_name];
-    }
-    this.setState({ location: newLocation });
-  }
-  handleCheckboxIndustry(e) {
-    const industry_name = e.target.value.toLowerCase();
-    if (this.state.industry.includes(industry_name)) {
-      var newIndustry = [
-        ...this.state.industry.filter(
-          (industry) => !industry.includes(industry_name)
-        ),
-      ];
-    } else {
-      var newIndustry = [...this.state.industry, industry_name];
-    }
-    this.setState({ industry: newIndustry });
-  }
   handleCheckboxJobType(e) {
-    const jobType_value = e.target.value.toLowerCase();
-    if (this.state.opportunityTypes.includes(jobType_value)) {
+    // const jobType_value = e.target.value.toLowerCase();
+    const jobType_value = e.target.value;
+    if (this.state.jobTypes.includes(jobType_value)) {
       var newJobType = [
-        ...this.state.opportunityTypes.filter(
+        ...this.state.jobTypes.filter(
           (jobType) => !jobType.includes(jobType_value)
         ),
       ];
     } else {
-      var newJobType = [...this.state.opportunityTypes, jobType_value];
+      var newJobType = [...this.state.jobTypes, jobType_value];
     }
-    this.setState({ opportunityTypes: newJobType });
+    this.setState({ jobTypes: newJobType });
   }
-  handleCheckboxCareer(e) {
-    const career_value = e.target.value.toLowerCase();
-    if (this.state.careers.includes(career_value)) {
+  handleCheckboxOpportunityType(e) {
+    // const oppType_value = e.target.value.toLowerCase();
+    const oppType_value = e.target.value;
+    if (this.state.opportunityTypes.includes(oppType_value)) {
       var newJobType = [
-        ...this.state.careers.filter(
-          (career) => !career.includes(career_value)
+        ...this.state.opportunityTypes.filter(
+          (jobType) => !jobType.includes(oppType_value)
         ),
       ];
     } else {
-      var newJobType = [...this.state.careers, career_value];
+      var newJobType = [...this.state.opportunityTypes, oppType_value];
     }
-    this.setState({ careers: newJobType });
+    this.setState({ opportunityTypes: newJobType });
+  }
+  handleCheckboxIndustryType(e) {
+    const industry_name = e.target.value.toLowerCase();
+    if (this.state.industryTypes.includes(industry_name)) {
+      var newIndustry = [
+        ...this.state.industryTypes.filter(
+          (industry) => !industry.includes(industry_name)
+        ),
+      ];
+    } else {
+      var newIndustry = [...this.state.industryTypes, industry_name];
+    }
+    this.setState({ industryTypes: newIndustry });
   }
   handleCheckboxLocation(e) {
     const location_name = e.target.value.toLowerCase();
@@ -114,16 +110,20 @@ class Jobs extends Component {
       var newLocation = [...this.state.location, location_name];
     }
     this.setState({ location: newLocation });
-  }
-  handleSearch(e) {
-    e.preventDefault();
-    this.setState({ [e.target.name]: e.target.value.toLowerCase() });
   }
 
   componentDidMount() {
     getJobs().then((jobs) => {
       this.setState({ jobs: jobs.data });
-      console.log(jobs.data);
+    });
+
+    getJobParameters().then((model) => {
+      const schema = model.data.data.schema.attributes;
+      this.setState({ 
+        possibleJobTypes: schema.jobType.enum,
+        possibleOpportunityTypes: schema.opportunityType.enum,
+        jobTypes: schema.jobType.enum,
+        opportunityTypes: schema.opportunityType.enum });
     });
   }
 
@@ -151,19 +151,26 @@ class Jobs extends Component {
       " "
     );
   }
-  _jobsIndustryIsChecked(job) {
+  _jobTypeIsChecked(job) {
     return (
-      this.state.industry.length == 0 ||
-      this.state.industry.includes(job.industry.toLowerCase())
+      this.state.jobTypes.length == 0 ||
+      this.state.jobTypes.includes(job.jobType.toLowerCase())
     );
   }
-  _jobsTypeIsChecked(job) {
+  _opportunityTypeIsChecked(job) {
     return (
       this.state.opportunityTypes.length == 0 ||
       this.state.opportunityTypes.includes(job.jobType.toLowerCase())
     );
   }
-  _jobsLocationIsChecked(job) {
+  _industryTypeIsChecked(job) {
+    return (
+      this.state.industryTypes.length == 0 ||
+      this.state.industryTypes.includes(job.industry.toLowerCase())
+    );
+  }
+
+  _locationIsChecked(job) {
     return (
       this.state.location.length == 0 ||
       this.state.location.includes(job.location.toLowerCase()) ||
@@ -171,15 +178,11 @@ class Jobs extends Component {
       this.state.location.includes("")
     );
   }
-  _jobsCareerIsChecked(job) {
-    return (
-      this.state.careers.length == 0 ||
-      this.state.careers.includes(job.career.toLowerCase())
-    );
-  }
+
   filterJob(job) {
     let search_filter_contains =
       job.title && job.title.toLowerCase().includes(this.state.search);
+
     search_filter_contains =
       search_filter_contains ||
       (job.description &&
@@ -187,11 +190,11 @@ class Jobs extends Component {
 
     return (
       search_filter_contains &&
-      this._jobsIndustryIsChecked(job) &&
-      this._jobsLocationIsChecked(job) &&
-      this._jobsTypeIsChecked(job) &&
-      this._jobsCareerIsChecked(job) &&
-      job.salary >= this.state.salary
+      this._jobTypeIsChecked(job) &&
+      this._opportunityTypeIsChecked(job) &&
+      this._industryTypeIsChecked(job) &&
+      this._locationIsChecked(job) 
+      // job.salary >= this.state.salary
     );
   }
   displayJobs() {
@@ -302,10 +305,11 @@ class Jobs extends Component {
     );
   }
   displayFilters() {
+    let allPosts = this.state.jobs;
     let filteredJobs = this.state.jobs;
-    // const locations = [
-    //   ...new Set(filteredJobs.map(job => job.location))
-    // ].sort();
+    const locations = [
+      ...new Set(allPosts.map(job => job.location))
+    ].sort();
     // const salaries = [
     //   ...new Set(filteredJobs.map(job => parseInt(job.salary)))
     // ].sort(function(a, b) {
@@ -316,51 +320,38 @@ class Jobs extends Component {
     // ].sort();
     // const careers = [...new Set(filteredJobs.map(job => job.career))].sort();
     // const opportunityTypes = [...new Set(filteredJobs.map(job => job.jobType))].sort();
-    const opportunityTypes = [
-      "Credential",
-      "Coaching",
-      "Apprenticeship",
-      "Internship",
-      "Scholarship",
-    ];
-    const jobTypes = [
-      "Technician",
-      "Construction",
-      "Engineer",
-      "Corporate",
-      "Administrative",
-      "Management",
-    ];
+
+    let opportunityTypes = this.state.possibleOpportunityTypes;
+    let jobTypes = this.state.possibleJobTypes;
+
     return (
       <div className="grid-child job-filter-box ">
         {jobTypes.length != 0 ? (
-          <div className="industry-checkboxes row">
+          <div className="jobtype-checkboxes row">
             <div className="col-3">
               <h3 className="row">Job Type:</h3>
-              {/* <p className="row">Which Industry Jobs belong to.</p> */}
             </div>
-            {/* <div className="row"></div> */}
             <div className="col-9 checkbox-options">
-              {jobTypes.map((industry_name, idx) => {
+              {jobTypes.map((jobtype_name, idx) => {
                 return (
                   <div
-                    key={industry_name}
+                    key={jobtype_name}
                     className="form-check col-4  form-check-inline"
                   >
                     <input
-                      className="form-check-input industry-checkbox"
-                      id={industry_name + idx}
+                      className="form-check-input jobtype-checkbox"
+                      id={jobtype_name + idx}
                       type="checkbox"
-                      name="industry"
-                      value={industry_name}
-                      checked={true}
-                      onClick={this.handleCheckboxIndustry}
+                      name="jobtype"
+                      value={jobtype_name}
+                      checked={this.state.jobTypes.includes(jobtype_name) || this.state.jobTypes.length == 0}
+                      onClick={this.handleCheckboxJobType}
                     />
                     <label
                       className="form-check-label"
-                      htmlFor={industry_name + idx}
+                      htmlFor={jobtype_name + idx}
                     >
-                      {industry_name}
+                      {jobtype_name}
                     </label>
                   </div>
                 );
@@ -382,29 +373,29 @@ class Jobs extends Component {
         ) : null}
         <br/>
         {opportunityTypes.length != 0 ? (
-          <div className="JobType-checkboxes row">
+          <div className="opptype-checkboxes row">
             <div className="col-3">
               <h3 className="row">Other Opportunity Type:</h3>
               {/* <h3 className="row">Paid opportunities' Type</h3> */}
             </div>
             <div className="col-9 checkbox-options">
-              {opportunityTypes.map((jobType, idx) => {
+              {opportunityTypes.map((oppType, idx) => {
                 return (
                   <div
-                    key={jobType}
+                    key={oppType}
                     className="form-check col-4 form-check-inline"
                   >
                     <input
-                      className="form-check-input JobType-checkbox"
-                      id={jobType + idx}
+                      className="form-check-input opptype-checkbox"
+                      id={oppType + idx}
                       type="checkbox"
-                      name="JobType"
-                      value={jobType}
+                      name="oppType"
+                      value={oppType}
                       checked={true}
-                      onClick={this.handleCheckboxJobType}
+                      onClick={this.handleCheckboxOpportunityType}
                     />
-                    <label className="form-check-label" htmlFor={jobType + idx}>
-                      {jobType}
+                    <label className="form-check-label" htmlFor={oppType + idx}>
+                      {oppType}
                     </label>
                   </div>
                 );

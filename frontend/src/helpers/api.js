@@ -54,10 +54,14 @@ export async function getEvents() {
 }
 const JOBS_PATH = "/Jobs";
 export async function getJobs() {
-  console.log(getStrapiURL(JOBS_PATH));
   return axios.get(getStrapiURL(JOBS_PATH));
 }
 const PROJECTS_PATH = "/Projects";
 export async function getProjects() {
   return axios.get(getStrapiURL(PROJECTS_PATH));
+}
+
+const JOBS_SCHEMA_PATH = "/content-type-builder/content-types/application::job.job";
+export async function getJobParameters() {
+  return axios.get(getStrapiURL(JOBS_SCHEMA_PATH));
 }

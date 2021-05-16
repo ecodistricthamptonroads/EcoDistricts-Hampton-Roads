@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "jobs",
   "info": {
-    "name": "Job"
+    "name": "Job",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -20,9 +21,6 @@
     "link": {
       "type": "string"
     },
-    "industry": {
-      "type": "string"
-    },
     "Description": {
       "type": "richtext"
     },
@@ -32,7 +30,7 @@
     "jobType": {
       "type": "enumeration",
       "enum": [
-        "Entry_Level",
+        "EntryLevel",
         "Technician",
         "Construction",
         "Shipyard",
@@ -54,6 +52,16 @@
         "Fellowship",
         "Scholarship",
         "Research"
+      ]
+    },
+    "industryType": {
+      "type": "enumeration",
+      "enum": [
+        "Electrical",
+        "Construction",
+        "Warehouse",
+        "Shipyard",
+        "Aerospace"
       ]
     }
   }

@@ -11,10 +11,7 @@ class ProjectPage extends Component {
     super(props);
     this.state = this.props.location;
     this.idx = parseInt(this.state.pathname.substr(9));
-<<<<<<< HEAD
-=======
-    this.curProject = this.state.state[this.idx];
->>>>>>> newStrapi
+    // this.curProject = this.state.state[this.idx];
   }
   render() {
     return (
