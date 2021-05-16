@@ -60,8 +60,9 @@ class Surveys extends Component {
             <h1 className="row Survey-focus-text" Style="font-weight: bold">
               Cavalier Manor Study of Community Needs
             </h1>
-            {/* <h1>https://forms.gle/thx3znUcUovX5iqbA</h1> */}
             <div className="row">
+              <a href="https://forms.gle/thx3znUcUovX5iqbA">
+  
               <button
                 style={{
                   color: 'white',
@@ -71,9 +72,11 @@ class Surveys extends Component {
                   marginTop: '4vh'
                   // borderRadius: 10
                 }}
+                href="https://forms.gle/thx3znUcUovX5iqbA"
               >
                 Sign Up Here!
               </button>
+              </a>
             </div>
             <br></br>
             <h2 className="row">

@@ -34,6 +34,8 @@ class Jobs extends Component {
       possibleOpportunityTypes: [],
       possibleIndustryTypes: [],
       company: "",
+      useDefaultCheckJob: true,
+      useDefaultCheckOpp: true,
       jobs: [],
       // jobs refers to all posts, including other opportunities
     };
@@ -129,18 +131,18 @@ class Jobs extends Component {
 
   _getDateFormatted(date) {
     const monthNames = [
-      "Jan.",
-      "Feb.",
-      "Mar.",
-      "Apr.",
-      "May.",
-      "Jun.",
-      "Jul.",
-      "Aug.",
-      "Sep.",
-      "Oct.",
-      "Nov.",
-      "Dec.",
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
     ];
 
     var mm = date.getMonth();
@@ -153,20 +155,21 @@ class Jobs extends Component {
   }
   _jobTypeIsChecked(job) {
     return (
-      this.state.jobTypes.length == 0 ||
-      this.state.jobTypes.includes(job.jobType.toLowerCase())
+      (this.state.useDefaultCheckJob && this.state.jobTypes.length == 0) ||
+      this.state.jobTypes.includes(job.jobType)
     );
   }
   _opportunityTypeIsChecked(job) {
     return (
-      this.state.opportunityTypes.length == 0 ||
-      this.state.opportunityTypes.includes(job.jobType.toLowerCase())
+      (this.state.useDefaultCheckOpp && this.state.opportunityTypes.length == 0) ||
+      this.state.opportunityTypes.includes(job.opportunityType)
     );
   }
   _industryTypeIsChecked(job) {
     return (
+      // (this.state.useDefaultCheck && this.state.industryTypes.length == 0) ||
       this.state.industryTypes.length == 0 ||
-      this.state.industryTypes.includes(job.industry.toLowerCase())
+      this.state.industryTypes.includes(job.industryType)
     );
   }
 
@@ -190,10 +193,10 @@ class Jobs extends Component {
 
     return (
       search_filter_contains &&
-      this._jobTypeIsChecked(job) &&
-      this._opportunityTypeIsChecked(job) &&
+      this._locationIsChecked(job) &&
       this._industryTypeIsChecked(job) &&
-      this._locationIsChecked(job) 
+      (this._opportunityTypeIsChecked(job) ||
+      this._jobTypeIsChecked(job))
       // job.salary >= this.state.salary
     );
   }
@@ -230,8 +233,8 @@ class Jobs extends Component {
                       {"Posted on " +
                         this._getDateFormatted(new Date(job.published_at))}
                     </Card.Text>
-                    {/* <Card.Text>{"@ " + (job.company || "")} </Card.Text>
-                    <Card.Text>{"$" + (job.salary || "")} </Card.Text> */}
+                    <Card.Text>{"@ " + (job.company || "")} </Card.Text>
+                    {/* <Card.Text>{"$" + (job.salary || "")} </Card.Text> */}
                     <Card.Text>{"📍 " + (job.location || "")} </Card.Text>
                     <div
                       className="job-card-row flex-center "
@@ -344,7 +347,8 @@ class Jobs extends Component {
                       type="checkbox"
                       name="jobtype"
                       value={jobtype_name}
-                      checked={this.state.jobTypes.includes(jobtype_name) || this.state.jobTypes.length == 0}
+                      checked={this.state.jobTypes.includes(jobtype_name) || 
+                              (this.state.useDefaultCheckJob && this.state.jobTypes == 0)}
                       onClick={this.handleCheckboxJobType}
                     />
                     <label
@@ -357,18 +361,30 @@ class Jobs extends Component {
                 );
               })}
             </div>
-            {/* <Button
-              className="col-1"
-              bsPrefix="job-btn "
+            <Button
+              // className="clear-btn"
+              bsPrefix="clear-btn "
               onClick={(e) => {
-                this.setState({ industry: [] });
+                this.setState({ jobTypes: [], useDefaultCheckJob: false });
                 Array.from(
-                  document.getElementsByClassName("industry-checkbox")
+                  document.getElementsByClassName("jobtype-checkbox")
                 ).map((checkbox) => (checkbox.checked = false));
               }}
             >
               Clear All
-            </Button> */}
+            </Button>
+            <Button
+              // className="clear-btn"
+              bsPrefix="clear-btn "
+              onClick={(e) => {
+                this.setState({ jobTypes: [], useDefaultCheckJob: true });
+                Array.from(
+                  document.getElementsByClassName("jobtype-checkbox")
+                ).map((checkbox) => (checkbox.checked = true));
+              }}
+            >
+              select All
+            </Button>
           </div>
         ) : null}
         <br/>
@@ -391,7 +407,8 @@ class Jobs extends Component {
                       type="checkbox"
                       name="oppType"
                       value={oppType}
-                      checked={true}
+                      checked={this.state.opportunityTypes.includes(oppType) || 
+                              (this.state.useDefaultCheckOpp && this.state.opportunityTypes.length == 0)}
                       onClick={this.handleCheckboxOpportunityType}
                     />
                     <label className="form-check-label" htmlFor={oppType + idx}>
@@ -401,19 +418,32 @@ class Jobs extends Component {
                 );
               })}
             </div>
-
-            {/* <Button
-              className="col-1"
-              bsPrefix="job-btn"
+            <Button
+              // className="clear-btn"
+              bsPrefix="clear-btn "
               onClick={(e) => {
-                this.setState({ opportunityTypes: [] });
+                this.setState({ opportunityTypes: [], useDefaultCheckOpp: false });
                 Array.from(
-                  document.getElementsByClassName("JobType-checkbox")
+                  document.getElementsByClassName("opptype-checkbox")
                 ).map((checkbox) => (checkbox.checked = false));
               }}
             >
               Clear All
-            </Button> */}
+            </Button>
+            <Button
+              // className="clear-btn"
+              bsPrefix="clear-btn "
+              onClick={(e) => {
+                this.setState({ opportunityTypes: [], useDefaultCheckOpp: true });
+                Array.from(
+                  document.getElementsByClassName("opptype-checkbox")
+                ).map((checkbox) => (checkbox.checked = true));
+              }}
+            >
+              Select All
+            </Button>
+
+
           </div>
         ) : null}
       </div>
@@ -515,58 +545,6 @@ class Jobs extends Component {
         ) : null} */
     }
 
-    {
-      /* {salaries.length != 0 ? (
-          <div className="salary-checkboxes row">
-            <div className="col">
-              <h3 className="row"> Salary:</h3>
-              <p className="row"> Annual Salary of Job</p>
-            </div>
-            <div className="col checkbox-options">
-              {salaries.map((salary_value, idx) => {
-                return (
-                  <div
-                    key={salary_value}
-                    className="form-check col form-check-inline salary-checkbox"
-                  >
-                    <input
-                      className="form-check-input"
-                      id={salary_value + idx}
-                      type="radio"
-                      name="salary"
-                      value={salary_value}
-                      onClick={this.handleChangeNumber}
-                    />
-                    <label
-                      className="form-check-label"
-                      htmlFor={salary_value + idx}
-                    >
-                      {'$' + salary_value + '+'}
-                    </label>
-                  </div>
-                );
-              })}
-            </div>
-            <div
-              key="AllSalaries"
-              className="col-1 form-check form-check-inline"
-            >
-              <input
-                className="form-check-input salary-checkbox"
-                id="AllSalaries"
-                type="radio"
-                name="salary"
-                value={0}
-                defaultChecked={true}
-                onClick={this.handleChangeNumber}
-              />
-              <label className="form-check-label" htmlFor="AllSalaries">
-                All Salaries
-              </label>
-            </div>
-          </div>
-        ) : null} */
-    }
   }
   render() {
     return (
