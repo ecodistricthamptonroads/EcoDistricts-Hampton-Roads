@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "jobs",
+  "info": {
+    "name": "Job"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "company": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "richtext"
+    },
+    "location": {
+      "type": "string"
+    },
+    "jobType": {
+      "type": "enumeration",
+      "enum": [
+        "EntryLevel",
+        "Technician",
+        "Construction",
+        "Shipyard",
+        "Engineer",
+        "Administrative",
+        "Operations",
+        "Management",
+        "Executive"
+      ]
+    }
+  }
+}

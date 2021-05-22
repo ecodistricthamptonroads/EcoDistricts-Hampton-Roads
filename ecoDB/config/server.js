@@ -1,19 +1,9 @@
 module.exports = ({ env }) => ({
-  defaultConnection: 'default',
-  connections: {
-    default: {
-      connector: 'bookshelf',
-      settings: {
-        client: 'mongodb',
-        host: env('DATABASE_HOST', '127.0.0.1'),
-        port: env.int('DATABASE_PORT', 5432),
-        database: env('DATABASE_NAME', 'strapi'),
-        username: env('DATABASE_USERNAME', ''),
-        password: env('DATABASE_PASSWORD', ''),
-      },
-      options: {
-        ssl: false,
-      },
+  host: env('HOST', '0.0.0.0'),
+  port: env.int('PORT', 1337),
+  admin: {
+    auth: {
+      secret: env('ADMIN_JWT_SECRET', '17afa22ac2e15f579cb59cdd2b5b3a0b'),
     },
   },
 });
