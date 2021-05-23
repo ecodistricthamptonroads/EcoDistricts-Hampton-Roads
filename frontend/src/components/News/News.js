@@ -82,16 +82,18 @@ class News extends Component {
               )
               .map((news, idx) => (
                 <div className="row event" key={ news.title + idx}>
-                  <div className="event-image-container col-sm-12 col-md-3">
+                  <div className="event-image-container col-md-3">
                   <img
                     className="event-image"
                     src={getSpecificImage("small", news.image) ||  icon}
                   />
                 </div>
-                  <div className="col-sm-12 col-md-8 col-lg-5 event-info">
-                    <h3>{news.Title}</h3>
-                    <div className="news-date">{this._getDateFormatted(new Date(news.date))} </div>
-                    <p className="news-description">{news.description.length > PREVIEW_LENGTH ? (news.description.substr(0,PREVIEW_LENGTH).trim() + "...") : news.description}</p>
+                  <div className="col-md-8 event-info">
+                    <h3>{news.title}</h3>
+                    <br/>
+                    <h4 className="news-date">{this._getDateFormatted(new Date(news.date))} </h4>
+                    <p className="news-description">{news.description}</p>
+                    {/* <p className="news-description">{news.description.length > PREVIEW_LENGTH ? (news.description.substr(0,PREVIEW_LENGTH).trim() + "...") : news.description}</p> */}
                   </div>
                 </div>
               ))
