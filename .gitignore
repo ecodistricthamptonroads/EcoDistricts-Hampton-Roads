@@ -36,3 +36,5 @@ aws.pem
 /strapi_backend/extensions/documentation
 
 /frontend/.eslintcache
+
+/data
