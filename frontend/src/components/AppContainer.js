@@ -7,7 +7,7 @@ import { hot } from 'react-hot-loader';
 import Header from './Header';
 import Footer from './Footer';
 import Land from './Land';
-import Issue from './Issue/Issue';
+// import Issue from './Issue/Issue';
 import EducationJobs from './EducationJobs/EducationJobs';
 import ProjectStatus from './ProjectStatus/ProjectStatus';
 import ProjectPage from './ProjectStatus/ProjectPage';
@@ -29,7 +29,7 @@ class AppContainer extends Component {
             <div className="row">
               <Switch>
                 <Route exact path="/" component={Land} />
-                <Route path="/issues" component={Issue} />
+                {/* <Route path="/issues" component={Issue} /> */}
                 <Route path="/opportunities" component={EducationJobs} />
                 <Route path="/projectstatus" component={ProjectStatus} />
                 <Route path="/surveys" component={Surveys} />
