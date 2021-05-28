@@ -9,7 +9,7 @@ import axios from "axios";
 export function getStrapiURL(path = "") {
   const DOMAIN =
     process.env.NODE_ENV === "production"
-      ? "http://api.ecodistricthamptonroads.org/"
+      ? "http://api.ecodistricthamptonroads.org"
       : "http://localhost:1337";
   return `${DOMAIN}${path}`;
 }
@@ -58,6 +58,7 @@ export async function getNews() {
 }
 const EVENTS_PATH = "/Events";
 export async function getEvents() {
+  console.log(getStrapiURL(EVENTS_PATH));
   return axios.get(getStrapiURL(EVENTS_PATH));
 }
 const JOBS_PATH = "/Jobs";
