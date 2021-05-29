@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "description": "A Strapi application",
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
@@ -14,16 +15,21 @@
     "express": "^4.17.1",
     "knex": "0.21.18",
     "sqlite3": "5.0.0",
-    "strapi": "3.6.1",
+    "strapi": "3.6.2",
     "strapi-admin": "^3.6.2",
-    "strapi-connector-bookshelf": "3.6.1",
+    "strapi-connector-bookshelf": "3.6.2",
     "strapi-plugin-content-manager": "^3.6.2",
     "strapi-plugin-content-type-builder": "^3.6.2",
-    "strapi-plugin-email": "3.6.1",
-    "strapi-plugin-i18n": "3.6.1",
+    "strapi-plugin-email": "3.6.2",
+    "strapi-plugin-i18n": "3.6.2",
     "strapi-plugin-upload": "^3.6.2",
     "strapi-plugin-users-permissions": "^3.6.2",
-    "strapi-utils": "3.6.1"
+    "strapi-utils": "3.6.2"
+  },
+  "resolutions": {
+    "postcss": "^8.2.10",
+    "property-expr": "^2.0.3",
+    "lodash": "^4.17.21"
   },
   "author": {
     "name": "A Strapi developer"
