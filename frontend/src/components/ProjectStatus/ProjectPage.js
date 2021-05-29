@@ -11,14 +11,14 @@ class ProjectPage extends Component {
     super(props);
     this.state = this.props.location;
     this.idx = parseInt(this.state.pathname.substr(9));
-    // this.curProject = this.state.state[this.idx];
+    this.curProject = this.state.state[this.idx];
   }
   render() {
     return (
       <div className="project-page">
         <div className=" project-heading" style={{
           // Using the first image we have
-          backgroundImage: `url(${getSpecificImage("large", this.curProject.projectImages[0])})`
+          // backgroundImage: `url(${getSpecificImage(this.curProject.projectImages[0])})`
         }}>
           <div>
             <h1>{this.state.state[this.idx].title}</h1>
@@ -36,10 +36,10 @@ class ProjectPage extends Component {
         </div>
         <div className="project-row">
             <Carousel>
-              {this.curProject.projectImages.length != 0 ? (this.curProject.projectImages.map((image, idx) => (
+              {/* {this.curProject.projectImages.length != 0 ? (this.curProject.projectImages.map((image, idx) => ( */}
                 <Carousel.Item>
                   <div className="project-img-gal" style={{
-                    backgroundImage: `url(${getSpecificImage("medium", image)})`,
+                    // backgroundImage: `url(${getSpecificImage(image)})`,
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "contain",
                     backgroundPosition: "center"
@@ -63,11 +63,11 @@ class ProjectPage extends Component {
           </div>
           <p className="col">
             List of rest of team: {
-              this.curProject.otherMembers.split(",").map((indivMember) => {
-                return(
-                  <p>{indivMember.trim()}</p>
-                )
-              })
+              // this.curProject.otherMembers.split(",").map((indivMember) => {
+              //   return(
+              //     <p>{indivMember.trim()}</p>
+              //   )
+              // })
             }
           </p>
         </div>

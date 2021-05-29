@@ -4,8 +4,8 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import Dropdown from "react-bootstrap/Dropdown";
+// import DropdownButton from "react-bootstrap/DropdownButton";
+// import Dropdown from "react-bootstrap/Dropdown";
 import "../../assets/stylesheets/JobsPage.css";
 import { getJobs, getJobParameters } from "../../helpers/api";
 class EducationJobs extends Component {
@@ -232,6 +232,9 @@ class Jobs extends Component {
                     <Card.Text>
                       {"Posted on " +
                         this._getDateFormatted(new Date(job.published_at))}
+                    </Card.Text>
+                    <Card.Text className="job-card-description">
+                      {(job.Description)}
                     </Card.Text>
                     <Card.Text>{"@ " + (job.company || "")} </Card.Text>
                     {/* <Card.Text>{"$" + (job.salary || "")} </Card.Text> */}

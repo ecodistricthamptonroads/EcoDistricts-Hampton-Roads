@@ -39,7 +39,7 @@ class Header extends Component {
     if (this.props.user)
       return (
         <Nav.Item>
-          <Nav.Link eventKey="8" as={Link} to="/email">
+          <Nav.Link eventkey="8" as={Link} to="/email">
             Add Admin Email
           </Nav.Link>
         </Nav.Item>
@@ -70,38 +70,38 @@ class Header extends Component {
               id="basic-nav-dropdown"
             >
               <Nav.Item>
-                <Nav.Link eventKey="1" as={Link} to="/about">
+                <Nav.Link eventkey="1" as={Link} to="/about">
                   About Eco
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="9" as={Link} to="/team">
+                <Nav.Link eventkey="9" as={Link} to="/team">
                   Meet the Team
                 </Nav.Link>
               </Nav.Item>
             </NavDropdown>
             <Nav.Item>
-              <Nav.Link eventKey="2" as={Link} to="/news">
+              <Nav.Link eventkey="2" as={Link} to="/news">
                 News
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="4" as={Link} to="/surveys">
+              <Nav.Link eventkey="4" as={Link} to="/surveys">
                 Surveys
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="5" as={Link} to="/opportunities">
+              <Nav.Link eventkey="5" as={Link} to="/opportunities">
                 Jobs
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="6" as={Link} to="/resources">
+              <Nav.Link eventkey="6" as={Link} to="/resources">
                 Resources
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="7" as={Link} to="/projectstatus">
+              <Nav.Link eventkey="7" as={Link} to="/projectstatus">
                 Projects
               </Nav.Link>
             </Nav.Item>
@@ -110,7 +110,7 @@ class Header extends Component {
                 Contact Us
               </a>
             </Nav.Item>
-            <Nav.Item eventKey="8" as={Link} to="/donate">
+            <Nav.Item eventkey="8" as={Link} to="/donate">
               <Button id="donate-button">Donate</Button>
             </Nav.Item>
           </Nav>

@@ -222,9 +222,8 @@ class Land extends Component {
                         
                         <div
                           className="col-6"
-                          /*src={getSpecificImage("medium", news.image)|| main_futuresuburbs}*/
                           style={{
-                            backgroundImage: `url(${getSpecificImage("medium", news.image)})`,
+                            backgroundImage: `url(${getSpecificImage(news.image) || main_futuresuburbs})`,
                             backgroundSize: "contain",
                             backgroundRepeat: "no-repeat",
                             backgroundPosition: "center",

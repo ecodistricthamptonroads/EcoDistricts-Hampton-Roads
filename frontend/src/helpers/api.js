@@ -9,7 +9,7 @@ import axios from "axios";
 export function getStrapiURL(path = "") {
   const DOMAIN =
     process.env.NODE_ENV === "production"
-      ? "http://api.ecodistricthamptonroads.org"
+      ? "https://api.ecodistricthamptonroads.org"
       : "http://localhost:1337";
   return `${DOMAIN}${path}`;
 }
@@ -36,16 +36,8 @@ export const IMAGE_TYPE = {
   SMALL: "small",
 };
 
-export function getSpecificImage(type, image_obj) {
-  switch (type) {
-    case IMAGE_TYPE.THUMBNAIL:
-    case IMAGE_TYPE.LARGE:
-    case IMAGE_TYPE.MEDIUM:
-    case IMAGE_TYPE.SMALL:
-      return getStrapiMedia(image_obj);
-    default:
-      return getStrapiMedia(image_obj);
-  }
+export function getSpecificImage( image_obj) {
+  return getStrapiMedia(image_obj);
 }
 
 const SURVEY_PATH = "/Surveys";

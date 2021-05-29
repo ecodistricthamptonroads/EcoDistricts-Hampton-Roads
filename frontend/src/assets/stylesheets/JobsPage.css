@@ -110,6 +110,13 @@
   width: 40% !important;
   height: 100% !important ;
 }
+
+.job-card-description {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;  
+}
 .checkbox-options {
   /* display: flex;
   flex-direction: row; */

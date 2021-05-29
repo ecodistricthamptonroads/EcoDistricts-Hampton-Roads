@@ -44,17 +44,11 @@ class ProjectStatus extends Component {
     return (
       <div
         className="Project-Search-Bar"
-        // style={{
-        //   backgroundImage: `url(${WhatWeDo})`,
-          
-        //   'linear-gradient(rgba(0, 0, 0, 0.5),
-        //                rgba(0, 0, 0, 0.5)), url("url_of_image"))'
-        // }}
       >
         <div className="Project-heading">
           <h1 Style="color: white; font-weight: bold;">Our Projects</h1>
-          {/* <Form onSubmit={this.handleSubmit1}>
-            <Form.Group controlId="exampleForm.ControlInput1">
+          <Form onSubmit={this.handleSubmit1}>
+            {/* <Form.Group controlId="exampleForm.ControlInput1">
               <Form.Control
                 name="search"
                 value={this.state.search}
@@ -62,8 +56,8 @@ class ProjectStatus extends Component {
                 type="text"
                 placeholder="Search"
               />
-            </Form.Group>
-          </Form> */}
+            </Form.Group> */}
+          </Form>
         </div>
       </div>
     );
@@ -97,7 +91,7 @@ class ProjectStatus extends Component {
                     onError={(e) => {
                       e.target.src = WarfieldCanalProject;
                     }}
-                    src={getSpecificImage("medium", project.projectImages[0]) || WarfieldCanalProject}
+                    src={getSpecificImage(project.projectImages[0]) || WarfieldCanalProject}
                   />
                   <Card.Body>
                     <Card.Text style={{ fontWeight: 400 }}>
@@ -120,8 +114,8 @@ class ProjectStatus extends Component {
           multiple projects done by volunteers in order to fix various problems
           identified by residents.
         </h2>
-        {console.log(this.state.projects)}
-        {this.getProjectList()}
+        {/* {console.log(this.state.projects)} */}
+        {/* {this.getProjectList()} */}
       </div>
     );
   }
