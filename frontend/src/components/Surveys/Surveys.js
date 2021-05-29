@@ -55,7 +55,7 @@ class Surveys extends Component {
       <div className="Survey-container">
         {this.getHeading()}
         <div className="row">
-          <img className="col" Style="width:50%; padding-right: 2.5%" src={futuresuburbs} />
+          <img className="col" Style="width:400px; height: auto; padding-right: 2.5%" src={futuresuburbs} />
           <div className="col focus-text">
             <h1 className="row Survey-focus-text" Style="font-weight: bold">
               Cavalier Manor Study of Community Needs

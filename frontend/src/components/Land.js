@@ -191,6 +191,7 @@ class Land extends Component {
               {/* News Carousel */}
               <Carousel style={{ padding: "1%" }}>
                 {NEWS2SHOW.length != 0 ?  (NEWS2SHOW.map((news, idx) => (
+                  // Generates the news item in the Carousel
                   <Carousel.Item
                     key={news.title + idx}
                     style={{ height: "50vh"}}
@@ -236,36 +237,36 @@ class Land extends Component {
                     </div>
                   </Carousel.Item>
                 ))) : 
-                          <Carousel.Item key="231234" style={{height: "50vh"}}>
-                          <div
+                // Generates the only Carousel item when there are no news items
+                <Carousel.Item key="231234" style={{height: "50vh"}}>
+                  <div
                       className=""
                       style={{
                         borderRadius: "10px",
                       }}
-                    >
-                      <div
-                        style={{ height: "50vh" }}
-                        className="card-img-top d-flex align-items-center bg-light"
-                      >
-                        <div className="col-6" >
-                          <h2>No news yet</h2>
-                          <h3></h3>
-                          <h3></h3>
-                          <p>Check back soon!</p>
-                        </div>
-
-                          <div
-                            className="col-6"
-                            style={{
-                              backgroundImage: `url(${main_futuresuburbs})`,
-                              backgroundSize: 'cover',
-                              height: "100%",
-                            }}
-                          >
-                          </div>
-                      </div>
-                    </div>
-                          </Carousel.Item>
+                  >
+                  <div
+                    style={{ height: "50vh" }}
+                    className="card-img-top d-flex align-items-center bg-light"
+                  >
+                  <div className="col-6" >
+                    <h2>No news yet</h2>
+                    <h3></h3>
+                    <h3></h3>
+                    <p>Check back soon!</p>
+                  </div>
+                  <div
+                    className="col-6"
+                    style={{
+                      backgroundImage: `url(${main_futuresuburbs})`,
+                      backgroundSize: 'cover',
+                      height: "100%",
+                    }}
+                  >
+                  </div>
+                  </div>
+                  </div>
+                </Carousel.Item>
                 }
               </Carousel>
             </div>

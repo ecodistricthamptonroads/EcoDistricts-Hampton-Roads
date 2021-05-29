@@ -33,6 +33,7 @@ class ProjectStatus extends Component {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
   }
+  // Search functionality was partly implemented, but was put on hold. May not be necessary.
   search(item) {
     item = item || "";
     const lc = item.toLowerCase();
@@ -66,7 +67,9 @@ class ProjectStatus extends Component {
   getProjectList() {
     return (
       <div className="row ProjectList align-items-center ">
-        {this.state.projects
+        {
+          // Lists all projects on the page
+          this.state.projects
           .filter((project) => this.search(project.projectName))
           .map((project, idx) => {
             return (
@@ -75,6 +78,8 @@ class ProjectStatus extends Component {
                 className="col-12 col-sm-6 col-md-4 card-project"
               >
                 <Card
+                  // Takes you to the page for the individual project (ProjectPage.js)
+                  // Sends the data that corresponds to the project so that it displays correctly
                   onClick={() => {
                     this.props.history.push({
                       pathname: "/Project/" + idx,
@@ -89,6 +94,8 @@ class ProjectStatus extends Component {
                   <Card.Img
                     variant="top"
                     onError={(e) => {
+                      // Uses a default image (WarfieldCanalProject) if we encounter an error in loading
+                      // the image that corresponds to the project 
                       e.target.src = WarfieldCanalProject;
                     }}
                     src={getSpecificImage(project.projectImages[0]) || WarfieldCanalProject}

@@ -11,18 +11,22 @@ class ProjectPage extends Component {
     super(props);
     this.state = this.props.location;
     this.idx = parseInt(this.state.pathname.substr(9));
-    this.curProject = this.state.state[this.idx];
+    /* After migration process is done, might need to uncomment and replace
+      all instances of "this.state.state[this.idx]" with "this.curproject". */
+    // this.curProject = this.state.state[this.idx];
   }
   render() {
     return (
       <div className="project-page">
         <div className=" project-heading" style={{
-          // Using the first image we have
-          // backgroundImage: `url(${getSpecificImage(this.curProject.projectImages[0])})`
+          // Using the first image we have for this project as the "main" image
+          backgroundImage: `url(${getSpecificImage("large", this.state.state[this.idx].projectImages[0])})`
         }}>
           <div>
             <h1>{this.state.state[this.idx].title}</h1>
-            <h2>Start Date: {new Intl.DateTimeFormat("en-US", {
+            <h2>Start Date: {
+              // Formats the project's start date 
+              new Intl.DateTimeFormat("en-US", {
               year: "numeric", 
               month: "long", 
               day: "2-digit"
@@ -31,12 +35,14 @@ class ProjectPage extends Component {
         </div>
         <div className="project-row our-goal">
           <h1>Our goal</h1>
-          <p>{this.state.state[this.idx].Goal}
+          <p>{// Might need to make the Goal field lowercase -> goal
+            this.state.state[this.idx].Goal}
           </p>
         </div>
         <div className="project-row">
             <Carousel>
-              {/* {this.curProject.projectImages.length != 0 ? (this.curProject.projectImages.map((image, idx) => ( */}
+              {this.state.state[this.idx].projectImages.length != 0 ? (this.state.state[this.idx].projectImages.map((image, idx) => (
+                // If we have images for this project, makes a Carousel for all of them
                 <Carousel.Item>
                   <div className="project-img-gal" style={{
                     // backgroundImage: `url(${getSpecificImage(image)})`,
@@ -45,7 +51,9 @@ class ProjectPage extends Component {
                     backgroundPosition: "center"
                   }} />
                 </Carousel.Item>
-              ))) : <Carousel><Carousel.Item><p>No project images yet</p></Carousel.Item></Carousel>}
+              ))) : 
+              // If we have no images
+              <Carousel><Carousel.Item><p>No project images yet</p></Carousel.Item></Carousel>}
             </Carousel>
         </div>
         <div className="project-row potential-outcomes">
@@ -63,11 +71,12 @@ class ProjectPage extends Component {
           </div>
           <p className="col">
             List of rest of team: {
-              // this.curProject.otherMembers.split(",").map((indivMember) => {
-              //   return(
-              //     <p>{indivMember.trim()}</p>
-              //   )
-              // })
+              // Prints each member of the team on a separate line, assuming data was entered correctly
+              this.state.state[this.idx].otherMembers.split(",").map((indivMember) => {
+                return(
+                  <p>{indivMember.trim()}</p>
+                )
+              })
             }
           </p>
         </div>
