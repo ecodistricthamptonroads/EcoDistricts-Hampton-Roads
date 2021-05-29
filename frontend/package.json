@@ -22,12 +22,7 @@
     "react-slideshow-image": "^3.4.3",
     "web-vitals": "^0.2.4"
   },
-  "resolutions": {
-    "postcss": "^8.2.10",
-    "browserslist": "^4.16.5"
-  },
   "scripts": {
-    "preinstall": "npx npm-force-resolutions",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
