@@ -17,12 +17,17 @@
     "react-hot-loader": "^4.13.0",
     "react-markdown": "^5.0.3",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.1",
+    "react-scripts": "4.0.3",
     "react-select": "^3.1.1",
     "react-slideshow-image": "^3.4.3",
     "web-vitals": "^0.2.4"
   },
+  "resolutions": {
+    "postcss": "^8.2.10",
+    "browserslist": "^4.16.5"
+  },
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
