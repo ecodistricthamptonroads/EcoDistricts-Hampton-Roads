@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import garry from '../../assets/images/gary.jpg';
-import icon from '../../assets/images/icon.png';
+// import icon from '../../assets/images/icon.png';
 import '../../assets/stylesheets/aboutPage.css';
 
 const OtherTeams = [

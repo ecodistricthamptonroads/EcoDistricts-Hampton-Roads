@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import '../assets/stylesheets/app.css';
-import { hot } from 'react-hot-loader';
+// import { hot } from 'react-hot-loader';
 
 import Header from './Header';
 import Footer from './Footer';

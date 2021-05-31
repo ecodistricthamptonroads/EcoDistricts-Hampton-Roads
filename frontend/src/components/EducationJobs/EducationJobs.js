@@ -1,6 +1,6 @@
 import { Component } from "react";
 import React from "react";
-import axios from "axios";
+// import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
@@ -155,27 +155,27 @@ class Jobs extends Component {
   }
   _jobTypeIsChecked(job) {
     return (
-      (this.state.useDefaultCheckJob && this.state.jobTypes.length == 0) ||
+      (this.state.useDefaultCheckJob && this.state.jobTypes.length === 0) ||
       this.state.jobTypes.includes(job.jobType)
     );
   }
   _opportunityTypeIsChecked(job) {
     return (
-      (this.state.useDefaultCheckOpp && this.state.opportunityTypes.length == 0) ||
+      (this.state.useDefaultCheckOpp && this.state.opportunityTypes.length === 0) ||
       this.state.opportunityTypes.includes(job.opportunityType)
     );
   }
   _industryTypeIsChecked(job) {
     return (
       // (this.state.useDefaultCheck && this.state.industryTypes.length == 0) ||
-      this.state.industryTypes.length == 0 ||
+      this.state.industryTypes.length === 0 ||
       this.state.industryTypes.includes(job.industryType)
     );
   }
 
   _locationIsChecked(job) {
     return (
-      this.state.location.length == 0 ||
+      this.state.location.length === 0 ||
       this.state.location.includes(job.location.toLowerCase()) ||
       // TODO: get rid of this hacky way
       this.state.location.includes("")
@@ -204,7 +204,7 @@ class Jobs extends Component {
     const JOBS_TO_SHOW = this.state.jobs.filter((job) => this.filterJob(job));
     return (
       <div className="jobs row">
-        {JOBS_TO_SHOW.length != 0 ? (
+        {JOBS_TO_SHOW.length !== 0 ? (
           JOBS_TO_SHOW.map((job) => {
             return (
               <a key={job._id} href={job._id} className="col-sm-12 col-lg-4 d-flex flex-fill"> 
@@ -332,7 +332,7 @@ class Jobs extends Component {
 
     return (
       <div className="grid-child job-filter-box ">
-        {jobTypes.length != 0 ? (
+        {jobTypes.length !== 0 ? (
           <div className="jobtype-checkboxes row">
             <div className="col-3">
               <h3 className="row">Job Type:</h3>
@@ -351,7 +351,7 @@ class Jobs extends Component {
                       name="jobtype"
                       value={jobtype_name}
                       checked={this.state.jobTypes.includes(jobtype_name) || 
-                              (this.state.useDefaultCheckJob && this.state.jobTypes == 0)}
+                              (this.state.useDefaultCheckJob && this.state.jobTypes === 0)}
                       onClick={this.handleCheckboxJobType}
                     />
                     <label
@@ -391,7 +391,7 @@ class Jobs extends Component {
           </div>
         ) : null}
         <br/>
-        {opportunityTypes.length != 0 ? (
+        {opportunityTypes.length !== 0 ? (
           <div className="opptype-checkboxes row">
             <div className="col-3">
               <h3 className="row">Other Opportunity Type:</h3>
@@ -411,7 +411,7 @@ class Jobs extends Component {
                       name="oppType"
                       value={oppType}
                       checked={this.state.opportunityTypes.includes(oppType) || 
-                              (this.state.useDefaultCheckOpp && this.state.opportunityTypes.length == 0)}
+                              (this.state.useDefaultCheckOpp && this.state.opportunityTypes.length === 0)}
                       onClick={this.handleCheckboxOpportunityType}
                     />
                     <label className="form-check-label" htmlFor={oppType + idx}>
@@ -451,9 +451,9 @@ class Jobs extends Component {
         ) : null}
       </div>
     );
-
+/*
     {
-      /* {careers.length != 0 ? (
+       {careers.length !== 0 ? (
           <div className="career-checkboxes row">
             <div className="col">
               <h3 className="row">Career Development Opportunities:</h3>
@@ -496,10 +496,10 @@ class Jobs extends Component {
               Clear All
             </Button>
           </div>
-        ) : null} */
+        ) : null} 
     }
     {
-      /* {locations.length != 0 ? (
+       {locations.length !== 0 ? (
           <div className="location-checkboxes row">
             <div className="col">
               <h3 className="row"> Locations:</h3>
@@ -545,8 +545,8 @@ class Jobs extends Component {
               Clear All
             </Button>
           </div>
-        ) : null} */
-    }
+        ) : null} 
+    }*/
 
   }
   render() {

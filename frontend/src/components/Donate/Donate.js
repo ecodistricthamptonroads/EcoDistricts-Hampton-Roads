@@ -1,20 +1,17 @@
 import { Component } from 'react';
 import React from 'react';
 import '../../assets/stylesheets/DonatePage.css';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import picture from '../../assets/images/InTheDistrict0.jpg';
 
 class Donate extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (
       <div className={"container-xl"} 
       >
         <h1 className="Donate-h1">Support Us</h1>
-        <a  href = "https://donatenow.networkforgood.org/1388125" target="_blank">
+        <a  href = "https://donatenow.networkforgood.org/1388125">
         <button className = "button-donate">
             DONATE
           </button>
@@ -34,7 +31,7 @@ class Donate extends Component {
         
         <br/>
         <div >
-            <img className="picture" src={picture} alt="Smiling picture of two residents holding a sign saying In the District" />        
+            <img className="picture" src={picture} alt="Two smiling residents holding a sign saying In the District" />        
         </div>
 
         <h3>Tax Deduction Information</h3>

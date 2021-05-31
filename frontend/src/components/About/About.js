@@ -12,18 +12,13 @@ import infographic from '../../assets/images/infographic-priorities.png';
 // import carousel_3 from '../../assets/images/carousel_3.jpg';
 // import carousel_4 from '../../assets/images/carousel_4.jpg';
 class About extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    let images = [carousel_1];//, carousel_2, carousel_3, carousel_4];
     return (
       <div>
         <div className="About-Hero-Header">About Us</div>
 
         <div className="flex-container">
-          <img className="About-image" src={infographic} />
+          <img className="About-image" alt="Group of Ecodistrict community members smiling on a green hill" src={infographic} />
 
           <div className="col About-text">
             <h1 className="About-h1"> Who are we?</h1>
