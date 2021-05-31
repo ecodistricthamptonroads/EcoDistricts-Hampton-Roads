@@ -25,7 +25,9 @@
     "strapi-plugin-i18n": "3.6.2",
     "strapi-plugin-upload": "3.6.2",
     "strapi-plugin-users-permissions": "3.6.2",
-    "strapi-utils": "3.6.2"
+    "strapi-utils": "3.6.2",
+    "yup": "^0.27.0",
+    "postcss": "^8.2.10"
   },
   "resolutions": {
     "property-expr": "2.0.3"
