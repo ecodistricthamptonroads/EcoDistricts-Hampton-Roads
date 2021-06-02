@@ -77,15 +77,15 @@ class Jobs extends Component {
     // const oppType_value = e.target.value.toLowerCase();
     const oppType_value = e.target.value;
     if (this.state.opportunityTypes.includes(oppType_value)) {
-      var newJobType = [
+      var newOppType = [
         ...this.state.opportunityTypes.filter(
           (jobType) => !jobType.includes(oppType_value)
         ),
       ];
     } else {
-      var newJobType = [...this.state.opportunityTypes, oppType_value];
+      var newOppType = [...this.state.opportunityTypes, oppType_value];
     }
-    this.setState({ opportunityTypes: newJobType });
+    this.setState({ opportunityTypes: newOppType });
   }
   handleCheckboxIndustryType(e) {
     const industry_name = e.target.value.toLowerCase();
@@ -237,6 +237,7 @@ class Jobs extends Component {
                       {(job.Description)}
                     </Card.Text>
                     <Card.Text>{"@ " + (job.company || "")} </Card.Text>
+                    <Card.Text>{(job.industryType || job.jobType) + (job.industryType ? "*" : "") + (job.industryType || "")} </Card.Text>
                     {/* <Card.Text>{"$" + (job.salary || "")} </Card.Text> */}
                     <Card.Text>{"📍 " + (job.location || "")} </Card.Text>
                     <div
@@ -351,7 +352,7 @@ class Jobs extends Component {
                       name="jobtype"
                       value={jobtype_name}
                       checked={this.state.jobTypes.includes(jobtype_name) || 
-                              (this.state.useDefaultCheckJob && this.state.jobTypes === 0)}
+                              (this.state.useDefaultCheckJob && this.state.jobTypes.length === 0)}
                       onClick={this.handleCheckboxJobType}
                     />
                     <label
@@ -372,11 +373,12 @@ class Jobs extends Component {
                 Array.from(
                   document.getElementsByClassName("jobtype-checkbox")
                 ).map((checkbox) => (checkbox.checked = false));
+                
               }}
             >
               Clear All
             </Button>
-            <Button
+            {/* <Button
               // className="clear-btn"
               bsPrefix="clear-btn "
               onClick={(e) => {
@@ -387,7 +389,7 @@ class Jobs extends Component {
               }}
             >
               select All
-            </Button>
+            </Button> */}
           </div>
         ) : null}
         <br/>
@@ -433,7 +435,7 @@ class Jobs extends Component {
             >
               Clear All
             </Button>
-            <Button
+            {/* <Button
               // className="clear-btn"
               bsPrefix="clear-btn "
               onClick={(e) => {
@@ -444,7 +446,7 @@ class Jobs extends Component {
               }}
             >
               Select All
-            </Button>
+            </Button> */}
 
 
           </div>
