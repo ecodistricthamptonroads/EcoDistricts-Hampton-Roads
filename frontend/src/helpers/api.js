@@ -23,10 +23,13 @@ export async function fetchAPI(path) {
 }
 
 export function getStrapiMedia(media) {
-  const imageUrl = media.url.startsWith("/")
-    ? getStrapiURL(media.url)
-    : media.url;
-  return imageUrl;
+  if (media){
+    const imageUrl = media.url.startsWith("/")
+      ? getStrapiURL(media.url)
+      : media.url;
+    return imageUrl;
+  }
+  return null;
 }
 
 export const IMAGE_TYPE = {

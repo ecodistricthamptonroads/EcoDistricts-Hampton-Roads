@@ -228,7 +228,7 @@ class Land extends Component {
                             backgroundSize: "contain",
                             backgroundRepeat: "no-repeat",
                             backgroundPosition: "center",
-                            backgroundColor: "grey",
+                            backgroundColor: "#529384",
                             height:"100%",
                           }}
                         />
