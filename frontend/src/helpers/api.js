@@ -9,7 +9,7 @@ import axios from "axios";
 export function getStrapiURL(path = "") {
   const DOMAIN =
     process.env.NODE_ENV === "production"
-      ? "https://api.ecodistricthamptonroads.org"
+      ? "http://api.ecodistricthamptonroads.org"
       : "http://localhost:1337";
   return `${DOMAIN}${path}`;
 }
