@@ -9,12 +9,12 @@ import axios from "axios";
 export function getStrapiURL(path = "") {
   const DOMAIN =
     process.env.NODE_ENV === "production"
-      ? "https://api.ecodistricthamptonroads.org"
+      ? "http://api.ecodistricthamptonroads.org"
       : "http://localhost:1337";
   return `${DOMAIN}${path}`;
 }
 
-// Helper to make GET requests to Strapi
+// Helper to make GET requests to Str api
 export async function fetchAPI(path) {
   const requestUrl = getStrapiURL(path);
   const response = await fetch(requestUrl);

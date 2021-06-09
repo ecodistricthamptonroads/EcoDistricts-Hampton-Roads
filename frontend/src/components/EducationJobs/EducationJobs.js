@@ -7,7 +7,8 @@ import Form from "react-bootstrap/Form";
 // import DropdownButton from "react-bootstrap/DropdownButton";
 // import Dropdown from "react-bootstrap/Dropdown";
 import "../../assets/stylesheets/JobsPage.css";
-import { getJobs, getJobParameters } from "../../helpers/api";
+import { getJobs, getSpecificImage, getJobParameters } from "../../helpers/api";
+
 class EducationJobs extends Component {
   constructor(props) {
     super(props);
@@ -215,7 +216,7 @@ class Jobs extends Component {
                       style={{
                         padding: "0.3em",
                       }}
-                      src="https://brands-cdn.employbridge.com/content/assets/news//40169262_14124173_Large.jpg"
+                      src={(getSpecificImage(job.Image) || "https://brands-cdn.employbridge.com/content/assets/news//40169262_14124173_Large.jpg")}
                     />
                     <Card.Title
                       style={{
@@ -328,7 +329,7 @@ class Jobs extends Component {
     // const careers = [...new Set(filteredJobs.map(job => job.career))].sort();
     // const opportunityTypes = [...new Set(filteredJobs.map(job => job.jobType))].sort();
 
-    let opportunityTypes = this.state.possibleOpportunityTypes;
+    let opportunityTypes = this.state.possibleOpportunityTypes; 
     let jobTypes = this.state.possibleJobTypes;
 
     return (
@@ -354,6 +355,7 @@ class Jobs extends Component {
                       checked={this.state.jobTypes.includes(jobtype_name) || 
                               (this.state.useDefaultCheckJob && this.state.jobTypes.length === 0)}
                       onClick={this.handleCheckboxJobType}
+                      onChange={this.handleCheckboxJobType}
                     />
                     <label
                       className="form-check-label"
@@ -415,6 +417,7 @@ class Jobs extends Component {
                       checked={this.state.opportunityTypes.includes(oppType) || 
                               (this.state.useDefaultCheckOpp && this.state.opportunityTypes.length === 0)}
                       onClick={this.handleCheckboxOpportunityType}
+                      onChange={this.handleCheckboxOpportunityType}
                     />
                     <label className="form-check-label" htmlFor={oppType + idx}>
                       {oppType}
@@ -567,7 +570,7 @@ class Jobs extends Component {
         </div>
         {/* {this.getSearch()} */}
         <div className="job-container">
-          {this.displayFilters()}
+          {this.displayFilters()} {/* display checkboxes */}
           {this.displayJobs()}
           {/*<iframe
             src="https://calendar.google.com/calendar/embed?src=fgv68k6tk5ji5sr4jjiuc2q90k%40group.calendar.google.com&ctz=America%2FNew_York"

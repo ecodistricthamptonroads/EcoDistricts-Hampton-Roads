@@ -50,7 +50,7 @@ class Header extends Component {
     const CONTACT_US_LINK =
       "https://us4.list-manage.com/contact-form?u=51eb002c7ef49ac4bf7de17e2&form_id=c58d36b6f54bd9b975ec2607253190d2";
     return (
-      <Navbar pullRight collapseOnSelect expand="lg">
+      <Navbar collapseOnSelect expand="lg">
         <Navbar.Brand href="/">
           <img id="navbar-logo" src={brand}></img>
         </Navbar.Brand>
