@@ -16,21 +16,22 @@
     "knex": "0.21.18",
     "lodash": "^4.17.21",
     "sqlite3": "5.0.0",
-    "strapi": "3.6.2",
-    "strapi-admin": "3.6.2",
-    "strapi-connector-bookshelf": "3.6.2",
-    "strapi-plugin-content-manager": "3.6.2",
-    "strapi-plugin-content-type-builder": "3.6.2",
-    "strapi-plugin-email": "3.6.2",
-    "strapi-plugin-i18n": "3.6.2",
-    "strapi-plugin-upload": "3.6.2",
-    "strapi-plugin-users-permissions": "3.6.2",
-    "strapi-utils": "3.6.2",
+    "strapi": "3.6.3",
+    "strapi-admin": "3.6.3",
+    "strapi-connector-bookshelf": "3.6.3",
+    "strapi-plugin-content-manager": "3.6.3",
+    "strapi-plugin-content-type-builder": "3.6.3",
+    "strapi-plugin-email": "3.6.3",
+    "strapi-plugin-i18n": "3.6.3",
+    "strapi-plugin-upload": "3.6.3",
+    "strapi-plugin-users-permissions": "3.6.3",
+    "strapi-utils": "3.6.3",
     "yup": "^0.27.0",
     "postcss": "^8.2.10"
   },
   "resolutions": {
-    "property-expr": "2.0.3"
+    "property-expr": "2.0.3",
+    "lodash": "^4.17.21"
   },
   "author": {
     "name": "A Strapi developer"
