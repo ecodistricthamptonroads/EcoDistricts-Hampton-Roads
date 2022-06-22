@@ -15,7 +15,7 @@
     "express": "^4.17.1",
     "knex": "0.21.18",
     "lodash": "^4.17.21",
-    "sqlite3": "5.0.0",
+    "sqlite3": "5.0.3",
     "strapi": "3.6.2",
     "strapi-admin": "3.6.2",
     "strapi-connector-bookshelf": "3.6.2",
