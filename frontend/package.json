@@ -10,7 +10,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "bootstrap-switch-button-react": "^1.2.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.1",
